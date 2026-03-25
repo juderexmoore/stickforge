@@ -2,13 +2,156 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Stickforge Arena</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="backdrop backdrop-one"></div>
     <div class="backdrop backdrop-two"></div>
+
+    <section class="main-menu" id="main-menu" aria-label="Main menu">
+      <div class="main-menu-shell panel">
+        <div class="main-menu-hero">
+          <div>
+            <div class="menu-banner">
+              <span class="menu-status">Arcade Build</span>
+              <span class="menu-status alt">Local Ready</span>
+              <span class="menu-status alt">Mouse Combat</span>
+            </div>
+            <p class="eyebrow">Main Menu</p>
+            <h2>Stickforge Arena</h2>
+            <p class="subtitle">
+              Sign in, pick a fight, and leave quick local reviews before you
+              jump into the duel.
+            </p>
+          </div>
+          <div class="menu-action-row">
+            <button id="menu-play-bot" class="primary-button" type="button">Play Vs Bot</button>
+            <button id="menu-play-pvp" class="ghost-button" type="button">Local PvP</button>
+            <button id="menu-open-workshop" class="ghost-button" type="button">Open Workshop</button>
+          </div>
+          <div class="menu-summary" id="menu-summary"></div>
+          <div class="menu-feature-grid">
+            <article class="menu-feature-card">
+              <span>Forge</span>
+              <strong>8 weapon frames</strong>
+              <p>Build quick daggers, long halberds, heavy war hammers, and more.</p>
+            </article>
+            <article class="menu-feature-card">
+              <span>Duel</span>
+              <strong>Bot or local PvP</strong>
+              <p>Jump into a proper round set against AI or a second local fighter.</p>
+            </article>
+            <article class="menu-feature-card">
+              <span>Feedback</span>
+              <strong>Reviews + owner inbox</strong>
+              <p>Leave player reviews here while the owner account keeps the private feedback log.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="main-menu-grid">
+          <section class="menu-card">
+            <div class="section-head compact">
+              <div>
+                <p class="eyebrow">Sign In</p>
+                <h3>Local Account</h3>
+              </div>
+              <span class="section-tag">Saved here</span>
+            </div>
+
+            <p id="account-status" class="arena-hint">
+              No account is signed in. The first created account becomes the only feedback owner.
+            </p>
+
+            <div class="forge-grid account-grid">
+              <label>
+                <span>Name</span>
+                <input id="account-name" type="text" maxlength="12" placeholder="Arena name" />
+              </label>
+
+              <label>
+                <span>Passcode</span>
+                <input id="account-passcode" type="password" maxlength="24" placeholder="Local passcode" />
+              </label>
+            </div>
+
+            <div class="action-row">
+              <button id="create-account" class="primary-button" type="button">Create Account</button>
+              <button id="login-account" class="ghost-button" type="button">Log In</button>
+              <button id="logout-account" class="ghost-button" type="button">Log Out</button>
+            </div>
+
+            <p id="account-note" class="arena-hint">
+              Feedback prompts and saved feedback are only visible to the owner account.
+            </p>
+
+            <div class="section-head compact">
+              <div>
+                <p class="eyebrow">Owner Feedback</p>
+                <h3>Local Inbox</h3>
+              </div>
+            </div>
+            <div id="feedback-inbox" class="feedback-inbox"></div>
+          </section>
+
+          <section class="menu-card">
+            <div class="section-head compact">
+              <div>
+                <p class="eyebrow">Reviews</p>
+                <h3>Leave A Review</h3>
+              </div>
+              <span class="section-tag">Main menu</span>
+            </div>
+
+            <p class="arena-hint">
+              Signed-in players can leave short local reviews about weapon feel,
+              balance, or visuals.
+            </p>
+
+            <div class="feedback-choices review-choices" id="review-choices">
+              <button class="ghost-button review-choice" data-review-choice="Love it" type="button">Love It</button>
+              <button class="ghost-button review-choice" data-review-choice="Solid" type="button">Solid</button>
+              <button class="ghost-button review-choice" data-review-choice="Needs work" type="button">Needs Work</button>
+            </div>
+
+            <label class="feedback-label" for="review-note">
+              <span>Short review</span>
+              <textarea
+                id="review-note"
+                rows="4"
+                maxlength="180"
+                placeholder="Example: the spear feels clear now and local pvp is easier to understand."
+              ></textarea>
+            </label>
+
+            <div class="feedback-actions">
+              <button id="submit-review" class="primary-button" type="button">Save Review</button>
+              <span id="review-status" class="feedback-status">Reviews are stored locally in this browser.</span>
+            </div>
+
+            <div class="section-head compact">
+              <div>
+                <p class="eyebrow">Recent</p>
+                <h3>Arena Reviews</h3>
+              </div>
+            </div>
+            <div id="review-list" class="feedback-inbox"></div>
+          </section>
+        </div>
+
+        <div class="menu-footer">
+          <div class="menu-footer-actions">
+            <button id="menu-toggle-sound" class="ghost-button" type="button">Sound: On</button>
+            <button id="close-menu" class="ghost-button" type="button">Close Menu</button>
+          </div>
+          <p class="arena-hint">
+            Bot and PvP both use your current forged weapon, rival loadout, and stage setup.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <header class="masthead">
       <div>
@@ -39,7 +182,7 @@
           <div class="forge-grid">
             <label>
               <span>Name</span>
-              <input id="weapon-name" type="text" maxlength="22" value="Ashbite" />
+              <input id="weapon-name" type="text" maxlength="12" value="Ashbite" />
             </label>
 
             <label>
@@ -84,10 +227,12 @@
                 A responsive forge piece tuned for quick openings and clean
                 finishers.
               </p>
+              <div class="forge-badges" id="forge-badges"></div>
             </div>
           </div>
 
           <div class="stats-grid" id="forge-stats"></div>
+          <div class="forge-details" id="forge-details"></div>
 
           <div class="action-row">
             <button id="save-weapon" class="primary-button">Save To Armory</button>
@@ -131,6 +276,7 @@
             <button id="toggle-lights" class="ghost-button">Crowd Lights: On</button>
           </div>
         </section>
+
       </div>
 
       <section class="panel stage-panel">
@@ -144,7 +290,7 @@
               <span>Mode</span>
               <select id="match-mode">
                 <option value="solo">Player vs Bot</option>
-                <option value="duel">Player vs Local Rival</option>
+                <option value="duel">Local PvP</option>
               </select>
             </label>
 
@@ -154,7 +300,9 @@
               <output id="rounds-to-win-value">2</output>
             </label>
 
-            <button id="start-match" class="primary-button">Start Set</button>
+            <button id="toggle-sound" class="ghost-button" type="button">Sound: On</button>
+            <button id="open-menu" class="ghost-button" type="button">Main Menu</button>
+            <button id="start-match" class="primary-button" type="button">Start Set</button>
           </div>
         </div>
 
@@ -181,7 +329,140 @@
           </div>
         </div>
 
-        <canvas id="battlefield" width="960" height="540" aria-label="Battlefield"></canvas>
+        <div class="battlefield-shell">
+          <div class="battlefield-marquee">
+            <span class="battlefield-kicker">Arena Broadcast</span>
+            <strong>Stickforge Championship Feed</strong>
+            <span class="battlefield-mode" id="battlefield-mode">Vs Bot</span>
+          </div>
+
+          <div class="battlefield-phase" id="battlefield-phase">Awaiting next set.</div>
+
+          <div class="broadcast-deck">
+            <article class="duelist-card player-side">
+              <span class="duelist-tag">Player Corner</span>
+              <strong id="broadcast-player-name">Player 1</strong>
+              <p id="broadcast-player-loadout">Ashbite | Balanced</p>
+              <div class="duelist-meta">
+                <span id="broadcast-player-record">Guest profile</span>
+                <span id="broadcast-player-form">Ready to fight</span>
+              </div>
+            </article>
+
+            <article class="versus-card">
+              <span class="duelist-tag">Tonight's Card</span>
+              <strong id="broadcast-stage-name">Foundry</strong>
+              <p id="broadcast-stage-note">Molten pressure lane | First to 2 rounds</p>
+              <div id="broadcast-round-pips" class="broadcast-round-pips"></div>
+            </article>
+
+            <article class="duelist-card rival-side">
+              <span class="duelist-tag">Rival Corner</span>
+              <strong id="broadcast-rival-name">Bot</strong>
+              <p id="broadcast-rival-loadout">Auto Forge | Balanced</p>
+              <div class="duelist-meta">
+                <span id="broadcast-rival-record">Generated rival</span>
+                <span id="broadcast-rival-form">Waiting for set</span>
+              </div>
+            </article>
+          </div>
+
+          <canvas id="battlefield" width="960" height="540" aria-label="Battlefield"></canvas>
+
+          <div class="battlefield-footer">
+            <div class="battlefield-stat">
+              <span>Fight Style</span>
+              <strong id="battlefield-style">Balanced duel control</strong>
+            </div>
+            <div class="battlefield-stat">
+              <span>Current Stage</span>
+              <strong id="battlefield-stage">Foundry</strong>
+            </div>
+            <div class="battlefield-stat">
+              <span>Loadout</span>
+              <strong id="battlefield-loadout">Ashbite</strong>
+            </div>
+          </div>
+
+          <div class="broadcast-grid">
+            <article class="broadcast-card">
+              <div class="section-head compact">
+                <div>
+                  <p class="eyebrow">Live Call</p>
+                  <h3>Fight Feed</h3>
+                </div>
+              </div>
+              <div id="fight-feed" class="fight-feed"></div>
+            </article>
+
+            <article class="broadcast-card">
+              <div class="section-head compact">
+                <div>
+                  <p class="eyebrow">Set Stats</p>
+                  <h3>Pressure Report</h3>
+                </div>
+              </div>
+              <div id="set-stats" class="set-stats"></div>
+            </article>
+          </div>
+
+          <section class="set-recap hidden" id="set-recap" aria-live="polite">
+            <div class="set-recap-head">
+              <div>
+                <p class="eyebrow">Set Recap</p>
+                <h3 id="set-recap-title">Set Ready</h3>
+              </div>
+              <span class="battlefield-mode" id="set-recap-mode">Vs Bot</span>
+            </div>
+            <div class="set-recap-grid">
+              <article class="set-recap-card">
+                <span>Winner</span>
+                <strong id="set-recap-winner">Waiting</strong>
+                <p id="set-recap-score">0 - 0</p>
+              </article>
+              <article class="set-recap-card">
+                <span>Loadouts</span>
+                <strong id="set-recap-loadouts">Ashbite vs Rival</strong>
+                <p id="set-recap-stage">Foundry</p>
+              </article>
+              <article class="set-recap-card">
+                <span>Next Step</span>
+                <strong>Rematch or Reforge</strong>
+                <p>Start another set instantly or open the menu to change the build.</p>
+              </article>
+            </div>
+            <div class="set-recap-actions">
+              <button id="recap-rematch" class="primary-button" type="button">Run It Back</button>
+              <button id="recap-menu" class="ghost-button" type="button">Open Main Menu</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="feedback-panel hidden" id="feedback-panel" aria-live="polite">
+          <div class="feedback-head">
+            <div>
+              <p class="eyebrow">Quick Feedback</p>
+              <h3>How Is This Build?</h3>
+            </div>
+            <button id="dismiss-feedback" class="ghost-button feedback-close" type="button">Later</button>
+          </div>
+          <p id="feedback-copy" class="feedback-copy">
+            You have been in the arena a bit. Drop a fast note about combat feel, weapon control, or stickman visuals.
+          </p>
+          <div class="feedback-choices" id="feedback-choices">
+            <button class="ghost-button feedback-choice" data-feedback-choice="Feels good" type="button">Feels Good</button>
+            <button class="ghost-button feedback-choice" data-feedback-choice="Needs tuning" type="button">Needs Tuning</button>
+            <button class="ghost-button feedback-choice" data-feedback-choice="Too hard" type="button">Too Hard</button>
+          </div>
+          <label class="feedback-label" for="feedback-note">
+            <span>Short note</span>
+            <textarea id="feedback-note" rows="3" maxlength="160" placeholder="Example: the mouse weapon swing feels good but the bot blocks too much."></textarea>
+          </label>
+          <div class="feedback-actions">
+            <button id="send-feedback" class="primary-button" type="button">Send Feedback</button>
+            <span id="feedback-status" class="feedback-status">Shows for a short time, or you can dismiss it.</span>
+          </div>
+        </aside>
 
         <div class="touch-controls" id="touch-controls">
           <div class="touch-pad">
@@ -201,14 +482,16 @@
         <div class="footer-row">
           <div class="controls-card">
             <h3>Controls</h3>
-            <p><strong>P1:</strong> A/D walk, W jump, S crouch, move mouse to steer weapon, left click strike, right click block</p>
-            <p><strong>Abilities:</strong> Q backstep, E lunge, quick mouse swings do light bonus damage</p>
-            <p><strong>P2 duel mode:</strong> J/L walk, I jump, K crouch, O strike, U block, P backstep, ; lunge</p>
+            <p><strong>Player 1:</strong> A/D move, W jump, S crouch, move the mouse to aim the weapon, left click strike, right click block.</p>
+            <p><strong>Abilities:</strong> Q backstep, E lunge, and fast mouse swings deal light bonus clip damage.</p>
+            <p><strong>Mobile:</strong> Use the touch deck for movement and actions. Mobile aim now auto-locks toward the rival so attacks stay usable on phones.</p>
+            <p><strong>Controller:</strong> Left stick or D-pad moves, right stick aims, A jumps, RT or X attacks, LT or LB blocks, B dodges, Y or RB lunges, and Start opens the menu.</p>
+            <p><strong>Local PvP:</strong> Player 2 uses J/L move, I jump, K crouch, O strike, U block, P backstep, and ; lunge.</p>
           </div>
           <div class="controls-card">
-            <h3>Round Feed</h3>
+            <h3>Fight Feed</h3>
             <p id="match-summary">
-              Forge a weapon, pick a stage, and launch a proper round set.
+              Open the menu, choose bot or PvP, and launch a proper round set.
             </p>
           </div>
         </div>

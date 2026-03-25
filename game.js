@@ -13,6 +13,8 @@ const ROUND_TIME = 60;
 const frameCatalog = {
   saber: {
     label: "Saber",
+    summary: "Balanced sword. Good first pick with clean reach, clean speed, and no huge weakness.",
+    design: "Straight duel blade",
     damage: 18,
     reach: 78,
     cooldown: 0.62,
@@ -23,6 +25,8 @@ const frameCatalog = {
   },
   spear: {
     label: "Spear",
+    summary: "Long poke weapon. Safest range, narrower swing, and better lane control.",
+    design: "Long thrusting polearm",
     damage: 16,
     reach: 104,
     cooldown: 0.76,
@@ -33,6 +37,8 @@ const frameCatalog = {
   },
   cleaver: {
     label: "Cleaver",
+    summary: "Short heavy chopper. Slower than a saber but it hits harder and launches farther.",
+    design: "Wide chopping blade",
     damage: 24,
     reach: 68,
     cooldown: 0.86,
@@ -43,6 +49,8 @@ const frameCatalog = {
   },
   chainblade: {
     label: "Chainblade",
+    summary: "Fast pressure weapon. Swings wide, recovers quickly, and is good for close scrambles.",
+    design: "Weighted chain blade",
     damage: 15,
     reach: 88,
     cooldown: 0.52,
@@ -50,12 +58,61 @@ const frameCatalog = {
     arc: 1.42,
     speed: 1.16,
     moveScale: 1.04
+  },
+  dagger: {
+    label: "Dagger",
+    summary: "Shortest weapon here. Very fast, easy to weave with, and built for rushdown.",
+    design: "Compact stabbing knife",
+    damage: 13,
+    reach: 58,
+    cooldown: 0.42,
+    knockback: 0.9,
+    arc: 0.98,
+    speed: 1.24,
+    moveScale: 1.08
+  },
+  greatblade: {
+    label: "Greatblade",
+    summary: "Big two-hand sword. Strong range and damage, but every miss is slower to recover.",
+    design: "Oversized great sword",
+    damage: 27,
+    reach: 92,
+    cooldown: 0.94,
+    knockback: 1.42,
+    arc: 1.08,
+    speed: 0.8,
+    moveScale: 0.88
+  },
+  warhammer: {
+    label: "War Hammer",
+    summary: "Blunt wrecking tool. Massive knockback and guard damage, but the slowest swing here.",
+    design: "Blocky impact hammer",
+    damage: 30,
+    reach: 74,
+    cooldown: 1.02,
+    knockback: 1.58,
+    arc: 0.9,
+    speed: 0.72,
+    moveScale: 0.84
+  },
+  halberd: {
+    label: "Halberd",
+    summary: "Hybrid polearm. Strong range with better sweep than a spear and less weight than a hammer.",
+    design: "Axe head with top spike",
+    damage: 22,
+    reach: 98,
+    cooldown: 0.88,
+    knockback: 1.28,
+    arc: 1.06,
+    speed: 0.88,
+    moveScale: 0.9
   }
 };
 
 const materialCatalog = {
   ironwood: {
     label: "Ironwood Core",
+    summary: "Light and easy to carry. You give up some damage for faster movement and control.",
     damage: -1,
     reach: -2,
     speed: 0.06,
@@ -66,6 +123,7 @@ const materialCatalog = {
   },
   sunsteel: {
     label: "Sunsteel",
+    summary: "Safe all-round metal. Small damage boost without pushing the weapon too far in any direction.",
     damage: 3,
     reach: 2,
     speed: 0.02,
@@ -76,6 +134,7 @@ const materialCatalog = {
   },
   voidglass: {
     label: "Voidglass",
+    summary: "Long and fast. Better reach and speed, but it does not shove opponents as hard.",
     damage: 1,
     reach: 4,
     speed: 0.1,
@@ -86,6 +145,7 @@ const materialCatalog = {
   },
   embersteel: {
     label: "Embersteel",
+    summary: "Heavy furnace metal. Hits hard and launches well, but it slows your weapon down.",
     damage: 5,
     reach: 0,
     speed: -0.06,
@@ -99,6 +159,7 @@ const materialCatalog = {
 const edgeCatalog = {
   needle: {
     label: "Needle Edge",
+    summary: "Sharp straight point. Best for extra reach and faster pokes.",
     damage: 1,
     reach: 6,
     speed: 0.08,
@@ -108,6 +169,7 @@ const edgeCatalog = {
   },
   crescent: {
     label: "Crescent Sweep",
+    summary: "Curved edge that widens your swing arc, so it is easier to catch movement.",
     damage: 0,
     reach: 2,
     speed: 0.02,
@@ -117,6 +179,7 @@ const edgeCatalog = {
   },
   breaker: {
     label: "Breaker Face",
+    summary: "Flat crushing face. Slower, shorter, but much stronger on impact and guard pressure.",
     damage: 4,
     reach: -4,
     speed: -0.12,
@@ -126,6 +189,7 @@ const edgeCatalog = {
   },
   serrated: {
     label: "Serrated Bite",
+    summary: "Aggressive cutting edge. Adds damage and drive without changing the weapon too much.",
     damage: 3,
     reach: 0,
     speed: -0.03,
@@ -138,6 +202,8 @@ const edgeCatalog = {
 const stageCatalog = {
   foundry: {
     label: "Foundry",
+    tagline: "Molten pressure lane",
+    specialty: "Hazard punishes standing still",
     description: "A molten forge lane with chain lifts, ash smoke, and a furnace pit in the middle.",
     skyTop: "#31161b",
     skyBottom: "#120c12",
@@ -149,6 +215,8 @@ const stageCatalog = {
   },
   ring: {
     label: "Ring",
+    tagline: "Clean championship platform",
+    specialty: "Best stage for pure duels",
     description: "A championship platform with banners, cold spotlights, and heavy steel corners.",
     skyTop: "#192036",
     skyBottom: "#0c0f1b",
@@ -160,6 +228,8 @@ const stageCatalog = {
   },
   crossfire: {
     label: "Crossfire",
+    tagline: "Trial lane with pressure zones",
+    specialty: "Strong sight lines and traps",
     description: "A brutal test gallery lined with burners, rigging, and weapon trial rails.",
     skyTop: "#2a1f16",
     skyBottom: "#100c08",
@@ -193,6 +263,15 @@ const keyBindings = {
 };
 
 const ui = {
+  mainMenu: document.querySelector("#main-menu"),
+  closeMenu: document.querySelector("#close-menu"),
+  openMenu: document.querySelector("#open-menu"),
+  toggleSound: document.querySelector("#toggle-sound"),
+  menuToggleSound: document.querySelector("#menu-toggle-sound"),
+  menuPlayBot: document.querySelector("#menu-play-bot"),
+  menuPlayPvp: document.querySelector("#menu-play-pvp"),
+  menuOpenWorkshop: document.querySelector("#menu-open-workshop"),
+  menuSummary: document.querySelector("#menu-summary"),
   frameSelect: document.querySelector("#frame-select"),
   materialSelect: document.querySelector("#material-select"),
   edgeSelect: document.querySelector("#edge-select"),
@@ -206,7 +285,9 @@ const ui = {
   forgePreview: document.querySelector("#forge-preview"),
   weaponTitle: document.querySelector("#weapon-title"),
   weaponLore: document.querySelector("#weapon-lore"),
+  forgeBadges: document.querySelector("#forge-badges"),
   forgeStats: document.querySelector("#forge-stats"),
+  forgeDetails: document.querySelector("#forge-details"),
   saveWeapon: document.querySelector("#save-weapon"),
   equipWeapon: document.querySelector("#equip-weapon"),
   armoryList: document.querySelector("#armory-list"),
@@ -225,8 +306,55 @@ const ui = {
   hudArenaName: document.querySelector("#hud-arena-name"),
   hudSetScore: document.querySelector("#hud-set-score"),
   hudResult: document.querySelector("#hud-result"),
+  battlefieldMode: document.querySelector("#battlefield-mode"),
+  battlefieldPhase: document.querySelector("#battlefield-phase"),
+  broadcastPlayerName: document.querySelector("#broadcast-player-name"),
+  broadcastPlayerLoadout: document.querySelector("#broadcast-player-loadout"),
+  broadcastPlayerRecord: document.querySelector("#broadcast-player-record"),
+  broadcastPlayerForm: document.querySelector("#broadcast-player-form"),
+  broadcastRivalName: document.querySelector("#broadcast-rival-name"),
+  broadcastRivalLoadout: document.querySelector("#broadcast-rival-loadout"),
+  broadcastRivalRecord: document.querySelector("#broadcast-rival-record"),
+  broadcastRivalForm: document.querySelector("#broadcast-rival-form"),
+  broadcastStageName: document.querySelector("#broadcast-stage-name"),
+  broadcastStageNote: document.querySelector("#broadcast-stage-note"),
+  broadcastRoundPips: document.querySelector("#broadcast-round-pips"),
+  battlefieldStyle: document.querySelector("#battlefield-style"),
+  battlefieldStage: document.querySelector("#battlefield-stage"),
+  battlefieldLoadout: document.querySelector("#battlefield-loadout"),
+  fightFeed: document.querySelector("#fight-feed"),
+  setStats: document.querySelector("#set-stats"),
+  setRecap: document.querySelector("#set-recap"),
+  setRecapTitle: document.querySelector("#set-recap-title"),
+  setRecapMode: document.querySelector("#set-recap-mode"),
+  setRecapWinner: document.querySelector("#set-recap-winner"),
+  setRecapScore: document.querySelector("#set-recap-score"),
+  setRecapLoadouts: document.querySelector("#set-recap-loadouts"),
+  setRecapStage: document.querySelector("#set-recap-stage"),
+  recapRematch: document.querySelector("#recap-rematch"),
+  recapMenu: document.querySelector("#recap-menu"),
   matchSummary: document.querySelector("#match-summary"),
-  touchControls: document.querySelector("#touch-controls")
+  touchControls: document.querySelector("#touch-controls"),
+  accountName: document.querySelector("#account-name"),
+  accountPasscode: document.querySelector("#account-passcode"),
+  accountStatus: document.querySelector("#account-status"),
+  accountNote: document.querySelector("#account-note"),
+  createAccount: document.querySelector("#create-account"),
+  loginAccount: document.querySelector("#login-account"),
+  logoutAccount: document.querySelector("#logout-account"),
+  feedbackInbox: document.querySelector("#feedback-inbox"),
+  feedbackPanel: document.querySelector("#feedback-panel"),
+  feedbackChoices: Array.from(document.querySelectorAll(".feedback-choice")),
+  feedbackCopy: document.querySelector("#feedback-copy"),
+  feedbackNote: document.querySelector("#feedback-note"),
+  feedbackStatus: document.querySelector("#feedback-status"),
+  sendFeedback: document.querySelector("#send-feedback"),
+  dismissFeedback: document.querySelector("#dismiss-feedback"),
+  reviewChoices: Array.from(document.querySelectorAll(".review-choice")),
+  reviewNote: document.querySelector("#review-note"),
+  reviewStatus: document.querySelector("#review-status"),
+  submitReview: document.querySelector("#submit-review"),
+  reviewList: document.querySelector("#review-list")
 };
 
 const canvas = ui.battlefield;
@@ -276,7 +404,60 @@ const state = {
     p2: {}
   },
   sparkId: 0,
-  lastFrameTime: performance.now()
+  lastFrameTime: performance.now(),
+  auth: {
+    accounts: [],
+    activeAccountId: null,
+    ownerAccountId: null
+  },
+  feedback: {
+    shown: false,
+    visible: false,
+    promptDelay: 12,
+    visibleDuration: 16,
+    selectedChoice: "",
+    entries: [],
+    promptHandle: null,
+    hideHandle: null
+  },
+  reviews: {
+    selectedChoice: "",
+    entries: []
+  },
+  menu: {
+    open: true
+  },
+  inputProfile: {
+    touch: false,
+    lastSource: "mouse"
+  },
+  gamepad: {
+    connected: false,
+    index: null,
+    leftX: 0,
+    leftY: 0,
+    rightX: 0,
+    rightY: 0,
+    buttons: {
+      left: false,
+      right: false,
+      up: false,
+      down: false,
+      jump: false,
+      attack: false,
+      block: false,
+      dodge: false,
+      slide: false,
+      menu: false,
+      confirm: false
+    }
+  },
+  uiPulse: 0,
+  audio: {
+    enabled: true,
+    context: null,
+    masterGain: null
+  }
 };
 
 function clamp(value, min, max) {
@@ -336,6 +517,957 @@ function setStatus(text) {
   ui.hudResult.textContent = text;
 }
 
+function describeMatchMode(mode) {
+  return mode === "duel"
+    ? "Local PvP active. Player 2 uses keyboard attacks and defense."
+    : "Bot mode active. Fight the AI in a round set.";
+}
+
+function matchModeLabel(mode) {
+  return mode === "duel" ? "Local PvP" : "Vs Bot";
+}
+
+function hasCoarsePointer() {
+  return Boolean(
+    ("ontouchstart" in window) ||
+    navigator.maxTouchPoints > 0 ||
+    window.matchMedia?.("(pointer: coarse)")?.matches
+  );
+}
+
+function refreshInputProfile() {
+  state.inputProfile.touch = hasCoarsePointer();
+  document.body.classList.toggle("touch-device", state.inputProfile.touch);
+}
+
+function anyTouchInputActive() {
+  return Object.values(state.touchState).some(Boolean);
+}
+
+function applyDeadzone(value, threshold = 0.22) {
+  return Math.abs(value) >= threshold ? value : 0;
+}
+
+function gamepadButtonPressed(pad, index) {
+  return Boolean(pad?.buttons?.[index]?.pressed);
+}
+
+function pollGamepadState() {
+  const pads = typeof navigator.getGamepads === "function" ? Array.from(navigator.getGamepads()).filter(Boolean) : [];
+  const pad = pads[0] || null;
+  const previousButtons = { ...state.gamepad.buttons };
+
+  if (!pad) {
+    state.gamepad.connected = false;
+    state.gamepad.index = null;
+    state.gamepad.leftX = 0;
+    state.gamepad.leftY = 0;
+    state.gamepad.rightX = 0;
+    state.gamepad.rightY = 0;
+    Object.keys(state.gamepad.buttons).forEach((key) => {
+      state.gamepad.buttons[key] = false;
+    });
+    return;
+  }
+
+  const leftX = applyDeadzone(pad.axes[0] || 0, 0.24);
+  const leftY = applyDeadzone(pad.axes[1] || 0, 0.28);
+  const rightX = applyDeadzone(pad.axes[2] || 0, 0.2);
+  const rightY = applyDeadzone(pad.axes[3] || 0, 0.2);
+  const nextButtons = {
+    left: leftX <= -0.4 || gamepadButtonPressed(pad, 14),
+    right: leftX >= 0.4 || gamepadButtonPressed(pad, 15),
+    up: leftY <= -0.58 || gamepadButtonPressed(pad, 12),
+    down: leftY >= 0.4 || gamepadButtonPressed(pad, 13),
+    jump: gamepadButtonPressed(pad, 0),
+    attack: gamepadButtonPressed(pad, 7) || gamepadButtonPressed(pad, 2),
+    block: gamepadButtonPressed(pad, 6) || gamepadButtonPressed(pad, 4),
+    dodge: gamepadButtonPressed(pad, 1),
+    slide: gamepadButtonPressed(pad, 3) || gamepadButtonPressed(pad, 5),
+    menu: gamepadButtonPressed(pad, 9),
+    confirm: gamepadButtonPressed(pad, 0)
+  };
+
+  state.gamepad.connected = true;
+  state.gamepad.index = pad.index;
+  state.gamepad.leftX = leftX;
+  state.gamepad.leftY = leftY;
+  state.gamepad.rightX = rightX;
+  state.gamepad.rightY = rightY;
+  state.gamepad.buttons = nextButtons;
+
+  if (Object.values(nextButtons).some(Boolean) || Math.hypot(rightX, rightY) > 0.24) {
+    state.inputProfile.lastSource = "controller";
+  }
+
+  if (nextButtons.menu && !previousButtons.menu) {
+    primeAudio();
+    playSoundEffect("menu-accept");
+    setMenuOpen(!state.menu.open);
+  }
+
+  if (state.menu.open && nextButtons.confirm && !previousButtons.confirm) {
+    if (!state.match || state.match.phase === "match-over") {
+      startMatch();
+    }
+  }
+}
+
+function defaultAccountStats() {
+  return {
+    setsPlayed: 0,
+    setsWon: 0,
+    reviewsWritten: 0
+  };
+}
+
+function ensureAccountStats(account) {
+  if (!account) {
+    return defaultAccountStats();
+  }
+
+  account.stats = {
+    ...defaultAccountStats(),
+    ...(account.stats || {})
+  };
+  return account.stats;
+}
+
+function accountSummaryMeta(account) {
+  const stats = ensureAccountStats(account);
+  const losses = Math.max(0, stats.setsPlayed - stats.setsWon);
+
+  return {
+    stats,
+    line: `${stats.setsWon}W ${losses}L across ${stats.setsPlayed} sets`,
+    reviewLine: `${stats.reviewsWritten} local review${stats.reviewsWritten === 1 ? "" : "s"}`
+  };
+}
+
+function defaultCombatStats() {
+  return {
+    damage: 0,
+    hits: 0,
+    blocks: 0,
+    guardBreaks: 0
+  };
+}
+
+function statsKeyForTeam(team) {
+  return team === PLAYER_TEAM ? "player" : "enemy";
+}
+
+function statsForTeam(match, team) {
+  if (!match) {
+    return defaultCombatStats();
+  }
+
+  if (!match.stats) {
+    match.stats = {
+      player: defaultCombatStats(),
+      enemy: defaultCombatStats()
+    };
+  }
+
+  const key = statsKeyForTeam(team);
+  if (!match.stats[key]) {
+    match.stats[key] = defaultCombatStats();
+  }
+
+  return match.stats[key];
+}
+
+function saveSettingsState() {
+  try {
+    window.localStorage.setItem(
+      "stickforge-settings",
+      JSON.stringify({
+        audioEnabled: state.audio.enabled
+      })
+    );
+  } catch (error) {
+    // Ignore storage failures; settings can still work for the current session.
+  }
+}
+
+function renderSoundButtons() {
+  const label = `Sound: ${state.audio.enabled ? "On" : "Off"}`;
+  [ui.toggleSound, ui.menuToggleSound].forEach((button) => {
+    if (!button) {
+      return;
+    }
+    button.textContent = label;
+    button.classList.toggle("active", state.audio.enabled);
+  });
+}
+
+function setAudioEnabled(enabled) {
+  state.audio.enabled = enabled;
+  saveSettingsState();
+  renderSoundButtons();
+
+  if (!enabled && state.audio.masterGain && state.audio.context) {
+    const now = state.audio.context.currentTime;
+    state.audio.masterGain.gain.cancelScheduledValues(now);
+    state.audio.masterGain.gain.setValueAtTime(state.audio.masterGain.gain.value, now);
+    state.audio.masterGain.gain.linearRampToValueAtTime(0.0001, now + 0.05);
+  }
+}
+
+function ensureAudioContext() {
+  if (!state.audio.enabled) {
+    return null;
+  }
+
+  const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextCtor) {
+    return null;
+  }
+
+  if (!state.audio.context) {
+    const context = new AudioContextCtor();
+    const masterGain = context.createGain();
+    masterGain.gain.value = 0.13;
+    masterGain.connect(context.destination);
+    state.audio.context = context;
+    state.audio.masterGain = masterGain;
+  }
+
+  return state.audio.context;
+}
+
+function primeAudio() {
+  const context = ensureAudioContext();
+  if (!context) {
+    return;
+  }
+
+  if (context.state === "suspended") {
+    context.resume().catch(() => {
+      // Audio resume can fail until a valid user gesture. Ignore quietly.
+    });
+  } else if (state.audio.masterGain) {
+    const now = context.currentTime;
+    state.audio.masterGain.gain.cancelScheduledValues(now);
+    state.audio.masterGain.gain.setValueAtTime(state.audio.masterGain.gain.value, now);
+    state.audio.masterGain.gain.linearRampToValueAtTime(0.13, now + 0.05);
+  }
+}
+
+function playSynthTone(frequency, duration, { type = "triangle", gain = 0.03, endFrequency = null } = {}) {
+  const context = ensureAudioContext();
+  if (!context || context.state !== "running" || !state.audio.masterGain) {
+    return;
+  }
+
+  const oscillator = context.createOscillator();
+  const envelope = context.createGain();
+  const now = context.currentTime;
+
+  oscillator.type = type;
+  oscillator.frequency.setValueAtTime(frequency, now);
+  if (endFrequency) {
+    oscillator.frequency.linearRampToValueAtTime(endFrequency, now + duration);
+  }
+
+  envelope.gain.setValueAtTime(0.0001, now);
+  envelope.gain.exponentialRampToValueAtTime(gain, now + 0.012);
+  envelope.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+  oscillator.connect(envelope);
+  envelope.connect(state.audio.masterGain);
+  oscillator.start(now);
+  oscillator.stop(now + duration + 0.02);
+}
+
+function playSoundEffect(kind) {
+  if (!state.audio.enabled) {
+    return;
+  }
+
+  if (kind === "jump") {
+    playSynthTone(620, 0.09, { type: "triangle", gain: 0.022, endFrequency: 880 });
+  } else if (kind === "backstep") {
+    playSynthTone(240, 0.12, { type: "sawtooth", gain: 0.02, endFrequency: 150 });
+  } else if (kind === "slide") {
+    playSynthTone(220, 0.14, { type: "sawtooth", gain: 0.026, endFrequency: 420 });
+  } else if (kind === "attack") {
+    playSynthTone(180, 0.08, { type: "square", gain: 0.02, endFrequency: 120 });
+    playSynthTone(440, 0.05, { type: "triangle", gain: 0.012, endFrequency: 320 });
+  } else if (kind === "block") {
+    playSynthTone(280, 0.08, { type: "triangle", gain: 0.018, endFrequency: 210 });
+  } else if (kind === "hit") {
+    playSynthTone(120, 0.1, { type: "square", gain: 0.03, endFrequency: 76 });
+    playSynthTone(520, 0.05, { type: "triangle", gain: 0.012, endFrequency: 300 });
+  } else if (kind === "guard-break") {
+    playSynthTone(110, 0.18, { type: "sawtooth", gain: 0.036, endFrequency: 72 });
+    playSynthTone(320, 0.16, { type: "square", gain: 0.018, endFrequency: 180 });
+  } else if (kind === "round-start") {
+    playSynthTone(360, 0.12, { type: "triangle", gain: 0.018, endFrequency: 420 });
+    playSynthTone(540, 0.18, { type: "triangle", gain: 0.02, endFrequency: 640 });
+  } else if (kind === "round-win") {
+    playSynthTone(420, 0.16, { type: "triangle", gain: 0.018, endFrequency: 520 });
+    playSynthTone(620, 0.24, { type: "triangle", gain: 0.02, endFrequency: 760 });
+  } else if (kind === "set-win") {
+    playSynthTone(300, 0.18, { type: "triangle", gain: 0.018, endFrequency: 420 });
+    playSynthTone(520, 0.24, { type: "triangle", gain: 0.022, endFrequency: 680 });
+    playSynthTone(760, 0.32, { type: "triangle", gain: 0.024, endFrequency: 920 });
+  } else if (kind === "menu-accept") {
+    playSynthTone(520, 0.08, { type: "triangle", gain: 0.016, endFrequency: 640 });
+  }
+}
+
+function triggerImpact(match, { shake = 0, flash = 0, hitstop = 0 } = {}) {
+  if (!match) {
+    return;
+  }
+  match.shake = Math.max(match.shake, shake);
+  match.flash = Math.max(match.flash, flash);
+  match.hitstop = Math.max(match.hitstop, hitstop);
+}
+
+function activeMenuWeapon() {
+  return weaponById(state.activeWeaponId) || currentBlueprint();
+}
+
+function activeMenuRivalWeapon() {
+  return weaponById(state.rivalWeaponId) || state.match?.rivalWeapon || null;
+}
+
+function renderMenuSummary() {
+  const playerWeapon = activeMenuWeapon();
+  const rivalWeapon = activeMenuRivalWeapon();
+  const stageConfig = currentStageConfig();
+  const account = currentAccount();
+  const accountMeta = accountSummaryMeta(account);
+
+  ui.menuSummary.innerHTML = `
+    <article class="menu-summary-card">
+      <span class="menu-summary-kicker">${account ? "Profile" : "Guest Slot"}</span>
+      <strong>${account ? account.name : "Guest"}</strong>
+      <p>${account ? accountMeta.line : "Sign in to save reviews locally and build a career record."}</p>
+      <div class="menu-summary-meta">
+        <span>${account ? accountMeta.reviewLine : "No account stats yet"}</span>
+        <span>${account ? "Local save active" : "Guest mode"}</span>
+      </div>
+    </article>
+    <article class="menu-summary-card">
+      <span class="menu-summary-kicker">Player Loadout</span>
+      <strong>${playerWeapon.name}</strong>
+      <p>${playerWeapon.frame} using ${playerWeapon.material} tuned for ${playerWeapon.styleText}.</p>
+      <div class="menu-summary-meta">
+        <span>${weaponRoleTag(playerWeapon)}</span>
+        <span>${playerWeapon.edge}</span>
+        <span>${playerWeapon.reach} reach</span>
+      </div>
+    </article>
+    <article class="menu-summary-card">
+      <span class="menu-summary-kicker">Tonight's Matchup</span>
+      <strong>${stageConfig.label}</strong>
+      <p>${stageConfig.tagline}. ${rivalWeapon ? `${rivalWeapon.name} waits as the rival loadout.` : "An auto-forged rival will spawn for the set."}</p>
+      <div class="menu-summary-meta">
+        <span>${matchModeLabel(ui.matchMode.value)}</span>
+        <span>${stageConfig.specialty}</span>
+      </div>
+    </article>
+  `;
+}
+
+function battlefieldPhaseText() {
+  if (!state.match) {
+    return "Awaiting next set. Forge a weapon, lock a stage, and start the duel feed.";
+  }
+
+  const match = state.match;
+  if (match.phase === "intro") {
+    return `Round ${match.round} intro. Fighters are squaring up for ${matchModeLabel(match.mode)} on ${currentStageConfig(match.stage.id).label}.`;
+  }
+  if (match.phase === "fight") {
+    return `Round ${match.round} is live. Break guard, manage range, and close the set before the clock expires.`;
+  }
+  if (match.phase === "round-over") {
+    const roundWinner = match.fighters.find((fighter) => fighter.team === match.roundWinner)?.name;
+    return roundWinner
+      ? `${roundWinner} took the round. The next face-off is loading now.`
+      : "Round ended in a draw. The next face-off is loading now.";
+  }
+  if (match.phase === "match-over") {
+    const winner = match.fighters.find((fighter) => fighter.team === match.setWinner)?.name || "Winner";
+    return `${winner} owns the set. Start a rematch or head back to the menu to change the build.`;
+  }
+  return "Awaiting next set.";
+}
+
+function renderSetRecap() {
+  if (!state.match || state.match.phase !== "match-over") {
+    ui.setRecap.classList.add("hidden");
+    return;
+  }
+
+  const match = state.match;
+  const winner = match.fighters.find((fighter) => fighter.team === match.setWinner)?.name || "Winner";
+  const loser = match.fighters.find((fighter) => fighter.team !== match.setWinner)?.name || "Rival";
+
+  ui.setRecap.classList.remove("hidden");
+  ui.setRecapTitle.textContent = `${winner} took the set`;
+  ui.setRecapMode.textContent = matchModeLabel(match.mode);
+  ui.setRecapWinner.textContent = winner;
+  ui.setRecapScore.textContent = `${match.score.player} - ${match.score.enemy}`;
+  ui.setRecapLoadouts.textContent = `${match.playerWeapon.name} vs ${match.rivalWeapon.name}`;
+  ui.setRecapStage.textContent = `${currentStageConfig(match.stage.id).label} | ${winner} over ${loser}`;
+}
+
+function roundPipMarkup(label, score, total, tone) {
+  const pips = Array.from({ length: total }, (_, index) => {
+    const classes = ["round-pip"];
+    if (index < score) {
+      classes.push("filled", tone);
+    }
+    return `<span class="${classes.join(" ")}"></span>`;
+  }).join("");
+
+  return `
+    <div class="round-pip-row">
+      <span>${label}</span>
+      <div class="round-pip-track">${pips}</div>
+    </div>
+  `;
+}
+
+function renderFightFeed() {
+  const match = state.match;
+  const fallbackEntries = match
+    ? [
+        {
+          label: "Live Feed",
+          text: "The set is live. Big hits, blocks, and guard breaks will appear here.",
+          tone: "control"
+        }
+      ]
+    : [
+        {
+          label: "Broadcast Desk",
+          text: "Start a set to light up the live fight feed.",
+          tone: "control"
+        },
+        {
+          label: "Tip",
+          text: "Long reach controls space. Fast builds win scrambles. Heavy builds break guard.",
+          tone: ""
+        }
+      ];
+
+  ui.fightFeed.innerHTML = "";
+  (match?.events?.length ? match.events : fallbackEntries).forEach((entry) => {
+    const item = document.createElement("article");
+    item.className = `fight-feed-entry ${entry.tone || ""}`.trim();
+    item.innerHTML = `
+      <span>${entry.label}</span>
+      <p>${entry.text}</p>
+    `;
+    ui.fightFeed.append(item);
+  });
+}
+
+function renderSetStats() {
+  const match = state.match;
+  const playerName = match?.fighters?.[0]?.name || playerDisplayName();
+  const rivalName = match?.fighters?.[1]?.name || (ui.matchMode.value === "duel" ? "Player 2" : "Bot");
+  const playerStats = statsForTeam(match, PLAYER_TEAM);
+  const enemyStats = statsForTeam(match, ENEMY_TEAM);
+  const statCards = [
+    {
+      label: "Damage",
+      value: `${playerStats.damage} - ${enemyStats.damage}`,
+      detail: `${playerName} / ${rivalName} total damage`
+    },
+    {
+      label: "Openings",
+      value: `${playerStats.hits} - ${enemyStats.hits}`,
+      detail: "Clean hit count"
+    },
+    {
+      label: "Blocks",
+      value: `${playerStats.blocks} - ${enemyStats.blocks}`,
+      detail: "Successful defense checks"
+    },
+    {
+      label: "Guard Breaks",
+      value: `${playerStats.guardBreaks} - ${enemyStats.guardBreaks}`,
+      detail: "Heavy pressure conversions"
+    }
+  ];
+
+  ui.setStats.innerHTML = statCards
+    .map(
+      (card) => `
+        <article class="set-stat-card">
+          <span>${card.label}</span>
+          <strong>${card.value}</strong>
+          <p>${card.detail}</p>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function renderBroadcastDeck() {
+  const match = state.match;
+  const account = currentAccount();
+  const accountMeta = accountSummaryMeta(account);
+  const playerWeapon = match?.playerWeapon || weaponById(state.activeWeaponId) || currentBlueprint();
+  const rivalWeapon = match?.rivalWeapon || weaponById(state.rivalWeaponId) || null;
+  const playerFighter = match?.fighters?.find((fighter) => fighter.team === PLAYER_TEAM) || null;
+  const rivalFighter = match?.fighters?.find((fighter) => fighter.team === ENEMY_TEAM) || null;
+  const stageState = activeStageState();
+  const stageConfig = currentStageConfig(stageState.id);
+  const roundsToWin = match?.roundsToWin || Number(ui.roundsToWin.value);
+  const playerScore = match?.score?.player || 0;
+  const enemyScore = match?.score?.enemy || 0;
+
+  let playerForm = "Ready to fight";
+  let rivalForm = matchModeLabel(ui.matchMode.value);
+
+  if (match && playerFighter && rivalFighter) {
+    if (match.phase === "fight") {
+      playerForm = `HP ${Math.ceil(playerFighter.health)} | Stamina ${Math.ceil(playerFighter.stamina)}`;
+      rivalForm = `HP ${Math.ceil(rivalFighter.health)} | Stamina ${Math.ceil(rivalFighter.stamina)}`;
+    } else if (match.phase === "intro") {
+      playerForm = `Round ${match.round} intro`;
+      rivalForm = stageConfig.tagline;
+    } else if (match.phase === "round-over") {
+      playerForm = "Corner reset";
+      rivalForm = "Next round loading";
+    } else if (match.phase === "match-over") {
+      playerForm = match.setWinner === PLAYER_TEAM ? "Set winner" : "Set complete";
+      rivalForm = match.setWinner === ENEMY_TEAM ? "Set winner" : "Set complete";
+    }
+  }
+
+  ui.broadcastPlayerName.textContent = playerFighter?.name || playerDisplayName();
+  ui.broadcastPlayerLoadout.textContent = `${playerWeapon.name} | ${weaponRoleTag(playerWeapon)}`;
+  ui.broadcastPlayerRecord.textContent = account ? accountMeta.line : "Guest profile";
+  ui.broadcastPlayerForm.textContent = playerForm;
+
+  ui.broadcastRivalName.textContent = rivalFighter?.name || (ui.matchMode.value === "duel" ? "Player 2" : "Bot");
+  ui.broadcastRivalLoadout.textContent = rivalWeapon
+    ? `${rivalWeapon.name} | ${weaponRoleTag(rivalWeapon)}`
+    : "Auto forge rival";
+  ui.broadcastRivalRecord.textContent =
+    ui.matchMode.value === "duel"
+      ? "Second local fighter"
+      : `${stageConfig.label} generated rival`;
+  ui.broadcastRivalForm.textContent = rivalForm;
+
+  ui.broadcastStageName.textContent = stageConfig.label;
+  ui.broadcastStageNote.textContent = `${stageConfig.tagline} | ${stageConfig.specialty} | First to ${roundsToWin}`;
+  ui.broadcastRoundPips.innerHTML = `
+    ${roundPipMarkup("P1", playerScore, roundsToWin, "player")}
+    ${roundPipMarkup("Rival", enemyScore, roundsToWin, "enemy")}
+  `;
+}
+
+function renderBroadcastPanels() {
+  renderBroadcastDeck();
+  renderFightFeed();
+  renderSetStats();
+}
+
+function pushFightEvent(match, label, text, tone = "") {
+  if (!match) {
+    return;
+  }
+
+  if (!match.events) {
+    match.events = [];
+  }
+
+  match.events.unshift({
+    id: makeId("event"),
+    label,
+    text,
+    tone
+  });
+  match.events = match.events.slice(0, 4);
+  renderBroadcastPanels();
+}
+
+function recordActiveAccountMatchResult(won) {
+  const account = currentAccount();
+  if (!account) {
+    return;
+  }
+
+  const stats = ensureAccountStats(account);
+  stats.setsPlayed += 1;
+  if (won) {
+    stats.setsWon += 1;
+  }
+  saveAuthState();
+}
+
+function setMenuOpen(open) {
+  state.menu.open = open;
+  ui.mainMenu.classList.toggle("hidden", !open);
+  renderMenuSummary();
+}
+
+function saveReviewState() {
+  try {
+    window.localStorage.setItem("stickforge-reviews", JSON.stringify(state.reviews.entries));
+  } catch (error) {
+    // Ignore storage failures; reviews still work for the current session.
+  }
+}
+
+function renderReviewList(statusMessage = "") {
+  ui.reviewList.innerHTML = "";
+
+  ui.reviewChoices.forEach((button) => {
+    button.classList.toggle("active", button.dataset.reviewChoice === state.reviews.selectedChoice);
+  });
+
+  ui.reviewStatus.textContent = statusMessage || "Reviews are stored locally in this browser.";
+
+  if (!state.reviews.entries.length) {
+    const empty = document.createElement("p");
+    empty.className = "arena-hint";
+    empty.textContent = "No menu reviews yet. Sign in and leave the first one.";
+    ui.reviewList.append(empty);
+    return;
+  }
+
+  state.reviews.entries.forEach((entry) => {
+    const item = document.createElement("article");
+    item.className = "feedback-entry";
+    item.innerHTML = `
+      <span>${entry.choice} | ${entry.accountName}</span>
+      <strong>${entry.weapon} | ${entry.mode}</strong>
+      <p>${entry.note || "No extra note."}</p>
+    `;
+    ui.reviewList.append(item);
+  });
+}
+
+function submitReview() {
+  const account = currentAccount();
+  const note = ui.reviewNote.value.trim();
+  const choice = state.reviews.selectedChoice;
+  const weapon = activeMenuWeapon();
+
+  if (!account) {
+    renderReviewList("Sign in first so the review has a player name.");
+    return;
+  }
+
+  if (!choice && !note) {
+    renderReviewList("Pick a rating or write a short review first.");
+    return;
+  }
+
+  state.reviews.entries.unshift({
+    id: makeId("review"),
+    accountName: account.name,
+    choice: choice || "Note",
+    note: note.slice(0, 180),
+    weapon: weapon.name,
+    mode: ui.matchMode.value === "duel" ? "Local PvP" : "Vs Bot",
+    createdAt: new Date().toISOString()
+  });
+  state.reviews.entries = state.reviews.entries.slice(0, 8);
+  saveReviewState();
+  ensureAccountStats(account).reviewsWritten += 1;
+  saveAuthState();
+
+  state.reviews.selectedChoice = "";
+  ui.reviewNote.value = "";
+  renderReviewList("Review saved locally.");
+  renderAccountPanel(`${account.name}'s review was saved locally.`);
+}
+
+function launchMatchFromMenu(mode) {
+  ui.matchMode.value = mode;
+  setMatchSummary(describeMatchMode(mode));
+  startMatch();
+}
+
+function saveAuthState() {
+  try {
+    window.localStorage.setItem(
+      "stickforge-auth",
+      JSON.stringify({
+        accounts: state.auth.accounts,
+        activeAccountId: state.auth.activeAccountId,
+        ownerAccountId: state.auth.ownerAccountId
+      })
+    );
+  } catch (error) {
+    // Ignore storage failures; the session can still run in memory.
+  }
+}
+
+function currentAccount() {
+  return state.auth.accounts.find((account) => account.id === state.auth.activeAccountId) || null;
+}
+
+function playerDisplayName() {
+  return currentAccount()?.name || "Player 1";
+}
+
+function isOwnerAccount() {
+  return Boolean(state.auth.activeAccountId) && state.auth.activeAccountId === state.auth.ownerAccountId;
+}
+
+function canAccessFeedback() {
+  return isOwnerAccount();
+}
+
+function renderFeedbackInbox() {
+  ui.feedbackInbox.innerHTML = "";
+
+  if (!canAccessFeedback()) {
+    const message = document.createElement("p");
+    message.className = "arena-hint";
+    message.textContent = "Feedback inbox is locked to the owner account.";
+    ui.feedbackInbox.append(message);
+    return;
+  }
+
+  if (!state.feedback.entries.length) {
+    const empty = document.createElement("p");
+    empty.className = "arena-hint";
+    empty.textContent = "No saved feedback yet. Submit feedback in-game to build the inbox.";
+    ui.feedbackInbox.append(empty);
+    return;
+  }
+
+  state.feedback.entries.forEach((entry) => {
+    const item = document.createElement("article");
+    item.className = "feedback-entry";
+    item.innerHTML = `
+      <span>${entry.choice} | ${entry.accountName || "Owner"}</span>
+      <strong>${entry.stage} | ${entry.mode}</strong>
+      <p>${entry.note || "No extra note."}</p>
+    `;
+    ui.feedbackInbox.append(item);
+  });
+}
+
+function renderAccountPanel(statusMessage = "") {
+  const account = currentAccount();
+  const ownerName =
+    state.auth.accounts.find((candidate) => candidate.id === state.auth.ownerAccountId)?.name || "Not set";
+  const accountMeta = accountSummaryMeta(account);
+
+  if (account) {
+    ui.accountStatus.textContent = isOwnerAccount()
+      ? `Signed in as ${account.name}. You are the feedback owner.`
+      : `Signed in as ${account.name}. Feedback stays locked to owner ${ownerName}.`;
+  } else {
+    ui.accountStatus.textContent = state.auth.accounts.length
+      ? `No account is signed in. Owner feedback belongs to ${ownerName}.`
+      : "No account is signed in. The first created account becomes the only feedback owner.";
+  }
+
+  ui.accountNote.textContent =
+    statusMessage ||
+    (account
+      ? `${accountMeta.line}. ${accountMeta.reviewLine}. Accounts are saved locally in this browser.`
+      : state.auth.accounts.length
+        ? "Accounts are saved locally in this browser. Only the owner account can open or read feedback."
+        : "Create a local account. The first one becomes the owner and gets feedback access.");
+
+  renderFeedbackInbox();
+  renderFeedbackPanel();
+  renderMenuSummary();
+  renderBroadcastPanels();
+}
+
+function createAccount() {
+  const name = ui.accountName.value.trim().slice(0, 12);
+  const passcode = ui.accountPasscode.value.trim();
+
+  if (!name || !passcode) {
+    renderAccountPanel("Enter both a name and passcode to create an account.");
+    return;
+  }
+
+  const duplicate = state.auth.accounts.find((account) => account.name.toLowerCase() === name.toLowerCase());
+  if (duplicate) {
+    renderAccountPanel("That account name already exists. Log in instead.");
+    return;
+  }
+
+  const account = {
+    id: makeId("account"),
+    name,
+    passcode,
+    stats: defaultAccountStats(),
+    createdAt: new Date().toISOString()
+  };
+
+  state.auth.accounts.push(account);
+  state.auth.activeAccountId = account.id;
+  if (!state.auth.ownerAccountId) {
+    state.auth.ownerAccountId = account.id;
+  }
+  saveAuthState();
+  ui.accountName.value = "";
+  ui.accountPasscode.value = "";
+  if (state.match && isOwnerAccount()) {
+    scheduleFeedbackPrompt();
+  }
+  renderAccountPanel(
+    state.auth.ownerAccountId === account.id
+      ? `${account.name} created and set as the feedback owner.`
+      : `${account.name} created and signed in.`
+  );
+  renderReviewList(`${account.name} can now leave menu reviews.`);
+  renderMenuSummary();
+}
+
+function loginAccount() {
+  const name = ui.accountName.value.trim().slice(0, 12);
+  const passcode = ui.accountPasscode.value.trim();
+
+  const account = state.auth.accounts.find(
+    (candidate) => candidate.name.toLowerCase() === name.toLowerCase() && candidate.passcode === passcode
+  );
+
+  if (!account) {
+    renderAccountPanel("Account name or passcode did not match.");
+    return;
+  }
+
+  state.auth.activeAccountId = account.id;
+  saveAuthState();
+  ui.accountName.value = "";
+  ui.accountPasscode.value = "";
+  if (state.match && isOwnerAccount()) {
+    scheduleFeedbackPrompt();
+  }
+  renderAccountPanel(`Signed in as ${account.name}.`);
+  renderReviewList(`Signed in as ${account.name}.`);
+  renderMenuSummary();
+}
+
+function logoutAccount() {
+  if (state.feedback.promptHandle) {
+    window.clearTimeout(state.feedback.promptHandle);
+    state.feedback.promptHandle = null;
+  }
+  state.auth.activeAccountId = null;
+  saveAuthState();
+  closeFeedbackPanel();
+  renderAccountPanel("Signed out. Feedback remains locked until the owner logs back in.");
+  renderReviewList("Signed out. Reviews need a signed-in player name.");
+  renderMenuSummary();
+}
+
+function renderFeedbackPanel() {
+  const feedback = state.feedback;
+  const feedbackVisible = feedback.visible && canAccessFeedback();
+  ui.feedbackPanel.classList.toggle("hidden", !feedbackVisible);
+  ui.feedbackChoices.forEach((button) => {
+    button.classList.toggle("active", button.dataset.feedbackChoice === feedback.selectedChoice);
+  });
+}
+
+function openFeedbackPanel(message = "You have been in the arena a bit. Drop a fast note about combat feel, weapon control, or stickman visuals.") {
+  const feedback = state.feedback;
+  if (!canAccessFeedback()) {
+    return;
+  }
+  feedback.visible = true;
+  feedback.shown = true;
+  if (feedback.promptHandle) {
+    window.clearTimeout(feedback.promptHandle);
+    feedback.promptHandle = null;
+  }
+  if (feedback.hideHandle) {
+    window.clearTimeout(feedback.hideHandle);
+  }
+  feedback.selectedChoice = "";
+  ui.feedbackCopy.textContent = message;
+  ui.feedbackStatus.textContent = "Shows for a short time, or you can dismiss it.";
+  ui.feedbackNote.value = "";
+  feedback.hideHandle = window.setTimeout(() => {
+    closeFeedbackPanel();
+  }, feedback.visibleDuration * 1000);
+  renderFeedbackPanel();
+}
+
+function closeFeedbackPanel() {
+  state.feedback.visible = false;
+  if (state.feedback.hideHandle) {
+    window.clearTimeout(state.feedback.hideHandle);
+    state.feedback.hideHandle = null;
+  }
+  renderFeedbackPanel();
+}
+
+function storeFeedbackEntry(entry) {
+  state.feedback.entries.unshift(entry);
+  state.feedback.entries = state.feedback.entries.slice(0, 10);
+
+  try {
+    window.localStorage.setItem("stickforge-feedback", JSON.stringify(state.feedback.entries));
+  } catch (error) {
+    // Ignore storage failures; the in-session list is still usable.
+  }
+}
+
+function submitFeedback() {
+  const note = ui.feedbackNote.value.trim();
+  const choice = state.feedback.selectedChoice;
+  const account = currentAccount();
+
+  if (!canAccessFeedback() || !account) {
+    ui.feedbackStatus.textContent = "Only the owner account can save feedback.";
+    return;
+  }
+
+  if (!choice && !note) {
+    ui.feedbackStatus.textContent = "Pick a quick rating or type a short note first.";
+    return;
+  }
+
+  storeFeedbackEntry({
+    choice: choice || "Note only",
+    note,
+    accountName: account.name,
+    createdAt: new Date().toISOString(),
+    stage: activeStageState().id,
+    mode: ui.matchMode.value
+  });
+
+  ui.feedbackStatus.textContent = "Feedback saved for this session. Thanks.";
+  ui.feedbackCopy.textContent = "Saved locally for this build test.";
+  ui.feedbackNote.value = "";
+  state.feedback.selectedChoice = "";
+  renderFeedbackInbox();
+  renderFeedbackPanel();
+  if (state.feedback.hideHandle) {
+    window.clearTimeout(state.feedback.hideHandle);
+  }
+  state.feedback.hideHandle = window.setTimeout(() => {
+    closeFeedbackPanel();
+  }, 2400);
+}
+
+function scheduleFeedbackPrompt() {
+  const feedback = state.feedback;
+  if (feedback.shown || feedback.promptHandle || !canAccessFeedback()) {
+    return;
+  }
+  feedback.promptHandle = window.setTimeout(() => {
+    feedback.promptHandle = null;
+    if (!feedback.shown) {
+      openFeedbackPanel();
+    }
+  }, feedback.promptDelay * 1000);
+}
+
 function buildWeaponFromForge(forge) {
   const frame = frameCatalog[forge.frame];
   const material = materialCatalog[forge.material];
@@ -382,16 +1514,16 @@ function buildWeaponFromForge(forge) {
 
   let styleText = "balanced duel control";
   if (damage >= 25) {
-    styleText = "heavy crack-open pressure";
+    styleText = "heavy pressure and guard breaks";
   } else if (speed >= 1.12) {
-    styleText = "quick strike pressure";
+    styleText = "quick rush pressure";
   } else if (reach >= 102) {
-    styleText = "long-range lane control";
+    styleText = "long-range control";
   }
 
   return {
     id: forge.id || makeId("weapon"),
-    name: forge.name.trim() || "Nameless Steel",
+    name: forge.name.trim().slice(0, 12) || "NamelessSteel",
     frameId: forge.frame,
     frame: frame.label,
     materialId: forge.material,
@@ -409,7 +1541,12 @@ function buildWeaponFromForge(forge) {
     arc,
     moveScale,
     color: material.color,
-    lore: `${frame.label}, ${material.label.toLowerCase()}, and ${edge.label.toLowerCase()} tuned for ${styleText}.`
+    frameSummary: frame.summary,
+    frameDesign: frame.design,
+    materialSummary: material.summary,
+    edgeSummary: edge.summary,
+    styleText,
+    lore: `${frame.label} with ${material.label.toLowerCase()} and ${edge.label.toLowerCase()} built for ${styleText}.`
   };
 }
 
@@ -441,6 +1578,117 @@ function syncForgeOutputs() {
   ui.lengthValue.textContent = `${ui.lengthRange.value}`;
   ui.balanceValue.textContent = `${ui.balanceRange.value}`;
   ui.temperValue.textContent = `${ui.temperRange.value}`;
+}
+
+function renderForgeBadges(weapon) {
+  ui.forgeBadges.innerHTML = `
+    <span class="menu-status alt">${weapon.frameDesign}</span>
+    <span class="menu-status alt">${weapon.styleText}</span>
+    <span class="menu-status alt">${weapon.reach} reach</span>
+  `;
+}
+
+function weaponRoleTag(weapon) {
+  if (weapon.damage >= 27 || weapon.knockback >= 1.42) {
+    return "Heavy";
+  }
+  if (weapon.speed >= 1.16 || weapon.cooldown <= 0.48) {
+    return "Fast";
+  }
+  if (weapon.reach >= 98) {
+    return "Control";
+  }
+  return "Balanced";
+}
+
+function weaponPreviewMarkup(weapon) {
+  const shaft = clamp(Math.round(weapon.reach * 0.72), 50, 98);
+  const bladeSize = clamp(Math.round(weapon.damage * 1.22), 16, 34);
+  const color = weapon.color;
+  const handle = "#f3ead8";
+  let headMarkup = `
+    <path d="M ${shaft} ${36 - bladeSize * 0.46} L ${shaft + bladeSize * 0.82} 36 L ${shaft} ${36 + bladeSize * 0.46} Z" fill="${color}" />
+  `;
+
+  if (weapon.frameId === "spear") {
+    headMarkup = `
+      <path d="M ${shaft} 36 L ${shaft + bladeSize} ${36 - 8} L ${shaft + bladeSize * 0.58} 36 L ${shaft + bladeSize} ${36 + 8} Z" fill="${color}" />
+    `;
+  } else if (weapon.frameId === "cleaver") {
+    headMarkup = `
+      <path d="M ${shaft - 3} ${36 - bladeSize * 0.52} L ${shaft + bladeSize * 0.48} ${36 - bladeSize * 0.28} L ${shaft + bladeSize * 0.4} ${36 + bladeSize * 0.34} L ${shaft - 8} ${36 + bladeSize * 0.42} Z" fill="${color}" />
+    `;
+  } else if (weapon.frameId === "chainblade") {
+    headMarkup = `<circle cx="${shaft + bladeSize * 0.18}" cy="36" r="${bladeSize * 0.38}" fill="${color}" />`;
+  } else if (weapon.frameId === "dagger") {
+    headMarkup = `
+      <path d="M ${shaft - 6} ${36 - bladeSize * 0.2} L ${shaft + bladeSize * 0.46} 36 L ${shaft - 6} ${36 + bladeSize * 0.2} Z" fill="${color}" />
+    `;
+  } else if (weapon.frameId === "greatblade") {
+    headMarkup = `
+      <path d="M ${shaft - 2} ${36 - bladeSize * 0.72} L ${shaft + bladeSize * 0.84} ${36 - bladeSize * 0.14} L ${shaft + bladeSize * 0.9} 36 L ${shaft + bladeSize * 0.84} ${36 + bladeSize * 0.14} L ${shaft - 2} ${36 + bladeSize * 0.72} Z" fill="${color}" />
+    `;
+  } else if (weapon.frameId === "warhammer") {
+    headMarkup = `<rect x="${shaft - 1}" y="${36 - bladeSize * 0.42}" width="${bladeSize * 0.86}" height="${bladeSize * 0.84}" rx="4" fill="${color}" />`;
+  } else if (weapon.frameId === "halberd") {
+    headMarkup = `
+      <path d="M ${shaft - 5} ${36 - bladeSize * 0.62} L ${shaft + bladeSize * 0.68} ${36 - bladeSize * 0.28} L ${shaft + bladeSize * 0.16} 36 L ${shaft + bladeSize * 0.68} ${36 + bladeSize * 0.24} L ${shaft - 5} ${36 + bladeSize * 0.16} L ${shaft + bladeSize * 0.42} 36 Z" fill="${color}" />
+    `;
+  }
+
+  return `
+    <svg viewBox="0 0 150 72" class="armory-preview-svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="armoryGlow-${weapon.id}" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="${color}" stop-opacity="0.08"></stop>
+          <stop offset="100%" stop-color="${color}" stop-opacity="0.42"></stop>
+        </linearGradient>
+      </defs>
+      <rect x="6" y="10" width="138" height="52" rx="18" fill="rgba(255,255,255,0.04)"></rect>
+      <rect x="18" y="33" width="${shaft}" height="6" rx="3" fill="${color}"></rect>
+      <rect x="10" y="31" width="14" height="10" rx="3" fill="${handle}"></rect>
+      <rect x="18" y="28" width="${shaft}" height="16" rx="8" fill="url(#armoryGlow-${weapon.id})"></rect>
+      ${headMarkup}
+    </svg>
+  `;
+}
+
+function renderForgeDetails(weapon) {
+  const balanceNote =
+    weapon.balance <= -12
+      ? "handle-heavy for safer recovery"
+      : weapon.balance >= 12
+        ? "front-heavy for stronger hits"
+        : "balanced between speed and power";
+  const temperNote =
+    weapon.temper >= 80
+      ? "high temper for sharper damage"
+      : weapon.temper <= 40
+        ? "softer temper for steadier control"
+        : "mid temper for even handling";
+
+  ui.forgeDetails.innerHTML = `
+    <article class="forge-detail-card">
+      <span>Frame</span>
+      <strong>${weapon.frame}</strong>
+      <p>${weapon.frameSummary}</p>
+    </article>
+    <article class="forge-detail-card">
+      <span>Material</span>
+      <strong>${weapon.material}</strong>
+      <p>${weapon.materialSummary}</p>
+    </article>
+    <article class="forge-detail-card">
+      <span>Edge</span>
+      <strong>${weapon.edge}</strong>
+      <p>${weapon.edgeSummary}</p>
+    </article>
+    <article class="forge-detail-card">
+      <span>Build Feel</span>
+      <strong>${weapon.styleText}</strong>
+      <p>${weapon.frameDesign}. This build is ${balanceNote} with ${temperNote}.</p>
+    </article>
+  `;
 }
 
 function renderForgeStats(weapon) {
@@ -525,6 +1773,25 @@ function renderForgePreview(weapon) {
     previewCtx.lineTo(shaft - 10, bladeSize * 0.48);
   } else if (weapon.frameId === "chainblade") {
     previewCtx.arc(shaft + bladeSize * 0.18, 0, bladeSize * 0.42, 0, Math.PI * 2);
+  } else if (weapon.frameId === "dagger") {
+    previewCtx.moveTo(shaft - 8, -bladeSize * 0.22);
+    previewCtx.lineTo(shaft + bladeSize * 0.46, 0);
+    previewCtx.lineTo(shaft - 8, bladeSize * 0.22);
+  } else if (weapon.frameId === "greatblade") {
+    previewCtx.moveTo(shaft - 4, -bladeSize * 0.72);
+    previewCtx.lineTo(shaft + bladeSize * 0.84, -bladeSize * 0.18);
+    previewCtx.lineTo(shaft + bladeSize * 0.92, 0);
+    previewCtx.lineTo(shaft + bladeSize * 0.84, bladeSize * 0.18);
+    previewCtx.lineTo(shaft - 4, bladeSize * 0.72);
+  } else if (weapon.frameId === "warhammer") {
+    previewCtx.rect(shaft - 2, -bladeSize * 0.44, bladeSize * 0.9, bladeSize * 0.88);
+  } else if (weapon.frameId === "halberd") {
+    previewCtx.moveTo(shaft - 6, -bladeSize * 0.68);
+    previewCtx.lineTo(shaft + bladeSize * 0.66, -bladeSize * 0.3);
+    previewCtx.lineTo(shaft + bladeSize * 0.2, 0);
+    previewCtx.lineTo(shaft + bladeSize * 0.66, bladeSize * 0.3);
+    previewCtx.lineTo(shaft - 6, bladeSize * 0.16);
+    previewCtx.lineTo(shaft + bladeSize * 0.44, 0);
   } else {
     previewCtx.moveTo(shaft, -bladeSize * 0.48);
     previewCtx.lineTo(shaft + bladeSize * 0.82, 0);
@@ -546,8 +1813,11 @@ function renderForge() {
   const weapon = currentBlueprint();
   ui.weaponTitle.textContent = weapon.name;
   ui.weaponLore.textContent = weapon.lore;
+  renderForgeBadges(weapon);
   renderForgeStats(weapon);
+  renderForgeDetails(weapon);
   renderForgePreview(weapon);
+  renderMenuSummary();
 }
 
 function weaponById(id) {
@@ -563,6 +1833,14 @@ function updateHudLabels() {
   ui.hudRivalWeapon.textContent = rivalWeapon?.name || "Auto Forge";
   ui.hudArenaName.textContent = currentStageConfig(stageState.id).label;
   ui.hudSetScore.textContent = state.match ? `${state.match.score.player} - ${state.match.score.enemy}` : "0 - 0";
+  ui.battlefieldMode.textContent = matchModeLabel(ui.matchMode.value);
+  ui.battlefieldPhase.textContent = battlefieldPhaseText();
+  ui.battlefieldStyle.textContent = activeWeapon?.styleText || "Balanced duel control";
+  ui.battlefieldStage.textContent = currentStageConfig(stageState.id).label;
+  ui.battlefieldLoadout.textContent = activeWeapon?.name || "Unarmed";
+  renderSetRecap();
+  renderBroadcastPanels();
+  renderMenuSummary();
 }
 
 function saveCurrentWeapon({ equip = true } = {}) {
@@ -643,7 +1921,23 @@ function renderArmory() {
     }
 
     const header = document.createElement("header");
-    header.innerHTML = `<strong>${weapon.name}</strong><span>${weapon.frame}</span>`;
+    header.innerHTML = `
+      <div>
+        <strong>${weapon.name}</strong>
+        <span class="armory-frame-name">${weapon.frame}</span>
+      </div>
+      <span class="pill">${weaponRoleTag(weapon)}</span>
+    `;
+
+    const showcase = document.createElement("div");
+    showcase.className = "armory-showcase";
+    showcase.innerHTML = `
+      ${weaponPreviewMarkup(weapon)}
+      <div class="armory-ribbons">
+        ${weapon.id === state.activeWeaponId ? '<span class="armory-badge player">P1 Loadout</span>' : ""}
+        ${weapon.id === state.rivalWeaponId ? '<span class="armory-badge rival">Rival Loadout</span>' : ""}
+      </div>
+    `;
 
     const meta = document.createElement("div");
     meta.className = "armory-meta";
@@ -652,6 +1946,23 @@ function renderArmory() {
       <span class="pill">${weapon.edge}</span>
       <span class="pill">${weapon.damage} dmg</span>
       <span class="pill">${weapon.reach} reach</span>
+    `;
+
+    const statRow = document.createElement("div");
+    statRow.className = "armory-stat-row";
+    statRow.innerHTML = `
+      <div class="armory-stat">
+        <span>Tempo</span>
+        <strong>${Math.round(weapon.speed * 100)}</strong>
+      </div>
+      <div class="armory-stat">
+        <span>Drive</span>
+        <strong>${Math.round(weapon.knockback * 100)}</strong>
+      </div>
+      <div class="armory-stat">
+        <span>Arc</span>
+        <strong>${Math.round(weapon.arc * 100)}</strong>
+      </div>
     `;
 
     const actions = document.createElement("div");
@@ -688,7 +1999,7 @@ function renderArmory() {
     removeButton.addEventListener("click", () => deleteWeapon(weapon.id));
 
     actions.append(equipButton, rivalButton, editButton, removeButton);
-    card.append(header, meta, actions);
+    card.append(header, showcase, meta, statRow, actions);
     ui.armoryList.append(card);
   });
 }
@@ -704,8 +2015,28 @@ function renderStageSummary() {
 
   ui.stageSummary.innerHTML = `
     <article class="stage-card">
-      <h3>${config.label}</h3>
+      <div class="stage-card-top">
+        <div>
+          <h3>${config.label}</h3>
+          <p class="stage-tagline">${config.tagline}</p>
+        </div>
+        <span class="pill">${config.specialty}</span>
+      </div>
       <p>${config.description}</p>
+      <div class="stage-highlight-grid">
+        <div class="stage-highlight">
+          <span>Hazard</span>
+          <strong>${stageState.hazard ? "Live" : "Safe"}</strong>
+        </div>
+        <div class="stage-highlight">
+          <span>Layout</span>
+          <strong>${stageState.pillars ? "Pillars In" : "Open Floor"}</strong>
+        </div>
+        <div class="stage-highlight">
+          <span>Crowd</span>
+          <strong>${stageState.lights ? "Lights Up" : "Dimmed"}</strong>
+        </div>
+      </div>
       <div class="armory-meta">
         ${toggles.map((label) => `<span class="pill">${label}</span>`).join("")}
       </div>
@@ -718,6 +2049,13 @@ function renderStageSummary() {
 
   ui.presetButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.preset === stageState.id);
+    const presetConfig = currentStageConfig(button.dataset.preset);
+    button.style.setProperty("--preset-top", presetConfig.skyTop);
+    button.style.setProperty("--preset-glow", `${presetConfig.accent}66`);
+    button.innerHTML = `
+      <strong>${presetConfig.label}</strong>
+      <small>${presetConfig.tagline}</small>
+    `;
   });
 }
 
@@ -802,7 +2140,7 @@ function createRoundFighters(match) {
       control: "p1",
       weapon: match.playerWeapon,
       x: 220,
-      name: "Player 1",
+      name: playerDisplayName(),
       color: "#89e6dc"
     }),
     spawnFighter({
@@ -818,15 +2156,16 @@ function createRoundFighters(match) {
 
 function readRawInput(slot) {
   if (slot === "p1") {
+    const gamepadButtons = state.gamepad.buttons;
     return {
-      left: state.keysDown.has(keyBindings.p1.left) || state.touchState.left,
-      right: state.keysDown.has(keyBindings.p1.right) || state.touchState.right,
-      jump: state.keysDown.has(keyBindings.p1.jump) || state.touchState.up,
-      crouch: state.keysDown.has(keyBindings.p1.crouch) || state.touchState.down,
-      attack: state.mouse.left || state.touchState.attack,
-      block: state.mouse.right || state.touchState.block,
-      dodge: state.keysDown.has(keyBindings.p1.dodge) || state.touchState.dodge,
-      slide: state.keysDown.has(keyBindings.p1.slide) || state.touchState.slide
+      left: state.keysDown.has(keyBindings.p1.left) || state.touchState.left || gamepadButtons.left,
+      right: state.keysDown.has(keyBindings.p1.right) || state.touchState.right || gamepadButtons.right,
+      jump: state.keysDown.has(keyBindings.p1.jump) || state.touchState.up || gamepadButtons.jump || gamepadButtons.up,
+      crouch: state.keysDown.has(keyBindings.p1.crouch) || state.touchState.down || gamepadButtons.down,
+      attack: state.mouse.left || state.touchState.attack || gamepadButtons.attack,
+      block: state.mouse.right || state.touchState.block || gamepadButtons.block,
+      dodge: state.keysDown.has(keyBindings.p1.dodge) || state.touchState.dodge || gamepadButtons.dodge,
+      slide: state.keysDown.has(keyBindings.p1.slide) || state.touchState.slide || gamepadButtons.slide
     };
   }
 
@@ -931,7 +2270,7 @@ function lineIntersectsHitbox(x1, y1, x2, y2, box) {
 
 function weaponPoseForFighter(fighter) {
   const height = currentFighterHeight(fighter);
-  const torsoTop = -height * 0.6;
+  const torsoTop = -height * 0.5;
   const shoulderX = fighter.facing * 11;
   const shoulderY = torsoTop * 0.46;
   let weaponAngle = -0.18;
@@ -963,19 +2302,39 @@ function weaponPoseForFighter(fighter) {
   };
 }
 
-function updateMouseWeaponControl(fighter, dt) {
+function updateMouseWeaponControl(fighter, opponent, dt) {
   if (fighter.control !== "p1") {
     return;
   }
 
   const height = currentFighterHeight(fighter);
-  const torsoTop = -height * 0.6;
+  const torsoTop = -height * 0.5;
   const shoulderX = fighter.x + fighter.facing * 11;
   const shoulderY = fighter.y + torsoTop * 0.46;
-  const stageMouseX = clamp(state.mouse.x - stageOffsetX(), 0, STAGE_WIDTH);
-  const stageMouseY = clamp(state.mouse.y - STAGE_TOP, 0, STAGE_HEIGHT);
-  const localX = (stageMouseX - shoulderX) * fighter.facing;
-  const localY = stageMouseY - shoulderY;
+  const usingGamepadAim = state.gamepad.connected && Math.hypot(state.gamepad.rightX, state.gamepad.rightY) > 0.24;
+  const usingTouchAssist =
+    state.inputProfile.touch &&
+    !usingGamepadAim &&
+    (state.inputProfile.lastSource === "touch" || anyTouchInputActive());
+  let localX;
+  let localY;
+
+  if (usingGamepadAim) {
+    localX = state.gamepad.rightX * 140;
+    localY = state.gamepad.rightY * 94;
+  } else if (usingTouchAssist && opponent) {
+    const opponentHeight = currentFighterHeight(opponent);
+    const targetX = opponent.x + opponent.vx * 0.06;
+    const targetY = opponent.y - opponentHeight * 0.58;
+    localX = (targetX - shoulderX) * fighter.facing;
+    localY = targetY - shoulderY;
+  } else {
+    const stageMouseX = clamp(state.mouse.x - stageOffsetX(), 0, STAGE_WIDTH);
+    const stageMouseY = clamp(state.mouse.y - STAGE_TOP, 0, STAGE_HEIGHT);
+    localX = (stageMouseX - shoulderX) * fighter.facing;
+    localY = stageMouseY - shoulderY;
+  }
+
   const targetAngle = clamp(Math.atan2(localY, Math.max(-42, Math.min(160, localX))), -1.22, 0.92);
 
   fighter.previousMouseWeaponAngle = fighter.mouseWeaponAngle;
@@ -1009,6 +2368,7 @@ function performJump(fighter, match) {
   fighter.blocking = false;
   fighter.crouching = false;
   addSpark(match, fighter.x, fighter.y - 4, "rgba(255,255,255,0.7)", 6);
+  playSoundEffect("jump");
   return true;
 }
 
@@ -1024,6 +2384,7 @@ function performBackstep(fighter, match) {
   fighter.invulnerable = 0.14;
   fighter.vx = -fighter.facing * 360;
   addSpark(match, fighter.x, fighter.y - 8, fighter.weapon.color, 8);
+  playSoundEffect("backstep");
   return true;
 }
 
@@ -1039,6 +2400,7 @@ function performLunge(fighter, match) {
   fighter.slideDir = fighter.facing;
   fighter.vx = fighter.facing * 420;
   addSpark(match, fighter.x, fighter.y - 10, fighter.weapon.color, 10);
+  playSoundEffect("slide");
   return true;
 }
 
@@ -1062,6 +2424,7 @@ function startAttack(fighter) {
   fighter.attackFlash = 0.18;
   fighter.stamina = clamp(fighter.stamina - 8, 0, fighter.maxStamina);
   fighter.vx += fighter.facing * fighter.profile.lunge * 0.45;
+  playSoundEffect("attack");
   return true;
 }
 
@@ -1093,12 +2456,15 @@ function attemptAttackHit(attacker, defender, match) {
   }
 
   attacker.attack.connected = true;
+  const attackerStats = statsForTeam(match, attacker.team);
+  const defenderStats = statsForTeam(match, defender.team);
 
   if (defender.blocking && defender.onGround && onFrontSide(defender, attacker)) {
     defender.stamina = clamp(defender.stamina - attacker.profile.blockDrain, 0, defender.maxStamina);
     defender.vx += attacker.facing * attacker.profile.knockback * 0.18;
     defender.hitstun = Math.max(defender.hitstun, 0.08);
     addSpark(match, (attacker.x + defender.x) / 2, attacker.y - attackHeight * 0.6, "#ffffff", 8);
+    defenderStats.blocks += 1;
 
     if (defender.stamina <= 0) {
       const guardBreakDamage = Math.round(attacker.profile.damage * 0.32);
@@ -1106,10 +2472,18 @@ function attemptAttackHit(attacker, defender, match) {
       defender.hitstun = 0.28;
       defender.health = clamp(defender.health - guardBreakDamage, 0, defender.maxHealth);
       defender.vx = attacker.facing * attacker.profile.knockback * 0.54;
-      match.shake = Math.max(match.shake, 6);
+      triggerImpact(match, { shake: 8, flash: 0.18, hitstop: 0.07 });
+      playSoundEffect("guard-break");
       setMatchSummary(`${attacker.name} broke ${defender.name}'s guard.`);
+      attackerStats.guardBreaks += 1;
+      attackerStats.hits += 1;
+      attackerStats.damage += guardBreakDamage;
+      pushFightEvent(match, "Guard Break", `${attacker.name} cracked ${defender.name}'s guard for ${guardBreakDamage}.`, "impact");
     } else {
+      triggerImpact(match, { shake: 4, flash: 0.08, hitstop: 0.03 });
+      playSoundEffect("block");
       setMatchSummary(`${defender.name} blocked the strike.`);
+      pushFightEvent(match, "Block", `${defender.name} stopped ${attacker.name}'s ${attacker.weapon.name} swing.`, "control");
     }
     return;
   }
@@ -1130,8 +2504,12 @@ function attemptAttackHit(attacker, defender, match) {
   defender.alive = defender.health > 0;
 
   addSpark(match, (attacker.x + defender.x) / 2, defender.y - currentFighterHeight(defender) * 0.62, attacker.weapon.color, 12);
-  match.shake = Math.max(match.shake, 8);
+  triggerImpact(match, { shake: 10, flash: 0.14, hitstop: 0.06 });
+  playSoundEffect("hit");
   setMatchSummary(`${attacker.name} landed ${damage} damage with ${attacker.weapon.name}.`);
+  attackerStats.hits += 1;
+  attackerStats.damage += damage;
+  pushFightEvent(match, "Clean Hit", `${attacker.name} landed ${damage} with ${attacker.weapon.name}.`, "impact");
 }
 
 function attemptMouseSwingHit(attacker, defender, match, dt) {
@@ -1170,13 +2548,19 @@ function attemptMouseSwingHit(attacker, defender, match, dt) {
 
   attacker.manualSwingCooldown = 0.16;
   attacker.stamina = clamp(attacker.stamina - 3, 0, attacker.maxStamina);
+  const attackerStats = statsForTeam(match, attacker.team);
+  const defenderStats = statsForTeam(match, defender.team);
 
   if (defender.blocking && defender.onGround && onFrontSide(defender, attacker)) {
     defender.stamina = clamp(defender.stamina - 5, 0, defender.maxStamina);
     defender.vx += attacker.facing * 42;
     defender.hitstun = Math.max(defender.hitstun, 0.05);
     addSpark(match, (currentPose.tipX + defender.x) / 2, currentPose.tipY, "#ffffff", 6);
+    triggerImpact(match, { shake: 3, flash: 0.05, hitstop: 0.02 });
+    playSoundEffect("block");
     setMatchSummary(`${defender.name} checked the mouse swing.`);
+    defenderStats.blocks += 1;
+    pushFightEvent(match, "Check", `${defender.name} checked a freeform mouse swing.`, "control");
     return;
   }
 
@@ -1188,8 +2572,12 @@ function attemptMouseSwingHit(attacker, defender, match, dt) {
   defender.alive = defender.health > 0;
 
   addSpark(match, currentPose.tipX, currentPose.tipY, attacker.weapon.color, 9);
-  match.shake = Math.max(match.shake, 4);
+  triggerImpact(match, { shake: 5, flash: 0.08, hitstop: 0.03 });
+  playSoundEffect("hit");
   setMatchSummary(`${attacker.name} clipped ${defender.name} with a weapon swing for ${damage}.`);
+  attackerStats.hits += 1;
+  attackerStats.damage += damage;
+  pushFightEvent(match, "Clip", `${attacker.name} clipped ${defender.name} for ${damage} with a mouse swing.`, "impact");
 }
 
 function updateAttackState(fighter, opponent, match, dt) {
@@ -1394,7 +2782,7 @@ function updateFighter(fighter, opponent, match, dt) {
     fighter.maxStamina
   );
 
-  updateMouseWeaponControl(fighter, dt);
+  updateMouseWeaponControl(fighter, opponent, dt);
   updateAttackState(fighter, opponent, match, dt);
   attemptMouseSwingHit(fighter, opponent, match, dt);
 }
@@ -1422,12 +2810,19 @@ function finishMatch(match, winnerTeam, reason) {
   match.finished = true;
   match.setWinner = winnerTeam;
   match.phaseTimer = 999;
+  triggerImpact(match, { shake: 14, flash: 0.18, hitstop: 0.08 });
+  addSpark(match, STAGE_WIDTH / 2, GROUND_Y - 90, winnerTeam === PLAYER_TEAM ? "#89e6dc" : "#f0d48b", 24);
+  playSoundEffect("set-win");
 
-  const winnerName =
-    winnerTeam === PLAYER_TEAM ? "Player 1" : match.mode === "duel" ? "Player 2" : "Bot";
+  const winnerName = match.fighters.find((fighter) => fighter.team === winnerTeam)?.name || "Winner";
+  if (!match.accountRecorded) {
+    recordActiveAccountMatchResult(winnerTeam === PLAYER_TEAM);
+    match.accountRecorded = true;
+  }
 
   setStatus(`${winnerName} wins`);
   setMatchSummary(reason || `${winnerName} wins the set.`);
+  pushFightEvent(match, "Final", `${winnerName} closed the set on ${currentStageConfig(match.stage.id).label}.`, "impact");
   updateHudLabels();
 }
 
@@ -1439,6 +2834,7 @@ function finishRound(match, winner, reason) {
   match.phase = "round-over";
   match.phaseTimer = 2.25;
   match.roundWinner = winner ? winner.team : null;
+  triggerImpact(match, { shake: 12, flash: 0.16, hitstop: 0.07 });
 
   if (winner) {
     if (winner.team === PLAYER_TEAM) {
@@ -1446,12 +2842,21 @@ function finishRound(match, winner, reason) {
     } else {
       match.score.enemy += 1;
     }
+    addSpark(match, winner.x, winner.y - 70, winner.color, 18);
+    playSoundEffect("round-win");
     setStatus(`${winner.name} wins`);
   } else {
+    playSoundEffect("block");
     setStatus("Draw");
   }
 
   setMatchSummary(reason || (winner ? `${winner.name} took round ${match.round}.` : `Round ${match.round} ended in a draw.`));
+  pushFightEvent(
+    match,
+    winner ? "Round Result" : "Round Draw",
+    winner ? `${winner.name} took round ${match.round}. Score is ${match.score.player}-${match.score.enemy}.` : `Round ${match.round} ended even. Next face-off loading.`,
+    winner ? "impact" : "control"
+  );
   updateHudLabels();
 }
 
@@ -1463,10 +2868,13 @@ function resetRound(match) {
   match.roundWinner = null;
   match.sparks = [];
   match.fighters = createRoundFighters(match);
+  match.hitstop = 0;
+  match.flash = 0;
   autoFace(match.fighters[0], match.fighters[1]);
   autoFace(match.fighters[1], match.fighters[0]);
   setStatus(`Round ${match.round}`);
   setMatchSummary(`Round ${match.round}. First to ${match.roundsToWin} round wins takes the set.`);
+  pushFightEvent(match, "Round Call", `Round ${match.round} is loading. ${currentStageConfig(match.stage.id).specialty}.`, "control");
   updateHudLabels();
 }
 
@@ -1497,16 +2905,37 @@ function createMatch() {
     roundWinner: null,
     setWinner: null,
     finished: false,
+    accountRecorded: false,
     shake: 0,
-    hazardTick: 0
+    hazardTick: 0,
+    events: [],
+    stats: {
+      player: defaultCombatStats(),
+      enemy: defaultCombatStats()
+    },
+    hitstop: 0,
+    flash: 0
   };
 }
 
 function startMatch() {
+  state.feedback.shown = false;
+  closeFeedbackPanel();
+  primeAudio();
+  playSoundEffect("menu-accept");
+  state.uiPulse = 0;
   state.match = createMatch();
   primeInputMemory();
   resetRound(state.match);
+  pushFightEvent(
+    state.match,
+    "Fight Night",
+    `${currentStageConfig(state.match.stage.id).label} is live. First to ${state.match.roundsToWin} round wins takes the set.`,
+    "control"
+  );
   updateHudLabels();
+  setMenuOpen(false);
+  scheduleFeedbackPrompt();
 }
 
 function updateSparks(match, dt) {
@@ -1569,6 +2998,12 @@ function updateMatch(dt) {
   }
 
   const [player, enemy] = match.fighters;
+  match.flash = Math.max(0, match.flash - dt * 1.8);
+
+  if (match.hitstop > 0) {
+    match.hitstop = Math.max(0, match.hitstop - dt);
+    return;
+  }
 
   if (match.phase === "intro") {
     player.moveIntent = 0;
@@ -1582,8 +3017,11 @@ function updateMatch(dt) {
 
     if (match.phaseTimer <= 0) {
       match.phase = "fight";
+      triggerImpact(match, { flash: 0.08, hitstop: 0.03 });
+      playSoundEffect("round-start");
       setStatus("Fight");
       setMatchSummary(`Round ${match.round} is live. Break guard, manage range, and close the set.`);
+      pushFightEvent(match, "Fight", `Round ${match.round} starts now. ${match.fighters[0].name} and ${match.fighters[1].name} are live.`, "impact");
     }
     return;
   }
@@ -1636,9 +3074,9 @@ function updateMatch(dt) {
 
     if (match.phaseTimer <= 0) {
       if (match.score.player >= match.roundsToWin) {
-        finishMatch(match, PLAYER_TEAM, "Player 1 wins the set.");
+        finishMatch(match, PLAYER_TEAM, `${player.name} wins the set.`);
       } else if (match.score.enemy >= match.roundsToWin) {
-        finishMatch(match, ENEMY_TEAM, `${match.mode === "duel" ? "Player 2" : "Bot"} wins the set.`);
+        finishMatch(match, ENEMY_TEAM, `${enemy.name} wins the set.`);
       } else {
         resetRound(match);
       }
@@ -1662,6 +3100,7 @@ function drawStage(sceneStage) {
   const groundY = STAGE_TOP + GROUND_Y;
   const floorTop = groundY + 10;
   const bottom = STAGE_TOP + STAGE_HEIGHT;
+  const pulse = (Math.sin(performance.now() * 0.0024) + 1) * 0.5;
 
   const sky = ctx.createLinearGradient(0, STAGE_TOP, 0, bottom);
   sky.addColorStop(0, config.skyTop);
@@ -1693,6 +3132,26 @@ function drawStage(sceneStage) {
     ctx.fillRect(offsetX + 16 + i * 32, STAGE_TOP + 186 + Math.sin(i * 0.8) * 6, 16, 28);
   }
 
+  ctx.fillStyle = "rgba(255,255,255,0.05)";
+  ctx.font = "700 34px Georgia, serif";
+  const headerText = `${config.label.toUpperCase()} ARENA`;
+  ctx.fillText(headerText, canvas.width / 2 - ctx.measureText(headerText).width / 2, STAGE_TOP + 110);
+
+  [offsetX + 126, offsetX + STAGE_WIDTH - 168].forEach((bannerX, index) => {
+    const bannerColor = index === 0 ? `${config.accent}aa` : `${config.crowd}88`;
+    ctx.fillStyle = "rgba(0,0,0,0.24)";
+    ctx.fillRect(bannerX - 4, STAGE_TOP + 38, 8, 110);
+    ctx.fillStyle = bannerColor;
+    ctx.beginPath();
+    ctx.moveTo(bannerX - 26, STAGE_TOP + 52);
+    ctx.lineTo(bannerX + 26, STAGE_TOP + 52);
+    ctx.lineTo(bannerX + 20, STAGE_TOP + 128);
+    ctx.lineTo(bannerX, STAGE_TOP + 146);
+    ctx.lineTo(bannerX - 20, STAGE_TOP + 128);
+    ctx.closePath();
+    ctx.fill();
+  });
+
   ctx.fillStyle = config.floor;
   ctx.fillRect(offsetX, floorTop, STAGE_WIDTH, FLOOR_THICKNESS);
   ctx.fillStyle = config.floorEdge;
@@ -1707,6 +3166,22 @@ function drawStage(sceneStage) {
 
   ctx.fillStyle = "rgba(0,0,0,0.18)";
   ctx.fillRect(offsetX, floorTop + 20, STAGE_WIDTH, 18);
+
+  ctx.strokeStyle = "rgba(255,255,255,0.05)";
+  ctx.lineWidth = 1;
+  for (let i = 1; i < 12; i += 1) {
+    const x = offsetX + i * (STAGE_WIDTH / 12);
+    ctx.beginPath();
+    ctx.moveTo(x, floorTop + 10);
+    ctx.lineTo(x, floorTop + FLOOR_THICKNESS);
+    ctx.stroke();
+  }
+
+  const floorGlow = ctx.createLinearGradient(0, floorTop - 20, 0, floorTop + 90);
+  floorGlow.addColorStop(0, `${config.accent}${stageState.lights ? "26" : "10"}`);
+  floorGlow.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = floorGlow;
+  ctx.fillRect(offsetX, floorTop - 20, STAGE_WIDTH, 110);
 
   if (stageState.pillars) {
     [offsetX + 48, offsetX + STAGE_WIDTH - 80].forEach((x) => {
@@ -1739,21 +3214,107 @@ function drawStage(sceneStage) {
     ctx.beginPath();
     ctx.arc(centerX, floorTop - 18, 50, 0, Math.PI * 2);
     ctx.fill();
+
+    ctx.fillStyle = `${config.hazard}${pulse > 0.5 ? "88" : "66"}`;
+    for (let i = 0; i < 4; i += 1) {
+      const sparkX = centerX - 12 + i * 8;
+      const sparkHeight = 10 + pulse * 18 + (i % 2) * 6;
+      ctx.beginPath();
+      ctx.moveTo(sparkX, floorTop - 4);
+      ctx.lineTo(sparkX + 4, floorTop - sparkHeight);
+      ctx.lineTo(sparkX + 8, floorTop - 6);
+      ctx.closePath();
+      ctx.fill();
+    }
   }
 }
 
+function roundedRectPath(context, x, y, width, height, radius) {
+  const safeRadius = Math.min(radius, width / 2, height / 2);
+  context.beginPath();
+  context.moveTo(x + safeRadius, y);
+  context.lineTo(x + width - safeRadius, y);
+  context.quadraticCurveTo(x + width, y, x + width, y + safeRadius);
+  context.lineTo(x + width, y + height - safeRadius);
+  context.quadraticCurveTo(x + width, y + height, x + width - safeRadius, y + height);
+  context.lineTo(x + safeRadius, y + height);
+  context.quadraticCurveTo(x, y + height, x, y + height - safeRadius);
+  context.lineTo(x, y + safeRadius);
+  context.quadraticCurveTo(x, y, x + safeRadius, y);
+  context.closePath();
+}
+
+function fillRoundedRect(context, x, y, width, height, radius, fillStyle) {
+  roundedRectPath(context, x, y, width, height, radius);
+  context.fillStyle = fillStyle;
+  context.fill();
+}
+
+function drawArenaOverlay(stageId) {
+  const config = currentStageConfig(stageId);
+  const time = performance.now() * 0.001;
+
+  const vignette = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 140, canvas.width / 2, canvas.height / 2, 520);
+  vignette.addColorStop(0, "rgba(0,0,0,0)");
+  vignette.addColorStop(1, "rgba(0,0,0,0.34)");
+  ctx.fillStyle = vignette;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < 4; i += 1) {
+    const lightX = 140 + i * 220;
+    const beam = ctx.createLinearGradient(lightX, 60, lightX, 260);
+    beam.addColorStop(0, `${config.crowd}20`);
+    beam.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = beam;
+    ctx.beginPath();
+    ctx.moveTo(lightX - 46, 60);
+    ctx.lineTo(lightX + 46, 60);
+    ctx.lineTo(lightX + 90, 260);
+    ctx.lineTo(lightX - 90, 260);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  if (stageId === "foundry" || stageId === "crossfire") {
+    for (let i = 0; i < 14; i += 1) {
+      const drift = (time * 28 + i * 37) % (canvas.width + 80);
+      const emberX = ((i * 93 + drift) % (canvas.width + 80)) - 40;
+      const emberY = 360 - ((time * 42 + i * 19) % 180);
+      const emberSize = 1.5 + (i % 3);
+      ctx.fillStyle = stageId === "foundry" ? "rgba(255,168,96,0.22)" : "rgba(255,208,124,0.18)";
+      ctx.beginPath();
+      ctx.arc(emberX, emberY, emberSize, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  } else if (stageId === "ring") {
+    for (let i = 0; i < 10; i += 1) {
+      const shimmerX = 120 + i * 112;
+      const shimmerY = 118 + Math.sin(time * 1.3 + i) * 10;
+      ctx.fillStyle = "rgba(207,216,255,0.08)";
+      ctx.beginPath();
+      ctx.arc(shimmerX, shimmerY, 2 + (i % 2), 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  ctx.save();
+  ctx.globalAlpha = 0.06;
+  ctx.fillStyle = "#ffffff";
+  for (let y = 90; y < canvas.height; y += 6) {
+    ctx.fillRect(0, y, canvas.width, 1);
+  }
+  ctx.restore();
+}
+
 function drawHealthBar(x, y, width, ratio, fill, reverse = false) {
-  ctx.fillStyle = "rgba(0,0,0,0.55)";
-  ctx.fillRect(x, y, width, 18);
-  ctx.fillStyle = "rgba(255,255,255,0.08)";
-  ctx.fillRect(x + 2, y + 2, width - 4, 14);
+  fillRoundedRect(ctx, x, y, width, 18, 9, "rgba(0,0,0,0.45)");
+  fillRoundedRect(ctx, x + 2, y + 2, width - 4, 14, 7, "rgba(255,255,255,0.08)");
 
   const filledWidth = Math.round((width - 4) * clamp(ratio, 0, 1));
-  ctx.fillStyle = fill;
   if (reverse) {
-    ctx.fillRect(x + width - 2 - filledWidth, y + 2, filledWidth, 14);
+    fillRoundedRect(ctx, x + width - 2 - filledWidth, y + 2, filledWidth, 14, 7, fill);
   } else {
-    ctx.fillRect(x + 2, y + 2, filledWidth, 14);
+    fillRoundedRect(ctx, x + 2, y + 2, filledWidth, 14, 7, fill);
   }
 }
 
@@ -1770,7 +3331,7 @@ function drawRoundPips(x, y, wins, roundsToWin, fill, reverse = false) {
 
 function drawFighter(fighter) {
   const stageX = stageOffsetX() + fighter.x;
-  const footY = STAGE_TOP + fighter.y + 10;
+  const stageFloorY = STAGE_TOP + fighter.y + 10;
   const height = currentFighterHeight(fighter);
   const jumpLift = GROUND_Y - fighter.y;
   const shadowScale = clamp(1 - jumpLift / 260, 0.46, 1);
@@ -1793,59 +3354,82 @@ function drawFighter(fighter) {
   ctx.fill();
   ctx.restore();
 
-  ctx.save();
-  ctx.translate(stageX, footY + bob + bodyLift);
-
-  const torsoTop = -height * 0.6;
-  const headRadius = 10.5;
-  const headCenterX = fighter.facing * 2;
-  const headCenterY = torsoTop - headRadius + 5;
-  const neckY = headCenterY + headRadius - 1;
+  const torsoTop = -height * 0.5;
+  const headRadius = 8.6;
+  const headCenterX = fighter.facing * 1;
+  const headCenterY = torsoTop - headRadius + 9;
+  const neckY = headCenterY + headRadius - 5.4;
   const shoulderY = torsoTop * 0.46;
-  const shoulderFrontX = fighter.facing * (19 + walkAmount * 5);
-  const shoulderRearX = -fighter.facing * (17 + walkAmount * 4);
-  const hipFrontX = fighter.facing * 23;
-  const hipRearX = -fighter.facing * 21;
-  const frontArmY =
-    shoulderY + (fighter.blocking ? -14 : fighter.attack || fighter.slideTimer > 0 ? 4 : 12 + armSwing * 0.3);
-  const rearArmY = shoulderY + 14 - armSwing * 0.34;
-  const frontLegY = fighter.slideTimer > 0 ? 10 : 20 + stride * 0.7;
-  const rearLegY = fighter.slideTimer > 0 ? 14 : 20 - stride * 0.7;
+  const frontHandX = fighter.facing * (19 + walkAmount * 5);
+  const rearHandX = -fighter.facing * (12 + walkAmount * 4);
+  const frontHandY =
+    shoulderY + (fighter.blocking ? -15 : fighter.attack || fighter.slideTimer > 0 ? 1 : 22 + armSwing * 0.26);
+  const rearHandY = shoulderY + 22 - armSwing * 0.22;
+  const frontElbowX = fighter.facing * 6.5;
+  const frontElbowY = shoulderY + (fighter.blocking ? -9 : 12);
+  const rearElbowX = -fighter.facing * 5.5;
+  const rearElbowY = shoulderY + 12;
+  const frontKneeX = fighter.facing * (9 + walkAmount * 3.5);
+  const rearKneeX = -fighter.facing * (6 + walkAmount * 2.5);
+  const frontKneeY = fighter.slideTimer > 0 ? 12 : 22 + stride * 0.16;
+  const rearKneeY = fighter.slideTimer > 0 ? 14 : 22 - stride * 0.16;
+  const frontFootX = fighter.facing * (17 + walkAmount * 8);
+  const rearFootX = -fighter.facing * (11 + walkAmount * 6);
+  const frontFootY = fighter.slideTimer > 0 ? 14 : 46 + stride * 0.48;
+  const rearFootY = fighter.slideTimer > 0 ? 18 : 46 - stride * 0.48;
+  const footContactY = Math.max(frontFootY, rearFootY);
   const lean =
     fighter.slideTimer > 0 ? fighter.facing * 0.28 : fighter.hitstun > 0 ? -fighter.facing * 0.18 : 0;
+
+  ctx.save();
+  ctx.translate(stageX, stageFloorY - footContactY + bob + bodyLift);
   ctx.rotate(lean);
+
+  const drawBodyStroke = () => {
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(fighter.facing * 1.2, torsoTop * 0.62);
+    ctx.lineTo(headCenterX * 0.08, neckY);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(0, shoulderY);
+    ctx.lineTo(frontElbowX, frontElbowY);
+    ctx.lineTo(frontHandX, frontHandY);
+    ctx.moveTo(0, shoulderY);
+    ctx.lineTo(rearElbowX, rearElbowY);
+    ctx.lineTo(rearHandX, rearHandY);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(frontKneeX, frontKneeY);
+    ctx.lineTo(frontFootX, frontFootY);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(rearKneeX, rearKneeY);
+    ctx.lineTo(rearFootX, rearFootY);
+    ctx.stroke();
+  };
+
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "rgba(0,0,0,0.34)";
+  ctx.lineWidth = 8.2;
+  drawBodyStroke();
 
   ctx.strokeStyle = fighter.color;
   ctx.lineWidth = 4.5;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
+  drawBodyStroke();
 
+  ctx.fillStyle = "rgba(0,0,0,0.32)";
   ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.quadraticCurveTo(fighter.facing * 2, torsoTop * 0.44, headCenterX * 0.35, neckY);
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.moveTo(0, shoulderY);
-  ctx.quadraticCurveTo(shoulderFrontX * 0.45, shoulderY + 12, shoulderFrontX, frontArmY);
-  ctx.moveTo(0, shoulderY);
-  ctx.quadraticCurveTo(shoulderRearX * 0.42, shoulderY + 10, shoulderRearX, rearArmY);
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.quadraticCurveTo(hipFrontX * 0.34, 12, hipFrontX, frontLegY);
-  ctx.moveTo(0, 0);
-  ctx.quadraticCurveTo(hipRearX * 0.32, 12, hipRearX, rearLegY);
-  ctx.stroke();
+  ctx.arc(headCenterX, headCenterY + 1.5, headRadius + 2.2, 0, Math.PI * 2);
+  ctx.fill();
 
   ctx.fillStyle = fighter.color;
   ctx.beginPath();
   ctx.arc(headCenterX, headCenterY, headRadius, 0, Math.PI * 2);
   ctx.fill();
-  ctx.strokeStyle = fighter.color;
-  ctx.lineWidth = 2;
-  ctx.stroke();
 
   if (fighter.attackFlash > 0) {
     ctx.fillStyle = `rgba(255,255,255,${fighter.attackFlash * 0.75})`;
@@ -1854,24 +3438,41 @@ function drawFighter(fighter) {
     ctx.fill();
   }
 
-  const weaponBaseX = weaponPose.baseX - fighter.x;
-  const weaponBaseY = weaponPose.baseY - fighter.y;
   const weaponTipX = weaponPose.tipX - fighter.x;
   const weaponTipY = weaponPose.tipY - fighter.y;
+  const weaponRenderBaseX = frontHandX * 0.82;
+  const weaponRenderBaseY = frontHandY - 2;
 
-  ctx.strokeStyle = fighter.color;
-  ctx.lineWidth = 3.5;
+  if (fighter.attack || fighter.slideTimer > 0) {
+    const trail = ctx.createLinearGradient(weaponRenderBaseX, weaponRenderBaseY, weaponTipX, weaponTipY);
+    trail.addColorStop(0, "rgba(255,255,255,0)");
+    trail.addColorStop(1, `${fighter.weapon.color}55`);
+    ctx.strokeStyle = trail;
+    ctx.lineWidth = fighter.attack ? 15 : 11;
+    ctx.beginPath();
+    ctx.moveTo(weaponRenderBaseX, weaponRenderBaseY);
+    ctx.lineTo(weaponTipX, weaponTipY);
+    ctx.stroke();
+  }
+
+  ctx.strokeStyle = "rgba(0,0,0,0.3)";
+  ctx.lineWidth = 10;
   ctx.beginPath();
-  ctx.moveTo(shoulderFrontX * 0.86, shoulderY - 2);
-  ctx.lineTo(weaponBaseX, weaponBaseY);
+  ctx.moveTo(weaponRenderBaseX, weaponRenderBaseY);
+  ctx.lineTo(weaponTipX, weaponTipY);
   ctx.stroke();
 
   ctx.strokeStyle = fighter.weapon.color;
   ctx.lineWidth = 7;
   ctx.beginPath();
-  ctx.moveTo(weaponBaseX, weaponBaseY);
+  ctx.moveTo(weaponRenderBaseX, weaponRenderBaseY);
   ctx.lineTo(weaponTipX, weaponTipY);
   ctx.stroke();
+
+  ctx.fillStyle = `${fighter.weapon.color}44`;
+  ctx.beginPath();
+  ctx.arc(weaponTipX, weaponTipY, fighter.weapon.frameId === "chainblade" ? 13 : 9, 0, Math.PI * 2);
+  ctx.fill();
 
   ctx.fillStyle = fighter.weapon.color;
   ctx.beginPath();
@@ -1902,37 +3503,52 @@ function drawSparks(match) {
 
 function drawHud(match) {
   const [player, enemy] = match.fighters;
-  const playerLabel = `PLAYER 1  ${match.playerWeapon.name.toUpperCase()}`;
-  const enemyLabel = `${(match.mode === "duel" ? "PLAYER 2" : "BOT")}  ${match.rivalWeapon.name.toUpperCase()}`;
+  const playerLabel = `${player.name.toUpperCase()}  ${match.playerWeapon.name.toUpperCase()}`;
+  const enemyLabel = `${enemy.name.toUpperCase()}  ${match.rivalWeapon.name.toUpperCase()}`;
+  const timerText = `${Math.ceil(match.timer)}`;
 
-  ctx.fillStyle = "rgba(0,0,0,0.42)";
-  ctx.fillRect(0, 0, canvas.width, HUD_HEIGHT);
+  fillRoundedRect(ctx, 24, 10, 348, 56, 20, "rgba(0,0,0,0.34)");
+  fillRoundedRect(ctx, canvas.width - 372, 10, 348, 56, 20, "rgba(0,0,0,0.34)");
+  fillRoundedRect(ctx, canvas.width / 2 - 58, 8, 116, 64, 24, "rgba(0,0,0,0.44)");
+  fillRoundedRect(ctx, canvas.width / 2 - 50, 14, 100, 52, 20, "rgba(255,255,255,0.06)");
 
   ctx.fillStyle = "#f4efe7";
   ctx.font = "700 15px 'Trebuchet MS', sans-serif";
-  ctx.fillText(playerLabel, 44, 24);
-  ctx.fillText(enemyLabel, canvas.width - 44 - ctx.measureText(enemyLabel).width, 24);
+  ctx.fillText(playerLabel, 42, 30);
+  ctx.fillText(enemyLabel, canvas.width - 42 - ctx.measureText(enemyLabel).width, 30);
 
-  drawHealthBar(42, 30, 320, player.health / player.maxHealth, "#89e6dc");
-  drawHealthBar(canvas.width - 362, 30, 320, enemy.health / enemy.maxHealth, "#f0d48b", true);
+  drawHealthBar(40, 38, 316, player.health / player.maxHealth, "#89e6dc");
+  drawHealthBar(canvas.width - 356, 38, 316, enemy.health / enemy.maxHealth, "#f0d48b", true);
 
   ctx.fillStyle = "#d7c9b7";
   ctx.font = "700 28px Georgia, serif";
-  const timerText = `${Math.ceil(match.timer)}`;
-  ctx.fillText(timerText, canvas.width / 2 - ctx.measureText(timerText).width / 2, 38);
+  ctx.fillText(timerText, canvas.width / 2 - ctx.measureText(timerText).width / 2, 44);
 
-  drawRoundPips(48, 56, match.score.player, match.roundsToWin, "#89e6dc");
-  drawRoundPips(canvas.width - 48, 56, match.score.enemy, match.roundsToWin, "#f0d48b", true);
+  ctx.fillStyle = "rgba(255,255,255,0.68)";
+  ctx.font = "600 12px 'Trebuchet MS', sans-serif";
+  const roundLabel = `ROUND ${match.round}  |  ${matchModeLabel(match.mode)}`;
+  ctx.fillText(roundLabel, canvas.width / 2 - ctx.measureText(roundLabel).width / 2, 60);
+
+  drawRoundPips(48, 74, match.score.player, match.roundsToWin, "#89e6dc");
+  drawRoundPips(canvas.width - 48, 74, match.score.enemy, match.roundsToWin, "#f0d48b", true);
 
   ctx.fillStyle = "rgba(255,255,255,0.6)";
-  ctx.fillRect(42, 52, 320 * (player.stamina / player.maxStamina), 4);
-  ctx.fillRect(canvas.width - 42 - 320 * (enemy.stamina / enemy.maxStamina), 52, 320 * (enemy.stamina / enemy.maxStamina), 4);
+  fillRoundedRect(ctx, 40, 61, 316 * (player.stamina / player.maxStamina), 5, 3, "rgba(255,255,255,0.72)");
+  fillRoundedRect(
+    ctx,
+    canvas.width - 40 - 316 * (enemy.stamina / enemy.maxStamina),
+    61,
+    316 * (enemy.stamina / enemy.maxStamina),
+    5,
+    3,
+    "rgba(255,255,255,0.72)"
+  );
 }
 
 function drawBanner(title, subtitle) {
   ctx.save();
-  ctx.fillStyle = "rgba(0,0,0,0.38)";
-  ctx.fillRect(canvas.width / 2 - 220, canvas.height / 2 - 58, 440, 116);
+  fillRoundedRect(ctx, canvas.width / 2 - 238, canvas.height / 2 - 66, 476, 132, 26, "rgba(0,0,0,0.46)");
+  fillRoundedRect(ctx, canvas.width / 2 - 228, canvas.height / 2 - 56, 456, 112, 22, "rgba(255,255,255,0.04)");
 
   ctx.fillStyle = "#f4efe7";
   ctx.font = "700 38px Georgia, serif";
@@ -1948,13 +3564,14 @@ function drawBanner(title, subtitle) {
 
 function renderIdleStage() {
   drawStage(state.stage);
+  drawArenaOverlay(state.stage.id);
 
   const leftPose = spawnFighter({
     team: PLAYER_TEAM,
     control: "p1",
     weapon: weaponById(state.activeWeaponId) || currentBlueprint(),
     x: 300,
-    name: "Player 1",
+    name: playerDisplayName(),
     color: "#89e6dc"
   });
   const rightPose = spawnFighter({
@@ -1975,7 +3592,7 @@ function renderIdleStage() {
 
   ctx.fillStyle = "rgba(0,0,0,0.34)";
   ctx.fillRect(140, 176, canvas.width - 280, 132);
-  drawBanner("ROUND SET FIGHTER", "Forge a weapon, choose a stage, then start the duel.");
+  drawBanner("ROUND SET FIGHTER", "Open the menu for bot or PvP, or forge in the workshop.");
 
   ctx.fillStyle = "rgba(255,255,255,0.7)";
   ctx.font = "600 16px 'Trebuchet MS', sans-serif";
@@ -1993,6 +3610,7 @@ function renderBattlefield() {
 
   const match = state.match;
   drawStage(match.stage);
+  drawArenaOverlay(match.stage.id);
 
   ctx.save();
   if (match.shake > 0) {
@@ -2005,6 +3623,11 @@ function renderBattlefield() {
 
   drawHud(match);
 
+  if (match.flash > 0) {
+    ctx.fillStyle = `rgba(255,255,255,${match.flash * 0.18})`;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
   if (match.phase === "intro") {
     if (match.phaseTimer > 0.9) {
       drawBanner(`ROUND ${match.round}`, `First to ${match.roundsToWin} wins`);
@@ -2012,27 +3635,38 @@ function renderBattlefield() {
       drawBanner("FIGHT", `${match.mode === "duel" ? "Local duel" : "Bot duel"} on ${currentStageConfig(match.stage.id).label}`);
     }
   } else if (match.phase === "round-over") {
+    const winnerName = match.fighters.find((fighter) => fighter.team === match.roundWinner)?.name || null;
     const title = match.roundWinner
-      ? `${match.roundWinner === PLAYER_TEAM ? "PLAYER 1" : match.mode === "duel" ? "PLAYER 2" : "BOT"} TAKES ROUND`
+      ? `${winnerName?.toUpperCase() || "WINNER"} TAKES ROUND`
       : "DRAW";
     drawBanner(title, `Set score ${match.score.player} - ${match.score.enemy}`);
   } else if (match.phase === "match-over") {
+    const winnerName = match.fighters.find((fighter) => fighter.team === match.setWinner)?.name || "Winner";
     const title =
-      match.setWinner === PLAYER_TEAM ? "PLAYER 1 WINS" : match.mode === "duel" ? "PLAYER 2 WINS" : "BOT WINS";
-    drawBanner(title, "Set complete. Reforge or start another match.");
+      `${winnerName.toUpperCase()} WINS`;
+    drawBanner(title, "Set complete. Reforge or press Start Set for a rematch.");
   }
 }
 
 function loop(now) {
   const dt = clamp((now - state.lastFrameTime) / 1000, 0, 0.033);
   state.lastFrameTime = now;
-  updateMatch(dt);
+  pollGamepadState();
+  if (!state.menu.open) {
+    updateMatch(dt);
+    state.uiPulse += dt;
+    if (state.uiPulse >= 0.12) {
+      renderBroadcastDeck();
+      state.uiPulse = 0;
+    }
+  }
   renderBattlefield();
   requestAnimationFrame(loop);
 }
 
 function handleForgeChange() {
-  state.forge.name = ui.weaponName.value;
+  state.forge.name = ui.weaponName.value.trim().slice(0, 12);
+  ui.weaponName.value = state.forge.name;
   state.forge.frame = ui.frameSelect.value;
   state.forge.material = ui.materialSelect.value;
   state.forge.edge = ui.edgeSelect.value;
@@ -2050,6 +3684,10 @@ function bindTouchControls() {
     const setPressed = (value, event) => {
       event.preventDefault();
       state.touchState[action] = value;
+      if (value) {
+        state.inputProfile.lastSource = "touch";
+        primeAudio();
+      }
     };
 
     button.addEventListener("pointerdown", (event) => setPressed(true, event));
@@ -2068,7 +3706,13 @@ function bindPointerInput() {
 
   ui.battlefield.addEventListener("pointermove", updateMousePosition);
   ui.battlefield.addEventListener("pointerdown", (event) => {
+    primeAudio();
     updateMousePosition(event);
+    state.inputProfile.lastSource = event.pointerType === "touch" ? "touch" : "mouse";
+    if (event.pointerType === "touch") {
+      event.preventDefault();
+      return;
+    }
     if (event.button === 0) {
       state.mouse.left = true;
     } else if (event.button === 2) {
@@ -2151,12 +3795,65 @@ function bindEvents() {
   });
 
   ui.matchMode.addEventListener("change", () => {
-    setMatchSummary(
-      ui.matchMode.value === "duel"
-        ? "Local duel mode active. Player 2 uses keyboard attacks and defense."
-        : "Bot mode active. Fight the AI in a round set."
-    );
+    setMatchSummary(describeMatchMode(ui.matchMode.value));
+    ui.battlefieldMode.textContent = matchModeLabel(ui.matchMode.value);
+    renderMenuSummary();
   });
+
+  const toggleAudio = () => {
+    const nextEnabled = !state.audio.enabled;
+    setAudioEnabled(nextEnabled);
+    if (nextEnabled) {
+      primeAudio();
+      playSoundEffect("menu-accept");
+    }
+  };
+
+  ui.toggleSound.addEventListener("click", toggleAudio);
+  ui.menuToggleSound.addEventListener("click", toggleAudio);
+
+  ui.openMenu.addEventListener("click", () => setMenuOpen(true));
+  ui.closeMenu.addEventListener("click", () => setMenuOpen(false));
+  ui.menuOpenWorkshop.addEventListener("click", () => {
+    primeAudio();
+    playSoundEffect("menu-accept");
+    setMenuOpen(false);
+    setMatchSummary("Workshop open. Forge a weapon, set a stage, or start a new set.");
+  });
+  ui.menuPlayBot.addEventListener("click", () => launchMatchFromMenu("solo"));
+  ui.menuPlayPvp.addEventListener("click", () => launchMatchFromMenu("duel"));
+  ui.recapRematch.addEventListener("click", startMatch);
+  ui.recapMenu.addEventListener("click", () => {
+    primeAudio();
+    playSoundEffect("menu-accept");
+    setMenuOpen(true);
+  });
+
+  ui.feedbackChoices.forEach((button) => {
+    button.addEventListener("click", () => {
+      state.feedback.selectedChoice = button.dataset.feedbackChoice;
+      ui.feedbackStatus.textContent = "Ready to save local session feedback.";
+      renderFeedbackPanel();
+    });
+  });
+
+  ui.reviewChoices.forEach((button) => {
+    button.addEventListener("click", () => {
+      state.reviews.selectedChoice = button.dataset.reviewChoice;
+      renderReviewList("Review rating selected.");
+    });
+  });
+
+  ui.sendFeedback.addEventListener("click", submitFeedback);
+  ui.dismissFeedback.addEventListener("click", () => {
+    ui.feedbackStatus.textContent = "Feedback prompt dismissed for this session.";
+    closeFeedbackPanel();
+  });
+  ui.submitReview.addEventListener("click", submitReview);
+
+  ui.createAccount.addEventListener("click", createAccount);
+  ui.loginAccount.addEventListener("click", loginAccount);
+  ui.logoutAccount.addEventListener("click", logoutAccount);
 
   ui.startMatch.addEventListener("click", startMatch);
 
@@ -2166,10 +3863,24 @@ function bindEvents() {
     ...Object.values(keyBindings.p2)
   ]);
 
+  const isEditableTarget = (target) => {
+    if (!(target instanceof HTMLElement)) {
+      return false;
+    }
+    return Boolean(target.closest("input, textarea, select, button")) || target.isContentEditable;
+  };
+
   window.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey) {
+      return;
+    }
+    if (isEditableTarget(event.target)) {
+      return;
+    }
     if (preventedKeys.has(event.code)) {
       event.preventDefault();
     }
+    state.inputProfile.lastSource = "keyboard";
     state.keysDown.add(event.code);
   });
 
@@ -2184,7 +3895,13 @@ function bindEvents() {
     Object.keys(state.touchState).forEach((key) => {
       state.touchState[key] = false;
     });
+    Object.keys(state.gamepad.buttons).forEach((key) => {
+      state.gamepad.buttons[key] = false;
+    });
   });
+
+  window.addEventListener("resize", refreshInputProfile);
+  window.addEventListener("orientationchange", refreshInputProfile);
 
   bindPointerInput();
   bindTouchControls();
@@ -2206,6 +3923,7 @@ function seedArmory() {
 }
 
 function init() {
+  refreshInputProfile();
   populateSelect(ui.frameSelect, frameCatalog);
   populateSelect(ui.materialSelect, materialCatalog);
   populateSelect(ui.edgeSelect, edgeCatalog);
@@ -2219,14 +3937,65 @@ function init() {
   ui.temperRange.value = `${state.forge.temper}`;
   ui.roundsToWinValue.textContent = ui.roundsToWin.value;
 
+  try {
+    const savedAuth = JSON.parse(window.localStorage.getItem("stickforge-auth") || "null");
+    if (savedAuth && Array.isArray(savedAuth.accounts)) {
+      state.auth.accounts = savedAuth.accounts.map((account) => ({
+        ...account,
+        stats: {
+          ...defaultAccountStats(),
+          ...(account.stats || {})
+        }
+      }));
+      state.auth.activeAccountId = savedAuth.activeAccountId || null;
+      state.auth.ownerAccountId = savedAuth.ownerAccountId || savedAuth.accounts[0]?.id || null;
+    }
+  } catch (error) {
+    state.auth.accounts = [];
+    state.auth.activeAccountId = null;
+    state.auth.ownerAccountId = null;
+  }
+
+  try {
+    const savedFeedback = JSON.parse(window.localStorage.getItem("stickforge-feedback") || "[]");
+    if (Array.isArray(savedFeedback)) {
+      state.feedback.entries = savedFeedback.slice(0, 10);
+    }
+  } catch (error) {
+    state.feedback.entries = [];
+  }
+
+  try {
+    const savedSettings = JSON.parse(window.localStorage.getItem("stickforge-settings") || "null");
+    if (savedSettings && typeof savedSettings.audioEnabled === "boolean") {
+      state.audio.enabled = savedSettings.audioEnabled;
+    }
+  } catch (error) {
+    state.audio.enabled = true;
+  }
+
+  try {
+    const savedReviews = JSON.parse(window.localStorage.getItem("stickforge-reviews") || "[]");
+    if (Array.isArray(savedReviews)) {
+      state.reviews.entries = savedReviews.slice(0, 8);
+    }
+  } catch (error) {
+    state.reviews.entries = [];
+  }
+
   seedArmory();
   renderForge();
   renderArmory();
   renderStageSummary();
   updateHudLabels();
   setStatus("Waiting");
-  setMatchSummary("Forge a weapon, pick a stage, and launch a proper round set.");
+  setMatchSummary("Open the menu, pick bot or PvP, then launch a proper round set.");
   bindEvents();
+  renderSoundButtons();
+  renderAccountPanel();
+  renderReviewList();
+  renderFeedbackPanel();
+  setMenuOpen(!window.location.hash.includes("autostart"));
   renderBattlefield();
 
   if (window.location.hash.includes("autostart")) {
