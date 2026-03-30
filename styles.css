@@ -1095,7 +1095,8 @@ button:active {
 }
 
 .arena-screen {
-  position: relative;
+  display: grid;
+  gap: 12px;
 }
 
 .battlefield-marquee,
@@ -1736,27 +1737,20 @@ body.touch-device .battlefield-shell {
 }
 
 body.touch-device .feedback-panel {
-  bottom: calc(252px + env(safe-area-inset-bottom, 0px));
+  position: static;
+  right: auto;
+  bottom: auto;
+  width: 100%;
+  margin-top: 12px;
 }
 
 body.touch-device .touch-controls {
-  position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: max(16px, env(safe-area-inset-bottom, 0px));
-  z-index: 6;
   display: grid;
-  grid-template-columns: 104px minmax(0, 1fr);
-  align-items: end;
+  grid-template-columns: 1fr;
   gap: 12px;
-  padding: 12px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.18)),
-    rgba(12, 10, 16, 0.92);
-  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.36);
-  backdrop-filter: blur(18px);
+  width: 100%;
+  margin-top: 10px;
+  padding: 0;
 }
 
 body.touch-device .stage-topbar .mode-row label,
@@ -1805,9 +1799,13 @@ body.touch-device .touch-control-grid {
   width: 100%;
 }
 
+body.touch-device .touch-control-grid {
+  grid-template-columns: 1fr;
+}
+
 body.touch-device .touch-pad,
 body.touch-device .touch-actions {
-  flex: 1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 body.touch-device .touch-quickbar {
@@ -1927,17 +1925,14 @@ body.touch-device .touch-actions button {
 
   body.touch-device .touch-controls {
     display: grid;
-    gap: 12px;
-    padding: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 10px;
+    padding: 0;
+    grid-template-columns: 1fr;
   }
 
   .device-choice-row,
   .touch-control-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .touch-quickbar {

@@ -648,7 +648,7 @@ function renderControlGuide() {
       {
         kicker: "Selected Device",
         title: "Mobile Fight Deck",
-        body: "Use the on-screen buttons right inside the arena. Left and Right move, Jump hops, Down crouches, Strike attacks, Block defends, Backstep or Lunge are your quick moves, Tutorial restarts the lesson, and Pause opens the menu."
+        body: "Use the on-screen buttons under the arena. Left and Right move, Jump hops, Down crouches, Strike attacks, Block defends, Backstep or Lunge are your quick moves, and Pause opens the menu."
       },
       {
         kicker: "Arena Tip",
