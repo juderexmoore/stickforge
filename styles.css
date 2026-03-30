@@ -1724,7 +1724,11 @@ body.touch-device {
 }
 
 body.touch-device .stage-panel {
-  padding-bottom: 278px;
+  padding-bottom: 20px;
+}
+
+body.touch-device .battlefield-shell {
+  padding-bottom: 244px;
 }
 
 body.touch-device .feedback-panel {
@@ -1737,7 +1741,10 @@ body.touch-device .touch-controls {
   right: 16px;
   bottom: max(16px, env(safe-area-inset-bottom, 0px));
   z-index: 6;
-  display: flex;
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  align-items: end;
+  gap: 12px;
   padding: 12px;
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -1746,6 +1753,13 @@ body.touch-device .touch-controls {
     rgba(12, 10, 16, 0.92);
   box-shadow: 0 20px 42px rgba(0, 0, 0, 0.36);
   backdrop-filter: blur(18px);
+}
+
+body.touch-device .stage-topbar .mode-row label,
+body.touch-device #toggle-screen-focus,
+body.touch-device #open-menu,
+body.touch-device #start-match {
+  display: none;
 }
 
 body.arena-fullscreen {
@@ -1790,6 +1804,10 @@ body.touch-device .touch-control-grid {
 body.touch-device .touch-pad,
 body.touch-device .touch-actions {
   flex: 1;
+}
+
+body.touch-device .touch-quickbar {
+  grid-template-columns: 1fr;
 }
 
 body.touch-device .touch-quickbar button,
@@ -1904,18 +1922,22 @@ body.touch-device .touch-actions button {
   }
 
   body.touch-device .touch-controls {
-    display: flex;
+    display: grid;
     gap: 12px;
     padding: 10px;
     left: 10px;
     right: 10px;
     bottom: 10px;
+    grid-template-columns: 88px minmax(0, 1fr);
   }
 
   .device-choice-row,
-  .touch-quickbar,
   .touch-control-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .touch-quickbar {
+    grid-template-columns: 1fr;
   }
 
   body.touch-device .touch-quickbar button,

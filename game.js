@@ -461,6 +461,7 @@ const state = {
   },
   tutorial: {
     offerVisible: false,
+    promptSeen: false,
     active: false,
     completed: false,
     dismissed: false,
@@ -647,7 +648,7 @@ function renderControlGuide() {
       {
         kicker: "Selected Device",
         title: "Mobile Fight Deck",
-        body: "Use the on-screen buttons right inside the arena. Left and Right move, Jump hops, Down crouches, Strike attacks, Block defends, and Backstep or Lunge are your quick moves."
+        body: "Use the on-screen buttons right inside the arena. Left and Right move, Jump hops, Down crouches, Strike attacks, Block defends, Backstep or Lunge are your quick moves, Tutorial restarts the lesson, and Pause opens the menu."
       },
       {
         kicker: "Arena Tip",
@@ -697,8 +698,7 @@ function renderControlGuide() {
 }
 
 function appearsNewPlayer() {
-  const totalSets = state.auth.accounts.reduce((sum, account) => sum + ensureAccountStats(account).setsPlayed, 0);
-  return totalSets === 0 && state.reviews.entries.length === 0 && state.feedback.entries.length === 0;
+  return !state.tutorial.promptSeen;
 }
 
 function setPreferredInputMode(mode, persist = true) {
@@ -711,6 +711,12 @@ function setPreferredInputMode(mode, persist = true) {
     state.inputProfile.lastSource = "mouse";
   }
   refreshInputProfile();
+  if (mode === "mobile" && appearsNewPlayer() && state.flow.introOpen) {
+    state.tutorial.offerVisible = true;
+    setIntroOpen(false);
+    setMenuOpen(true);
+    setMatchSummary("It looks like you're new. Start the guided mobile tutorial when you're ready.");
+  }
   renderTutorialOffer();
   renderTutorialPanel();
   renderControlGuide();
@@ -1027,7 +1033,8 @@ function saveSettingsState() {
       "stickforge-settings",
       JSON.stringify({
         audioEnabled: state.audio.enabled,
-        preferredInput: state.inputProfile.preference
+        preferredInput: state.inputProfile.preference,
+        tutorialPromptSeen: state.tutorial.promptSeen
       })
     );
   } catch (error) {
@@ -1584,11 +1591,13 @@ function launchMatchFromMenu(mode) {
 
 function startTutorial() {
   state.tutorial.offerVisible = false;
+  state.tutorial.promptSeen = true;
   state.tutorial.active = true;
   state.tutorial.completed = false;
   state.tutorial.dismissed = false;
   state.tutorial.stepIndex = 0;
   state.tutorial.progress = defaultTutorialProgress();
+  saveSettingsState();
   ui.matchMode.value = "solo";
   ui.roundsToWin.value = "1";
   syncRoundsOutput();
@@ -1642,7 +1651,9 @@ function updateTutorialProgress(input, match) {
     state.tutorial.stepIndex += 1;
 
     if (state.tutorial.stepIndex >= steps.length) {
+      state.tutorial.promptSeen = true;
       state.tutorial.completed = true;
+      saveSettingsState();
       setMatchSummary("Tutorial complete. Keep practicing here or open the forge screen when you're ready.");
       pushFightEvent(match, "Tutorial Clear", "You cleared the basics. The arena is yours now.", "impact");
     } else {
@@ -4326,13 +4337,9 @@ function bindTouchControls() {
       event.preventDefault();
       const action = button.dataset.touchUi;
 
-      if (action === "play-bot") {
-        launchMatchFromMenu("solo");
-      } else if (action === "play-pvp") {
-        launchMatchFromMenu("duel");
-      } else if (action === "tutorial") {
+      if (action === "tutorial") {
         startTutorial();
-      } else if (action === "menu") {
+      } else if (action === "pause") {
         setMenuOpen(true);
       }
     });
@@ -4480,7 +4487,9 @@ function bindEvents() {
   });
   ui.startTutorial.addEventListener("click", startTutorial);
   ui.skipTutorial.addEventListener("click", () => {
+    state.tutorial.promptSeen = true;
     state.tutorial.offerVisible = false;
+    saveSettingsState();
     renderTutorialOffer();
     setMatchSummary("Tutorial skipped. Pick a mode or open the forge screen whenever you want.");
   });
@@ -4649,10 +4658,17 @@ function init() {
     if (savedSettings && ["auto", "pc", "mobile", "controller"].includes(savedSettings.preferredInput)) {
       state.inputProfile.preference = savedSettings.preferredInput;
     }
+    if (savedSettings && typeof savedSettings.tutorialPromptSeen === "boolean") {
+      state.tutorial.promptSeen = savedSettings.tutorialPromptSeen;
+    }
   } catch (error) {
     state.audio.enabled = true;
   }
 
+  const coarsePointerBoot = hasCoarsePointer();
+  if (coarsePointerBoot && state.inputProfile.preference === "auto") {
+    state.inputProfile.preference = "mobile";
+  }
   refreshInputProfile();
 
   try {
@@ -4678,14 +4694,25 @@ function init() {
   renderFeedbackPanel();
   renderControlGuide();
   setScreenFocus("arena");
-  setIntroOpen(!window.location.hash.includes("autostart"));
-  setMenuOpen(false);
+  const autoStart = window.location.hash.includes("autostart");
+  const autoOpenMobileOnboarding = !autoStart && coarsePointerBoot && appearsNewPlayer();
+
+  if (autoOpenMobileOnboarding) {
+    state.tutorial.offerVisible = true;
+    setIntroOpen(false);
+    setMenuOpen(true);
+    setMatchSummary("It looks like you're new. Pick your controls, then start the guided tutorial right away.");
+  } else {
+    setIntroOpen(!autoStart);
+    setMenuOpen(false);
+  }
+
   renderTutorialOffer();
   renderTutorialPanel();
   syncFullscreenState();
   renderBattlefield();
 
-  if (window.location.hash.includes("autostart")) {
+  if (autoStart) {
     startMatch();
   }
 
