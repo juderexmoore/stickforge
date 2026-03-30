@@ -287,6 +287,22 @@ body::before {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
+.menu-card-wide {
+  grid-column: 1 / -1;
+}
+
+.device-choice-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.device-choice-button.active {
+  color: var(--accent);
+  border-color: rgba(232, 107, 58, 0.38);
+  background: var(--accent-soft);
+}
+
 .menu-summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1612,6 +1628,50 @@ button:active {
   letter-spacing: 0.12em;
 }
 
+.feedback-entry-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.feedback-entry-actions .ghost-button.active {
+  color: var(--accent);
+  border-color: rgba(232, 107, 58, 0.38);
+  background: var(--accent-soft);
+}
+
+.control-guide {
+  display: grid;
+  gap: 10px;
+}
+
+.control-guide-card {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.1)),
+    rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.control-guide-card span {
+  color: var(--gold);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.control-guide-card strong,
+.control-guide-card p {
+  margin: 0;
+}
+
+.control-guide-card p {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
 .touch-controls {
   display: none;
   flex-direction: column;
@@ -1660,22 +1720,22 @@ button:active {
 }
 
 body.touch-device {
-  padding-bottom: calc(228px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: max(18px, env(safe-area-inset-bottom, 0px));
 }
 
 body.touch-device .stage-panel {
-  padding-bottom: 236px;
+  padding-bottom: 278px;
 }
 
 body.touch-device .feedback-panel {
-  bottom: calc(214px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(252px + env(safe-area-inset-bottom, 0px));
 }
 
 body.touch-device .touch-controls {
-  position: fixed;
-  left: max(12px, env(safe-area-inset-left, 0px));
-  right: max(12px, env(safe-area-inset-right, 0px));
-  bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
   z-index: 6;
   display: flex;
   padding: 12px;
@@ -1686,6 +1746,40 @@ body.touch-device .touch-controls {
     rgba(12, 10, 16, 0.92);
   box-shadow: 0 20px 42px rgba(0, 0, 0, 0.36);
   backdrop-filter: blur(18px);
+}
+
+body.arena-fullscreen {
+  padding: 0;
+  background: #05060b;
+}
+
+body.arena-fullscreen .backdrop,
+body.arena-fullscreen .masthead,
+body.arena-fullscreen .sidebar-stack,
+body.arena-fullscreen .footer-row {
+  display: none;
+}
+
+body.arena-fullscreen .app-shell {
+  width: 100vw;
+  max-width: none;
+  min-height: 100vh;
+  margin: 0;
+}
+
+body.arena-fullscreen .stage-panel {
+  min-height: 100vh;
+  border-radius: 0;
+  border: 0;
+  padding: 18px;
+}
+
+body.arena-fullscreen .battlefield-shell {
+  min-height: calc(100vh - 36px);
+}
+
+body.arena-fullscreen #battlefield {
+  max-width: none;
 }
 
 body.touch-device .touch-quickbar,
@@ -1806,14 +1900,19 @@ body.touch-device .touch-actions button {
   }
 
   .touch-controls {
-    display: flex;
+    display: none;
   }
 
   body.touch-device .touch-controls {
+    display: flex;
     gap: 12px;
     padding: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
   }
 
+  .device-choice-row,
   .touch-quickbar,
   .touch-control-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

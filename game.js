@@ -292,6 +292,7 @@ const ui = {
   menuSummary: document.querySelector("#menu-summary"),
   tutorialOffer: document.querySelector("#tutorial-offer"),
   tutorialOfferCopy: document.querySelector("#tutorial-offer-copy"),
+  deviceChoiceButtons: Array.from(document.querySelectorAll(".device-choice-button")),
   startTutorial: document.querySelector("#start-tutorial"),
   skipTutorial: document.querySelector("#skip-tutorial"),
   frameSelect: document.querySelector("#frame-select"),
@@ -358,6 +359,7 @@ const ui = {
   recapRematch: document.querySelector("#recap-rematch"),
   recapMenu: document.querySelector("#recap-menu"),
   matchSummary: document.querySelector("#match-summary"),
+  controlGuide: document.querySelector("#control-guide"),
   touchControls: document.querySelector("#touch-controls"),
   accountName: document.querySelector("#account-name"),
   accountPasscode: document.querySelector("#account-passcode"),
@@ -366,6 +368,10 @@ const ui = {
   createAccount: document.querySelector("#create-account"),
   loginAccount: document.querySelector("#login-account"),
   logoutAccount: document.querySelector("#logout-account"),
+  friendName: document.querySelector("#friend-name"),
+  friendStatus: document.querySelector("#friend-status"),
+  addFriend: document.querySelector("#add-friend"),
+  friendList: document.querySelector("#friend-list"),
   feedbackInbox: document.querySelector("#feedback-inbox"),
   feedbackPanel: document.querySelector("#feedback-panel"),
   feedbackChoices: Array.from(document.querySelectorAll(".feedback-choice")),
@@ -429,8 +435,7 @@ const state = {
   lastFrameTime: performance.now(),
   auth: {
     accounts: [],
-    activeAccountId: null,
-    ownerAccountId: null
+    activeAccountId: null
   },
   feedback: {
     shown: false,
@@ -448,7 +453,11 @@ const state = {
   },
   flow: {
     introOpen: true,
-    screen: "arena"
+    screen: "arena",
+    fullscreen: false
+  },
+  social: {
+    rivalFriendId: null
   },
   tutorial: {
     offerVisible: false,
@@ -469,7 +478,8 @@ const state = {
   },
   inputProfile: {
     touch: false,
-    lastSource: "mouse"
+    lastSource: "mouse",
+    preference: "auto"
   },
   gamepad: {
     connected: false,
@@ -557,6 +567,158 @@ function setStatus(text) {
   ui.hudResult.textContent = text;
 }
 
+function inputModeLabel(mode = preferredInputMode()) {
+  if (mode === "mobile") {
+    return "Mobile";
+  }
+  if (mode === "controller") {
+    return "Controller";
+  }
+  return "PC";
+}
+
+function inferredInputMode() {
+  if (state.inputProfile.lastSource === "controller" || state.gamepad.connected) {
+    return "controller";
+  }
+  if (hasCoarsePointer() || state.inputProfile.lastSource === "touch") {
+    return "mobile";
+  }
+  return "pc";
+}
+
+function preferredInputMode() {
+  return state.inputProfile.preference !== "auto" ? state.inputProfile.preference : inferredInputMode();
+}
+
+function controlHintsForMode(mode = preferredInputMode()) {
+  if (mode === "mobile") {
+    return {
+      move: "Tap Left or Right on the fight screen.",
+      air: "Tap Jump to hop, or hold Down to crouch.",
+      attack: "Tap Strike once.",
+      block: "Hold Block for a moment.",
+      mobility: "Tap Backstep or Lunge once.",
+      hit: "Walk close, then tap Strike so the practice bot gets hit."
+    };
+  }
+
+  if (mode === "controller") {
+    return {
+      move: "Move the left stick left or right once.",
+      air: "Press A to jump, or push down to crouch.",
+      attack: "Press RT or X once.",
+      block: "Hold LT or LB for a moment.",
+      mobility: "Press B or Y once.",
+      hit: "Walk close, then press RT or X so the practice bot gets hit."
+    };
+  }
+
+  return {
+    move: "Press A or D once.",
+    air: "Press W to jump, or hold S to crouch.",
+    attack: "Left click once.",
+    block: "Hold right click for a moment.",
+    mobility: "Press Q or E once.",
+    hit: "Walk close, then left click so the practice bot gets hit."
+  };
+}
+
+function selectedRivalFriend() {
+  const account = currentAccount();
+  if (!account || !state.social.rivalFriendId) {
+    return null;
+  }
+
+  return ensureAccountFriends(account).find((friend) => friend.id === state.social.rivalFriendId) || null;
+}
+
+function selectedRivalName() {
+  return selectedRivalFriend()?.name || (ui.matchMode.value === "duel" ? "Player 2" : "Bot");
+}
+
+function renderControlGuide() {
+  const mode = preferredInputMode();
+  const rivalName = selectedRivalName();
+  let cards = [];
+
+  if (mode === "mobile") {
+    cards = [
+      {
+        kicker: "Selected Device",
+        title: "Mobile Fight Deck",
+        body: "Use the on-screen buttons right inside the arena. Left and Right move, Jump hops, Down crouches, Strike attacks, Block defends, and Backstep or Lunge are your quick moves."
+      },
+      {
+        kicker: "Arena Tip",
+        title: "Touch play is aim-assisted",
+        body: `Mobile aim leans toward ${rivalName}, so focus on spacing and timing instead of dragging the weapon by hand.`
+      }
+    ];
+  } else if (mode === "controller") {
+    cards = [
+      {
+        kicker: "Selected Device",
+        title: "Controller Layout",
+        body: "Move with left stick or D-pad, aim with right stick, A jumps, RT or X attacks, LT or LB blocks, B dodges, and Y or RB lunges."
+      },
+      {
+        kicker: "Arena Tip",
+        title: "Use both sticks",
+        body: `The left stick moves your fighter while the right stick points your weapon toward ${rivalName}.`
+      }
+    ];
+  } else {
+    cards = [
+      {
+        kicker: "Selected Device",
+        title: "PC Mouse And Keys",
+        body: "A and D move, W jumps, S crouches, left click attacks, right click blocks, Q backsteps, and E lunges."
+      },
+      {
+        kicker: "Arena Tip",
+        title: "Mouse controls the weapon",
+        body: `Keep the mouse pointed at ${rivalName} while you move with the keyboard so your swings line up cleanly.`
+      }
+    ];
+  }
+
+  ui.controlGuide.innerHTML = cards
+    .map(
+      (card) => `
+        <article class="control-guide-card">
+          <span>${card.kicker}</span>
+          <strong>${card.title}</strong>
+          <p>${card.body}</p>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function appearsNewPlayer() {
+  const totalSets = state.auth.accounts.reduce((sum, account) => sum + ensureAccountStats(account).setsPlayed, 0);
+  return totalSets === 0 && state.reviews.entries.length === 0 && state.feedback.entries.length === 0;
+}
+
+function setPreferredInputMode(mode, persist = true) {
+  state.inputProfile.preference = mode;
+  if (mode === "mobile") {
+    state.inputProfile.lastSource = "touch";
+  } else if (mode === "controller") {
+    state.inputProfile.lastSource = "controller";
+  } else {
+    state.inputProfile.lastSource = "mouse";
+  }
+  refreshInputProfile();
+  renderTutorialOffer();
+  renderTutorialPanel();
+  renderControlGuide();
+  if (persist) {
+    saveSettingsState();
+  }
+}
+
 function describeMatchMode(mode) {
   return mode === "duel"
     ? "Local PvP active. Player 2 uses keyboard attacks and defense."
@@ -573,41 +735,49 @@ function defaultTutorialProgress() {
     air: false,
     attack: false,
     block: false,
-    mobility: false
+    mobility: false,
+    hit: false
   };
 }
 
 function tutorialSteps() {
+  const hints = controlHintsForMode();
   return [
     {
       id: "move",
       title: "Move",
-      copy: "Start simple. Press left or right once so your fighter walks.",
-      hint: "Desktop: A or D. Mobile: Left or Right. Controller: move the left stick."
+      copy: "Start simple. Make your fighter walk once so you can feel left and right movement.",
+      hint: hints.move
     },
     {
       id: "air",
       title: "Jump Or Crouch",
-      copy: "Now try going up or down once. You can jump, or you can crouch low.",
-      hint: "Desktop: W or S. Mobile: Jump or Down. Controller: A to jump, or push down."
+      copy: "Now learn vertical movement. You can hop up, or crouch low under attacks.",
+      hint: hints.air
     },
     {
       id: "attack",
       title: "Attack",
-      copy: "Try one attack. This is your basic way to hit the other fighter.",
-      hint: "Desktop: left click. Mobile: Strike. Controller: RT or X."
+      copy: "Try one attack button press. This is your main way to hurt the other fighter.",
+      hint: hints.attack
     },
     {
       id: "block",
       title: "Block",
-      copy: "Hold block for a moment. Blocking helps keep you safe when a hit is coming.",
-      hint: "Desktop: right click. Mobile: Block. Controller: LT or LB."
+      copy: "Hold block for a moment. Blocking helps you stay safe when something swings at you.",
+      hint: hints.block
     },
     {
       id: "mobility",
       title: "Quick Move",
-      copy: "Finish by trying one quick movement button. One moves you away fast, and one rushes you forward fast.",
-      hint: "Desktop: Q or E. Mobile: Backstep or Lunge. Controller: B or Y."
+      copy: "Now try one quick move. One escapes fast, and one rushes you in fast.",
+      hint: hints.mobility
+    },
+    {
+      id: "hit",
+      title: "Land A Hit",
+      copy: "Finish the lesson by walking into range and landing one clean hit on the practice bot.",
+      hint: hints.hit
     }
   ];
 }
@@ -634,6 +804,11 @@ function setScreenFocus(screen) {
 function renderTutorialOffer() {
   const visible = state.menu.open && !state.flow.introOpen && state.tutorial.offerVisible;
   ui.tutorialOffer.classList.toggle("hidden", !visible);
+  ui.deviceChoiceButtons.forEach((button) => {
+    button.classList.toggle("active", button.dataset.deviceChoice === preferredInputMode());
+  });
+
+  ui.tutorialOfferCopy.textContent = `Choose your controls first. Right now the guided tutorial is set for ${inputModeLabel()} and will walk you through the buttons in a safe practice fight.`;
 }
 
 function renderTutorialPanel() {
@@ -654,7 +829,7 @@ function renderTutorialPanel() {
     ? "Tutorial Complete"
     : `Step ${tutorial.stepIndex + 1} of ${entries.length}: ${currentStep.title}`;
   ui.tutorialCopy.textContent = allDone
-    ? "You cleared the basics. The bot can stay as a safe practice dummy while you keep experimenting."
+    ? `You cleared the basics on ${inputModeLabel()} controls. The bot can stay here as a safe practice dummy while you keep experimenting.`
     : `Do this now: ${currentStep.copy} ${currentStep.hint}`;
   ui.tutorialChecklist.innerHTML = entries
     .map(
@@ -684,8 +859,11 @@ function hasCoarsePointer() {
 }
 
 function refreshInputProfile() {
-  state.inputProfile.touch = hasCoarsePointer();
+  state.inputProfile.touch = preferredInputMode() === "mobile";
   document.body.classList.toggle("touch-device", state.inputProfile.touch);
+  if (ui.controlGuide) {
+    renderControlGuide();
+  }
 }
 
 function anyTouchInputActive() {
@@ -781,14 +959,32 @@ function ensureAccountStats(account) {
   return account.stats;
 }
 
+function ensureAccountFriends(account) {
+  if (!account) {
+    return [];
+  }
+
+  account.friends = Array.isArray(account.friends)
+    ? account.friends
+        .map((friend) => ({
+          ...friend,
+          name: String(friend.name || "").trim().slice(0, 12)
+        }))
+        .filter((friend) => friend.name)
+    : [];
+  return account.friends;
+}
+
 function accountSummaryMeta(account) {
   const stats = ensureAccountStats(account);
   const losses = Math.max(0, stats.setsPlayed - stats.setsWon);
+  const friendCount = ensureAccountFriends(account).length;
 
   return {
     stats,
     line: `${stats.setsWon}W ${losses}L across ${stats.setsPlayed} sets`,
-    reviewLine: `${stats.reviewsWritten} local review${stats.reviewsWritten === 1 ? "" : "s"}`
+    reviewLine: `${stats.reviewsWritten} local review${stats.reviewsWritten === 1 ? "" : "s"}`,
+    friendLine: `${friendCount} friend${friendCount === 1 ? "" : "s"} saved`
   };
 }
 
@@ -830,7 +1026,8 @@ function saveSettingsState() {
     window.localStorage.setItem(
       "stickforge-settings",
       JSON.stringify({
-        audioEnabled: state.audio.enabled
+        audioEnabled: state.audio.enabled,
+        preferredInput: state.inputProfile.preference
       })
     );
   } catch (error) {
@@ -987,6 +1184,7 @@ function renderMenuSummary() {
   const account = currentAccount();
   const accountMeta = accountSummaryMeta(account);
   const armoryCount = state.armory.length;
+  const rivalName = selectedRivalName();
 
   ui.menuSummary.innerHTML = `
     <article class="menu-summary-card">
@@ -995,7 +1193,8 @@ function renderMenuSummary() {
       <p>${account ? accountMeta.line : "Sign in to save reviews locally and build a career record."}</p>
       <div class="menu-summary-meta">
         <span>${account ? accountMeta.reviewLine : "No account stats yet"}</span>
-        <span>${account ? "Local save active" : "Guest mode"}</span>
+        <span>${account ? accountMeta.friendLine : "Guest mode"}</span>
+        <span>${inputModeLabel()} controls</span>
       </div>
     </article>
     <article class="menu-summary-card">
@@ -1005,6 +1204,7 @@ function renderMenuSummary() {
       <div class="menu-summary-meta">
         <span>${matchModeLabel(ui.matchMode.value)}</span>
         <span>${Number(ui.roundsToWin.value)} rounds to win</span>
+        <span>Rival: ${rivalName}</span>
       </div>
     </article>
     <article class="menu-summary-card">
@@ -1118,7 +1318,7 @@ function renderFightFeed() {
 function renderSetStats() {
   const match = state.match;
   const playerName = match?.fighters?.[0]?.name || playerDisplayName();
-  const rivalName = match?.fighters?.[1]?.name || (ui.matchMode.value === "duel" ? "Player 2" : "Bot");
+  const rivalName = match?.fighters?.[1]?.name || selectedRivalName();
   const playerStats = statsForTeam(match, PLAYER_TEAM);
   const enemyStats = statsForTeam(match, ENEMY_TEAM);
   const statCards = [
@@ -1165,6 +1365,7 @@ function renderBroadcastDeck() {
   const rivalWeapon = match?.rivalWeapon || weaponById(state.rivalWeaponId) || null;
   const playerFighter = match?.fighters?.find((fighter) => fighter.team === PLAYER_TEAM) || null;
   const rivalFighter = match?.fighters?.find((fighter) => fighter.team === ENEMY_TEAM) || null;
+  const rivalName = rivalFighter?.name || selectedRivalName();
   const stageState = activeStageState();
   const stageConfig = currentStageConfig(stageState.id);
   const roundsToWin = match?.roundsToWin || Number(ui.roundsToWin.value);
@@ -1195,14 +1396,16 @@ function renderBroadcastDeck() {
   ui.broadcastPlayerRecord.textContent = account ? accountMeta.line : "Guest profile";
   ui.broadcastPlayerForm.textContent = playerForm;
 
-  ui.broadcastRivalName.textContent = rivalFighter?.name || (ui.matchMode.value === "duel" ? "Player 2" : "Bot");
+  ui.broadcastRivalName.textContent = rivalName;
   ui.broadcastRivalLoadout.textContent = rivalWeapon
     ? `${rivalWeapon.name} | ${weaponRoleTag(rivalWeapon)}`
     : "Auto forge rival";
   ui.broadcastRivalRecord.textContent =
     ui.matchMode.value === "duel"
       ? "Second local fighter"
-      : `${stageConfig.label} generated rival`;
+      : selectedRivalFriend()
+        ? "Friend-tag rival"
+        : `${stageConfig.label} generated rival`;
   ui.broadcastRivalForm.textContent = rivalForm;
 
   ui.broadcastStageName.textContent = stageConfig.label;
@@ -1338,6 +1541,29 @@ function openForgeScreen() {
   setMatchSummary("Forge screen open. Rebuild your weapon, armory picks, or stage settings here.");
 }
 
+async function requestArenaFullscreen() {
+  const root = document.documentElement;
+  const request =
+    root.requestFullscreen ||
+    root.webkitRequestFullscreen ||
+    root.msRequestFullscreen;
+
+  if (!request || document.fullscreenElement || document.webkitFullscreenElement) {
+    return;
+  }
+
+  try {
+    await request.call(root);
+  } catch (error) {
+    // Fullscreen can fail when the browser blocks it or the start was not user initiated.
+  }
+}
+
+function syncFullscreenState() {
+  state.flow.fullscreen = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+  document.body.classList.toggle("arena-fullscreen", state.flow.fullscreen);
+}
+
 function clearTutorialState() {
   state.tutorial.active = false;
   state.tutorial.completed = false;
@@ -1373,11 +1599,11 @@ function startTutorial() {
   renderStageSummary();
   updateHudLabels();
   startMatch({ tutorial: true });
-  setMatchSummary("Tutorial live. Do the highlighted step only. The practice bot will stay still and will not attack.");
+  setMatchSummary(`Tutorial live for ${inputModeLabel()} controls. Do the highlighted step only and the practice bot will stay still.`);
   pushFightEvent(
     state.match,
-    "Tutorial",
-    "This tutorial is calm on purpose. You do not need to win. Just follow the highlighted step.",
+    "Tutorial Coach",
+    `This tutorial is calm on purpose. You do not need to win. Just follow the highlighted ${inputModeLabel()} control step.`,
     "control"
   );
   renderTutorialPanel();
@@ -1407,6 +1633,8 @@ function updateTutorialProgress(input, match) {
     completedStep = input.block;
   } else if (currentStep.id === "mobility") {
     completedStep = input.dodgePressed || input.slidePressed;
+  } else if (currentStep.id === "hit") {
+    completedStep = statsForTeam(match, PLAYER_TEAM).hits > 0;
   }
 
   if (completedStep) {
@@ -1433,8 +1661,7 @@ function saveAuthState() {
       "stickforge-auth",
       JSON.stringify({
         accounts: state.auth.accounts,
-        activeAccountId: state.auth.activeAccountId,
-        ownerAccountId: state.auth.ownerAccountId
+        activeAccountId: state.auth.activeAccountId
       })
     );
   } catch (error) {
@@ -1450,29 +1677,17 @@ function playerDisplayName() {
   return currentAccount()?.name || "Player 1";
 }
 
-function isOwnerAccount() {
-  return Boolean(state.auth.activeAccountId) && state.auth.activeAccountId === state.auth.ownerAccountId;
-}
-
 function canAccessFeedback() {
-  return isOwnerAccount();
+  return true;
 }
 
 function renderFeedbackInbox() {
   ui.feedbackInbox.innerHTML = "";
 
-  if (!canAccessFeedback()) {
-    const message = document.createElement("p");
-    message.className = "arena-hint";
-    message.textContent = "Feedback inbox is locked to the owner account.";
-    ui.feedbackInbox.append(message);
-    return;
-  }
-
   if (!state.feedback.entries.length) {
     const empty = document.createElement("p");
     empty.className = "arena-hint";
-    empty.textContent = "No saved feedback yet. Submit feedback in-game to build the inbox.";
+    empty.textContent = "No saved feedback yet. Play a set and leave the first arena note.";
     ui.feedbackInbox.append(empty);
     return;
   }
@@ -1481,7 +1696,7 @@ function renderFeedbackInbox() {
     const item = document.createElement("article");
     item.className = "feedback-entry";
     item.innerHTML = `
-      <span>${entry.choice} | ${entry.accountName || "Owner"}</span>
+      <span>${entry.choice} | ${entry.accountName || "Guest"}</span>
       <strong>${entry.stage} | ${entry.mode}</strong>
       <p>${entry.note || "No extra note."}</p>
     `;
@@ -1489,31 +1704,102 @@ function renderFeedbackInbox() {
   });
 }
 
+function linkedAccountForFriend(friend) {
+  if (friend.accountId) {
+    return state.auth.accounts.find((account) => account.id === friend.accountId) || null;
+  }
+
+  return state.auth.accounts.find((account) => account.name.toLowerCase() === friend.name.toLowerCase()) || null;
+}
+
+function renderFriendList(statusMessage = "") {
+  const account = currentAccount();
+  ui.friendList.innerHTML = "";
+  ui.friendStatus.textContent = statusMessage || (account
+    ? "Friends are saved to the signed-in account on this browser."
+    : "Sign in to save a local friend list for this browser.");
+
+  if (!account) {
+    const empty = document.createElement("p");
+    empty.className = "arena-hint";
+    empty.textContent = "No active profile. Sign in before adding friends.";
+    ui.friendList.append(empty);
+    return;
+  }
+
+  const friends = ensureAccountFriends(account);
+  if (!friends.length) {
+    const empty = document.createElement("p");
+    empty.className = "arena-hint";
+    empty.textContent = "No friends saved yet. Add a local account name or any friend tag.";
+    ui.friendList.append(empty);
+    return;
+  }
+
+  friends.forEach((friend) => {
+    const linkedAccount = linkedAccountForFriend(friend);
+    const isActiveRival = state.social.rivalFriendId === friend.id;
+    const item = document.createElement("article");
+    item.className = "feedback-entry";
+    item.innerHTML = `
+      <span>${linkedAccount ? (linkedAccount.id === state.auth.activeAccountId ? "Online here" : "Local account") : "Friend tag"}</span>
+      <strong>${friend.name}</strong>
+      <p>${linkedAccount
+        ? `${linkedAccount.name} has a saved local account on this browser.`
+        : "Saved as a local friend tag for this build."}</p>
+    `;
+
+    const actions = document.createElement("div");
+    actions.className = "feedback-entry-actions";
+
+    const rivalButton = document.createElement("button");
+    rivalButton.className = "ghost-button";
+    rivalButton.type = "button";
+    rivalButton.textContent = isActiveRival ? "Using As Rival" : "Use As Rival";
+    rivalButton.classList.toggle("active", isActiveRival);
+    rivalButton.addEventListener("click", () => {
+      state.social.rivalFriendId = isActiveRival ? null : friend.id;
+      renderFriendList(isActiveRival ? "Rival friend cleared." : `${friend.name} will be used as the rival name.`);
+      renderControlGuide();
+      renderMenuSummary();
+      updateHudLabels();
+      renderBattlefield();
+    });
+    actions.append(rivalButton);
+
+    const removeButton = document.createElement("button");
+    removeButton.className = "ghost-button";
+    removeButton.type = "button";
+    removeButton.textContent = "Remove";
+    removeButton.addEventListener("click", () => removeFriend(friend.id));
+    actions.append(removeButton);
+    item.append(actions);
+    ui.friendList.append(item);
+  });
+}
+
 function renderAccountPanel(statusMessage = "") {
   const account = currentAccount();
-  const ownerName =
-    state.auth.accounts.find((candidate) => candidate.id === state.auth.ownerAccountId)?.name || "Not set";
   const accountMeta = accountSummaryMeta(account);
 
   if (account) {
-    ui.accountStatus.textContent = isOwnerAccount()
-      ? `Signed in as ${account.name}. You are the feedback owner.`
-      : `Signed in as ${account.name}. Feedback stays locked to owner ${ownerName}.`;
+    ui.accountStatus.textContent = `Signed in as ${account.name}. Your reviews, friends, and match record will save locally here.`;
   } else {
     ui.accountStatus.textContent = state.auth.accounts.length
-      ? `No account is signed in. Owner feedback belongs to ${ownerName}.`
-      : "No account is signed in. The first created account becomes the only feedback owner.";
+      ? "No account is signed in. Feedback is still open, but friends and reviews save to signed-in players."
+      : "No account is signed in. Sign in to save reviews, friends, and local fight history.";
   }
 
   ui.accountNote.textContent =
     statusMessage ||
     (account
-      ? `${accountMeta.line}. ${accountMeta.reviewLine}. Accounts are saved locally in this browser.`
+      ? `${accountMeta.line}. ${accountMeta.reviewLine}. ${accountMeta.friendLine}. Accounts are saved locally in this browser.`
       : state.auth.accounts.length
-        ? "Accounts are saved locally in this browser. Only the owner account can open or read feedback."
-        : "Create a local account. The first one becomes the owner and gets feedback access.");
+        ? "Accounts are saved locally in this browser. Feedback is open to everyone, and friend lists save to the signed-in profile."
+        : "Create a local account to keep your player name, reviews, and friends on this browser.");
 
   renderFeedbackInbox();
+  renderFriendList();
   renderFeedbackPanel();
   renderMenuSummary();
   renderBroadcastPanels();
@@ -1539,25 +1825,20 @@ function createAccount() {
     name,
     passcode,
     stats: defaultAccountStats(),
+    friends: [],
     createdAt: new Date().toISOString()
   };
 
   state.auth.accounts.push(account);
   state.auth.activeAccountId = account.id;
-  if (!state.auth.ownerAccountId) {
-    state.auth.ownerAccountId = account.id;
-  }
   saveAuthState();
   ui.accountName.value = "";
   ui.accountPasscode.value = "";
-  if (state.match && isOwnerAccount()) {
+  if (state.match) {
     scheduleFeedbackPrompt();
   }
-  renderAccountPanel(
-    state.auth.ownerAccountId === account.id
-      ? `${account.name} created and set as the feedback owner.`
-      : `${account.name} created and signed in.`
-  );
+  renderAccountPanel(`${account.name} created and signed in.`);
+  renderFriendList(`${account.name}'s friend list is ready.`);
   renderReviewList(`${account.name} can now leave menu reviews.`);
   renderMenuSummary();
 }
@@ -1579,10 +1860,11 @@ function loginAccount() {
   saveAuthState();
   ui.accountName.value = "";
   ui.accountPasscode.value = "";
-  if (state.match && isOwnerAccount()) {
+  if (state.match) {
     scheduleFeedbackPrompt();
   }
   renderAccountPanel(`Signed in as ${account.name}.`);
+  renderFriendList(`${account.name}'s friend list is loaded.`);
   renderReviewList(`Signed in as ${account.name}.`);
   renderMenuSummary();
 }
@@ -1595,15 +1877,76 @@ function logoutAccount() {
   state.auth.activeAccountId = null;
   saveAuthState();
   closeFeedbackPanel();
-  renderAccountPanel("Signed out. Feedback remains locked until the owner logs back in.");
+  renderAccountPanel("Signed out. Feedback stays open, but friends and reviews save to signed-in players.");
+  renderFriendList("Sign in to manage friends.");
   renderReviewList("Signed out. Reviews need a signed-in player name.");
   renderMenuSummary();
 }
 
+function addFriend() {
+  const account = currentAccount();
+  if (!account) {
+    renderFriendList("Sign in before adding friends.");
+    return;
+  }
+
+  const name = ui.friendName.value.trim().slice(0, 12);
+  if (!name) {
+    renderFriendList("Type a friend name first.");
+    return;
+  }
+
+  if (name.toLowerCase() === account.name.toLowerCase()) {
+    renderFriendList("You cannot add yourself as a friend.");
+    return;
+  }
+
+  const linkedAccount = state.auth.accounts.find((candidate) => candidate.name.toLowerCase() === name.toLowerCase()) || null;
+  const friends = ensureAccountFriends(account);
+  const duplicate = friends.find((friend) =>
+    (linkedAccount && friend.accountId === linkedAccount.id) || friend.name.toLowerCase() === name.toLowerCase()
+  );
+
+  if (duplicate) {
+    renderFriendList(`${name} is already in your friend list.`);
+    return;
+  }
+
+  friends.unshift({
+    id: makeId("friend"),
+    name: linkedAccount?.name || name,
+    accountId: linkedAccount?.id || null,
+    createdAt: new Date().toISOString()
+  });
+  friends.splice(12);
+  ui.friendName.value = "";
+  saveAuthState();
+  renderFriendList(`${name} added to ${account.name}'s friend list.`);
+  renderControlGuide();
+  renderMenuSummary();
+}
+
+function removeFriend(friendId) {
+  const account = currentAccount();
+  if (!account) {
+    renderFriendList("Sign in before editing friends.");
+    return;
+  }
+
+  account.friends = ensureAccountFriends(account).filter((friend) => friend.id !== friendId);
+  if (state.social.rivalFriendId === friendId) {
+    state.social.rivalFriendId = null;
+  }
+  saveAuthState();
+  renderFriendList("Friend removed.");
+  renderControlGuide();
+  renderMenuSummary();
+  updateHudLabels();
+}
+
 function renderFeedbackPanel() {
   const feedback = state.feedback;
-  const feedbackVisible = feedback.visible && canAccessFeedback();
-  ui.feedbackPanel.classList.toggle("hidden", !feedbackVisible);
+  ui.feedbackPanel.classList.toggle("hidden", !feedback.visible);
   ui.feedbackChoices.forEach((button) => {
     button.classList.toggle("active", button.dataset.feedbackChoice === feedback.selectedChoice);
   });
@@ -1611,9 +1954,6 @@ function renderFeedbackPanel() {
 
 function openFeedbackPanel(message = "You have been in the arena a bit. Drop a fast note about combat feel, weapon control, or stickman visuals.") {
   const feedback = state.feedback;
-  if (!canAccessFeedback()) {
-    return;
-  }
   feedback.visible = true;
   feedback.shown = true;
   if (feedback.promptHandle) {
@@ -1656,12 +1996,7 @@ function storeFeedbackEntry(entry) {
 function submitFeedback() {
   const note = ui.feedbackNote.value.trim();
   const choice = state.feedback.selectedChoice;
-  const account = currentAccount();
-
-  if (!canAccessFeedback() || !account) {
-    ui.feedbackStatus.textContent = "Only the owner account can save feedback.";
-    return;
-  }
+  const accountName = currentAccount()?.name || "Guest";
 
   if (!choice && !note) {
     ui.feedbackStatus.textContent = "Pick a quick rating or type a short note first.";
@@ -1671,7 +2006,7 @@ function submitFeedback() {
   storeFeedbackEntry({
     choice: choice || "Note only",
     note,
-    accountName: account.name,
+    accountName,
     createdAt: new Date().toISOString(),
     stage: activeStageState().id,
     mode: ui.matchMode.value
@@ -1693,7 +2028,7 @@ function submitFeedback() {
 
 function scheduleFeedbackPrompt() {
   const feedback = state.feedback;
-  if (feedback.shown || feedback.promptHandle || !canAccessFeedback()) {
+  if (feedback.shown || feedback.promptHandle) {
     return;
   }
   feedback.promptHandle = window.setTimeout(() => {
@@ -2110,6 +2445,7 @@ function updateHudLabels() {
   renderSetRecap();
   renderBroadcastPanels();
   renderMenuSummary();
+  renderControlGuide();
 }
 
 function saveCurrentWeapon({ equip = true } = {}) {
@@ -2413,7 +2749,7 @@ function createRoundFighters(match) {
       control: match.mode === "duel" ? "p2" : "bot",
       weapon: match.rivalWeapon,
       x: STAGE_WIDTH - 220,
-      name: match.mode === "duel" ? "Player 2" : "Bot",
+      name: selectedRivalName(),
       color: match.mode === "duel" ? "#f0d48b" : "#f4efe7"
     })
   ];
@@ -3204,6 +3540,7 @@ function startMatch({ tutorial = false } = {}) {
   closeFeedbackPanel();
   primeAudio();
   playSoundEffect("menu-accept");
+  requestArenaFullscreen();
   state.uiPulse = 0;
   setScreenFocus("arena");
   state.match = createMatch({ tutorial });
@@ -3863,7 +4200,7 @@ function renderIdleStage() {
     control: "bot",
     weapon: weaponById(state.rivalWeaponId) || createRandomEnemyWeapon(),
     x: STAGE_WIDTH - 300,
-    name: "Rival",
+    name: selectedRivalName(),
     color: "#f0d48b"
   });
 
@@ -3993,8 +4330,8 @@ function bindTouchControls() {
         launchMatchFromMenu("solo");
       } else if (action === "play-pvp") {
         launchMatchFromMenu("duel");
-      } else if (action === "start-match") {
-        startMatch();
+      } else if (action === "tutorial") {
+        startTutorial();
       } else if (action === "menu") {
         setMenuOpen(true);
       }
@@ -4101,6 +4438,7 @@ function bindEvents() {
     setMatchSummary(describeMatchMode(ui.matchMode.value));
     ui.battlefieldMode.textContent = matchModeLabel(ui.matchMode.value);
     renderMenuSummary();
+    renderControlGuide();
   });
 
   const toggleAudio = () => {
@@ -4121,9 +4459,19 @@ function bindEvents() {
     primeAudio();
     playSoundEffect("menu-accept");
     setIntroOpen(false);
-    state.tutorial.offerVisible = true;
+    state.tutorial.offerVisible = appearsNewPlayer();
     setMenuOpen(true);
-    setMatchSummary("Choose tutorial, bot, PvP, or open the forge screen.");
+    setMatchSummary(
+      state.tutorial.offerVisible
+        ? "It looks like you're new. Pick your controls, then start the guided tutorial or jump into a fight."
+        : "Choose tutorial, bot, PvP, or open the forge screen."
+    );
+  });
+  ui.deviceChoiceButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setPreferredInputMode(button.dataset.deviceChoice);
+      setMatchSummary(`${inputModeLabel()} controls selected. Start the tutorial when you're ready.`);
+    });
   });
   ui.menuOpenWorkshop.addEventListener("click", () => {
     primeAudio();
@@ -4182,6 +4530,7 @@ function bindEvents() {
   ui.createAccount.addEventListener("click", createAccount);
   ui.loginAccount.addEventListener("click", loginAccount);
   ui.logoutAccount.addEventListener("click", logoutAccount);
+  ui.addFriend.addEventListener("click", addFriend);
 
   ui.startMatch.addEventListener("click", startMatch);
 
@@ -4230,6 +4579,8 @@ function bindEvents() {
 
   window.addEventListener("resize", refreshInputProfile);
   window.addEventListener("orientationchange", refreshInputProfile);
+  document.addEventListener("fullscreenchange", syncFullscreenState);
+  document.addEventListener("webkitfullscreenchange", syncFullscreenState);
 
   bindPointerInput();
   bindTouchControls();
@@ -4268,18 +4619,17 @@ function init() {
     if (savedAuth && Array.isArray(savedAuth.accounts)) {
       state.auth.accounts = savedAuth.accounts.map((account) => ({
         ...account,
+        friends: Array.isArray(account.friends) ? account.friends : [],
         stats: {
           ...defaultAccountStats(),
           ...(account.stats || {})
         }
       }));
       state.auth.activeAccountId = savedAuth.activeAccountId || null;
-      state.auth.ownerAccountId = savedAuth.ownerAccountId || savedAuth.accounts[0]?.id || null;
     }
   } catch (error) {
     state.auth.accounts = [];
     state.auth.activeAccountId = null;
-    state.auth.ownerAccountId = null;
   }
 
   try {
@@ -4296,9 +4646,14 @@ function init() {
     if (savedSettings && typeof savedSettings.audioEnabled === "boolean") {
       state.audio.enabled = savedSettings.audioEnabled;
     }
+    if (savedSettings && ["auto", "pc", "mobile", "controller"].includes(savedSettings.preferredInput)) {
+      state.inputProfile.preference = savedSettings.preferredInput;
+    }
   } catch (error) {
     state.audio.enabled = true;
   }
+
+  refreshInputProfile();
 
   try {
     const savedReviews = JSON.parse(window.localStorage.getItem("stickforge-reviews") || "[]");
@@ -4315,17 +4670,19 @@ function init() {
   renderStageSummary();
   updateHudLabels();
   setStatus("Waiting");
-  setMatchSummary("Press Play on the intro screen, then choose tutorial, bot, PvP, or the forge screen.");
+  setMatchSummary("Press Play on the intro screen, choose your controls, then start the tutorial, bot fight, PvP set, or forge screen.");
   bindEvents();
   renderSoundButtons();
   renderAccountPanel();
   renderReviewList();
   renderFeedbackPanel();
+  renderControlGuide();
   setScreenFocus("arena");
   setIntroOpen(!window.location.hash.includes("autostart"));
   setMenuOpen(false);
   renderTutorialOffer();
   renderTutorialPanel();
+  syncFullscreenState();
   renderBattlefield();
 
   if (window.location.hash.includes("autostart")) {

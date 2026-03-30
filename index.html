@@ -61,23 +61,29 @@
             </article>
             <article class="menu-feature-card">
               <span>Feedback</span>
-              <strong>Reviews + owner inbox</strong>
-              <p>Leave player reviews here while the owner account keeps the private feedback log.</p>
+              <strong>Open local inbox</strong>
+              <p>Every player can leave local feedback now. Reviews and quick arena notes stay open to the whole build.</p>
             </article>
           </div>
         </div>
 
         <section class="tutorial-offer hidden" id="tutorial-offer" aria-live="polite">
           <div>
-            <p class="eyebrow">First Match</p>
-            <h3>Do You Want The Tutorial?</h3>
+            <p class="eyebrow">New Player Check</p>
+            <h3>It Looks Like You're New. Want The Tutorial?</h3>
             <p class="arena-hint" id="tutorial-offer-copy">
-              The tutorial starts immediately in the arena, teaches one button group
-              at a time, and uses a calm practice bot that does not attack you.
+              Choose whether you are on PC, mobile, or controller first. Then the
+              tutorial will explain the right buttons and guide you through a safe
+              practice fight step by step.
             </p>
           </div>
+          <div class="device-choice-row" id="device-choice">
+            <button class="ghost-button device-choice-button" data-device-choice="pc" type="button">PC</button>
+            <button class="ghost-button device-choice-button" data-device-choice="mobile" type="button">Mobile</button>
+            <button class="ghost-button device-choice-button" data-device-choice="controller" type="button">Controller</button>
+          </div>
           <div class="action-row">
-            <button id="start-tutorial" class="primary-button" type="button">Start Tutorial</button>
+            <button id="start-tutorial" class="primary-button" type="button">Start Guided Tutorial</button>
             <button id="skip-tutorial" class="ghost-button" type="button">Skip For Now</button>
           </div>
         </section>
@@ -93,7 +99,7 @@
             </div>
 
             <p id="account-status" class="arena-hint">
-              No account is signed in. The first created account becomes the only feedback owner.
+              No account is signed in. Sign in to save reviews, friends, and local fight history.
             </p>
 
             <div class="forge-grid account-grid">
@@ -115,12 +121,12 @@
             </div>
 
             <p id="account-note" class="arena-hint">
-              Feedback prompts and saved feedback are only visible to the owner account.
+              Feedback is open to everyone now. Sign in when you want your own name, reviews, and friend list saved here.
             </p>
 
             <div class="section-head compact">
               <div>
-                <p class="eyebrow">Owner Feedback</p>
+                <p class="eyebrow">Arena Feedback</p>
                 <h3>Local Inbox</h3>
               </div>
             </div>
@@ -169,6 +175,33 @@
               </div>
             </div>
             <div id="review-list" class="feedback-inbox"></div>
+          </section>
+
+          <section class="menu-card menu-card-wide">
+            <div class="section-head compact">
+              <div>
+                <p class="eyebrow">Friends</p>
+                <h3>Local Friend List</h3>
+              </div>
+              <span class="section-tag">Saved here</span>
+            </div>
+
+            <p id="friend-status" class="arena-hint">
+              Sign in to save a local friend list for this browser.
+            </p>
+
+            <div class="forge-grid account-grid">
+              <label>
+                <span>Friend Name</span>
+                <input id="friend-name" type="text" maxlength="12" placeholder="Friend tag or account" />
+              </label>
+            </div>
+
+            <div class="action-row">
+              <button id="add-friend" class="primary-button" type="button">Add Friend</button>
+            </div>
+
+            <div id="friend-list" class="feedback-inbox"></div>
           </section>
         </div>
 
@@ -505,9 +538,9 @@
 
         <div class="touch-controls" id="touch-controls">
           <div class="touch-quickbar">
+            <button data-touch-ui="tutorial" type="button">Tutorial</button>
             <button data-touch-ui="play-bot" type="button">Play Bot</button>
             <button data-touch-ui="play-pvp" type="button">PvP</button>
-            <button data-touch-ui="start-match" type="button">Start</button>
             <button data-touch-ui="menu" type="button">Menu</button>
           </div>
           <div class="touch-control-grid">
@@ -529,10 +562,7 @@
         <div class="footer-row">
           <div class="controls-card">
             <h3>Controls</h3>
-            <p><strong>Player 1:</strong> A/D move, W jump, S crouch, move the mouse to aim the weapon, left click strike, right click block.</p>
-            <p><strong>Abilities:</strong> Q backstep, E lunge, and fast mouse swings deal light bonus clip damage.</p>
-            <p><strong>Mobile:</strong> Use the touch deck for movement and actions. The new quickbar has Play Bot, PvP, Start, and Menu buttons, and mobile aim auto-locks toward the rival.</p>
-            <p><strong>Controller:</strong> Left stick or D-pad moves, right stick aims, A jumps, RT or X attacks, LT or LB blocks, B dodges, Y or RB lunges, and Start opens the menu.</p>
+            <div id="control-guide" class="control-guide"></div>
             <p><strong>Local PvP:</strong> Player 2 uses J/L move, I jump, K crouch, O strike, U block, P backstep, and ; lunge.</p>
           </div>
           <div class="controls-card">
