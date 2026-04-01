@@ -46,6 +46,7 @@
             <button id="menu-play-bot" class="primary-button" type="button">Play Vs Bot</button>
             <button id="menu-play-pvp" class="ghost-button" type="button">Local PvP</button>
             <button id="menu-open-workshop" class="ghost-button" type="button">Forge Screen</button>
+            <button id="menu-open-style-lab" class="ghost-button" type="button">Style Lab</button>
           </div>
           <div class="menu-summary" id="menu-summary"></div>
           <div class="menu-feature-grid">
@@ -202,6 +203,109 @@
             </div>
 
             <div id="friend-list" class="feedback-inbox"></div>
+          </section>
+
+          <section class="menu-card menu-card-wide" id="style-lab-card">
+            <div class="section-head compact">
+              <div>
+                <p class="eyebrow">Style Lab</p>
+                <h3>Combat Style Progression</h3>
+              </div>
+              <span class="section-tag">Skill tree</span>
+            </div>
+
+            <p id="style-lab-status" class="arena-hint">
+              Sign in to earn style skill points from matches, train paths, and work toward mastery weapons.
+            </p>
+
+            <div class="style-lab-top">
+              <label>
+                <span>Active Style</span>
+                <select id="style-select"></select>
+              </label>
+              <div class="style-lab-points">
+                <article class="style-pill-card">
+                  <span>Skill Points</span>
+                  <strong id="style-skill-points">0</strong>
+                </article>
+                <article class="style-pill-card">
+                  <span>Mastery</span>
+                  <strong id="style-mastery-points">0 / 100000</strong>
+                </article>
+                <article class="style-pill-card">
+                  <span>Mastery Weapon</span>
+                  <strong id="style-mastery-weapon">Locked</strong>
+                </article>
+              </div>
+            </div>
+
+            <div id="style-summary" class="menu-summary"></div>
+
+            <div class="style-path-grid" id="style-path-grid">
+              <article class="style-path-card">
+                <span>Agility</span>
+                <strong id="style-agility-level">0 / 5</strong>
+                <p id="style-agility-copy">Train movement and evasive control.</p>
+                <button id="train-agility" class="ghost-button" type="button">Train Agility</button>
+              </article>
+              <article class="style-path-card">
+                <span>Strength</span>
+                <strong id="style-strength-level">0 / 5</strong>
+                <p id="style-strength-copy">Train power and hit finishers.</p>
+                <button id="train-strength" class="ghost-button" type="button">Train Strength</button>
+              </article>
+              <article class="style-path-card">
+                <span>Defense</span>
+                <strong id="style-defense-level">0 / 5</strong>
+                <p id="style-defense-copy">Train guard and survival tools.</p>
+                <button id="train-defense" class="ghost-button" type="button">Train Defense</button>
+              </article>
+            </div>
+
+            <div class="forge-minigame style-training-card" id="style-training-card">
+              <div class="forge-minigame-head">
+                <div>
+                  <p class="eyebrow" id="style-training-title">Style Trial</p>
+                  <p id="style-training-copy">Pick a path, spend 1 skill point, and clear the trial to level it up.</p>
+                </div>
+                <span class="menu-status alt" id="style-training-rating">Idle</span>
+              </div>
+              <div class="forge-minigame-bar" id="style-training-bar">
+                <div class="forge-minigame-target" id="style-training-target"></div>
+                <div class="forge-minigame-indicator" id="style-training-indicator"></div>
+                <div class="forge-minigame-pips" id="style-training-pips"></div>
+              </div>
+              <div class="forge-minigame-meta">
+                <div class="forge-minigame-chip">
+                  <span>Progress</span>
+                  <strong id="style-training-progress">0%</strong>
+                </div>
+                <div class="forge-minigame-chip">
+                  <span>Time</span>
+                  <strong id="style-training-time">Ready</strong>
+                </div>
+                <div class="forge-minigame-chip">
+                  <span>Reward</span>
+                  <strong id="style-training-reward">+1 level</strong>
+                </div>
+              </div>
+              <p class="arena-hint" id="style-training-status">No trial running. Choose a style path to start.</p>
+              <div class="action-row forge-minigame-actions">
+                <button id="style-training-start" class="ghost-button" type="button">Start Trial</button>
+                <button id="style-training-action" class="primary-button" type="button">Act</button>
+              </div>
+            </div>
+
+            <div class="style-unlock-grid">
+              <article class="style-unlock-card">
+                <span>Unlocked Passives</span>
+                <div id="style-passives" class="feedback-inbox"></div>
+              </article>
+              <article class="style-unlock-card">
+                <span>Path Abilities</span>
+                <div id="style-abilities" class="feedback-inbox"></div>
+              </article>
+            </div>
           </section>
         </div>
 

@@ -2,6 +2,7 @@
 
 const PLAYER_TEAM = "player";
 const ENEMY_TEAM = "enemy";
+const STYLE_PATH_MAX = 50;
 const HUD_HEIGHT = 64;
 const STAGE_WIDTH = 860;
 const STAGE_HEIGHT = 420;
@@ -205,6 +206,278 @@ const frameCatalog = {
       backstabBonus: 1.24,
       summary: "Dash chains three fast cuts and rewards crossing behind the rival."
     }
+  },
+  hatchet: {
+    label: "Hatchet",
+    classLabel: "Short",
+    kind: "short",
+    summary: "A brutal short cleaver. Back hits hurt, and dash bites in with a chopping rush.",
+    design: "Compact hand axe",
+    damage: 16,
+    reach: 56,
+    cooldown: 0.44,
+    knockback: 0.92,
+    arc: 1.08,
+    speed: 1.18,
+    moveScale: 1.08,
+    weight: 7,
+    special: {
+      type: "chop-rush",
+      backstabBonus: 1.26,
+      summary: "Dash becomes a chopping burst with extra knockback."
+    }
+  },
+  sai: {
+    label: "Sai",
+    classLabel: "Short",
+    kind: "short",
+    summary: "Fast guard-harassing short weapon set. Great for pinning blocks and slipping inside range.",
+    design: "Twin prong blades",
+    damage: 14,
+    reach: 57,
+    cooldown: 0.38,
+    knockback: 0.8,
+    arc: 1.16,
+    speed: 1.3,
+    moveScale: 1.12,
+    weight: 6,
+    special: {
+      type: "guard-pin",
+      backstabBonus: 1.18,
+      summary: "Block pressure is stronger and clean hits pin rivals in place for a beat."
+    }
+  },
+  rapier: {
+    label: "Rapier",
+    classLabel: "Medium",
+    kind: "medium",
+    summary: "Fast thrusting medium blade. Dash becomes a feinting pass-through thrust.",
+    design: "Needle duel blade",
+    damage: 17,
+    reach: 90,
+    cooldown: 0.52,
+    knockback: 0.96,
+    arc: 0.9,
+    speed: 1.14,
+    moveScale: 1.06,
+    weight: 9,
+    special: {
+      type: "feint-thrust",
+      summary: "Dash thrust recovers fast and is hard to read."
+    }
+  },
+  glaive: {
+    label: "Glaive",
+    classLabel: "Medium",
+    kind: "medium",
+    summary: "Wide medium pole blade. Dash becomes a crescent slash that sweeps a larger lane.",
+    design: "Crescent pole blade",
+    damage: 19,
+    reach: 98,
+    cooldown: 0.66,
+    knockback: 1.1,
+    arc: 1.26,
+    speed: 0.96,
+    moveScale: 0.98,
+    weight: 12,
+    special: {
+      type: "crescent-sweep",
+      summary: "Dash slash covers a wider crescent arc."
+    }
+  },
+  claymore: {
+    label: "Claymore",
+    classLabel: "Long",
+    kind: "long",
+    summary: "Long sweeping blade with a broad delayed cleave and strong ring-out pressure.",
+    design: "Wide two-hand greatsword",
+    damage: 24,
+    reach: 104,
+    cooldown: 0.94,
+    knockback: 1.38,
+    arc: 1.14,
+    speed: 0.82,
+    moveScale: 0.88,
+    weight: 20,
+    special: {
+      type: "cleave-wave",
+      summary: "Heavy clean hits shove harder and cover a broader front arc."
+    }
+  },
+  meteor: {
+    label: "Meteor Mace",
+    classLabel: "Long",
+    kind: "long",
+    summary: "Long crushing head that breaks posture and slams hard through guarded lanes.",
+    design: "Spiked head breaker",
+    damage: 25,
+    reach: 96,
+    cooldown: 1.04,
+    knockback: 1.54,
+    arc: 0.96,
+    speed: 0.74,
+    moveScale: 0.82,
+    weight: 24,
+    special: {
+      type: "crush-burst",
+      summary: "Heavy hits crack stamina harder and stun on dead-on contact."
+    }
+  },
+  brass: {
+    label: "Brass Knuckles",
+    classLabel: "Special",
+    kind: "special",
+    summary: "Close-range combo weapon. Attack becomes a 4-hit string: right, left, right uppercut, then a heavy left finisher with huge knockback.",
+    design: "Close-range fist frame",
+    damage: 14,
+    reach: 40,
+    cooldown: 0.44,
+    knockback: 1.02,
+    arc: 0.82,
+    speed: 1.32,
+    moveScale: 1.14,
+    weight: 7,
+    special: {
+      type: "combo-barrage",
+      summary: "Attacks chain into a 4-hit combo with a strong finishing punch."
+    }
+  },
+  thundermaul: {
+    label: "Thunder Hammer",
+    classLabel: "Special",
+    kind: "special",
+    summary: "A heavy shock hammer. Jumping and crashing down creates a ground shockwave on landing.",
+    design: "Shock head war hammer",
+    damage: 23,
+    reach: 84,
+    cooldown: 0.9,
+    knockback: 1.46,
+    arc: 1,
+    speed: 0.8,
+    moveScale: 0.88,
+    weight: 21,
+    special: {
+      type: "shockwave-slam",
+      summary: "Landing from a hammer jump sends a damaging shockwave along the ground."
+    }
+  },
+  reaper: {
+    label: "Reaper Scythe",
+    classLabel: "Special",
+    kind: "special",
+    summary: "Hooking special weapon. Clean hits drag the rival back into your lane instead of just pushing them away.",
+    design: "Hooked harvest scythe",
+    damage: 20,
+    reach: 102,
+    cooldown: 0.78,
+    knockback: 1.08,
+    arc: 1.34,
+    speed: 0.94,
+    moveScale: 0.96,
+    weight: 15,
+    special: {
+      type: "reaper-hook",
+      summary: "Clean hits yank rivals back toward the blade."
+    }
+  },
+  throwaxe: {
+    label: "Throw Axe",
+    classLabel: "Special",
+    kind: "special",
+    summary: "A brutal axe that can be thrown as its special. It is the only weapon here with a real ranged factor.",
+    design: "Weighted throwing axe",
+    damage: 18,
+    reach: 76,
+    cooldown: 0.62,
+    knockback: 1.18,
+    arc: 1.02,
+    speed: 1.04,
+    moveScale: 1.04,
+    weight: 11,
+    special: {
+      type: "axe-throw",
+      summary: "Dash throws the axe forward for a ranged strike, then the fighter resets to close range."
+    }
+  },
+  tonfa: {
+    label: "Tonfa",
+    classLabel: "Special",
+    kind: "special",
+    summary: "Close guard weapon set with fast chained swings and safer block pressure.",
+    design: "Twin guard batons",
+    damage: 16,
+    reach: 58,
+    cooldown: 0.46,
+    knockback: 0.94,
+    arc: 1.08,
+    speed: 1.22,
+    moveScale: 1.08,
+    weight: 8,
+    special: {
+      type: "tonfa-rush",
+      summary: "Dash becomes a rushing baton flurry that keeps pressure close."
+    }
+  },
+  "tempest-edge": {
+    label: "Tempest Edge",
+    classLabel: "Special",
+    kind: "special",
+    masteryStyle: "tempest",
+    summary: "Tempest mastery weapon. A fast storm blade that keeps pressure moving and rewards tempo control.",
+    design: "Mastery storm blade",
+    damage: 22,
+    reach: 94,
+    cooldown: 0.54,
+    knockback: 1.18,
+    arc: 1.16,
+    speed: 1.14,
+    moveScale: 1.12,
+    weight: 10,
+    special: {
+      type: "storm-rush",
+      summary: "Mastery dash cuts harder and recovers faster."
+    }
+  },
+  "bastion-maul": {
+    label: "Bastion Maul",
+    classLabel: "Special",
+    kind: "special",
+    masteryStyle: "bastion",
+    summary: "Bastion mastery weapon. A crushing maul built for blocks, shock, and ugly close finishes.",
+    design: "Mastery wall maul",
+    damage: 26,
+    reach: 88,
+    cooldown: 0.96,
+    knockback: 1.6,
+    arc: 1.02,
+    speed: 0.82,
+    moveScale: 0.86,
+    weight: 24,
+    special: {
+      type: "fortress-break",
+      summary: "Mastery heavy hits shatter guard harder and slam rivals farther."
+    }
+  },
+  "phantom-fang": {
+    label: "Phantom Fang",
+    classLabel: "Special",
+    kind: "special",
+    masteryStyle: "phantom",
+    summary: "Phantom mastery weapon. A hidden fang blade built for evasions, back cuts, and vanish pressure.",
+    design: "Mastery shadow fang",
+    damage: 18,
+    reach: 64,
+    cooldown: 0.36,
+    knockback: 0.92,
+    arc: 1.24,
+    speed: 1.32,
+    moveScale: 1.18,
+    weight: 6,
+    special: {
+      type: "veil-rush",
+      backstabBonus: 1.42,
+      summary: "Mastery dash and rear hits become much deadlier."
+    }
   }
 };
 
@@ -322,6 +595,118 @@ const bladeTypeCatalog = {
   short: {
     label: "Short",
     summary: "Close-range blades with back-hit damage, stealthier crouches, and fast dash chains."
+  },
+  special: {
+    label: "Special",
+    summary: "Unique weapons with custom abilities and custom forge drills."
+  }
+};
+
+const stylePathCatalog = {
+  agility: { label: "Agility" },
+  strength: { label: "Strength" },
+  defense: { label: "Defense" }
+};
+
+const combatStyleCatalog = {
+  tempest: {
+    label: "Tempest",
+    summary: "Mobile pressure style built around fast movement, clean openings, and tempo control.",
+    masteryWeaponId: "tempest-edge",
+    passives: {
+      agility: [
+        "Level 10: stride speed rises and movement starts to feel lighter.",
+        "Level 20: dash cooldown shortens and dash distance grows.",
+        "Level 30: jump startup tightens so escapes come out faster.",
+        "Level 40: attacks recover a little faster after quick movement.",
+        "Level 50: Tempest movement pressure peaks and fuels your style ability."
+      ],
+      strength: [
+        "Level 10: clean hits shove rivals farther.",
+        "Level 20: jab and slash damage both climb slightly.",
+        "Level 30: every quick confirm adds extra tempo pressure.",
+        "Level 40: chained hits build toward heavier storm finishers.",
+        "Level 50: Tempest offense peaks and unlocks the path ability."
+      ],
+      defense: [
+        "Level 10: parry timing widens a little.",
+        "Level 20: stamina comes back faster after defense.",
+        "Level 30: blocks stay steadier during fast scrambles.",
+        "Level 40: clean parries start restoring more momentum.",
+        "Level 50: Tempest defense peaks and unlocks the path ability."
+      ]
+    },
+    abilities: {
+      agility: "Afterimage Dash: level 50 agility gives long, fast dashes with much lighter recovery.",
+      strength: "Storm Finish: level 50 strength powers up every few clean hits into a heavier burst finisher.",
+      defense: "Flow Guard: level 50 defense lets clean parries restore health and a big chunk of stamina."
+    }
+  },
+  bastion: {
+    label: "Bastion",
+    summary: "Heavy control style built around block pressure, guard survival, and punishing breaks.",
+    masteryWeaponId: "bastion-maul",
+    passives: {
+      agility: [
+        "Level 10: backsteps travel farther.",
+        "Level 20: landing recovery tightens after jumps and hops.",
+        "Level 30: heavy movement keeps more balance on defense.",
+        "Level 40: evasive movement gives more room to reset.",
+        "Level 50: Bastion mobility peaks and unlocks the path ability."
+      ],
+      strength: [
+        "Level 10: guard damage rises noticeably.",
+        "Level 20: heavy strikes knock rivals back farther.",
+        "Level 30: direct hits build stronger stun pressure.",
+        "Level 40: guard breaks become much more dangerous.",
+        "Level 50: Bastion offense peaks and unlocks the path ability."
+      ],
+      defense: [
+        "Level 10: blocks drain less stamina.",
+        "Level 20: stamina recovers faster while grounded.",
+        "Level 30: blocking heavy strings feels safer.",
+        "Level 40: guard break recovery improves and posture returns faster.",
+        "Level 50: Bastion defense peaks and unlocks the path ability."
+      ]
+    },
+    abilities: {
+      agility: "Anchor Step: level 50 agility grants a deeper, safer backstep with extra invulnerability.",
+      strength: "Breaker Crush: level 50 strength massively amplifies guard break damage and shove power.",
+      defense: "Fortress Guard: level 50 defense greatly reduces block stamina loss and stabilizes defense."
+    }
+  },
+  phantom: {
+    label: "Phantom",
+    summary: "Trick pressure style built around stealthier movement, evasive timing, and back-hit threat.",
+    masteryWeaponId: "phantom-fang",
+    passives: {
+      agility: [
+        "Level 10: crouch movement gets lighter and lower profile.",
+        "Level 20: dodge recovery shortens.",
+        "Level 30: evasive movement becomes harder to read.",
+        "Level 40: stealthy approaches keep more speed.",
+        "Level 50: Phantom mobility peaks and unlocks the path ability."
+      ],
+      strength: [
+        "Level 10: back hits gain sharper bonus damage.",
+        "Level 20: dash strikes recover faster.",
+        "Level 30: ambush confirms hit harder from close range.",
+        "Level 40: rear-angle pressure becomes much more lethal.",
+        "Level 50: Phantom offense peaks and unlocks the path ability."
+      ],
+      defense: [
+        "Level 10: dodges give brief cover.",
+        "Level 20: the first block after a dodge feels sturdier.",
+        "Level 30: defensive slips keep you safer during resets.",
+        "Level 40: evasions hide recovery better and buy time.",
+        "Level 50: Phantom defense peaks and unlocks the path ability."
+      ]
+    },
+    abilities: {
+      agility: "Ghost Step: level 50 agility makes crouch and dodge movement much harder to read.",
+      strength: "Back Reave: level 50 strength sharply boosts rear-hit finishers and ambush damage.",
+      defense: "Veil Reset: level 50 defense grants a stronger brief veil after evasions."
+    }
   }
 };
 
@@ -399,6 +784,7 @@ const ui = {
   menuPlayBot: document.querySelector("#menu-play-bot"),
   menuPlayPvp: document.querySelector("#menu-play-pvp"),
   menuOpenWorkshop: document.querySelector("#menu-open-workshop"),
+  menuOpenStyleLab: document.querySelector("#menu-open-style-lab"),
   menuSummary: document.querySelector("#menu-summary"),
   tutorialOffer: document.querySelector("#tutorial-offer"),
   tutorialOfferCopy: document.querySelector("#tutorial-offer-copy"),
@@ -498,6 +884,35 @@ const ui = {
   friendStatus: document.querySelector("#friend-status"),
   addFriend: document.querySelector("#add-friend"),
   friendList: document.querySelector("#friend-list"),
+  styleLabCard: document.querySelector("#style-lab-card"),
+  styleLabStatus: document.querySelector("#style-lab-status"),
+  styleSelect: document.querySelector("#style-select"),
+  styleSkillPoints: document.querySelector("#style-skill-points"),
+  styleMasteryPoints: document.querySelector("#style-mastery-points"),
+  styleMasteryWeapon: document.querySelector("#style-mastery-weapon"),
+  styleSummary: document.querySelector("#style-summary"),
+  styleAgilityLevel: document.querySelector("#style-agility-level"),
+  styleStrengthLevel: document.querySelector("#style-strength-level"),
+  styleDefenseLevel: document.querySelector("#style-defense-level"),
+  styleAgilityCopy: document.querySelector("#style-agility-copy"),
+  styleStrengthCopy: document.querySelector("#style-strength-copy"),
+  styleDefenseCopy: document.querySelector("#style-defense-copy"),
+  trainAgility: document.querySelector("#train-agility"),
+  trainStrength: document.querySelector("#train-strength"),
+  trainDefense: document.querySelector("#train-defense"),
+  styleTrainingTitle: document.querySelector("#style-training-title"),
+  styleTrainingCopy: document.querySelector("#style-training-copy"),
+  styleTrainingRating: document.querySelector("#style-training-rating"),
+  styleTrainingBar: document.querySelector("#style-training-bar"),
+  styleTrainingProgress: document.querySelector("#style-training-progress"),
+  styleTrainingTime: document.querySelector("#style-training-time"),
+  styleTrainingReward: document.querySelector("#style-training-reward"),
+  styleTrainingStatus: document.querySelector("#style-training-status"),
+  styleTrainingPips: document.querySelector("#style-training-pips"),
+  styleTrainingStart: document.querySelector("#style-training-start"),
+  styleTrainingAction: document.querySelector("#style-training-action"),
+  stylePassives: document.querySelector("#style-passives"),
+  styleAbilities: document.querySelector("#style-abilities"),
   feedbackInbox: document.querySelector("#feedback-inbox"),
   feedbackPanel: document.querySelector("#feedback-panel"),
   feedbackChoices: Array.from(document.querySelectorAll(".feedback-choice")),
@@ -542,6 +957,19 @@ const state = {
     bestStreak: 0,
     elapsed: 0,
     timeLimit: 6,
+    pips: []
+  },
+  styleTraining: {
+    styleId: "tempest",
+    path: "agility",
+    active: false,
+    finished: false,
+    indicator: 0.18,
+    direction: 1,
+    progress: 0,
+    elapsed: 0,
+    timeLimit: 6,
+    hits: 0,
     pips: []
   },
   armory: [],
@@ -704,9 +1132,16 @@ function populateSelect(select, catalog) {
   });
 }
 
+function masteryWeaponVisible(frame, account = currentAccount()) {
+  if (!frame?.masteryStyle) {
+    return true;
+  }
+  return Boolean(account && masteryWeaponUnlocked(account, frame.masteryStyle));
+}
+
 function frameIdsForKind(kind) {
   return Object.entries(frameCatalog)
-    .filter(([, frame]) => frame.kind === kind)
+    .filter(([, frame]) => frame.kind === kind && masteryWeaponVisible(frame))
     .map(([id]) => id);
 }
 
@@ -715,7 +1150,9 @@ function firstFrameIdForKind(kind) {
 }
 
 function frameCatalogForKind(kind) {
-  return Object.fromEntries(Object.entries(frameCatalog).filter(([, frame]) => frame.kind === kind));
+  return Object.fromEntries(
+    Object.entries(frameCatalog).filter(([, frame]) => frame.kind === kind && masteryWeaponVisible(frame))
+  );
 }
 
 function normalizeForgeState(forge = state.forge) {
@@ -736,19 +1173,62 @@ function normalizeForgeState(forge = state.forge) {
   };
 }
 
+function forgeGameModeForWeapon(source) {
+  if (typeof source === "string" && (bladeTypeCatalog[source] || source.includes("-"))) {
+    return source;
+  }
+  const frame = typeof source === "string" ? frameCatalog[source] : source;
+  if (!frame) {
+    return "medium";
+  }
+  if (frame.kind === "special") {
+    return frame.special?.type || "special";
+  }
+  return frame.kind;
+}
+
 function forgeModeMeta(kind) {
-  if (kind === "long") {
+  const mode = typeof kind === "string" && bladeTypeCatalog[kind] ? kind : forgeGameModeForWeapon(kind);
+  if (mode === "long") {
     return {
       title: "Long Blade Heat Control",
       copy: "Let the temper marker drift into the wide gold zone, then strike. Long blades care about steady heavy timing.",
       action: "Quench Hit"
     };
   }
-  if (kind === "short") {
+  if (mode === "short") {
     return {
       title: "Short Blade Rapid Forge",
       copy: "Short blades want fast, tight work. Strike quickly to pop every spark before the timer runs out.",
       action: "Spark Hit"
+    };
+  }
+  if (mode === "combo-barrage") {
+    return {
+      title: "Brass Combo Forge",
+      copy: "Punch the pattern in order: right, left, uppercut, then the heavy finish. Clean rhythm sharpens the combo.",
+      action: "Punch Beat"
+    };
+  }
+  if (mode === "shockwave-slam") {
+    return {
+      title: "Hammer Slam Forge",
+      copy: "Let the hammer fall into the impact lane and slam clean. Better timing strengthens the landing shockwave.",
+      action: "Slam"
+    };
+  }
+  if (mode === "reaper-hook") {
+    return {
+      title: "Scythe Hook Forge",
+      copy: "Catch the drifting hook points as they swing by. Clean catches strengthen the pull.",
+      action: "Hook"
+    };
+  }
+  if (mode === "axe-throw") {
+    return {
+      title: "Throw Axe Forge",
+      copy: "Snap the axe through alternating throw lanes. Clean lane timing tightens the release and return.",
+      action: "Throw"
     };
   }
   return {
@@ -775,32 +1255,62 @@ function forgeRatingLabel(score) {
 }
 
 function createForgeGame(kind) {
+  const mode = forgeGameModeForWeapon(kind) || kind;
   const game = {
-    mode: kind,
+    mode,
     active: false,
     finished: false,
     progress: 0,
     rating: 0.5,
-    indicator: kind === "short" ? 0 : 0.18,
+    indicator: mode === "short" ? 0 : mode === "shockwave-slam" ? 0.05 : 0.18,
     direction: 1,
     hits: 0,
     misses: 0,
+    streak: 0,
+    bestStreak: 0,
     elapsed: 0,
-    timeLimit: kind === "short" ? 4.2 : kind === "medium" ? 7 : 6.4,
-    pips: []
+    timeLimit:
+      mode === "short"
+        ? 4.2
+        : mode === "combo-barrage"
+          ? 5.4
+          : mode === "shockwave-slam"
+            ? 6
+            : mode === "reaper-hook"
+              ? 6.2
+              : mode === "axe-throw"
+                ? 6
+                : mode === "medium"
+                  ? 7
+                  : 6.4,
+    pips: [],
+    laneIndex: 0
   };
 
-  if (kind === "short") {
+  if (mode === "short") {
     game.pips = [0.18, 0.36, 0.52, 0.68, 0.84].map((position, index) => ({
       id: index,
       position,
       velocity: index % 2 === 0 ? 0.16 : -0.18,
       hit: false
     }));
-  } else if (kind === "medium") {
+  } else if (mode === "medium") {
     game.pips = [0.24, 0.5, 0.76].map((position, index) => ({
       id: index,
       position,
+      hit: false
+    }));
+  } else if (mode === "combo-barrage") {
+    game.pips = [0.2, 0.72, 0.34, 0.64].map((position, index) => ({
+      id: index,
+      position,
+      hit: false
+    }));
+  } else if (mode === "reaper-hook") {
+    game.pips = [0.24, 0.5, 0.76].map((position, index) => ({
+      id: index,
+      position,
+      phase: index * 1.4,
       hit: false
     }));
   }
@@ -808,7 +1318,7 @@ function createForgeGame(kind) {
   return game;
 }
 
-function resetForgeMinigame(kind = state.forge.kind, preserveQuality = false) {
+function resetForgeMinigame(kind = state.forge.frame, preserveQuality = false) {
   const existingQuality = preserveQuality ? clamp(Number(state.forge.forgeQuality ?? 0.5), 0.2, 1) : 0.5;
   state.forgeGame = createForgeGame(kind);
   state.forgeGame.rating = existingQuality;
@@ -824,8 +1334,7 @@ function finishForgeMinigame() {
 }
 
 function startForgeMinigame() {
-  const kind = state.forge.kind || "medium";
-  state.forgeGame = createForgeGame(kind);
+  state.forgeGame = createForgeGame(state.forge.frame);
   state.forgeGame.active = true;
   state.forgeGame.finished = false;
   state.forgeGame.rating = clamp(Number(state.forge.forgeQuality ?? 0.5), 0.2, 1);
@@ -886,6 +1395,103 @@ function handleForgeMinigameAction() {
     return;
   }
 
+  if (game.mode === "combo-barrage") {
+    const target = game.pips.find((pip) => !pip.hit);
+    if (!target) {
+      finishForgeMinigame();
+      return;
+    }
+    const error = Math.abs(game.indicator - target.position);
+    if (error <= 0.075) {
+      target.hit = true;
+      game.hits += 1;
+      game.streak += 1;
+      game.bestStreak = Math.max(game.bestStreak, game.streak);
+      game.progress = game.hits / game.pips.length;
+      game.rating = clamp(0.52 + game.progress * 0.34 + game.streak * 0.02 - error * 0.5, 0.2, 1);
+      if (game.hits >= game.pips.length) {
+        finishForgeMinigame();
+      }
+    } else {
+      game.misses += 1;
+      game.streak = 0;
+      game.rating = clamp(game.rating - 0.05, 0.2, 1);
+    }
+    renderForge();
+    return;
+  }
+
+  if (game.mode === "shockwave-slam") {
+    const inZone = game.indicator >= 0.78 && game.indicator <= 0.92;
+    const distanceFromCenter = Math.abs(game.indicator - 0.85);
+    if (inZone) {
+      game.hits += 1;
+      game.streak += 1;
+      game.bestStreak = Math.max(game.bestStreak, game.streak);
+      game.progress = game.hits / 3;
+      game.rating = clamp(0.56 + game.progress * 0.28 + game.streak * 0.02 - distanceFromCenter * 0.55, 0.2, 1);
+      game.indicator = 0.05;
+      if (game.hits >= 3) {
+        finishForgeMinigame();
+      }
+    } else {
+      game.misses += 1;
+      game.streak = 0;
+      game.rating = clamp(game.rating - 0.06, 0.2, 1);
+    }
+    renderForge();
+    return;
+  }
+
+  if (game.mode === "reaper-hook") {
+    const target = game.pips.find((pip) => !pip.hit && Math.abs(game.indicator - pip.position) <= 0.08);
+    if (target) {
+      target.hit = true;
+      game.hits += 1;
+      game.streak += 1;
+      game.bestStreak = Math.max(game.bestStreak, game.streak);
+      game.progress = game.hits / game.pips.length;
+      game.rating = clamp(0.5 + game.progress * 0.34 + game.streak * 0.02, 0.2, 1);
+      if (game.hits >= game.pips.length) {
+        finishForgeMinigame();
+      }
+    } else {
+      game.misses += 1;
+      game.streak = 0;
+      game.rating = clamp(game.rating - 0.05, 0.2, 1);
+    }
+    renderForge();
+    return;
+  }
+
+  if (game.mode === "axe-throw") {
+    const lanes = [
+      { start: 0.1, end: 0.22 },
+      { start: 0.78, end: 0.9 },
+      { start: 0.14, end: 0.26 },
+      { start: 0.74, end: 0.86 }
+    ];
+    const lane = lanes[Math.min(game.laneIndex, lanes.length - 1)];
+    const inLane = game.indicator >= lane.start && game.indicator <= lane.end;
+    if (inLane) {
+      game.hits += 1;
+      game.streak += 1;
+      game.bestStreak = Math.max(game.bestStreak, game.streak);
+      game.laneIndex += 1;
+      game.progress = game.hits / lanes.length;
+      game.rating = clamp(0.5 + game.progress * 0.34 + game.streak * 0.018, 0.2, 1);
+      if (game.hits >= lanes.length) {
+        finishForgeMinigame();
+      }
+    } else {
+      game.misses += 1;
+      game.streak = 0;
+      game.rating = clamp(game.rating - 0.05, 0.2, 1);
+    }
+    renderForge();
+    return;
+  }
+
   const nextPip = game.pips.find((pip) => !pip.hit);
   if (nextPip) {
     nextPip.hit = true;
@@ -921,6 +1527,34 @@ function updateForgeMinigame(dt) {
     game.indicator += dt * 0.72;
     if (game.indicator > 1.04) {
       game.indicator = -0.04;
+    }
+  } else if (game.mode === "combo-barrage") {
+    game.indicator += dt * 0.9 * game.direction;
+    if (game.indicator >= 0.94 || game.indicator <= 0.06) {
+      game.direction *= -1;
+      game.indicator = clamp(game.indicator, 0.06, 0.94);
+    }
+  } else if (game.mode === "shockwave-slam") {
+    game.indicator += dt * (0.34 + game.elapsed * 0.08);
+    if (game.indicator > 1.05) {
+      game.indicator = 0.05;
+    }
+  } else if (game.mode === "reaper-hook") {
+    game.indicator += dt * 0.62;
+    if (game.indicator > 1.04) {
+      game.indicator = -0.04;
+    }
+    game.pips.forEach((pip) => {
+      if (pip.hit) {
+        return;
+      }
+      pip.position = clamp(0.5 + Math.sin(game.elapsed * 2.8 + pip.phase) * 0.28, 0.14, 0.86);
+    });
+  } else if (game.mode === "axe-throw") {
+    game.indicator += dt * 1.08 * game.direction;
+    if (game.indicator >= 0.94 || game.indicator <= 0.06) {
+      game.direction *= -1;
+      game.indicator = clamp(game.indicator, 0.06, 0.94);
     }
   } else {
     game.pips.forEach((pip) => {
@@ -1366,7 +2000,9 @@ function defaultAccountStats() {
   return {
     setsPlayed: 0,
     setsWon: 0,
-    reviewsWritten: 0
+    reviewsWritten: 0,
+    skillPoints: 0,
+    masteryPoints: 0
   };
 }
 
@@ -1398,16 +2034,138 @@ function ensureAccountFriends(account) {
   return account.friends;
 }
 
+function defaultStyleProgress() {
+  return {
+    agility: 0,
+    strength: 0,
+    defense: 0,
+    masteryUnlocked: false,
+    masteryWeaponClaimed: false
+  };
+}
+
+function defaultStyleLab() {
+  return {
+    activeStyleId: "tempest",
+    styles: Object.fromEntries(Object.keys(combatStyleCatalog).map((styleId) => [styleId, defaultStyleProgress()]))
+  };
+}
+
+function ensureAccountStyleLab(account) {
+  if (!account) {
+    return defaultStyleLab();
+  }
+  const base = defaultStyleLab();
+  account.styleLab = {
+    ...base,
+    ...(account.styleLab || {}),
+    styles: {
+      ...base.styles,
+      ...(account.styleLab?.styles || {})
+    }
+  };
+  Object.keys(combatStyleCatalog).forEach((styleId) => {
+    account.styleLab.styles[styleId] = {
+      ...defaultStyleProgress(),
+      ...(account.styleLab.styles[styleId] || {})
+    };
+  });
+  if (!combatStyleCatalog[account.styleLab.activeStyleId]) {
+    account.styleLab.activeStyleId = "tempest";
+  }
+  return account.styleLab;
+}
+
+function activeStyleId() {
+  return ensureAccountStyleLab(currentAccount()).activeStyleId;
+}
+
+function activeStyleProgress(account = currentAccount()) {
+  const styleLab = ensureAccountStyleLab(account);
+  return styleLab.styles[styleLab.activeStyleId];
+}
+
+function styleFullyCompleted(progress) {
+  return progress.agility >= STYLE_PATH_MAX && progress.strength >= STYLE_PATH_MAX && progress.defense >= STYLE_PATH_MAX;
+}
+
+function styleAbilityUnlocked(progress, path) {
+  return Number(progress?.[path] || 0) >= STYLE_PATH_MAX;
+}
+
+function stylePassiveUnlockCount(level) {
+  return [10, 20, 30, 40, 50].filter((milestone) => level >= milestone).length;
+}
+
+function styleBonusProfile(account = currentAccount()) {
+  if (!account) {
+    return null;
+  }
+
+  const styleLab = ensureAccountStyleLab(account);
+  const styleId = styleLab.activeStyleId;
+  const progress = styleLab.styles[styleId];
+  return {
+    styleId,
+    progress,
+    agilityLevel: progress.agility,
+    strengthLevel: progress.strength,
+    defenseLevel: progress.defense,
+    abilityAgility: styleAbilityUnlocked(progress, "agility"),
+    abilityStrength: styleAbilityUnlocked(progress, "strength"),
+    abilityDefense: styleAbilityUnlocked(progress, "defense")
+  };
+}
+
+function awardMasteryWeapon(account, styleId) {
+  if (!account) {
+    return false;
+  }
+
+  const styleLab = ensureAccountStyleLab(account);
+  const progress = styleLab.styles[styleId];
+  if (!masteryWeaponUnlocked(account, styleId) || progress.masteryWeaponClaimed) {
+    return false;
+  }
+
+  const weaponId = combatStyleCatalog[styleId]?.masteryWeaponId;
+  if (!weaponId || !frameCatalog[weaponId]) {
+    return false;
+  }
+
+  const forged = buildWeaponFromForge({
+    id: makeId(`mastery-${styleId}`),
+    name: frameCatalog[weaponId].label.slice(0, 12),
+    kind: frameCatalog[weaponId].kind,
+    frame: weaponId,
+    material: styleId === "bastion" ? "embersteel" : styleId === "phantom" ? "voidglass" : "sunsteel",
+    edge: "class-special",
+    heat: styleId === "bastion" ? 84 : 68,
+    forgeQuality: 0.96
+  });
+
+  progress.masteryWeaponClaimed = true;
+  state.armory = state.armory.filter((weapon) => weapon.frameId !== weaponId);
+  state.armory.unshift(forged);
+  if (!state.activeWeaponId) {
+    state.activeWeaponId = forged.id;
+  }
+  return true;
+}
+
 function accountSummaryMeta(account) {
   const stats = ensureAccountStats(account);
   const losses = Math.max(0, stats.setsPlayed - stats.setsWon);
   const friendCount = ensureAccountFriends(account).length;
+  const styleLab = ensureAccountStyleLab(account);
+  const activeStyle = combatStyleCatalog[styleLab.activeStyleId];
 
   return {
     stats,
     line: `${stats.setsWon}W ${losses}L across ${stats.setsPlayed} sets`,
     reviewLine: `${stats.reviewsWritten} local review${stats.reviewsWritten === 1 ? "" : "s"}`,
-    friendLine: `${friendCount} friend${friendCount === 1 ? "" : "s"} saved`
+    friendLine: `${friendCount} friend${friendCount === 1 ? "" : "s"} saved`,
+    styleLine: `${activeStyle.label} style | ${stats.skillPoints} SP | ${stats.masteryPoints} MP`
   };
 }
 
@@ -1620,7 +2378,7 @@ function renderMenuSummary() {
       <div class="menu-summary-meta">
         <span>${account ? accountMeta.reviewLine : "No account stats yet"}</span>
         <span>${account ? accountMeta.friendLine : "Guest mode"}</span>
-        <span>${inputModeLabel()} controls</span>
+        <span>${account ? accountMeta.styleLine : inputModeLabel() + " controls"}</span>
       </div>
     </article>
     <article class="menu-summary-card">
@@ -1884,11 +2642,30 @@ function recordActiveAccountMatchResult(won) {
   }
 
   const stats = ensureAccountStats(account);
+  const styleLab = ensureAccountStyleLab(account);
+  const progress = styleLab.styles[styleLab.activeStyleId];
   stats.setsPlayed += 1;
   if (won) {
     stats.setsWon += 1;
   }
+  if (styleFullyCompleted(progress)) {
+    stats.masteryPoints += won ? 1400 : 900;
+    if (stats.masteryPoints >= 250) {
+      progress.masteryUnlocked = true;
+    }
+  } else {
+    stats.skillPoints += won ? 3 : 2;
+  }
+  const gainedMasteryWeapon = awardMasteryWeapon(account, styleLab.activeStyleId);
   saveAuthState();
+  if (gainedMasteryWeapon) {
+    renderArmory();
+  }
+  renderAccountPanel(
+    gainedMasteryWeapon
+      ? `${combatStyleCatalog[styleLab.activeStyleId].label} mastery unlocked. ${frameCatalog[combatStyleCatalog[styleLab.activeStyleId].masteryWeaponId]?.label} was added to the armory.`
+      : ""
+  );
 }
 
 function setMenuOpen(open) {
@@ -1899,6 +2676,9 @@ function setMenuOpen(open) {
   ui.mainMenu.classList.toggle("hidden", !open);
   renderMenuSummary();
   renderTutorialOffer();
+  if (open) {
+    renderStyleLab();
+  }
 }
 
 function saveReviewState() {
@@ -2130,8 +2910,393 @@ function saveAuthState() {
   }
 }
 
+function styleTrainingMode(styleId, path) {
+  return `${styleId}-${path}`;
+}
+
+function createStyleTraining(styleId, path) {
+  const mode = styleTrainingMode(styleId, path);
+  const account = currentAccount();
+  const currentLevel = account ? ensureAccountStyleLab(account).styles[styleId]?.[path] || 0 : 0;
+  const difficulty = clamp(currentLevel / STYLE_PATH_MAX, 0, 1);
+  const game = {
+    styleId,
+    path,
+    level: currentLevel,
+    difficulty,
+    mode,
+    active: false,
+    finished: false,
+    indicator: 0.18,
+    direction: 1,
+    progress: 0,
+    elapsed: 0,
+    timeLimit: 6,
+    hits: 0,
+    pips: []
+  };
+
+  if (mode === "tempest-agility") {
+    game.timeLimit = 7.8 - difficulty * 1.6;
+    game.pips = [0.2, 0.48, 0.78].map((position, index) => ({ id: index, position, hit: false }));
+  } else if (mode === "tempest-strength") {
+    game.timeLimit = 8 - difficulty * 1.7;
+  } else if (mode === "tempest-defense") {
+    game.timeLimit = 8.1 - difficulty * 1.5;
+  } else if (mode === "bastion-agility") {
+    game.timeLimit = 7.9 - difficulty * 1.4;
+  } else if (mode === "bastion-strength") {
+    game.timeLimit = 8.2 - difficulty * 1.8;
+    game.indicator = 0.04;
+  } else if (mode === "bastion-defense") {
+    game.timeLimit = 8.3 - difficulty * 1.6;
+  } else if (mode === "phantom-agility") {
+    game.timeLimit = 7.5 - difficulty * 1.4;
+    game.pips = [0.24, 0.74, 0.34].map((position, index) => ({ id: index, position, hit: false }));
+  } else if (mode === "phantom-strength") {
+    game.timeLimit = 7.8 - difficulty * 1.5;
+    game.pips = [0.22, 0.52, 0.82].map((position, index) => ({ id: index, position, phase: index * 1.3, hit: false }));
+  } else if (mode === "phantom-defense") {
+    game.timeLimit = 7.9 - difficulty * 1.5;
+  }
+  return game;
+}
+
+function styleTrainingWindow(game, baseWindow) {
+  return clamp(baseWindow + (1 - (game?.difficulty || 0)) * 0.08, baseWindow, baseWindow + 0.08);
+}
+
+function resetStyleTrainingState(styleId = activeStyleId(), path = "agility") {
+  const safeStyleId = combatStyleCatalog[styleId] ? styleId : "tempest";
+  const safePath = stylePathCatalog[path] ? path : "agility";
+  state.styleTraining = createStyleTraining(safeStyleId, safePath);
+  return state.styleTraining;
+}
+
+function styleTrainingMeta(styleId, path) {
+  const label = stylePathCatalog[path].label;
+  const style = combatStyleCatalog[styleId];
+  const mode = styleTrainingMode(styleId, path);
+  if (mode === "tempest-agility") {
+    return { title: `${style.label} ${label} Trial`, copy: "Catch the moving wind marks in order.", action: "Step", reward: "+1 agility" };
+  }
+  if (mode === "tempest-strength") {
+    return { title: `${style.label} ${label} Trial`, copy: "Hit the strike lane as the marker sweeps through center.", action: "Burst", reward: "+1 strength" };
+  }
+  if (mode === "tempest-defense") {
+    return { title: `${style.label} ${label} Trial`, copy: "Time three calm guard checks inside the safe lane.", action: "Guard", reward: "+1 defense" };
+  }
+  if (mode === "bastion-agility") {
+    return { title: `${style.label} ${label} Trial`, copy: "Cut the side lanes in sequence to train anchored steps.", action: "Step", reward: "+1 agility" };
+  }
+  if (mode === "bastion-strength") {
+    return { title: `${style.label} ${label} Trial`, copy: "Slam in the heavy impact band three times.", action: "Slam", reward: "+1 strength" };
+  }
+  if (mode === "bastion-defense") {
+    return { title: `${style.label} ${label} Trial`, copy: "Hold the guard rhythm steady through three checks.", action: "Guard", reward: "+1 defense" };
+  }
+  if (mode === "phantom-agility") {
+    return { title: `${style.label} ${label} Trial`, copy: "Catch the ghost marks before they vanish.", action: "Slip", reward: "+1 agility" };
+  }
+  if (mode === "phantom-strength") {
+    return { title: `${style.label} ${label} Trial`, copy: "Hit the drifting cut points as they slide across the lane.", action: "Cut", reward: "+1 strength" };
+  }
+  return { title: `${style.label} ${label} Trial`, copy: "Guard the alternating veil lanes cleanly.", action: "Veil", reward: "+1 defense" };
+}
+
+function startStyleTraining(path) {
+  const account = currentAccount();
+  if (!account) {
+    renderStyleLab("Sign in before training styles.");
+    return;
+  }
+  const stats = ensureAccountStats(account);
+  if (stats.skillPoints <= 0) {
+    renderStyleLab("You need skill points from matches before starting a style trial.");
+    return;
+  }
+  const styleLab = ensureAccountStyleLab(account);
+  const progress = styleLab.styles[styleLab.activeStyleId];
+  if (progress[path] >= STYLE_PATH_MAX) {
+    renderStyleLab(`${stylePathCatalog[path].label} is already maxed for ${combatStyleCatalog[styleLab.activeStyleId].label}.`);
+    return;
+  }
+  state.styleTraining = createStyleTraining(styleLab.activeStyleId, path);
+  state.styleTraining.active = true;
+  renderStyleLab(`Started ${combatStyleCatalog[styleLab.activeStyleId].label} ${stylePathCatalog[path].label} trial.`);
+}
+
+function finishStyleTraining(success, message = "") {
+  const game = state.styleTraining;
+  const account = currentAccount();
+  if (!account) {
+    return;
+  }
+  const stats = ensureAccountStats(account);
+  const styleLab = ensureAccountStyleLab(account);
+  const progress = styleLab.styles[game.styleId];
+  game.active = false;
+  game.finished = true;
+  if (success && stats.skillPoints > 0 && progress[game.path] < STYLE_PATH_MAX) {
+    stats.skillPoints -= 1;
+    progress[game.path] += 1;
+    const allDone = styleFullyCompleted(progress);
+    if (allDone && stats.masteryPoints >= 250) {
+      progress.masteryUnlocked = true;
+    }
+  }
+  const gainedMasteryWeapon = awardMasteryWeapon(account, game.styleId);
+  saveAuthState();
+  renderStyleLab(
+    gainedMasteryWeapon
+      ? `${message} ${frameCatalog[combatStyleCatalog[game.styleId]?.masteryWeaponId]?.label || "Mastery weapon"} added to the armory.`
+      : message
+  );
+  if (gainedMasteryWeapon) {
+    renderArmory();
+  }
+  renderMenuSummary();
+}
+
+function handleStyleTrainingAction() {
+  const game = state.styleTraining;
+  if (!game.active) {
+    startStyleTraining(game.path || "agility");
+    return;
+  }
+  const mode = game.mode;
+  const laneWindow = styleTrainingWindow(game, 0.08);
+  if (mode === "tempest-agility" || mode === "phantom-agility") {
+    const target = game.pips.find((pip) => !pip.hit);
+    if (target && Math.abs(game.indicator - target.position) <= laneWindow) {
+      target.hit = true;
+      game.hits += 1;
+      game.progress = game.hits / game.pips.length;
+      if (game.hits >= game.pips.length) {
+        finishStyleTraining(true, "Style trial cleared. Path level increased.");
+      } else {
+        renderStyleLab("Clean timing. Keep going.");
+      }
+    } else {
+      finishStyleTraining(false, "Style trial failed. Skill point was not spent.");
+    }
+    return;
+  }
+  if (mode === "tempest-strength" || mode === "bastion-strength") {
+    const targetCenter = mode === "bastion-strength" ? 0.84 : 0.5;
+    if (Math.abs(game.indicator - targetCenter) <= styleTrainingWindow(game, 0.09)) {
+      game.hits += 1;
+      game.progress = game.hits / 3;
+      if (game.hits >= 3) {
+        finishStyleTraining(true, "Style trial cleared. Path level increased.");
+      } else {
+        renderStyleLab("Heavy beat landed. One more.");
+      }
+    } else {
+      finishStyleTraining(false, "Style trial failed. Missed the strike lane.");
+    }
+    return;
+  }
+  if (mode === "phantom-strength") {
+    const target = game.pips.find((pip) => !pip.hit && Math.abs(game.indicator - pip.position) <= laneWindow);
+    if (target) {
+      target.hit = true;
+      game.hits += 1;
+      game.progress = game.hits / game.pips.length;
+      if (game.hits >= game.pips.length) {
+        finishStyleTraining(true, "Style trial cleared. Path level increased.");
+      } else {
+        renderStyleLab("Cut point captured. Keep moving.");
+      }
+    } else {
+      finishStyleTraining(false, "Style trial failed. You missed the drifting cut point.");
+    }
+    return;
+  }
+  const laneBonus = (1 - game.difficulty) * 0.08;
+  const inGuardLane = game.indicator >= 0.36 - laneBonus && game.indicator <= 0.64 + laneBonus;
+  const inSideLane =
+    (game.indicator >= 0.1 - laneBonus && game.indicator <= 0.22 + laneBonus) ||
+    (game.indicator >= 0.78 - laneBonus && game.indicator <= 0.9 + laneBonus);
+  const inVeilLane =
+    (game.indicator >= 0.16 - laneBonus && game.indicator <= 0.28 + laneBonus) ||
+    (game.indicator >= 0.72 - laneBonus && game.indicator <= 0.84 + laneBonus);
+  const success =
+    mode === "bastion-agility" ? inSideLane :
+    mode === "phantom-defense" ? inVeilLane :
+    inGuardLane;
+  if (success) {
+    game.hits += 1;
+    game.progress = game.hits / 3;
+    if (game.hits >= 3) {
+      finishStyleTraining(true, "Style trial cleared. Path level increased.");
+    } else {
+      renderStyleLab("Guard check landed. Stay steady.");
+    }
+  } else {
+    finishStyleTraining(false, "Style trial failed. Missed the training lane.");
+  }
+}
+
+function updateStyleTraining(dt) {
+  const game = state.styleTraining;
+  if (!game.active) {
+    return;
+  }
+  game.elapsed += dt;
+  if (game.mode === "bastion-strength") {
+    game.indicator += dt * 0.4;
+    if (game.indicator > 1.05) {
+      game.indicator = 0.05;
+    }
+  } else {
+    game.indicator += dt * 0.72 * game.direction;
+    if (game.indicator >= 0.94 || game.indicator <= 0.06) {
+      game.direction *= -1;
+      game.indicator = clamp(game.indicator, 0.06, 0.94);
+    }
+  }
+  if (game.mode === "phantom-strength") {
+    game.pips.forEach((pip) => {
+      if (pip.hit) {
+        return;
+      }
+      pip.position = clamp(0.5 + Math.sin(game.elapsed * 2.6 + pip.phase) * 0.28, 0.14, 0.86);
+    });
+  }
+  if (game.elapsed >= game.timeLimit) {
+    finishStyleTraining(false, "Style trial timed out.");
+    return;
+  }
+  if (state.menu.open) {
+    renderStyleLab();
+  }
+}
+
+function masteryWeaponUnlocked(account, styleId) {
+  const progress = ensureAccountStyleLab(account).styles[styleId];
+  return Boolean(progress.masteryUnlocked && ensureAccountStats(account).masteryPoints >= 250);
+}
+
+function availableMasteryWeaponIds(account = currentAccount()) {
+  if (!account) {
+    return [];
+  }
+  return Object.entries(combatStyleCatalog)
+    .filter(([styleId]) => masteryWeaponUnlocked(account, styleId))
+    .map(([, style]) => style.masteryWeaponId);
+}
+
 function currentAccount() {
   return state.auth.accounts.find((account) => account.id === state.auth.activeAccountId) || null;
+}
+
+function renderStyleLab(statusMessage = "") {
+  const account = currentAccount();
+  populateSelect(ui.styleSelect, combatStyleCatalog);
+  if (!account) {
+    ui.styleSelect.value = "tempest";
+    ui.styleLabStatus.textContent = statusMessage || "Sign in to earn style skill points, level paths, and unlock mastery weapons.";
+    ui.styleSkillPoints.textContent = "0";
+    ui.styleMasteryPoints.textContent = "0 / 250";
+    ui.styleMasteryWeapon.textContent = "Locked";
+    ui.styleSummary.innerHTML = `<article class="menu-summary-card"><span class="menu-summary-kicker">Guest</span><strong>No style profile</strong><p>Match rewards only save to signed-in accounts.</p></article>`;
+    ui.stylePassives.innerHTML = `<p class="arena-hint">No passives yet.</p>`;
+    ui.styleAbilities.innerHTML = `<p class="arena-hint">No abilities yet.</p>`;
+    [ui.trainAgility, ui.trainStrength, ui.trainDefense, ui.styleTrainingStart, ui.styleTrainingAction].forEach((button) => {
+      button.disabled = true;
+    });
+    return;
+  }
+
+  const styleLab = ensureAccountStyleLab(account);
+  const stats = ensureAccountStats(account);
+  const styleId = styleLab.activeStyleId;
+  const style = combatStyleCatalog[styleId];
+  const progress = styleLab.styles[styleId];
+  const training =
+    state.styleTraining && state.styleTraining.styleId === styleId
+      ? state.styleTraining
+      : createStyleTraining(styleId, "agility");
+  ui.styleSelect.value = styleId;
+  ui.styleLabStatus.textContent =
+    statusMessage ||
+    `${style.label} is active. Earn skill points from matches, then clear trials to level agility, strength, and defense.`;
+  ui.styleSkillPoints.textContent = `${stats.skillPoints}`;
+  ui.styleMasteryPoints.textContent = `${stats.masteryPoints} / 250`;
+  ui.styleMasteryWeapon.textContent = masteryWeaponUnlocked(account, styleId)
+    ? frameCatalog[style.masteryWeaponId]?.label || "Unlocked"
+    : "Locked";
+  ui.styleSummary.innerHTML = `
+    <article class="menu-summary-card">
+      <span class="menu-summary-kicker">Style</span>
+      <strong>${style.label}</strong>
+      <p>${style.summary}</p>
+      <div class="menu-summary-meta">
+      <span>${progress.agility}/${STYLE_PATH_MAX} agility</span>
+      <span>${progress.strength}/${STYLE_PATH_MAX} strength</span>
+      <span>${progress.defense}/${STYLE_PATH_MAX} defense</span>
+      </div>
+    </article>
+    <article class="menu-summary-card">
+      <span class="menu-summary-kicker">Rewards</span>
+      <strong>${styleFullyCompleted(progress) ? "Mastery Track" : "Skill Track"}</strong>
+      <p>${styleFullyCompleted(progress)
+        ? "All three paths are complete. Matches now convert into mastery progress toward the style weapon."
+        : "Keep winning matches to earn more skill points, then spend them on successful training trials."}</p>
+      <div class="menu-summary-meta">
+        <span>${stats.skillPoints} skill points</span>
+        <span>${stats.masteryPoints} mastery points</span>
+      </div>
+    </article>
+  `;
+  ui.styleAgilityLevel.textContent = `${progress.agility} / ${STYLE_PATH_MAX}`;
+  ui.styleStrengthLevel.textContent = `${progress.strength} / ${STYLE_PATH_MAX}`;
+  ui.styleDefenseLevel.textContent = `${progress.defense} / ${STYLE_PATH_MAX}`;
+  ui.styleAgilityCopy.textContent = `${style.passives.agility[Math.min(stylePassiveUnlockCount(progress.agility), style.passives.agility.length) - 1] || style.passives.agility[0]} ${progress.agility >= STYLE_PATH_MAX ? style.abilities.agility : ""}`.trim();
+  ui.styleStrengthCopy.textContent = `${style.passives.strength[Math.min(stylePassiveUnlockCount(progress.strength), style.passives.strength.length) - 1] || style.passives.strength[0]} ${progress.strength >= STYLE_PATH_MAX ? style.abilities.strength : ""}`.trim();
+  ui.styleDefenseCopy.textContent = `${style.passives.defense[Math.min(stylePassiveUnlockCount(progress.defense), style.passives.defense.length) - 1] || style.passives.defense[0]} ${progress.defense >= STYLE_PATH_MAX ? style.abilities.defense : ""}`.trim();
+  ui.trainAgility.disabled = progress.agility >= STYLE_PATH_MAX || stats.skillPoints <= 0;
+  ui.trainStrength.disabled = progress.strength >= STYLE_PATH_MAX || stats.skillPoints <= 0;
+  ui.trainDefense.disabled = progress.defense >= STYLE_PATH_MAX || stats.skillPoints <= 0;
+  ui.styleTrainingStart.disabled = stats.skillPoints <= 0;
+  ui.styleTrainingAction.disabled = false;
+
+  ui.stylePassives.innerHTML = [
+    ...style.passives.agility.slice(0, stylePassiveUnlockCount(progress.agility)),
+    ...style.passives.strength.slice(0, stylePassiveUnlockCount(progress.strength)),
+    ...style.passives.defense.slice(0, stylePassiveUnlockCount(progress.defense))
+  ].map((line) => `<article class="feedback-entry"><strong>Passive</strong><p>${line}</p></article>`).join("") || `<p class="arena-hint">No passives unlocked yet.</p>`;
+
+  ui.styleAbilities.innerHTML = [
+    progress.agility >= STYLE_PATH_MAX ? style.abilities.agility : "",
+    progress.strength >= STYLE_PATH_MAX ? style.abilities.strength : "",
+    progress.defense >= STYLE_PATH_MAX ? style.abilities.defense : "",
+    masteryWeaponUnlocked(account, styleId) ? `Mastery weapon unlocked: ${frameCatalog[style.masteryWeaponId]?.label}.` : ""
+  ].filter(Boolean).map((line) => `<article class="feedback-entry"><strong>Ability</strong><p>${line}</p></article>`).join("") || `<p class="arena-hint">Reach level ${STYLE_PATH_MAX} on a path to unlock its ability.</p>`;
+
+  const meta = styleTrainingMeta(training.styleId || styleId, training.path || "agility");
+  ui.styleTrainingTitle.textContent = meta.title;
+  ui.styleTrainingCopy.textContent = meta.copy;
+  ui.styleTrainingRating.textContent = training.active ? "Trial Live" : training.finished ? "Trial Ended" : "Idle";
+  ui.styleTrainingStart.textContent = training.active ? "Restart Trial" : training.finished ? "Try Again" : "Start Trial";
+  ui.styleTrainingAction.textContent = meta.action;
+  ui.styleTrainingBar.style.setProperty("--indicator", `${Math.round(training.indicator * 100)}%`);
+  ui.styleTrainingProgress.textContent = `${Math.round(training.progress * 100)}%`;
+  ui.styleTrainingTime.textContent = training.active ? `${Math.max(0, training.timeLimit - training.elapsed).toFixed(1)}s` : "Ready";
+  ui.styleTrainingReward.textContent = `${meta.reward} | Lv ${progress[training.path || "agility"]} -> ${Math.min(STYLE_PATH_MAX, progress[training.path || "agility"] + 1)}`;
+  ui.styleTrainingStart.disabled = stats.skillPoints <= 0 && !training.active;
+  ui.styleTrainingAction.disabled = !training.active && stats.skillPoints <= 0;
+  ui.styleTrainingStatus.textContent = statusMessage || (training.active
+    ? `${combatStyleCatalog[training.styleId].label} ${stylePathCatalog[training.path].label} trial live.`
+    : "No trial running. Choose a path to start.");
+  ui.styleTrainingPips.innerHTML = "";
+  (training.pips || []).forEach((pip) => {
+    const dot = document.createElement("span");
+    dot.className = `forge-pip${pip.hit ? " hit" : ""}`;
+    dot.style.left = `${Math.round(pip.position * 100)}%`;
+    ui.styleTrainingPips.append(dot);
+  });
 }
 
 function playerDisplayName() {
@@ -2254,7 +3419,7 @@ function renderAccountPanel(statusMessage = "") {
   ui.accountNote.textContent =
     statusMessage ||
     (account
-      ? `${accountMeta.line}. ${accountMeta.reviewLine}. ${accountMeta.friendLine}. Accounts are saved locally in this browser.`
+      ? `${accountMeta.line}. ${accountMeta.reviewLine}. ${accountMeta.friendLine}. ${accountMeta.styleLine}. Accounts are saved locally in this browser.`
       : state.auth.accounts.length
         ? "Accounts are saved locally in this browser. Feedback is open to everyone, and friend lists save to the signed-in profile."
         : "Create a local account to keep your player name, reviews, and friends on this browser.");
@@ -2264,6 +3429,7 @@ function renderAccountPanel(statusMessage = "") {
   renderFeedbackPanel();
   renderMenuSummary();
   renderBroadcastPanels();
+  renderStyleLab();
 }
 
 function createAccount() {
@@ -2286,12 +3452,14 @@ function createAccount() {
     name,
     passcode,
     stats: defaultAccountStats(),
+    styleLab: defaultStyleLab(),
     friends: [],
     createdAt: new Date().toISOString()
   };
 
   state.auth.accounts.push(account);
   state.auth.activeAccountId = account.id;
+  resetStyleTrainingState(account.styleLab.activeStyleId, "agility");
   saveAuthState();
   ui.accountName.value = "";
   ui.accountPasscode.value = "";
@@ -2301,6 +3469,7 @@ function createAccount() {
   renderAccountPanel(`${account.name} created and signed in.`);
   renderFriendList(`${account.name}'s friend list is ready.`);
   renderReviewList(`${account.name} can now leave menu reviews.`);
+  renderStyleLab(`${account.name}'s style lab is ready. Play matches to earn your first skill points.`);
   renderMenuSummary();
 }
 
@@ -2318,6 +3487,7 @@ function loginAccount() {
   }
 
   state.auth.activeAccountId = account.id;
+  resetStyleTrainingState(ensureAccountStyleLab(account).activeStyleId, "agility");
   saveAuthState();
   ui.accountName.value = "";
   ui.accountPasscode.value = "";
@@ -2327,6 +3497,7 @@ function loginAccount() {
   renderAccountPanel(`Signed in as ${account.name}.`);
   renderFriendList(`${account.name}'s friend list is loaded.`);
   renderReviewList(`Signed in as ${account.name}.`);
+  renderStyleLab(`${account.name}'s style lab is loaded.`);
   renderMenuSummary();
 }
 
@@ -2336,11 +3507,13 @@ function logoutAccount() {
     state.feedback.promptHandle = null;
   }
   state.auth.activeAccountId = null;
+  resetStyleTrainingState("tempest", "agility");
   saveAuthState();
   closeFeedbackPanel();
   renderAccountPanel("Signed out. Feedback stays open, but friends and reviews save to signed-in players.");
   renderFriendList("Sign in to manage friends.");
   renderReviewList("Signed out. Reviews need a signed-in player name.");
+  renderStyleLab("Sign in to earn style skill points, level paths, and unlock mastery weapons.");
   renderMenuSummary();
 }
 
@@ -2524,7 +3697,7 @@ function buildWeaponFromForge(forge) {
   const forgeQuality = clamp(Number(safeForge.forgeQuality ?? 0.5), 0.2, 1);
   const forgeDelta = forgeQuality - 0.5;
   const heatScale = heat / 100;
-  const classWeightBias = frame.kind === "long" ? 3 : frame.kind === "short" ? -1.4 : 0;
+  const classWeightBias = frame.kind === "long" ? 3 : frame.kind === "short" ? -1.4 : frame.kind === "special" ? 0.8 : 0;
   const weight = clamp(
     Number((frame.weight + material.weight + edge.weight + classWeightBias + heatScale * 6 - forgeDelta * 2.6).toFixed(1)),
     4,
@@ -2575,6 +3748,8 @@ function buildWeaponFromForge(forge) {
     classText = "solid slash pressure with style-driven specials";
   } else if (frame.kind === "short") {
     classText = "ambush pressure with back-hit damage and stealthy crouches";
+  } else if (frame.kind === "special") {
+    classText = "custom weapon tech with a unique signature move";
   }
 
   let heatSummary = "Low heat keeps the weapon lighter and easier to control.";
@@ -2649,7 +3824,7 @@ function buildWeaponFromForge(forge) {
 function createRandomEnemyWeapon() {
   const prefixes = ["Iron", "Dread", "Night", "Ash", "War", "Storm", "Cinder", "Ruin"];
   const suffixes = ["fang", "bite", "lance", "edge", "hook", "brand", "talon", "reaver"];
-  const frameId = randomChoice(Object.keys(frameCatalog));
+  const frameId = randomChoice(Object.keys(frameCatalog).filter((id) => !frameCatalog[id].masteryStyle));
   const forge = {
     id: makeId("rival"),
     name: `${randomChoice(prefixes)}${randomChoice(suffixes)}`,
@@ -2691,6 +3866,9 @@ function weaponRoleTag(weapon) {
   if (weapon.kind === "long") {
     return "Long";
   }
+  if (weapon.kind === "special") {
+    return "Special";
+  }
   if (weapon.kind === "short") {
     return "Short";
   }
@@ -2729,6 +3907,26 @@ function weaponPreviewMarkup(weapon) {
   } else if (weapon.frameId === "katana") {
     headMarkup = `
       <path d="M ${shaft - 2} ${36 - bladeSize * 0.18} L ${shaft + bladeSize * 0.84} ${36 - bladeSize * 0.08} L ${shaft + bladeSize * 0.9} 36 L ${shaft + bladeSize * 0.84} ${36 + bladeSize * 0.08} L ${shaft - 2} ${36 + bladeSize * 0.18} Z" fill="${color}" />
+    `;
+  } else if (weapon.frameId === "brass") {
+    headMarkup = `
+      <rect x="${shaft - 6}" y="24" width="${bladeSize * 0.9}" height="24" rx="8" fill="${color}" />
+      <circle cx="${shaft + 2}" cy="36" r="3.2" fill="#18151a" />
+      <circle cx="${shaft + 10}" cy="36" r="3.2" fill="#18151a" />
+      <circle cx="${shaft + 18}" cy="36" r="3.2" fill="#18151a" />
+    `;
+  } else if (weapon.frameId === "thundermaul") {
+    headMarkup = `
+      <rect x="${shaft - 6}" y="${36 - bladeSize * 0.5}" width="${bladeSize * 0.82}" height="${bladeSize}" rx="6" fill="${color}" />
+      <rect x="${shaft + bladeSize * 0.18}" y="${36 - bladeSize * 0.62}" width="${bladeSize * 0.14}" height="${bladeSize * 1.24}" rx="3" fill="#f6edd8" />
+    `;
+  } else if (weapon.frameId === "reaper") {
+    headMarkup = `
+      <path d="M ${shaft - 4} ${36 - bladeSize * 0.58} Q ${shaft + bladeSize * 0.84} ${36 - bladeSize * 0.46} ${shaft + bladeSize * 0.48} 36 Q ${shaft + bladeSize * 0.74} ${36 + bladeSize * 0.28} ${shaft - 2} ${36 + bladeSize * 0.14} Z" fill="${color}" />
+    `;
+  } else if (weapon.frameId === "chainwhip") {
+    headMarkup = `
+      <circle cx="${shaft + bladeSize * 0.58}" cy="36" r="${Math.max(7, bladeSize * 0.28)}" fill="${color}" />
     `;
   }
 
@@ -2842,7 +4040,9 @@ function renderForgeStats(weapon) {
         ? "Long parries are easier and use slower heavy attacks with built-in weapon specials."
         : weapon.kind === "medium"
           ? "Medium stays balanced, uses styles, and turns dash into a pass-through slash."
-          : "Short gains back-hit damage, stealthier crouches, and close-range rush specials."
+          : weapon.kind === "short"
+            ? "Short gains back-hit damage, stealthier crouches, and close-range rush specials."
+            : "Special weapons ignore styles and instead bring a unique signature move."
     },
     {
       label: "Finish",
@@ -2943,6 +4143,16 @@ function renderForgePreview(weapon) {
     previewCtx.lineTo(shaft + bladeSize * 0.92, 0);
     previewCtx.lineTo(shaft + bladeSize * 0.84, bladeSize * 0.08);
     previewCtx.lineTo(shaft - 2, bladeSize * 0.16);
+  } else if (weapon.frameId === "brass") {
+    previewCtx.roundRect(shaft - 10, -bladeSize * 0.32, bladeSize * 0.92, bladeSize * 0.64, 8);
+  } else if (weapon.frameId === "thundermaul") {
+    previewCtx.rect(shaft - 8, -bladeSize * 0.52, bladeSize * 0.78, bladeSize * 1.04);
+  } else if (weapon.frameId === "reaper") {
+    previewCtx.moveTo(shaft - 4, -bladeSize * 0.56);
+    previewCtx.quadraticCurveTo(shaft + bladeSize * 0.84, -bladeSize * 0.42, shaft + bladeSize * 0.46, 0);
+    previewCtx.quadraticCurveTo(shaft + bladeSize * 0.68, bladeSize * 0.24, shaft - 3, bladeSize * 0.14);
+  } else if (weapon.frameId === "chainwhip") {
+    previewCtx.arc(shaft + bladeSize * 0.54, 0, Math.max(8, bladeSize * 0.26), 0, Math.PI * 2);
   } else {
     previewCtx.moveTo(shaft, -bladeSize * 0.48);
     previewCtx.lineTo(shaft + bladeSize * 0.82, 0);
@@ -2966,7 +4176,7 @@ function renderForgePreview(weapon) {
 
 function renderForgeMinigame(weapon) {
   const game = state.forgeGame;
-  const meta = forgeModeMeta(weapon.kind);
+  const meta = forgeModeMeta(frameCatalog[weapon.frameId] || weapon);
   ui.forgeMinigameTitle.textContent = meta.title;
   ui.forgeMinigameCopy.textContent = meta.copy;
   ui.forgeAction.textContent = meta.action;
@@ -2978,7 +4188,7 @@ function renderForgeMinigame(weapon) {
   ui.forgeMinigameTime.textContent = game.active ? `${Math.max(0, game.timeLimit - game.elapsed).toFixed(1)}s` : game.finished ? "Done" : "Ready";
   ui.forgeMinigameStreak.textContent = `x${game.bestStreak || game.streak || 0}`;
 
-  if (weapon.kind === "long") {
+  if (game.mode === "long") {
     ui.forgeMinigameBar.style.setProperty("--target-start", "38%");
     ui.forgeMinigameBar.style.setProperty("--target-end", "62%");
     ui.forgeMinigameStatus.textContent = game.active
@@ -2986,7 +4196,7 @@ function renderForgeMinigame(weapon) {
       : game.finished
         ? `Long forge finished at ${weapon.forgeQualityLabel}. Heavy timing was ${Math.round(weapon.forgeQuality * 100)}% clean.`
         : "No long-blade run yet. Start the drill to temper the heavy edge.";
-  } else if (weapon.kind === "medium") {
+  } else if (game.mode === "medium") {
     ui.forgeMinigameBar.style.setProperty("--target-start", "0%");
     ui.forgeMinigameBar.style.setProperty("--target-end", "0%");
     ui.forgeMinigameStatus.textContent = game.active
@@ -2994,7 +4204,7 @@ function renderForgeMinigame(weapon) {
       : game.finished
         ? `Medium forge finished at ${weapon.forgeQualityLabel}. Slash rhythm landed ${Math.round(weapon.forgeQuality * 100)}% clean.`
         : "No medium-blade run yet. Start the drill to tune the slash rhythm.";
-  } else {
+  } else if (game.mode === "short") {
     ui.forgeMinigameBar.style.setProperty("--target-start", "0%");
     ui.forgeMinigameBar.style.setProperty("--target-end", "0%");
     ui.forgeMinigameStatus.textContent = game.active
@@ -3002,6 +4212,49 @@ function renderForgeMinigame(weapon) {
       : game.finished
         ? `Short forge finished at ${weapon.forgeQualityLabel}. Spark work landed ${Math.round(weapon.forgeQuality * 100)}% clean.`
         : "No short-blade run yet. Start the drill to sharpen the close-range edge.";
+  } else if (game.mode === "combo-barrage") {
+    ui.forgeMinigameBar.style.setProperty("--target-start", "0%");
+    ui.forgeMinigameBar.style.setProperty("--target-end", "0%");
+    ui.forgeMinigameStatus.textContent = game.active
+      ? `Land the 4 combo beats in order. Combo hits: ${game.hits}/4.`
+      : game.finished
+        ? `Brass combo forge finished at ${weapon.forgeQualityLabel}. Combo rhythm landed ${Math.round(weapon.forgeQuality * 100)}% clean.`
+        : "No brass combo run yet. Start the drill to sharpen the punch chain.";
+  } else if (game.mode === "shockwave-slam") {
+    ui.forgeMinigameBar.style.setProperty("--target-start", "78%");
+    ui.forgeMinigameBar.style.setProperty("--target-end", "92%");
+    ui.forgeMinigameStatus.textContent = game.active
+      ? `Slam in the impact lane 3 times. Clean slams: ${game.hits}/3.`
+      : game.finished
+        ? `Hammer slam forge finished at ${weapon.forgeQualityLabel}. Shockwave timing landed ${Math.round(weapon.forgeQuality * 100)}% clean.`
+        : "No hammer slam run yet. Start the drill to charge the impact head.";
+  } else if (game.mode === "reaper-hook") {
+    ui.forgeMinigameBar.style.setProperty("--target-start", "0%");
+    ui.forgeMinigameBar.style.setProperty("--target-end", "0%");
+    ui.forgeMinigameStatus.textContent = game.active
+      ? `Catch each drifting hook point. Hooks caught: ${game.hits}/${Math.max(game.pips.length, 3)}.`
+      : game.finished
+        ? `Scythe hook forge finished at ${weapon.forgeQualityLabel}. Hook control landed ${Math.round(weapon.forgeQuality * 100)}% clean.`
+        : "No scythe hook run yet. Start the drill to tune the pull arc.";
+  } else if (game.mode === "axe-throw") {
+    const lanes = [
+      ["10%", "22%"],
+      ["78%", "90%"],
+      ["14%", "26%"],
+      ["74%", "86%"]
+    ];
+    const lane = lanes[Math.min(game.laneIndex, lanes.length - 1)];
+    ui.forgeMinigameBar.style.setProperty("--target-start", lane[0]);
+    ui.forgeMinigameBar.style.setProperty("--target-end", lane[1]);
+    ui.forgeMinigameStatus.textContent = game.active
+      ? `Hit the alternating throw lanes. Clean throws: ${game.hits}/4.`
+      : game.finished
+        ? `Throw axe forge finished at ${weapon.forgeQualityLabel}. Throw control landed ${Math.round(weapon.forgeQuality * 100)}% clean.`
+        : "No throw axe run yet. Start the drill to tighten the release pattern.";
+  } else {
+    ui.forgeMinigameBar.style.setProperty("--target-start", "0%");
+    ui.forgeMinigameBar.style.setProperty("--target-end", "0%");
+    ui.forgeMinigameStatus.textContent = "Start the forge drill to tune this weapon.";
   }
 
   if (!game.active && !game.finished) {
@@ -3094,7 +4347,7 @@ function loadWeaponIntoForge(weapon) {
   };
 
   syncForgeSelectors();
-  resetForgeMinigame(state.forge.kind, true);
+  resetForgeMinigame(state.forge.frame, true);
   renderForge();
 }
 
@@ -3280,31 +4533,38 @@ function fighterProfileForWeapon(weapon) {
   const longClass = weapon.kind === "long";
   const shortClass = weapon.kind === "short";
   const mediumClass = weapon.kind === "medium";
+  const specialClass = weapon.kind === "special";
   let slideHits = shortClass ? 1 : mediumClass ? 1 : 0;
   if (weapon.specialType === "double-spin-dash") {
     slideHits = 2;
   } else if (weapon.specialType === "triple-rush") {
     slideHits = 3;
+  } else if (weapon.specialType === "reaper-hook" || weapon.specialType === "axe-throw") {
+    slideHits = 1;
   }
   const slideDamageScale =
     weapon.specialType === "cross-cut"
       ? 0.78
+      : weapon.specialType === "axe-throw"
+        ? 0.74
       : weapon.specialType === "dash-spin"
         ? 0.68
         : mediumClass
           ? 0.7
           : shortClass
             ? 0.52
-            : 0.42;
+            : specialClass
+              ? 0.62
+              : 0.42;
   return {
-    damage: clamp(Math.round(weapon.damage * 0.95 + weapon.arc * 2.2 + (longClass ? 2 : shortClass ? -1 : 0)), 11, 40),
-    reach: clamp(Math.round(weapon.reach * 0.78 + (longClass ? 6 : shortClass ? -4 : 0)), 40, 126),
-    windup: clamp(0.11 + weapon.cooldown * 0.11 - weapon.speed * 0.025 + (longClass ? 0.06 : shortClass ? -0.02 : 0), 0.07, 0.3),
-    active: clamp(0.07 + weapon.arc * 0.03 + (mediumClass ? 0.01 : 0), 0.08, 0.2),
-    recover: clamp(0.15 + weapon.cooldown * 0.2 + (longClass ? 0.04 : shortClass ? -0.02 : 0), 0.12, 0.42),
+    damage: clamp(Math.round(weapon.damage * 0.95 + weapon.arc * 2.2 + (longClass ? 2 : shortClass ? -1 : specialClass ? 1 : 0)), 11, 40),
+    reach: clamp(Math.round(weapon.reach * 0.78 + (longClass ? 6 : shortClass ? -4 : specialClass ? 1 : 0)), 40, 126),
+    windup: clamp(0.11 + weapon.cooldown * 0.11 - weapon.speed * 0.025 + (longClass ? 0.06 : shortClass ? -0.02 : specialClass ? -0.01 : 0), 0.07, 0.3),
+    active: clamp(0.07 + weapon.arc * 0.03 + (mediumClass ? 0.01 : specialClass ? 0.015 : 0), 0.08, 0.2),
+    recover: clamp(0.15 + weapon.cooldown * 0.2 + (longClass ? 0.04 : shortClass ? -0.02 : specialClass ? -0.01 : 0), 0.12, 0.42),
     knockback: clamp(180 + weapon.knockback * 70 + (longClass ? 18 : 0), 190, 340),
-    blockDrain: clamp(Math.round(8 + weapon.damage * 0.35 + weapon.weight * 0.35 + (longClass ? 2 : 0)), 10, 28),
-    lunge: clamp(48 + weapon.reach * 0.18 + (mediumClass ? 10 : shortClass ? 14 : -4), 48, 96),
+    blockDrain: clamp(Math.round(8 + weapon.damage * 0.35 + weapon.weight * 0.35 + (longClass ? 2 : specialClass ? 1 : 0)), 10, 28),
+    lunge: clamp(48 + weapon.reach * 0.18 + (mediumClass ? 10 : shortClass ? 14 : specialClass ? 8 : -4), 48, 96),
     parryWindow: longClass ? 0.22 : weapon.edgeId === "duelist" ? 0.16 : 0.14,
     slideDamage: clamp(Math.round(weapon.damage * slideDamageScale), 6, 22),
     slideHits
@@ -3320,7 +4580,7 @@ function stageBounds(stageState) {
 }
 
 function spawnFighter({ team, control, weapon, x, name, color }) {
-  return {
+  const fighter = {
     team,
     control,
     name,
@@ -3363,6 +4623,8 @@ function spawnFighter({ team, control, weapon, x, name, color }) {
     dashSpeed: 0,
     slideHitCooldown: 0,
     slideHitCount: 0,
+    slamReady: false,
+    lastGrounded: true,
     prevX: x,
     stepTimer: 0,
     mouseWeaponAngle: -0.18,
@@ -3375,8 +4637,29 @@ function spawnFighter({ team, control, weapon, x, name, color }) {
       block: false,
       crouch: false
     },
-    alive: true
+    alive: true,
+    styleBonuses: null,
+    comboPressure: 0
   };
+
+  if (team === PLAYER_TEAM) {
+    const bonus = styleBonusProfile();
+    if (bonus) {
+      fighter.styleBonuses = bonus;
+      fighter.walkSpeed = clamp(fighter.walkSpeed + bonus.agilityLevel * 7, 132, 264);
+      fighter.profile.damage = clamp(fighter.profile.damage + bonus.strengthLevel, 11, 48);
+      fighter.profile.knockback = clamp(fighter.profile.knockback + bonus.strengthLevel * 6, 190, 380);
+      fighter.profile.lunge = clamp(fighter.profile.lunge + bonus.agilityLevel * 3, 48, 120);
+      fighter.profile.parryWindow = clamp(fighter.profile.parryWindow + bonus.defenseLevel * 0.01, 0.12, 0.3);
+      fighter.maxStamina = clamp(fighter.maxStamina + bonus.defenseLevel * 6, 100, 136);
+      fighter.stamina = fighter.maxStamina;
+      if (bonus.styleId === "phantom") {
+        fighter.weapon.stealthOpacity = clamp((fighter.weapon.stealthOpacity || 1) - bonus.agilityLevel * 0.025, 0.22, 1);
+      }
+    }
+  }
+
+  return fighter;
 }
 
 function createRoundFighters(match) {
@@ -3644,6 +4927,7 @@ function performJump(fighter, match) {
 
   fighter.vy = -620;
   fighter.onGround = false;
+  fighter.slamReady = fighter.weapon.specialType === "shockwave-slam";
   fighter.jumpCooldown = 0.22;
   fighter.blocking = false;
   fighter.crouching = false;
@@ -3659,9 +4943,14 @@ function performBackstep(fighter, match) {
 
   fighter.blocking = false;
   fighter.crouching = false;
-  fighter.dodgeTimer = 0.22;
-  fighter.dodgeCooldown = 0.82;
-  fighter.invulnerable = 0.14;
+  fighter.dodgeTimer = fighter.styleBonuses?.styleId === "phantom" && fighter.styleBonuses.abilityAgility ? 0.2 : 0.22;
+  fighter.dodgeCooldown = fighter.styleBonuses?.styleId === "tempest" && fighter.styleBonuses.abilityAgility ? 0.68 : 0.82;
+  fighter.invulnerable =
+    fighter.styleBonuses?.styleId === "bastion" && fighter.styleBonuses.abilityAgility
+      ? 0.19
+      : fighter.styleBonuses?.styleId === "phantom" && fighter.styleBonuses.abilityDefense
+        ? 0.18
+        : 0.14;
   fighter.vx = -fighter.facing * 360;
   addSpark(match, fighter.x, fighter.y - 8, fighter.weapon.color, 8);
   playSoundEffect("backstep");
@@ -3695,11 +4984,63 @@ function performLunge(fighter, match) {
         : fighter.weapon.edgeId === "shadow"
           ? 18
           : 0;
-  fighter.dashSpeed += slideSpeedBonus;
+  fighter.dashSpeed += slideSpeedBonus + (fighter.styleBonuses?.styleId === "tempest" && fighter.styleBonuses.abilityAgility ? 32 : 0);
   fighter.vx = fighter.facing * fighter.dashSpeed;
   addSpark(match, fighter.x, fighter.y - 10, fighter.weapon.color, 10);
   playSoundEffect("slide");
   return true;
+}
+
+function comboSegmentsForWeapon(weapon) {
+  if (weapon.specialType !== "combo-barrage") {
+    return null;
+  }
+  return [
+    { start: 0.03, end: 0.08, damageScale: 0.42, knockbackScale: 0.32, label: "right jab" },
+    { start: 0.09, end: 0.14, damageScale: 0.44, knockbackScale: 0.36, label: "left jab" },
+    { start: 0.16, end: 0.22, damageScale: 0.62, knockbackScale: 0.54, label: "right uppercut" },
+    { start: 0.24, end: 0.34, damageScale: 0.9, knockbackScale: 1.2, label: "heavy left finisher" }
+  ];
+}
+
+function emitGroundShockwave(attacker, defender, match) {
+  const contactX = attacker.x;
+  const contactY = attacker.y - 10;
+  addSpark(match, contactX, contactY, "#ffe8a1", 20);
+  triggerImpact(match, { shake: 12, flash: 0.14, hitstop: 0.06 });
+  pushFightEvent(match, "Shockwave", `${attacker.name} crashed down with ${attacker.weapon.name} and sent out a shockwave.`, "impact");
+
+  if (!defender.alive || defender.invulnerable > 0 || !defender.onGround) {
+    return;
+  }
+
+  const distance = Math.abs(defender.x - attacker.x);
+  if (distance > 132) {
+    return;
+  }
+
+  const attackerStats = statsForTeam(match, attacker.team);
+  const defenderStats = statsForTeam(match, defender.team);
+  const reduced = defender.blocking && onFrontSide(defender, attacker);
+  const damage = reduced ? 7 : 14;
+  defender.health = clamp(defender.health - damage, 0, defender.maxHealth);
+  defender.vx = Math.sign(defender.x - attacker.x || attacker.facing) * (reduced ? 140 : 240);
+  defender.hitstun = Math.max(defender.hitstun, reduced ? 0.12 : 0.2);
+  defender.blocking = false;
+  defender.attackFlash = 0.16;
+  defender.alive = defender.health > 0;
+  applyStun(defender, reduced ? 0.08 : 0.18);
+  attackerStats.hits += 1;
+  attackerStats.damage += damage;
+  attackerStats.stuns += 1;
+  if (reduced) {
+    defenderStats.blocks += 1;
+  }
+  setMatchSummary(
+    reduced
+      ? `${attacker.name}'s hammer shockwave clipped ${defender.name}'s guard.`
+      : `${attacker.name} slammed the ground and shockwaved ${defender.name} for ${damage}.`
+  );
 }
 
 function startAttack(fighter) {
@@ -3716,14 +5057,26 @@ function startAttack(fighter) {
     return false;
   }
 
-  fighter.attack = {
-    timer: 0,
-    connected: false,
-    style: fighterUsesMouseJab(fighter) ? "jab" : "swing"
-  };
+  const comboSegments = comboSegmentsForWeapon(fighter.weapon);
+  fighter.attack = comboSegments
+    ? {
+        timer: 0,
+        connected: false,
+        style: "combo",
+        comboResolved: comboSegments.map(() => false),
+        comboSegments
+      }
+    : {
+        timer: 0,
+        connected: false,
+        style: fighterUsesMouseJab(fighter) ? "jab" : "swing"
+      };
   fighter.attackFlash = 0.18;
   fighter.stamina = clamp(fighter.stamina - 8, 0, fighter.maxStamina);
-  fighter.vx += fighter.facing * fighter.profile.lunge * (fighter.attack.style === "jab" ? 0.2 : 0.45);
+  fighter.vx += fighter.facing * fighter.profile.lunge * (fighter.attack.style === "jab" ? 0.2 : fighter.attack.style === "combo" ? 0.14 : 0.45);
+  if (fighter.weapon.specialType === "shockwave-slam" && !fighter.onGround) {
+    fighter.slamReady = true;
+  }
   playSoundEffect("attack");
   return true;
 }
@@ -3738,6 +5091,10 @@ function attemptParry(defender, attacker, match, contactX, contactY) {
   defender.parryWindow = 0;
   defender.parryFlash = 0.24;
   defender.stamina = clamp(defender.stamina + 10, 0, defender.maxStamina);
+  if (defender.styleBonuses?.styleId === "tempest" && defender.styleBonuses.abilityDefense) {
+    defender.health = clamp(defender.health + 3, 0, defender.maxHealth);
+    defender.stamina = clamp(defender.stamina + 8, 0, defender.maxStamina);
+  }
   defender.blocking = false;
   applyStun(attacker, 0.42);
   attacker.hitstun = Math.max(attacker.hitstun, 0.1);
@@ -3805,7 +5162,15 @@ function attemptAttackHit(attacker, defender, match) {
       return;
     }
 
-    defender.stamina = clamp(defender.stamina - attacker.profile.blockDrain, 0, defender.maxStamina);
+    const guardDrainMultiplier =
+      attacker.styleBonuses?.styleId === "bastion" && attacker.styleBonuses.abilityStrength ? 1.24 : 1;
+    const blockDrainReduction =
+      defender.styleBonuses?.styleId === "bastion" && defender.styleBonuses.abilityDefense ? 0.7 : 1;
+    defender.stamina = clamp(
+      defender.stamina - attacker.profile.blockDrain * guardDrainMultiplier * blockDrainReduction,
+      0,
+      defender.maxStamina
+    );
     defender.vx += attacker.facing * attacker.profile.knockback * 0.18;
     defender.hitstun = Math.max(defender.hitstun, 0.08);
     addSpark(match, contactX, contactY, "#ffffff", 8);
@@ -3839,7 +5204,8 @@ function attemptAttackHit(attacker, defender, match) {
     Math.round(
       attacker.profile.damage *
         (attacker.slideTimer > 0 ? 1.08 : 1) *
-        (attacker.weapon.kind === "short" && !onFrontSide(defender, attacker) ? attacker.weapon.backstabBonus : 1)
+        (attacker.weapon.kind === "short" && !onFrontSide(defender, attacker) ? attacker.weapon.backstabBonus : 1) *
+        (attacker.styleBonuses?.styleId === "phantom" && attacker.styleBonuses.abilityStrength && !onFrontSide(defender, attacker) ? 1.14 : 1)
     ),
     8,
     42
@@ -3884,9 +5250,31 @@ function attemptAttackHit(attacker, defender, match) {
     attackerStats.stuns += 1;
   }
 
+  if (attacker.styleBonuses?.styleId === "tempest" && attacker.styleBonuses.abilityStrength) {
+    attacker.comboPressure += 1;
+    if (attacker.comboPressure >= 3) {
+      defender.health = clamp(defender.health - 4, 0, defender.maxHealth);
+      defender.vx += attacker.facing * 48;
+      attacker.comboPressure = 0;
+    }
+  } else if (attacker.comboPressure) {
+    attacker.comboPressure = 0;
+  }
+
   if (quakeHeavy) {
     defender.vx = attacker.facing * attacker.profile.knockback * 1.16;
     triggerImpact(match, { shake: 13, flash: 0.16, hitstop: 0.07 });
+  }
+
+  if (attacker.weapon.specialType === "reaper-hook") {
+    defender.vx = attacker.facing * -190;
+    defender.x = clamp(defender.x - attacker.facing * 18, stageBounds(match.stage).left, stageBounds(match.stage).right);
+    defender.hitstun = Math.max(defender.hitstun, 0.22);
+    setMatchSummary(`${attacker.name} hooked ${defender.name} back in with ${attacker.weapon.name}.`);
+  } else if (attacker.weapon.specialType === "guard-pin") {
+    defender.hitstun = Math.max(defender.hitstun, 0.2);
+  } else if (attacker.weapon.specialType === "cleave-wave" || attacker.weapon.specialType === "crush-burst") {
+    defender.vx = attacker.facing * attacker.profile.knockback * 1.22;
   }
 
   addSpark(match, contactX, defender.y - currentFighterHeight(defender) * 0.62, attacker.weapon.color, 12);
@@ -3907,6 +5295,65 @@ function attemptAttackHit(attacker, defender, match) {
       : `${attacker.name} landed ${damage} with ${attacker.weapon.name}.`,
     "impact"
   );
+}
+
+function attemptComboAttackHit(attacker, defender, match, segment, index) {
+  if (!attacker.attack || attacker.attack.comboResolved[index] || !defender.alive || defender.invulnerable > 0) {
+    return;
+  }
+  attacker.attack.comboResolved[index] = true;
+
+  const contactX = attacker.x + attacker.facing * (18 + index * 3);
+  const contactY = attacker.y - currentFighterHeight(attacker) * (index === 2 ? 0.76 : 0.58);
+  const attackBox = {
+    left: attacker.x + (attacker.facing === 1 ? 6 : -42),
+    right: attacker.x + (attacker.facing === 1 ? 42 : -6),
+    top: attacker.y - currentFighterHeight(attacker) + 20,
+    bottom: attacker.y - 8
+  };
+  const defenderBox = fighterHitbox(defender);
+  const overlaps =
+    attackBox.left < defenderBox.right &&
+    attackBox.right > defenderBox.left &&
+    attackBox.top < defenderBox.bottom &&
+    attackBox.bottom > defenderBox.top;
+
+  if (!overlaps) {
+    return;
+  }
+
+  const attackerStats = statsForTeam(match, attacker.team);
+  const defenderStats = statsForTeam(match, defender.team);
+  if (defender.blocking && defender.onGround && onFrontSide(defender, attacker)) {
+    if (attemptParry(defender, attacker, match, contactX, contactY)) {
+      attacker.attack = null;
+      return;
+    }
+    defender.stamina = clamp(defender.stamina - Math.round(attacker.profile.blockDrain * 0.62), 0, defender.maxStamina);
+    defender.hitstun = Math.max(defender.hitstun, 0.06);
+    defenderStats.blocks += 1;
+    addSpark(match, contactX, contactY, "#ffffff", 6);
+    triggerImpact(match, { shake: 3, flash: 0.05, hitstop: 0.02 });
+    return;
+  }
+
+  const finalHit = index === attacker.attack.comboSegments.length - 1;
+  const damage = clamp(Math.round(attacker.profile.damage * segment.damageScale), 4, 18);
+  defender.health = clamp(defender.health - damage, 0, defender.maxHealth);
+  defender.vx = attacker.facing * attacker.profile.knockback * segment.knockbackScale;
+  defender.hitstun = Math.max(defender.hitstun, finalHit ? 0.24 : 0.1);
+  defender.attackFlash = 0.14;
+  defender.alive = defender.health > 0;
+  if (finalHit) {
+    applyStun(defender, 0.18);
+    attackerStats.stuns += 1;
+  }
+  attackerStats.hits += 1;
+  attackerStats.damage += damage;
+  addSpark(match, contactX, contactY, attacker.weapon.color, finalHit ? 14 : 8);
+  triggerImpact(match, { shake: finalHit ? 9 : 4, flash: finalHit ? 0.12 : 0.06, hitstop: finalHit ? 0.05 : 0.02 });
+  playSoundEffect("hit");
+  setMatchSummary(`${attacker.name} landed ${segment.label} for ${damage}.`);
 }
 
 function attemptMouseSwingHit(attacker, defender, match, dt) {
@@ -4004,18 +5451,30 @@ function attemptSlideSpecialHit(attacker, defender, match) {
     fighterHitbox(attacker),
     attacker.weapon.kind === "short"
       ? 26
-      : attacker.weapon.specialType === "dash-spin" || attacker.weapon.edgeId === "cyclone"
+      : attacker.weapon.specialType === "dash-spin" || attacker.weapon.specialType === "axe-throw" || attacker.weapon.edgeId === "cyclone"
         ? 26
         : 18
   );
   const defenderBox = fighterHitbox(defender);
+  const axeThrow = attacker.weapon.specialType === "axe-throw";
+  const throwRange = axeThrow ? 170 : 0;
+  const widenedDefenderBox = axeThrow ? expandHitbox(defenderBox, 10) : defenderBox;
   const overlaps =
     attackerBox.left < defenderBox.right &&
     attackerBox.right > defenderBox.left &&
     attackerBox.top < defenderBox.bottom &&
     attackerBox.bottom > defenderBox.top;
+  const rangedThrowConnect =
+    axeThrow &&
+    lineIntersectsHitbox(
+      attacker.x,
+      attacker.y - currentFighterHeight(attacker) * 0.62,
+      attacker.x + attacker.facing * throwRange,
+      attacker.y - currentFighterHeight(attacker) * 0.6,
+      widenedDefenderBox
+    );
 
-  if (!overlaps) {
+  if (!overlaps && !rangedThrowConnect) {
     return;
   }
 
@@ -4095,6 +5554,12 @@ function attemptSlideSpecialHit(attacker, defender, match) {
   if (attacker.weapon.kind === "short" || attacker.weapon.frameId === "capesh") {
     applyStun(defender, attacker.weapon.kind === "short" ? 0.08 : 0.12);
     attackerStats.stuns += 1;
+  } else if (attacker.weapon.specialType === "axe-throw") {
+    defender.vx = attacker.facing * 186;
+    defender.hitstun = Math.max(defender.hitstun, 0.2);
+  } else if (attacker.weapon.specialType === "reaper-hook") {
+    defender.vx = attacker.facing * -130;
+    defender.hitstun = Math.max(defender.hitstun, 0.18);
   }
 
   attackerStats.hits += 1;
@@ -4102,10 +5567,12 @@ function attemptSlideSpecialHit(attacker, defender, match) {
   addSpark(match, contactX, contactY, attacker.weapon.color, attacker.weapon.kind === "short" ? 14 : 12);
   triggerImpact(match, { shake: attacker.weapon.kind === "short" ? 7 : 9, flash: 0.1, hitstop: 0.04 });
   playSoundEffect("hit");
-  setMatchSummary(`${attacker.name} landed a ${attacker.weapon.kind === "short" ? "spin" : "dash"} slash for ${damage}.`);
+  setMatchSummary(
+    `${attacker.name} landed a ${attacker.weapon.specialType === "axe-throw" ? "throw axe" : attacker.weapon.kind === "short" ? "spin" : "dash"} slash for ${damage}.`
+  );
   pushFightEvent(
     match,
-    attacker.weapon.kind === "short" ? "Spin Slash" : "Dash Slash",
+    attacker.weapon.specialType === "axe-throw" ? "Axe Throw" : attacker.weapon.kind === "short" ? "Spin Slash" : "Dash Slash",
     `${attacker.name} cut ${defender.name} for ${damage} with ${attacker.weapon.name}.`,
     "impact"
   );
@@ -4117,6 +5584,22 @@ function updateAttackState(fighter, opponent, match, dt) {
   }
 
   fighter.attack.timer += dt;
+  if (fighter.attack.style === "combo" && fighter.attack.comboSegments) {
+    const lastSegment = fighter.attack.comboSegments[fighter.attack.comboSegments.length - 1];
+    fighter.attack.comboSegments.forEach((segment, index) => {
+      if (
+        !fighter.attack.comboResolved[index] &&
+        fighter.attack.timer >= segment.start &&
+        fighter.attack.timer <= segment.end
+      ) {
+        attemptComboAttackHit(fighter, opponent, match, segment, index);
+      }
+    });
+    if (fighter.attack.timer >= lastSegment.end + fighter.profile.recover * 0.75) {
+      fighter.attack = null;
+    }
+    return;
+  }
   const windupEnd = fighter.profile.windup;
   const activeEnd = windupEnd + fighter.profile.active;
   const recoverEnd = activeEnd + fighter.profile.recover;
@@ -4271,6 +5754,7 @@ function applyAiControl(fighter, opponent, match, dt) {
 
 function updateFighter(fighter, opponent, match, dt) {
   fighter.prevX = fighter.x;
+  const wasOnGround = fighter.onGround;
   fighter.hitstun = Math.max(0, fighter.hitstun - dt);
   fighter.stunTimer = Math.max(0, fighter.stunTimer - dt);
   fighter.invulnerable = Math.max(0, fighter.invulnerable - dt);
@@ -4335,6 +5819,11 @@ function updateFighter(fighter, opponent, match, dt) {
 
   if (fighter.onGround && Math.abs(fighter.vx) < 5 && fighter.dodgeTimer <= 0 && fighter.slideTimer <= 0) {
     fighter.vx = 0;
+  }
+
+  if (!wasOnGround && fighter.onGround && fighter.slamReady && fighter.weapon.specialType === "shockwave-slam") {
+    fighter.slamReady = false;
+    emitGroundShockwave(fighter, opponent, match);
   }
 
   if (Math.abs(fighter.vx) > 18 && fighter.onGround) {
@@ -5299,6 +6788,7 @@ function loop(now) {
   state.lastFrameTime = now;
   pollGamepadState();
   updateForgeMinigame(dt);
+  updateStyleTraining(dt);
   if (!state.menu.open) {
     updateMatch(dt);
     state.uiPulse += dt;
@@ -5332,7 +6822,7 @@ function handleForgeChange() {
     previousForge.edge !== state.forge.edge ||
     previousForge.heat !== state.forge.heat;
   if (blueprintChanged) {
-    resetForgeMinigame(state.forge.kind, false);
+    resetForgeMinigame(state.forge.frame, false);
   }
   syncForgeSelectors();
   renderForge();
@@ -5557,6 +7047,10 @@ function bindEvents() {
     playSoundEffect("menu-accept");
     openForgeScreen();
   });
+  ui.menuOpenStyleLab.addEventListener("click", () => {
+    ui.styleLabCard.scrollIntoView({ behavior: "smooth", block: "start" });
+    renderStyleLab("Style Lab ready. Pick a style, then spend match-earned skill points on training.");
+  });
   ui.startTutorial.addEventListener("click", startTutorial);
   ui.skipTutorial.addEventListener("click", () => {
     state.tutorial.promptSeen = true;
@@ -5612,6 +7106,27 @@ function bindEvents() {
   ui.loginAccount.addEventListener("click", loginAccount);
   ui.logoutAccount.addEventListener("click", logoutAccount);
   ui.addFriend.addEventListener("click", addFriend);
+  ui.styleSelect.addEventListener("change", () => {
+    const account = currentAccount();
+    if (!account) {
+      renderStyleLab("Sign in before changing your active style.");
+      return;
+    }
+    const styleLab = ensureAccountStyleLab(account);
+    styleLab.activeStyleId = ui.styleSelect.value;
+    resetStyleTrainingState(styleLab.activeStyleId, "agility");
+    saveAuthState();
+    renderStyleLab(`${combatStyleCatalog[styleLab.activeStyleId].label} is now active.`);
+    renderMenuSummary();
+  });
+  ui.trainAgility.addEventListener("click", () => startStyleTraining("agility"));
+  ui.trainStrength.addEventListener("click", () => startStyleTraining("strength"));
+  ui.trainDefense.addEventListener("click", () => startStyleTraining("defense"));
+  ui.styleTrainingStart.addEventListener("click", () => {
+    const training = state.styleTraining;
+    startStyleTraining(training.path || "agility");
+  });
+  ui.styleTrainingAction.addEventListener("click", handleStyleTrainingAction);
 
   ui.startMatch.addEventListener("click", startMatch);
 
@@ -5633,6 +7148,11 @@ function bindEvents() {
       return;
     }
     if (isEditableTarget(event.target)) {
+      return;
+    }
+    if (state.menu.open && (event.code === "Space" || event.code === "Enter") && state.styleTraining.active) {
+      event.preventDefault();
+      handleStyleTrainingAction();
       return;
     }
     if (state.flow.screen === "forge" && (event.code === "Space" || event.code === "Enter")) {
@@ -5692,20 +7212,24 @@ function init() {
   refreshInputProfile();
   populateSelect(ui.classSelect, bladeTypeCatalog);
   syncForgeSelectors();
-  resetForgeMinigame(state.forge.kind, true);
+  resetForgeMinigame(state.forge.frame, true);
   ui.roundsToWinValue.textContent = ui.roundsToWin.value;
 
   try {
     const savedAuth = JSON.parse(window.localStorage.getItem("stickforge-auth") || "null");
     if (savedAuth && Array.isArray(savedAuth.accounts)) {
-      state.auth.accounts = savedAuth.accounts.map((account) => ({
-        ...account,
-        friends: Array.isArray(account.friends) ? account.friends : [],
-        stats: {
-          ...defaultAccountStats(),
-          ...(account.stats || {})
-        }
-      }));
+      state.auth.accounts = savedAuth.accounts.map((account) => {
+        const normalized = {
+          ...account,
+          friends: Array.isArray(account.friends) ? account.friends : [],
+          stats: {
+            ...defaultAccountStats(),
+            ...(account.stats || {})
+          }
+        };
+        normalized.styleLab = ensureAccountStyleLab(normalized);
+        return normalized;
+      });
       state.auth.activeAccountId = savedAuth.activeAccountId || null;
     }
   } catch (error) {
@@ -5753,6 +7277,7 @@ function init() {
   }
 
   seedArmory();
+  resetStyleTrainingState(currentAccount() ? ensureAccountStyleLab(currentAccount()).activeStyleId : "tempest", "agility");
   renderForge();
   renderArmory();
   renderStageSummary();
@@ -5762,6 +7287,7 @@ function init() {
   bindEvents();
   renderSoundButtons();
   renderAccountPanel();
+  renderStyleLab();
   renderReviewList();
   renderFeedbackPanel();
   renderControlGuide();

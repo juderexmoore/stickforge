@@ -291,6 +291,62 @@ body::before {
   grid-column: 1 / -1;
 }
 
+.style-lab-top,
+.style-lab-points,
+.style-path-grid,
+.style-unlock-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.style-lab-top {
+  grid-template-columns: minmax(220px, 0.5fr) minmax(0, 1fr);
+  align-items: end;
+}
+
+.style-lab-points {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.style-pill-card,
+.style-path-card,
+.style-unlock-card {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.08)),
+    rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.style-pill-card span,
+.style-path-card span,
+.style-unlock-card span {
+  color: var(--gold);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.style-path-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.style-path-card.active {
+  border-color: rgba(232, 107, 58, 0.32);
+  box-shadow: inset 0 0 0 1px rgba(232, 107, 58, 0.18);
+}
+
+.style-unlock-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.style-training-card {
+  margin-top: 0;
+}
+
 .device-choice-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2015,6 +2071,9 @@ body.touch-device .touch-actions button {
   .main-menu-grid,
   .menu-summary,
   .menu-feature-grid,
+  .style-path-grid,
+  .style-unlock-grid,
+  .style-lab-points,
   .preset-row,
   .stage-highlight-grid,
   .set-recap-grid,
@@ -2033,7 +2092,8 @@ body.touch-device .touch-actions button {
 
   .forge-grid,
   .stats-grid,
-  .forge-details {
+  .forge-details,
+  .style-lab-top {
     grid-template-columns: 1fr;
   }
 
