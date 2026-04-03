@@ -70,6 +70,44 @@ const frameCatalog = {
       summary: "Heavy hits cause longer stun and stronger shake on clean front contact."
     }
   },
+  nodachi: {
+    label: "Nodachi",
+    classLabel: "Long",
+    kind: "long",
+    summary: "Long draw greatblade with a cleaner rising punish. Dead-on front hits launch rivals up and leave them open longer.",
+    design: "Long draw greatblade",
+    damage: 24,
+    reach: 118,
+    cooldown: 0.94,
+    knockback: 1.3,
+    arc: 0.96,
+    speed: 0.84,
+    moveScale: 0.9,
+    weight: 18,
+    special: {
+      type: "sky-launch",
+      summary: "Dead-on front hits kick rivals upward and extend the punish window."
+    }
+  },
+  halberd: {
+    label: "Halberd",
+    classLabel: "Long",
+    kind: "long",
+    summary: "Long poleaxe with broad front control. Heavy clean hits shove harder and sweep a wider punish lane.",
+    design: "Hooked poleaxe head",
+    damage: 23,
+    reach: 122,
+    cooldown: 0.96,
+    knockback: 1.36,
+    arc: 1.12,
+    speed: 0.8,
+    moveScale: 0.88,
+    weight: 20,
+    special: {
+      type: "cleave-wave",
+      summary: "Heavy clean hits shove harder and cover a broader front arc."
+    }
+  },
   katana: {
     label: "Katana",
     classLabel: "Medium",
@@ -145,6 +183,44 @@ const frameCatalog = {
     special: {
       type: "cross-cut",
       summary: "Pass-through dash slash hits quickly and strains blocks harder."
+    }
+  },
+  falchion: {
+    label: "Falchion",
+    classLabel: "Medium",
+    kind: "medium",
+    summary: "Wide medium slasher built to chew through guard. Its dash slash rips stamina off blocking rivals much faster.",
+    design: "Broad slashing falchion",
+    damage: 20,
+    reach: 88,
+    cooldown: 0.6,
+    knockback: 1.08,
+    arc: 1.2,
+    speed: 1,
+    moveScale: 1,
+    weight: 11,
+    special: {
+      type: "guard-rip",
+      summary: "Dash slashes and front hits strip much more guard stamina."
+    }
+  },
+  twinblade: {
+    label: "Twinblade",
+    classLabel: "Medium",
+    kind: "medium",
+    summary: "Balanced twin-edge medium blade. Dash becomes a two-cut rush that catches late sidesteps.",
+    design: "Split-edge twinblade",
+    damage: 18,
+    reach: 90,
+    cooldown: 0.58,
+    knockback: 1.02,
+    arc: 1.18,
+    speed: 1.08,
+    moveScale: 1.04,
+    weight: 10,
+    special: {
+      type: "twin-dash",
+      summary: "Dash chains two medium slashes instead of one."
     }
   },
   karambit: {
@@ -245,6 +321,46 @@ const frameCatalog = {
       type: "guard-pin",
       backstabBonus: 1.18,
       summary: "Block pressure is stronger and clean hits pin rivals in place for a beat."
+    }
+  },
+  kukri: {
+    label: "Kukri",
+    classLabel: "Short",
+    kind: "short",
+    summary: "Hooked short cleaver that rewards getting behind the rival. Dash becomes a brutal chopping burst with extra finish power.",
+    design: "Hooked kukri blade",
+    damage: 16,
+    reach: 57,
+    cooldown: 0.42,
+    knockback: 0.9,
+    arc: 1.12,
+    speed: 1.22,
+    moveScale: 1.1,
+    weight: 6,
+    special: {
+      type: "chop-rush",
+      backstabBonus: 1.3,
+      summary: "Dash becomes a chopping burst with extra knockback and stronger rear cuts."
+    }
+  },
+  claws: {
+    label: "Claws",
+    classLabel: "Short",
+    kind: "short",
+    summary: "A vicious short rake set. Back hits shred harder, and dash becomes a fast four-cut frenzy.",
+    design: "Raking hand claws",
+    damage: 13,
+    reach: 55,
+    cooldown: 0.36,
+    knockback: 0.74,
+    arc: 1.3,
+    speed: 1.34,
+    moveScale: 1.16,
+    weight: 5,
+    special: {
+      type: "rake-frenzy",
+      backstabBonus: 1.34,
+      summary: "Dash chains four quick rake cuts and rewards rear pressure."
     }
   },
   rapier: {
@@ -418,6 +534,44 @@ const frameCatalog = {
       summary: "Dash becomes a rushing baton flurry that keeps pressure close."
     }
   },
+  bostaff: {
+    label: "Bo Staff",
+    classLabel: "Special",
+    kind: "special",
+    summary: "A spinning reach weapon built to vault through pressure. Dash becomes a vaulting smash that pops rivals upward.",
+    design: "Long ironwood staff",
+    damage: 17,
+    reach: 90,
+    cooldown: 0.54,
+    knockback: 1.08,
+    arc: 1.2,
+    speed: 1.08,
+    moveScale: 1.08,
+    weight: 9,
+    special: {
+      type: "vault-smash",
+      summary: "Dash vaults through space and bounces clean hits upward."
+    }
+  },
+  morningstar: {
+    label: "Morning Star",
+    classLabel: "Special",
+    kind: "special",
+    summary: "A brutal chain-headed striker that caves in guard and hits with ugly front-loaded force.",
+    design: "Spiked chain mace",
+    damage: 22,
+    reach: 80,
+    cooldown: 0.84,
+    knockback: 1.4,
+    arc: 1.06,
+    speed: 0.86,
+    moveScale: 0.9,
+    weight: 18,
+    special: {
+      type: "crush-burst",
+      summary: "Heavy clean hits crack guard harder and leave a longer stagger."
+    }
+  },
   revolver: {
     label: "Revolver",
     classLabel: "Sidearm",
@@ -496,6 +650,58 @@ const frameCatalog = {
       summary: "Fires short double taps instead of a single sidearm shot."
     }
   },
+  breacher: {
+    label: "Breacher",
+    classLabel: "Sidearm",
+    kind: "sidearm",
+    family: "ranged",
+    ammoType: "bullet",
+    clipSize: 3,
+    chamberMax: 2,
+    projectileSpeed: 730,
+    reload: 1.02,
+    range: 350,
+    summary: "A close assault sidearm that loves block-breaking ammo. It hits harder than a light pistol and excels at cracking open guard.",
+    design: "Heavy breaching pistol",
+    damage: 18,
+    reach: 108,
+    cooldown: 0.38,
+    knockback: 1.06,
+    arc: 0.86,
+    speed: 1.04,
+    moveScale: 1,
+    weight: 9,
+    special: {
+      type: "breach-pop",
+      summary: "Close shots tear through guard harder and leave rougher follow-up pressure."
+    }
+  },
+  sawedoff: {
+    label: "Sawed-Off",
+    classLabel: "Sidearm",
+    kind: "sidearm",
+    family: "ranged",
+    ammoType: "bullet",
+    clipSize: 2,
+    chamberMax: 1,
+    projectileSpeed: 660,
+    reload: 0.96,
+    range: 300,
+    summary: "A brutal close-range pocket shotgun. It dumps a short spread that hits hardest up close and bucks rivals back.",
+    design: "Cut-down scatter gun",
+    damage: 23,
+    reach: 100,
+    cooldown: 0.48,
+    knockback: 1.24,
+    arc: 0.88,
+    speed: 0.98,
+    moveScale: 1.04,
+    weight: 9,
+    special: {
+      type: "scatter-burst",
+      summary: "Fires a tight cone of pellets instead of a single bullet."
+    }
+  },
   ak47: {
     label: "AK-47",
     classLabel: "Assault",
@@ -546,6 +752,58 @@ const frameCatalog = {
     special: {
       type: "ranged-assault",
       summary: "Burst rifle with quick follow-up shots and strong projectile control."
+    }
+  },
+  battlerifle: {
+    label: "Battle Rifle",
+    classLabel: "Assault",
+    kind: "assault",
+    family: "ranged",
+    ammoType: "bullet",
+    clipSize: 9,
+    chamberMax: 2,
+    projectileSpeed: 910,
+    reload: 1.2,
+    range: 520,
+    summary: "A disciplined assault rifle with clean two-round bursts and harder lane control than a spray rifle.",
+    design: "Heavy burst rifle",
+    damage: 18,
+    reach: 132,
+    cooldown: 0.28,
+    knockback: 0.98,
+    arc: 0.8,
+    speed: 1.04,
+    moveScale: 0.98,
+    weight: 13,
+    special: {
+      type: "ranged-assault",
+      summary: "Controlled rifle bursts land harder and keep steadier range pressure."
+    }
+  },
+  drumrifle: {
+    label: "Drum Rifle",
+    classLabel: "Assault",
+    kind: "assault",
+    family: "ranged",
+    ammoType: "bullet",
+    clipSize: 16,
+    chamberMax: 2,
+    projectileSpeed: 835,
+    reload: 1.34,
+    range: 500,
+    summary: "A drum-fed rifle built for long spray strings. It floods the lane with four-round bursts and keeps pressure on moving rivals.",
+    design: "Drum-fed spray rifle",
+    damage: 14,
+    reach: 128,
+    cooldown: 0.2,
+    knockback: 0.86,
+    arc: 0.82,
+    speed: 1.08,
+    moveScale: 0.98,
+    weight: 14,
+    special: {
+      type: "spray-rifle",
+      summary: "Fires dense four-round bursts and keeps stronger sustained fire pressure."
     }
   },
   marksman: {
@@ -704,6 +962,32 @@ const frameCatalog = {
       summary: "Spools into a dense stream of shots when you keep firing."
     }
   },
+  thumper: {
+    label: "Thumper",
+    classLabel: "Heavy",
+    kind: "heavy",
+    family: "ranged",
+    ammoType: "bullet",
+    clipSize: 4,
+    chamberMax: 3,
+    projectileSpeed: 710,
+    reload: 1.5,
+    range: 480,
+    summary: "A brutal slug launcher that slams rivals backward and leaves them slowed after clean body hits.",
+    design: "Thick-bore slug cannon",
+    damage: 25,
+    reach: 140,
+    cooldown: 0.56,
+    knockback: 1.34,
+    arc: 0.8,
+    speed: 0.9,
+    moveScale: 0.82,
+    weight: 23,
+    special: {
+      type: "quake-shell",
+      summary: "Heavy slug hits shove harder and leave extra slow pressure."
+    }
+  },
   longbow: {
     label: "Longbow",
     classLabel: "Special Gun",
@@ -782,6 +1066,110 @@ const frameCatalog = {
       summary: "Heavy bow bolts push through targets and keep stronger knockback."
     }
   },
+  stormbow: {
+    label: "Storm Bow",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "bolt",
+    clipSize: 2,
+    chamberMax: 3,
+    projectileSpeed: 840,
+    reload: 0.92,
+    range: 570,
+    summary: "A split-limb storm bow that throws a short bolt fan and leans into arc and shiver rune builds.",
+    design: "Storm-limbed split bow",
+    damage: 20,
+    reach: 146,
+    cooldown: 0.42,
+    knockback: 1.02,
+    arc: 0.88,
+    speed: 1.02,
+    moveScale: 0.98,
+    weight: 9,
+    special: {
+      type: "stormbow-shot",
+      summary: "Fires a short storm volley and adds extra charged pressure."
+    }
+  },
+  repeater: {
+    label: "Repeater Crossbow",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "bolt",
+    clipSize: 2,
+    chamberMax: 2,
+    projectileSpeed: 800,
+    reload: 0.86,
+    range: 500,
+    summary: "A fast cycling crossbow that throws paired bolts before it has to reload the rig.",
+    design: "Twin-limb repeater crossbow",
+    damage: 17,
+    reach: 126,
+    cooldown: 0.34,
+    knockback: 0.96,
+    arc: 0.82,
+    speed: 1.06,
+    moveScale: 0.98,
+    weight: 10,
+    special: {
+      type: "bolt-burst",
+      summary: "Fires quick paired bolts instead of a single heavy shot."
+    }
+  },
+  harpoon: {
+    label: "Harpoon Launcher",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "bolt",
+    clipSize: 1,
+    chamberMax: 2,
+    projectileSpeed: 760,
+    reload: 0.98,
+    range: 540,
+    summary: "A brutal line launcher built to drag targets out of position with hard tether-like hits.",
+    design: "Barbed harpoon launcher",
+    damage: 22,
+    reach: 146,
+    cooldown: 0.54,
+    knockback: 1.14,
+    arc: 0.82,
+    speed: 0.96,
+    moveScale: 0.92,
+    weight: 12,
+    special: {
+      type: "harpoon-shot",
+      summary: "Clean hits reel rivals back toward the shooter."
+    }
+  },
+  ballista: {
+    label: "Ballista",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "bolt",
+    clipSize: 1,
+    chamberMax: 3,
+    projectileSpeed: 900,
+    reload: 1.18,
+    range: 620,
+    summary: "A siege bolt thrower that fires huge piercing shots. It is slow to cycle, but each bolt owns the lane.",
+    design: "Mounted siege ballista",
+    damage: 27,
+    reach: 162,
+    cooldown: 0.62,
+    knockback: 1.36,
+    arc: 0.76,
+    speed: 0.88,
+    moveScale: 0.84,
+    weight: 18,
+    special: {
+      type: "ballista-shot",
+      summary: "Massive bolts pierce deeper, hit harder, and launch rivals farther."
+    }
+  },
   railgun: {
     label: "Railgun",
     classLabel: "Special Gun",
@@ -832,6 +1220,58 @@ const frameCatalog = {
     special: {
       type: "rail-lance",
       summary: "Charge rails punch through more targets and carry stronger emitter effects."
+    }
+  },
+  arcrail: {
+    label: "Arc Rail",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "rail",
+    clipSize: 3,
+    chamberMax: 3,
+    projectileSpeed: 1020,
+    reload: 1.32,
+    range: 600,
+    summary: "A shock-focused rail weapon that overwhelms rivals with fast charged lines and extra stun pressure.",
+    design: "Split-prong arc rail",
+    damage: 22,
+    reach: 152,
+    cooldown: 0.44,
+    knockback: 1.08,
+    arc: 0.7,
+    speed: 1,
+    moveScale: 0.92,
+    weight: 16,
+    special: {
+      type: "arc-rail",
+      summary: "Rail hits carry extra shock and stun even before custom emitter tuning."
+    }
+  },
+  prismrail: {
+    label: "Prism Rail",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "rail",
+    clipSize: 3,
+    chamberMax: 3,
+    projectileSpeed: 1010,
+    reload: 1.36,
+    range: 600,
+    summary: "A phase-cut rail projector that splits into twin lines and leans hard into portal, phase, and redirect builds.",
+    design: "Prism phase rail",
+    damage: 23,
+    reach: 154,
+    cooldown: 0.48,
+    knockback: 1.1,
+    arc: 0.7,
+    speed: 0.98,
+    moveScale: 0.9,
+    weight: 17,
+    special: {
+      type: "phase-rail",
+      summary: "Fires split phase rails and adds extra portal-shift pressure."
     }
   },
   "tempest-edge": {
@@ -1058,6 +1498,13 @@ const impactTypeCatalog = {
     minChambers: 1,
     allowedMounts: ["core", "ring", "split"]
   },
+  breach: {
+    label: "Breach",
+    summary: "A block-cracking payload built to wreck guard and punch rivals back harder.",
+    minChambers: 1,
+    allowedMounts: ["core", "split"],
+    ammoFamilies: ["bullet"]
+  },
   explosive: {
     label: "Explosive",
     summary: "Detonates on impact and damages a small area around the hit.",
@@ -1102,6 +1549,20 @@ const impactTypeCatalog = {
     minChambers: 2,
     allowedMounts: ["ring", "split"],
     ammoFamilies: ["rail", "bolt"]
+  },
+  rupture: {
+    label: "Rupture",
+    summary: "Cracks on impact, drains guard harder, and can trigger a delayed second bite after the first hit.",
+    minChambers: 2,
+    allowedMounts: ["core", "split"],
+    ammoFamilies: ["bullet", "rail"]
+  },
+  frost: {
+    label: "Frost",
+    summary: "Cold payload that leaves a pale wake and slows the lane with a freezing burst on impact.",
+    minChambers: 2,
+    allowedMounts: ["ring", "core"],
+    ammoFamilies: ["bullet", "bolt"]
   }
 };
 
@@ -1110,7 +1571,9 @@ const launchTypeCatalog = {
   blizzard: { label: "Blizzard Powder", summary: "Launch smoke turns into a freezing trail that slows rivals.", speed: -20, damage: 0 },
   overdrive: { label: "Overdrive Powder", summary: "Punches the round out faster for sharper travel.", speed: 110, damage: 1 },
   ember: { label: "Ember Powder", summary: "Leaves a hot flare behind the muzzle and adds burn pressure.", speed: 40, damage: 2 },
-  storm: { label: "Storm Powder", summary: "Cracks with charged smoke and boosts shock or heavy impact pressure.", speed: 55, damage: 1 }
+  storm: { label: "Storm Powder", summary: "Cracks with charged smoke and boosts shock or heavy impact pressure.", speed: 55, damage: 1 },
+  hush: { label: "Hush Powder", summary: "Soft launch smoke keeps the shot steadier and a little harder to read.", speed: 20, damage: 0 },
+  quake: { label: "Quake Powder", summary: "A heavy powder burst that trades speed for harsher shove and block crack.", speed: -30, damage: 2, knockback: 0.1, stormTrail: true }
 };
 
 const midAirTypeCatalog = {
@@ -1118,14 +1581,353 @@ const midAirTypeCatalog = {
   magnetized: { label: "Magnetized", summary: "Pulls harder toward the rival and accelerates mid-air." },
   redirect: { label: "Redirect", summary: "Mid-flight the round snaps once toward the opponent." },
   stabilizer: { label: "Stabilizer", summary: "Keeps the shot truer and faster across the lane." },
-  spiral: { label: "Spiral", summary: "Makes the round weave through the lane and become harder to read." }
+  spiral: { label: "Spiral", summary: "Makes the round weave through the lane and become harder to read." },
+  glide: { label: "Glide", summary: "Carries speed longer and keeps the shot flatter down the lane." },
+  tracer: { label: "Tracer", summary: "Burns a visible line through the lane, helping the shot stay fast and clean." }
 };
 
 const tipTypeCatalog = {
   blunt: { label: "Blunt", summary: "Breaks blocks harder and launches rivals farther.", damage: 0, knockback: 0.22, blockDrain: 8 },
   sharp: { label: "Sharp", summary: "Pierces through the target and can keep flying.", damage: 2, knockback: 0.04, blockDrain: 2 },
   spiked: { label: "Spiked", summary: "Sticks in the rival and triggers a delayed extra burst.", damage: 1, knockback: 0.1, blockDrain: 4 },
-  drill: { label: "Drill", summary: "Drills through blocks and boosts piercing pressure.", damage: 1, knockback: 0.08, blockDrain: 7 }
+  drill: { label: "Drill", summary: "Drills through blocks and boosts piercing pressure.", damage: 1, knockback: 0.08, blockDrain: 7 },
+  forked: { label: "Forked", summary: "Hooks into the target, bumps knockback, and roughs up guard on contact.", damage: 1, knockback: 0.14, blockDrain: 5 },
+  serrated: { label: "Serrated", summary: "Tears into the hit and leaves a rough delayed rip after the first contact.", damage: 1, knockback: 0.08, blockDrain: 4, delayedImpact: true }
+};
+
+const specialImpactMountCatalog = {
+  spine: { label: "Rune Spine", summary: "A straight sigil spine for clean bolt and rail builds." },
+  halo: { label: "Halo Cage", summary: "A circular cage for phase, venom, and arc infusions." },
+  lattice: { label: "Lattice Frame", summary: "A split lattice for exotic mixed payloads and unstable shot behavior." }
+};
+
+const specialPayloadTypeCatalog = {
+  focus: {
+    label: "Focus Rune",
+    summary: "A direct damage rune that keeps the shot clean, fast, and sharp.",
+    minChambers: 1,
+    allowedMounts: ["spine", "halo", "lattice"]
+  },
+  tether: {
+    label: "Tether Rune",
+    summary: "Hooks into the rival and drags them back toward the shot line.",
+    minChambers: 1,
+    allowedMounts: ["spine", "lattice"],
+    ammoFamilies: ["bolt"]
+  },
+  burst: {
+    label: "Burst Rune",
+    summary: "Splits the shot into a close-range bloom after impact or on release.",
+    minChambers: 2,
+    allowedMounts: ["lattice"],
+    ammoFamilies: ["bolt"]
+  },
+  phase: {
+    label: "Phase Rune",
+    summary: "Slides through the lane and shifts the rival's position on contact.",
+    minChambers: 2,
+    allowedMounts: ["halo", "lattice"]
+  },
+  venom: {
+    label: "Venom Rune",
+    summary: "Loads the shot with a lingering poison effect.",
+    minChambers: 2,
+    allowedMounts: ["halo", "spine"],
+    ammoFamilies: ["bolt", "rail"]
+  },
+  arc: {
+    label: "Arc Rune",
+    summary: "Electrifies the shot and increases stun pressure. Rail weapons thrive on it.",
+    minChambers: 2,
+    allowedMounts: ["halo", "spine"],
+    ammoFamilies: ["rail", "bolt"]
+  },
+  fracture: {
+    label: "Fracture Rune",
+    summary: "Turns the shot into a guard-breaking hammer line with extra shove.",
+    minChambers: 1,
+    allowedMounts: ["spine", "lattice"]
+  },
+  revenant: {
+    label: "Revenant Rune",
+    summary: "Adds a hungry after-image that can redirect and keep chasing the rival.",
+    minChambers: 3,
+    allowedMounts: ["halo", "lattice"]
+  },
+  bloom: {
+    label: "Bloom Rune",
+    summary: "Opens the shot into a wider petal bloom after a clean line through the lane.",
+    minChambers: 2,
+    allowedMounts: ["halo", "lattice"],
+    ammoFamilies: ["bolt", "rail"]
+  },
+  shiver: {
+    label: "Shiver Rune",
+    summary: "Cold rune that leaves a pale wake and slows the hit line with freezing pressure.",
+    minChambers: 2,
+    allowedMounts: ["spine", "halo"],
+    ammoFamilies: ["bolt", "rail"]
+  }
+};
+
+const specialDriveTypeCatalog = {
+  draw: { label: "Draw Tension", summary: "Balanced draw or charge with stable travel.", speed: 0, damage: 0 },
+  snap: { label: "Snap Release", summary: "Fast release that kicks the shot out harder and quicker.", speed: 90, damage: 1 },
+  winch: { label: "Winch Pull", summary: "Heavy release that hits harder and yanks more on tethered shots.", speed: -18, damage: 2, knockback: 0.08 },
+  coil: { label: "Coil Charge", summary: "Charged drive that accelerates rails and boosts arc pressure.", speed: 72, damage: 1, stormTrail: true },
+  mist: { label: "Mist Veil", summary: "Softens the release and hides the line with a cold drifting wake.", speed: 24, damage: 0, blizzardTrail: true },
+  surge: { label: "Surge Drive", summary: "Violent release with the fastest launch and a bright charged wake.", speed: 118, damage: 1, stormTrail: true }
+};
+
+const specialFieldTypeCatalog = {
+  none: { label: "None", summary: "No extra field work. The shot keeps its base line." },
+  fletch: { label: "Fletch Array", summary: "Stabilizes the body and carries speed better down the lane." },
+  seeker: { label: "Seeker Rune", summary: "Pulls the shot toward the rival once it is airborne." },
+  "phase-trim": { label: "Phase Trim", summary: "Lets the shot cut across the lane and redirect mid-flight." },
+  arcwake: { label: "Arc Wake", summary: "Builds a charged trail that sharpens shock pressure." },
+  afterimage: { label: "Afterimage", summary: "Leaves a ghost line behind the shot and makes it harder to read." },
+  glide: { label: "Glide Trim", summary: "Keeps the shot flatter and smoother across the arena." },
+  splitter: { label: "Splitter Lattice", summary: "Destabilizes the line into a split bloom or wider burst mid-flight." },
+  echo: { label: "Echo Field", summary: "Leaves a phantom follow line that can keep chasing after redirects." }
+};
+
+const specialHeadTypeCatalog = {
+  broadhead: { label: "Broadhead", summary: "Wide hunting head with stronger raw damage and heavier impact.", damage: 2, knockback: 0.08, blockDrain: 2 },
+  barbed: { label: "Barbed Head", summary: "Bites in and lingers on contact, increasing delayed pressure.", damage: 1, knockback: 0.12, blockDrain: 4 },
+  needle: { label: "Needle Head", summary: "Thin piercing head built for speed and deep line penetration.", damage: 1, knockback: 0.04, blockDrain: 2, pierce: 2, speed: 40 },
+  anchor: { label: "Anchor Head", summary: "Heavy hook head that drags harder and crushes blocks.", damage: 1, knockback: 0.2, blockDrain: 8 },
+  prism: { label: "Prism Head", summary: "An unstable crystal tip that bends shots into stranger phase behavior.", damage: 0, knockback: 0.08, blockDrain: 3, portal: 1 },
+  crescent: { label: "Crescent Head", summary: "Curved cutting head that sweeps wider and chews blocks harder.", damage: 1, knockback: 0.12, blockDrain: 5 },
+  injector: { label: "Injector Head", summary: "Needle injector that buries venom or arc effects deeper into the target.", damage: 1, knockback: 0.04, blockDrain: 2, pierce: 1 }
+};
+
+const specialAmmoRigCatalog = {
+  "bow-rig": {
+    slotTags: ["Nock", "Shaft", "Head"],
+    shotWord: "arrow",
+    headWord: "arrowhead",
+    noMidAirLabel: "No Flight Bindings",
+    labels: {
+      familyTag: "Bow Workshop",
+      note:
+        "Bows craft rune arrows: tune the shaft rig, socket runes down the arrow body, braid the flight, then stack arrows into the quiver order.",
+      chambers: "Arrow Sockets",
+      mount: "Shaft Rig",
+      impacts: "Per-Socket Runes",
+      launch: "Draw Style",
+      midAir: "Flight Bindings",
+      tip: "Arrowhead",
+      preload: "Quiver Load",
+      recipe: "Arrow",
+      impactsChip: "Runes",
+      midAirChip: "Bindings",
+      detailMount: "Arrow Rig",
+      detailStack: "Rune Spine",
+      detailLaunch: "Draw",
+      detailMidAir: "Flight Weave",
+      detailTip: "Arrowhead",
+      slotUnit: "Socket"
+    },
+    mountCatalog: pickCatalogEntries(specialImpactMountCatalog, ["spine", "halo", "lattice"], {
+      spine: { label: "Arrow Spine", summary: "A straight shaft rig for clean bow arrows." },
+      halo: { label: "Feather Halo", summary: "A wrapped feather ring for phase and shiver bow work." },
+      lattice: { label: "Split Nock", summary: "A split bow nock for bloom and burst arrow builds." }
+    }),
+    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "burst", "phase", "arc", "bloom", "shiver"]),
+    launchCatalog: pickCatalogEntries(specialDriveTypeCatalog, ["draw", "snap", "mist"], {
+      draw: { label: "Balanced Draw" },
+      snap: { label: "Snap Draw" },
+      mist: { label: "Mist Draw" }
+    }),
+    fieldCatalog: pickCatalogEntries(specialFieldTypeCatalog, ["none", "fletch", "seeker", "afterimage", "glide"]),
+    headCatalog: pickCatalogEntries(specialHeadTypeCatalog, ["broadhead", "needle", "crescent", "barbed"]),
+    defaults: {
+      mount: "spine",
+      impact: "focus",
+      launch: "draw",
+      tip: "broadhead"
+    }
+  },
+  "crossbow-rig": {
+    slotTags: ["Latch", "Body", "Head"],
+    shotWord: "bolt",
+    headWord: "bolt head",
+    noMidAirLabel: "No Flight Rails",
+    labels: {
+      familyTag: "Crossbow Workshop",
+      note:
+        "Crossbows build heavier bolt loads: brace the bolt body, seat payloads into the frame, crank the latch drive, then line the bolt with flight rails before loading the magazine.",
+      chambers: "Bolt Bays",
+      mount: "Bolt Chassis",
+      impacts: "Per-Bay Payloads",
+      launch: "Latch Drive",
+      midAir: "Flight Rails",
+      tip: "Bolt Head",
+      preload: "Magazine Load",
+      recipe: "Bolt",
+      impactsChip: "Payloads",
+      midAirChip: "Rails",
+      detailMount: "Bolt Chassis",
+      detailStack: "Bolt Stack",
+      detailLaunch: "Latch Drive",
+      detailMidAir: "Flight Rail Stack",
+      detailTip: "Bolt Head",
+      slotUnit: "Bay"
+    },
+    mountCatalog: pickCatalogEntries(specialImpactMountCatalog, ["spine", "halo", "lattice"], {
+      spine: { label: "Bolt Spine", summary: "A straight bolt spine for direct heavy crossbow shots." },
+      halo: { label: "Wheel Cage", summary: "A wheel cage that stabilizes loaded payloads before release." },
+      lattice: { label: "Repeater Rail", summary: "A split repeater rail used for burst and fracture bolt work." }
+    }),
+    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "tether", "burst", "venom", "fracture", "shiver"]),
+    launchCatalog: pickCatalogEntries(specialDriveTypeCatalog, ["draw", "snap", "winch"], {
+      draw: { label: "Latch Draw" },
+      snap: { label: "Quick Latch" },
+      winch: { label: "Crank Winch" }
+    }),
+    fieldCatalog: pickCatalogEntries(specialFieldTypeCatalog, ["none", "fletch", "seeker", "glide", "splitter"]),
+    headCatalog: pickCatalogEntries(specialHeadTypeCatalog, ["broadhead", "needle", "anchor", "barbed"]),
+    defaults: {
+      mount: "spine",
+      impact: "focus",
+      launch: "snap",
+      tip: "needle"
+    }
+  },
+  "harpoon-rig": {
+    slotTags: ["Line", "Shaft", "Barb"],
+    shotWord: "harpoon",
+    headWord: "barb head",
+    noMidAirLabel: "No Line Mods",
+    labels: {
+      familyTag: "Harpoon Rig",
+      note:
+        "Harpoon launchers build tethered line shots: tune the cable spine, seat the hook cores, set the winch, then lace line mods before locking the barb.",
+      chambers: "Cable Slots",
+      mount: "Harpoon Spine",
+      impacts: "Per-Slot Cores",
+      launch: "Winch Drive",
+      midAir: "Line Mods",
+      tip: "Barb Head",
+      preload: "Launcher Rack",
+      recipe: "Harpoon",
+      impactsChip: "Cores",
+      midAirChip: "Line Mods",
+      detailMount: "Harpoon Spine",
+      detailStack: "Cable Core Stack",
+      detailLaunch: "Winch",
+      detailMidAir: "Line Mod Stack",
+      detailTip: "Barb Head",
+      slotUnit: "Cable"
+    },
+    mountCatalog: pickCatalogEntries(specialImpactMountCatalog, ["spine", "halo", "lattice"], {
+      spine: { label: "Cable Spine", summary: "A straight harpoon spine for hard tether pulls." },
+      halo: { label: "Anchor Cage", summary: "A round cage that keeps venom and chill loads from shaking loose." },
+      lattice: { label: "Reel Brace", summary: "A reel brace built for fracture and mixed pull payloads." }
+    }),
+    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "tether", "venom", "fracture", "shiver"]),
+    launchCatalog: pickCatalogEntries(specialDriveTypeCatalog, ["winch", "snap", "mist"], {
+      winch: { label: "Tether Winch" },
+      snap: { label: "Reel Snap" },
+      mist: { label: "Fog Reel" }
+    }),
+    fieldCatalog: pickCatalogEntries(specialFieldTypeCatalog, ["none", "seeker", "afterimage", "glide", "splitter"]),
+    headCatalog: pickCatalogEntries(specialHeadTypeCatalog, ["anchor", "barbed", "needle", "injector"]),
+    defaults: {
+      mount: "spine",
+      impact: "tether",
+      launch: "winch",
+      tip: "anchor"
+    }
+  },
+  "rail-rig": {
+    slotTags: ["Emitter", "Coil", "Tip"],
+    shotWord: "rail",
+    headWord: "rail tip",
+    noMidAirLabel: "No Field Coils",
+    labels: {
+      familyTag: "Rail Foundry",
+      note:
+        "Rail weapons build charged line shots: lock emitters into the cage, feed them with a charge drive, wrap field coils around the rail, then finish the tip for the rack order.",
+      chambers: "Emitter Slots",
+      mount: "Emitter Cage",
+      impacts: "Per-Slot Emitters",
+      launch: "Charge Drive",
+      midAir: "Field Coils",
+      tip: "Rail Tip",
+      preload: "Rail Rack",
+      recipe: "Rail",
+      impactsChip: "Emitters",
+      midAirChip: "Coils",
+      detailMount: "Emitter Cage",
+      detailStack: "Emitter Stack",
+      detailLaunch: "Charge Drive",
+      detailMidAir: "Field Coil Stack",
+      detailTip: "Rail Tip",
+      slotUnit: "Emitter"
+    },
+    mountCatalog: pickCatalogEntries(specialImpactMountCatalog, ["spine", "halo", "lattice"], {
+      spine: { label: "Conductor Spine", summary: "A straight rail spine for clean emitter lines." },
+      halo: { label: "Emitter Halo", summary: "A halo cage for arc, revenant, and cold rail work." },
+      lattice: { label: "Coil Lattice", summary: "A coil lattice that splits unstable phase and fracture rails." }
+    }),
+    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "phase", "venom", "arc", "fracture", "revenant", "shiver"]),
+    launchCatalog: pickCatalogEntries(specialDriveTypeCatalog, ["coil", "mist", "surge"]),
+    fieldCatalog: pickCatalogEntries(specialFieldTypeCatalog, ["none", "seeker", "phase-trim", "arcwake", "echo"]),
+    headCatalog: pickCatalogEntries(specialHeadTypeCatalog, ["needle", "crescent", "injector", "broadhead"]),
+    defaults: {
+      mount: "halo",
+      impact: "arc",
+      launch: "coil",
+      tip: "injector"
+    }
+  },
+  "prism-rig": {
+    slotTags: ["Core", "Facet", "Prism"],
+    shotWord: "phase rail",
+    headWord: "prism head",
+    noMidAirLabel: "No Veil Mods",
+    labels: {
+      familyTag: "Prism Foundry",
+      note:
+        "Prism rails are built through phase facets instead of standard emitters: stack sigils into the lattice, charge the phase drive, then layer veil mods before locking the crystal head.",
+      chambers: "Facet Slots",
+      mount: "Prism Lattice",
+      impacts: "Per-Facet Sigils",
+      launch: "Phase Drive",
+      midAir: "Veil Mods",
+      tip: "Prism Head",
+      preload: "Prism Rack",
+      recipe: "Phase Rail",
+      impactsChip: "Sigils",
+      midAirChip: "Veils",
+      detailMount: "Prism Lattice",
+      detailStack: "Facet Stack",
+      detailLaunch: "Phase Drive",
+      detailMidAir: "Veil Stack",
+      detailTip: "Prism Head",
+      slotUnit: "Facet"
+    },
+    mountCatalog: pickCatalogEntries(specialImpactMountCatalog, ["spine", "halo", "lattice"], {
+      spine: { label: "Facet Spine", summary: "A straight facet spine for cleaner phase rails." },
+      halo: { label: "Prism Halo", summary: "A halo cage that bends phase rails into portal and revenant lines." },
+      lattice: { label: "Phase Lattice", summary: "A prism lattice used for split phase sigils and twin rail cuts." }
+    }),
+    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "phase", "arc", "revenant", "bloom", "shiver"]),
+    launchCatalog: pickCatalogEntries(specialDriveTypeCatalog, ["coil", "mist", "surge"], {
+      coil: { label: "Facet Charge" },
+      mist: { label: "Veil Charge" },
+      surge: { label: "Phase Surge" }
+    }),
+    fieldCatalog: pickCatalogEntries(specialFieldTypeCatalog, ["none", "phase-trim", "afterimage", "splitter", "echo", "seeker"]),
+    headCatalog: pickCatalogEntries(specialHeadTypeCatalog, ["prism", "needle", "crescent", "injector"]),
+    defaults: {
+      mount: "halo",
+      impact: "phase",
+      launch: "surge",
+      tip: "prism"
+    }
+  }
 };
 
 const stylePathCatalog = {
@@ -1697,8 +2499,152 @@ function countMatches(list, id) {
   return stringArray(list).filter((entry) => entry === id).length;
 }
 
+function isSpecialGunFrame(frame) {
+  return frame?.kind === "gun-special";
+}
+
+function pickCatalogEntries(source, ids, overrides = {}) {
+  return Object.fromEntries(
+    ids
+      .filter((id) => source[id])
+      .map((id) => [id, { ...source[id], ...(overrides[id] || {}) }])
+  );
+}
+
+function frameCatalogId(frame) {
+  if (!frame) {
+    return "";
+  }
+  const match = Object.entries(frameCatalog).find(([, entry]) => entry === frame);
+  return match?.[0] || frame.frameId || "";
+}
+
+function specialAmmoRigForFrame(frame) {
+  if (!isSpecialGunFrame(frame)) {
+    return null;
+  }
+  const frameId = frameCatalogId(frame);
+  if (["longbow", "warbow", "stormbow"].includes(frameId)) {
+    return "bow-rig";
+  }
+  if (["crossbow", "repeater", "ballista"].includes(frameId)) {
+    return "crossbow-rig";
+  }
+  if (frameId === "harpoon") {
+    return "harpoon-rig";
+  }
+  if (frameId === "prismrail") {
+    return "prism-rig";
+  }
+  if (["railgun", "coillance", "arcrail"].includes(frameId)) {
+    return "rail-rig";
+  }
+  return frame?.ammoType === "rail" ? "rail-rig" : "bow-rig";
+}
+
+function specialAmmoRigConfig(frame) {
+  const rigId = specialAmmoRigForFrame(frame);
+  return rigId ? specialAmmoRigCatalog[rigId] || null : null;
+}
+
+function specialAmmoSlotTag(frame, index, total) {
+  const slotTags = specialAmmoRigConfig(frame)?.slotTags;
+  if (!slotTags?.length) {
+    return index === 0
+      ? frame?.ammoType === "rail" ? "Emitter" : "Lead"
+      : index === total - 1
+        ? frame?.ammoType === "rail" ? "Tail" : "Head"
+        : "Core";
+  }
+  if (total <= 1) {
+    return slotTags[1] || slotTags[0];
+  }
+  if (index === 0) {
+    return slotTags[0];
+  }
+  if (index === total - 1) {
+    return slotTags[slotTags.length - 1];
+  }
+  return slotTags[1] || slotTags[0];
+}
+
+function impactMountCatalogForFrame(frame) {
+  return isSpecialGunFrame(frame) ? specialAmmoRigConfig(frame)?.mountCatalog || specialImpactMountCatalog : impactMountCatalog;
+}
+
+function impactTypeCatalogForFrame(frame) {
+  return isSpecialGunFrame(frame) ? specialAmmoRigConfig(frame)?.impactCatalog || specialPayloadTypeCatalog : impactTypeCatalog;
+}
+
+function launchCatalogForFrame(frame) {
+  return isSpecialGunFrame(frame) ? specialAmmoRigConfig(frame)?.launchCatalog || specialDriveTypeCatalog : launchTypeCatalog;
+}
+
+function midAirCatalogForFrame(frame) {
+  return isSpecialGunFrame(frame) ? specialAmmoRigConfig(frame)?.fieldCatalog || specialFieldTypeCatalog : midAirTypeCatalog;
+}
+
+function tipCatalogForFrame(frame) {
+  return isSpecialGunFrame(frame) ? specialAmmoRigConfig(frame)?.headCatalog || specialHeadTypeCatalog : tipTypeCatalog;
+}
+
+function defaultImpactMountForFrame(frame) {
+  return isSpecialGunFrame(frame) ? specialAmmoRigConfig(frame)?.defaults?.mount || "spine" : "core";
+}
+
+function defaultImpactTypeForFrame(frame) {
+  return isSpecialGunFrame(frame) ? specialAmmoRigConfig(frame)?.defaults?.impact || "focus" : "standard";
+}
+
+function defaultLaunchTypeForFrame(frame) {
+  return isSpecialGunFrame(frame) ? specialAmmoRigConfig(frame)?.defaults?.launch || "draw" : "standard";
+}
+
+function defaultTipTypeForFrame(frame) {
+  return isSpecialGunFrame(frame) ? specialAmmoRigConfig(frame)?.defaults?.tip || "broadhead" : "sharp";
+}
+
+function ammoWorkshopLabelsForFrame(frame) {
+  if (isSpecialGunFrame(frame)) {
+    const rig = specialAmmoRigConfig(frame);
+    if (rig) {
+      return {
+        ...rig.labels,
+        slotTags: rig.slotTags,
+        shotWord: rig.shotWord,
+        headWord: rig.headWord,
+        noMidAirLabel: rig.noMidAirLabel
+      };
+    }
+  }
+  return {
+    familyTag: frame?.ammoType === "rail" ? "Rail Work" : frame?.ammoType === "bolt" ? "Bolt Work" : "Bullet Work",
+    note:
+      "Craft ammo separately, then stack it into the case in the exact order the gun will load it.",
+    chambers: "Impact Chambers",
+    mount: "Chamber Layout",
+    impacts: "Per-Chamber Impacts",
+    launch: "Launch",
+    midAir: "Mid Air Add-Ons",
+    tip: "Tip",
+    preload: "Preload Ammo",
+    recipe: "Recipe",
+    impactsChip: "Impacts",
+    midAirChip: "Mid Air",
+    detailMount: "Impact Chamber",
+    detailStack: "Chamber Stack",
+    detailLaunch: "Launch",
+    detailMidAir: "Mid Flight Stack",
+    detailTip: "Tip",
+    slotUnit: "Chamber",
+    shotWord: frame?.ammoType === "rail" ? "rail" : frame?.ammoType === "bolt" ? "bolt" : "round",
+    headWord: "tip",
+    noMidAirLabel: "No Add-Ons"
+  };
+}
+
 function validImpactIdsForFrame(frame, chambers, mount) {
-  return Object.entries(impactTypeCatalog)
+  return Object.entries(impactTypeCatalogForFrame(frame))
     .filter(([, impact]) =>
       chambers >= impact.minChambers &&
       impact.allowedMounts.includes(mount) &&
@@ -1709,7 +2655,7 @@ function validImpactIdsForFrame(frame, chambers, mount) {
 
 function normalizeChamberImpacts(frame, chambers, mount, requested) {
   const valid = validImpactIdsForFrame(frame, chambers, mount);
-  const fallback = valid[0] || "standard";
+  const fallback = valid[0] || defaultImpactTypeForFrame(frame);
   const source = stringArray(requested);
   return Array.from({ length: chambers }, (_, index) => {
     const requestedId = source[index] || source[source.length - 1] || fallback;
@@ -1717,33 +2663,40 @@ function normalizeChamberImpacts(frame, chambers, mount, requested) {
   });
 }
 
-function normalizeMidAirAddons(requested) {
-  return stringArray(requested).filter((addon) => addon !== "none" && midAirTypeCatalog[addon]);
+function normalizeMidAirAddons(frame, requested) {
+  const catalog = midAirCatalogForFrame(frame);
+  return stringArray(requested).filter((addon) => addon !== "none" && catalog[addon]);
 }
 
-function impactLabelForChambers(chamberImpacts) {
+function impactLabelForChambers(frame, chamberImpacts) {
+  const catalog = impactTypeCatalogForFrame(frame);
   const unique = [...new Set(stringArray(chamberImpacts))];
   if (!unique.length) {
-    return "Standard";
+    return catalog[defaultImpactTypeForFrame(frame)]?.label || defaultImpactTypeForFrame(frame);
   }
-  return unique.map((id) => impactTypeCatalog[id]?.label || id).join(" + ");
+  return unique.map((id) => catalog[id]?.label || id).join(" + ");
 }
 
-function midAirLabelForAddons(addons) {
+function midAirLabelForAddons(frame, addons) {
+  const catalog = midAirCatalogForFrame(frame);
   const list = stringArray(addons);
   if (!list.length) {
-    return "No Add-Ons";
+    return ammoWorkshopLabelsForFrame(frame).noMidAirLabel;
   }
-  return list.map((id) => midAirTypeCatalog[id]?.label || id).join(" + ");
+  return list.map((id) => catalog[id]?.label || id).join(" + ");
 }
 
-function ammoRecipeNameFromParts(chamberImpacts, tipType, launchType) {
+function ammoRecipeNameFromParts(frame, chamberImpacts, tipType, launchType) {
+  const labels = ammoWorkshopLabelsForFrame(frame);
+  const impactCatalog = impactTypeCatalogForFrame(frame);
+  const tipCatalog = tipCatalogForFrame(frame);
+  const launchTypeSet = launchCatalogForFrame(frame);
   const impacts = [...new Set(stringArray(chamberImpacts))]
-    .map((id) => impactTypeCatalog[id]?.label.split(" ")[0] || id)
+    .map((id) => impactCatalog[id]?.label.split(" ")[0] || id)
     .slice(0, 2)
     .join("-");
-  const tip = tipTypeCatalog[tipType]?.label || "Tip";
-  const launch = launchTypeCatalog[launchType]?.label.split(" ")[0] || "Std";
+  const tip = tipCatalog[tipType]?.label || labels.detailTip || (isSpecialGunFrame(frame) ? "Head" : "Tip");
+  const launch = launchTypeSet[launchType]?.label.split(" ")[0] || labels.detailLaunch || (isSpecialGunFrame(frame) ? "Drive" : "Std");
   return `${impacts || "Standard"} ${tip} ${launch}`.slice(0, 28);
 }
 
@@ -1771,55 +2724,139 @@ function ammoCaseCapacityForFrame(frame, recipes, requestedAmmo) {
 
 function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || frameCatalog.longbow) {
   const normalized = normalizeForgeState(forge);
+  const labels = ammoWorkshopLabelsForFrame(frame);
   const chambers = clamp(Number(normalized.impactChambers || 1), 1, Math.max(1, frame.chamberMax || 1));
   const mount = compatibleImpactMount(frame, normalized.impactMount);
   const chamberImpacts = normalizeChamberImpacts(frame, chambers, mount, normalized.chamberImpacts || normalized.impactType);
   const uniqueImpacts = [...new Set(chamberImpacts)];
-  const launchType = launchTypeCatalog[normalized.launchType] ? normalized.launchType : "standard";
-  const tipType = tipTypeCatalog[normalized.tipType] ? normalized.tipType : "sharp";
-  const midAirAddons = normalizeMidAirAddons(normalized.midAirAddons || normalized.midAirType);
+  const launchTypeSet = launchCatalogForFrame(frame);
+  const tipTypeSet = tipCatalogForFrame(frame);
+  const launchType = launchTypeSet[normalized.launchType] ? normalized.launchType : defaultLaunchTypeForFrame(frame);
+  const tipType = tipTypeSet[normalized.tipType] ? normalized.tipType : defaultTipTypeForFrame(frame);
+  const midAirAddons = normalizeMidAirAddons(frame, normalized.midAirAddons || normalized.midAirType);
   const quality = clamp(Number(normalized.forgeQuality ?? 0.5), 0.2, 1);
-  const magnetCount = countMatches(midAirAddons, "magnetized");
-  const redirectCount = countMatches(midAirAddons, "redirect");
-  const spiralCount = countMatches(midAirAddons, "spiral");
-  const stabilizerCount = countMatches(midAirAddons, "stabilizer");
-  const explosiveCount = countMatches(chamberImpacts, "explosive");
-  const shrapnelCount = countMatches(chamberImpacts, "shrapnel");
-  const scatterCount = countMatches(chamberImpacts, "scatter");
-  const imploderCount = countMatches(chamberImpacts, "imploder");
-  const shockCount = countMatches(chamberImpacts, "shock");
-  const poisonCount = countMatches(chamberImpacts, "poison");
-  const portalCount = countMatches(chamberImpacts, "portal");
-  const standardCount = countMatches(chamberImpacts, "standard");
-  const tip = tipTypeCatalog[tipType];
-  const launch = launchTypeCatalog[launchType];
+  const tip = tipTypeSet[tipType];
+  const launch = launchTypeSet[launchType];
   const summaryBits = [
-    `${chambers} chamber${chambers === 1 ? "" : "s"}`,
-    impactLabelForChambers(chamberImpacts),
+    `${chambers} ${(labels.slotUnit || (isSpecialGunFrame(frame) ? "Slot" : "Chamber")).toLowerCase()}${chambers === 1 ? "" : "s"}`,
+    impactLabelForChambers(frame, chamberImpacts),
     launch.label,
-    midAirAddons.length ? midAirLabelForAddons(midAirAddons) : null,
-    `${tip.label} tip`
+    midAirAddons.length ? midAirLabelForAddons(frame, midAirAddons) : null,
+    `${tip.label} ${labels.headWord || (isSpecialGunFrame(frame) ? "head" : "tip")}`
   ].filter(Boolean);
 
   const recipe = {
     id: forge?.ammoRecipeId || makeId("ammo"),
-    name: ammoRecipeNameFromParts(chamberImpacts, tipType, launchType),
+    name: ammoRecipeNameFromParts(frame, chamberImpacts, tipType, launchType),
     ammoFamily: ammoFamilyForFrame(frame),
     impactChambers: chambers,
     impactMount: mount,
-    impactMountLabel: impactMountCatalog[mount]?.label || mount,
+    impactMountLabel: impactMountCatalogForFrame(frame)[mount]?.label || mount,
     chamberImpacts,
     impactTypes: uniqueImpacts,
-    impactLabel: impactLabelForChambers(chamberImpacts),
+    impactLabel: impactLabelForChambers(frame, chamberImpacts),
     launchType,
     launchLabel: launch.label,
     midAirAddons,
-    midAirLabel: midAirLabelForAddons(midAirAddons),
+    midAirLabel: midAirLabelForAddons(frame, midAirAddons),
     tipType,
     tipLabel: tip.label,
+    specialRig: specialAmmoRigForFrame(frame),
     quality,
-    qualityLabel: forgeRatingLabel(quality),
-    damageBonus:
+    qualityLabel: forgeRatingLabel(quality)
+  };
+  if (isSpecialGunFrame(frame)) {
+    const focusCount = countMatches(chamberImpacts, "focus");
+    const tetherCount = countMatches(chamberImpacts, "tether");
+    const burstCount = countMatches(chamberImpacts, "burst");
+    const phaseCount = countMatches(chamberImpacts, "phase");
+    const venomCount = countMatches(chamberImpacts, "venom");
+    const arcCount = countMatches(chamberImpacts, "arc");
+    const fractureCount = countMatches(chamberImpacts, "fracture");
+    const revenantCount = countMatches(chamberImpacts, "revenant");
+    const bloomCount = countMatches(chamberImpacts, "bloom");
+    const shiverCount = countMatches(chamberImpacts, "shiver");
+    const fletchCount = countMatches(midAirAddons, "fletch");
+    const seekerCount = countMatches(midAirAddons, "seeker");
+    const phaseTrimCount = countMatches(midAirAddons, "phase-trim");
+    const arcwakeCount = countMatches(midAirAddons, "arcwake");
+    const afterimageCount = countMatches(midAirAddons, "afterimage");
+    const glideCount = countMatches(midAirAddons, "glide");
+    const splitterCount = countMatches(midAirAddons, "splitter");
+    const echoCount = countMatches(midAirAddons, "echo");
+    recipe.damageBonus =
+      chambers * 2 +
+      focusCount * 2 +
+      burstCount +
+      bloomCount +
+      arcCount +
+      venomCount +
+      fractureCount * 2 +
+      phaseCount +
+      shiverCount +
+      revenantCount +
+      (launch.damage || 0) +
+      (tip.damage || 0);
+    recipe.speedBonus =
+      (launch.speed || 0) +
+      (tip.speed || 0) +
+      fletchCount * 58 +
+      glideCount * 42 +
+      seekerCount * 22 +
+      afterimageCount * 14 +
+      phaseTrimCount * 18 +
+      quality * 24;
+    recipe.knockbackBonus =
+      chambers * 0.05 +
+      tetherCount * 0.08 +
+      fractureCount * 0.1 +
+      bloomCount * 0.05 +
+      shiverCount * 0.04 +
+      (launch.knockback || 0) +
+      (tip.knockback || 0);
+    recipe.blockBreakBonus =
+      (tip.blockDrain || 0) +
+      fractureCount * 4 +
+      tetherCount * 2 +
+      bloomCount * 2 +
+      burstCount * 2 +
+      focusCount;
+    recipe.projectilePierceBonus =
+      (tip.pierce || 0) +
+      focusCount +
+      (tipType === "needle" ? 1 : 0);
+    recipe.delayedImpact = Boolean(tipType === "barbed" || burstCount || tip.delayedImpact);
+    recipe.homingStrength = seekerCount * 0.7 + revenantCount * 0.45 + echoCount * 0.2;
+    recipe.redirectCharges = phaseTrimCount + revenantCount + echoCount;
+    recipe.blizzardTrail = Boolean(launch.blizzardTrail || shiverCount > 0);
+    recipe.emberTrail = false;
+    recipe.stormTrail = Boolean(launch.stormTrail || arcwakeCount > 0 || (arcCount > 0 && frame.ammoType === "rail"));
+    recipe.spiralCount = afterimageCount + Math.max(0, revenantCount - 1);
+    recipe.scatterImpact = burstCount > 0 || bloomCount > 0 || splitterCount > 0;
+    recipe.pullImpact = tetherCount > 0 || tipType === "anchor";
+    recipe.explosiveBoost = burstCount * 0.07 + bloomCount * 0.09 + splitterCount * 0.05;
+    recipe.shockCount = arcCount + arcwakeCount + (tipType === "injector" ? 1 : 0);
+    recipe.poisonCount = venomCount + (tipType === "injector" ? 1 : 0);
+    recipe.portalCount = phaseCount + revenantCount + (tip.portal || 0);
+    recipe.slowCount = shiverCount;
+    recipe.ruptureCount = tipType === "barbed" ? 1 : 0;
+  } else {
+    const magnetCount = countMatches(midAirAddons, "magnetized");
+    const redirectCount = countMatches(midAirAddons, "redirect");
+    const spiralCount = countMatches(midAirAddons, "spiral");
+    const stabilizerCount = countMatches(midAirAddons, "stabilizer");
+    const tracerCount = countMatches(midAirAddons, "tracer");
+    const explosiveCount = countMatches(chamberImpacts, "explosive");
+    const shrapnelCount = countMatches(chamberImpacts, "shrapnel");
+    const scatterCount = countMatches(chamberImpacts, "scatter");
+    const imploderCount = countMatches(chamberImpacts, "imploder");
+    const shockCount = countMatches(chamberImpacts, "shock");
+    const poisonCount = countMatches(chamberImpacts, "poison");
+    const portalCount = countMatches(chamberImpacts, "portal");
+    const ruptureCount = countMatches(chamberImpacts, "rupture");
+    const frostCount = countMatches(chamberImpacts, "frost");
+    const standardCount = countMatches(chamberImpacts, "standard");
+    recipe.damageBonus =
       chambers * 2 +
       explosiveCount * 2 +
       shrapnelCount +
@@ -1827,46 +2864,54 @@ function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || f
       poisonCount +
       portalCount +
       scatterCount +
+      ruptureCount +
+      frostCount +
       (launch.damage || 0) +
-      (tip.damage || 0),
-    speedBonus:
+      (tip.damage || 0);
+    recipe.speedBonus =
       (launch.speed || 0) +
       stabilizerCount * 55 +
       magnetCount * 28 +
       spiralCount * 12 +
-      quality * 24,
-    knockbackBonus:
+      tracerCount * 34 +
+      quality * 24;
+    recipe.knockbackBonus =
       chambers * 0.06 +
       explosiveCount * 0.08 +
       scatterCount * 0.06 +
       imploderCount * 0.04 +
-      (tip.knockback || 0),
-    blockBreakBonus:
+      ruptureCount * 0.05 +
+      frostCount * 0.03 +
+      (launch.knockback || 0) +
+      (tip.knockback || 0);
+    recipe.blockBreakBonus =
       (tip.blockDrain || 0) +
       scatterCount * 3 +
       explosiveCount * 2 +
       shrapnelCount * 2 +
-      standardCount,
-    projectilePierceBonus:
+      ruptureCount * 4 +
+      standardCount;
+    recipe.projectilePierceBonus =
       (tipType === "sharp" ? 1 : 0) +
       (tipType === "drill" ? 2 : 0) +
-      countMatches(chamberImpacts, "standard") * 0 +
-      countMatches(chamberImpacts, "shock") * 0,
-    delayedImpact: tipType === "spiked",
-    homingStrength: magnetCount * 0.5,
-    redirectCharges: redirectCount,
-    blizzardTrail: launchType === "blizzard",
-    emberTrail: launchType === "ember",
-    stormTrail: launchType === "storm",
-    spiralCount,
-    scatterImpact: scatterCount > 0,
-    pullImpact: imploderCount > 0,
-    explosiveBoost: explosiveCount * 0.12,
-    shockCount,
-    poisonCount,
-    portalCount,
-    summary: `${summaryBits.join(" | ")}.`
-  };
+      (tipType === "forked" ? 1 : 0);
+    recipe.delayedImpact = Boolean(tipType === "spiked" || tip.delayedImpact || ruptureCount > 0);
+    recipe.homingStrength = magnetCount * 0.5;
+    recipe.redirectCharges = redirectCount;
+    recipe.blizzardTrail = Boolean(launchType === "blizzard" || frostCount > 0);
+    recipe.emberTrail = launchType === "ember";
+    recipe.stormTrail = Boolean(launchType === "storm" || launch.stormTrail);
+    recipe.spiralCount = spiralCount;
+    recipe.scatterImpact = scatterCount > 0;
+    recipe.pullImpact = imploderCount > 0;
+    recipe.explosiveBoost = explosiveCount * 0.12;
+    recipe.shockCount = shockCount;
+    recipe.poisonCount = poisonCount;
+    recipe.portalCount = portalCount;
+    recipe.slowCount = frostCount;
+    recipe.ruptureCount = ruptureCount + (tipType === "serrated" ? 1 : 0);
+  }
+  recipe.summary = `${summaryBits.join(" | ")}.`;
   recipe.signature = ammoRecipeSignature(recipe);
   return recipe;
 }
@@ -1875,20 +2920,21 @@ function ammoRoundListForWeapon(weapon) {
   if (!isRangedWeapon(weapon)) {
     return [];
   }
+  const frame = frameCatalog[weapon.frameId] || frameCatalog.longbow;
   const fallbackRound =
     weapon.ammoPrototype ||
     buildAmmoRecipeFromForge(
       {
         frame: weapon.frameId,
         impactChambers: weapon.impactChambers || 1,
-        impactMount: weapon.impactMount || "core",
-        chamberImpacts: weapon.chamberImpacts || [weapon.impactType || "standard"],
-        launchType: weapon.launchType || "standard",
+        impactMount: weapon.impactMount || defaultImpactMountForFrame(frame),
+        chamberImpacts: weapon.chamberImpacts || [weapon.impactType || defaultImpactTypeForFrame(frame)],
+        launchType: weapon.launchType || defaultLaunchTypeForFrame(frame),
         midAirAddons: weapon.midAirAddons || [],
-        tipType: weapon.tipType || "sharp",
+        tipType: weapon.tipType || defaultTipTypeForFrame(frame),
         forgeQuality: weapon.forgeQuality || 0.5
       },
-      frameCatalog[weapon.frameId] || frameCatalog.longbow
+      frame
     );
   const rounds = Array.isArray(weapon.ammoCaseRounds) && weapon.ammoCaseRounds.length
     ? weapon.ammoCaseRounds
@@ -1904,13 +2950,26 @@ function ammoRoundListForWeapon(weapon) {
 function impactAccentColor(impactId) {
   const palette = {
     standard: "#f1e7d6",
+    breach: "#ffd08f",
     explosive: "#ffb16b",
     shrapnel: "#f5f5f5",
     scatter: "#ffe49a",
     portal: "#b596ff",
     imploder: "#9eb7ff",
     shock: "#9fe8ff",
-    poison: "#9ef58c"
+    poison: "#9ef58c",
+    rupture: "#ff9275",
+    frost: "#b8ecff",
+    focus: "#f4f0e8",
+    tether: "#8ce0ff",
+    burst: "#ffd59a",
+    phase: "#c5a7ff",
+    venom: "#86ef8d",
+    arc: "#8fe8ff",
+    fracture: "#ffc27a",
+    revenant: "#e6b7ff",
+    bloom: "#ffd7b2",
+    shiver: "#d0f2ff"
   };
   return palette[impactId] || "#f1e7d6";
 }
@@ -1998,23 +3057,28 @@ function ammoFamilyForFrame(frame) {
   return frame?.ammoType || "bullet";
 }
 
-function compatibleImpactMount(frame, requestedMount = "core") {
-  const requested = impactMountCatalog[requestedMount] ? requestedMount : "core";
-  const allowedMounts = requested === "split" && frame?.chamberMax < 2 ? ["core"] : Object.keys(impactMountCatalog);
+function compatibleImpactMount(frame, requestedMount = defaultImpactMountForFrame(frame)) {
+  const mountCatalog = impactMountCatalogForFrame(frame);
+  const fallback = defaultImpactMountForFrame(frame);
+  const requested = mountCatalog[requestedMount] ? requestedMount : fallback;
+  const disallowedSplit = !isSpecialGunFrame(frame) && requested === "split" && frame?.chamberMax < 2;
+  const allowedMounts = disallowedSplit ? [fallback] : Object.keys(mountCatalog);
   return allowedMounts.includes(requested) ? requested : allowedMounts[0];
 }
 
-function compatibleImpactType(frame, chambers, mount, requestedImpact = "standard") {
+function compatibleImpactType(frame, chambers, mount, requestedImpact = defaultImpactTypeForFrame(frame)) {
   const ammoFamily = ammoFamilyForFrame(frame);
-  const requested = impactTypeCatalog[requestedImpact] ? requestedImpact : "standard";
-  const valid = Object.entries(impactTypeCatalog)
+  const impactCatalog = impactTypeCatalogForFrame(frame);
+  const fallback = defaultImpactTypeForFrame(frame);
+  const requested = impactCatalog[requestedImpact] ? requestedImpact : fallback;
+  const valid = Object.entries(impactCatalog)
     .filter(([, impact]) =>
       chambers >= impact.minChambers &&
       impact.allowedMounts.includes(mount) &&
       (!impact.ammoFamilies || impact.ammoFamilies.includes(ammoFamily))
     )
     .map(([id]) => id);
-  return valid.includes(requested) ? requested : (valid[0] || "standard");
+  return valid.includes(requested) ? requested : (valid[0] || fallback);
 }
 
 function effectivePreloadAmmo(frame, chambers, requestedAmmo) {
@@ -2043,10 +3107,12 @@ function normalizeForgeState(forge = state.forge) {
     forge.chamberImpacts || forge.impactType
   );
   const impactType = chamberImpacts[0] || compatibleImpactType(frame, impactChambers, impactMount, forge.impactType);
-  const launchType = launchTypeCatalog[forge.launchType] ? forge.launchType : "standard";
-  const midAirAddons = normalizeMidAirAddons(forge.midAirAddons || forge.midAirType);
+  const launchTypeSet = launchCatalogForFrame(frame);
+  const launchType = launchTypeSet[forge.launchType] ? forge.launchType : defaultLaunchTypeForFrame(frame);
+  const midAirAddons = normalizeMidAirAddons(frame, forge.midAirAddons || forge.midAirType);
   const midAirType = midAirAddons[0] || "none";
-  const tipType = tipTypeCatalog[forge.tipType] ? forge.tipType : "sharp";
+  const tipTypeSet = tipCatalogForFrame(frame);
+  const tipType = tipTypeSet[forge.tipType] ? forge.tipType : defaultTipTypeForFrame(frame);
   const preloadAmmo = effectivePreloadAmmo(frame, impactChambers, forge.preloadAmmo);
   return {
     ...forge,
@@ -2102,7 +3168,9 @@ function forgeGameModeForWeapon(source) {
   }
   if (frame.family === "ranged") {
     if (frame.ammoType === "bolt") {
-      return frame.frameId === "crossbow" || frame.label === "Crossbow" ? "bolt-latch" : "bow-string";
+      return ["crossbow", "repeater", "harpoon"].includes(frame.frameId || "") || ["Crossbow", "Repeater Crossbow", "Harpoon Launcher"].includes(frame.label)
+        ? "bolt-latch"
+        : "bow-string";
     }
     if (frame.ammoType === "rail") {
       return frame.frameId === "coillance" || frame.label === "Coil Lance" ? "rail-bore" : "rail-align";
@@ -2116,7 +3184,14 @@ function forgeGameModeForWeapon(source) {
     return "medium";
   }
   if (frame.kind === "special") {
-    return frame.special?.type || "special";
+    const specialMode = frame.special?.type || "special";
+    if (["combo-barrage", "shockwave-slam", "reaper-hook", "axe-throw"].includes(specialMode)) {
+      return specialMode;
+    }
+    if (["crush-burst", "fortress-break"].includes(specialMode)) {
+      return "long";
+    }
+    return "medium";
   }
   return frame.kind;
 }
@@ -2711,6 +3786,12 @@ function syncForgeSelectors() {
   ui.preloadAmmoLabel.hidden = !ranged;
 
   if (ranged) {
+    const labels = ammoWorkshopLabelsForFrame(frame);
+    const mountCatalog = impactMountCatalogForFrame(frame);
+    const impactCatalog = impactTypeCatalogForFrame(frame);
+    const driveCatalog = launchCatalogForFrame(frame);
+    const fieldCatalog = midAirCatalogForFrame(frame);
+    const headCatalog = tipCatalogForFrame(frame);
     populateSelect(
       ui.impactChambers,
       Object.fromEntries(Array.from({ length: Math.max(1, frame.chamberMax || 1) }, (_, index) => {
@@ -2720,22 +3801,22 @@ function syncForgeSelectors() {
     );
     ui.impactChambers.value = `${state.forge.impactChambers}`;
 
-    populateSelect(ui.impactMount, impactMountCatalog);
+    populateSelect(ui.impactMount, mountCatalog);
     ui.impactMount.value = state.forge.impactMount;
 
     const compatibleImpacts = Object.fromEntries(
       validImpactIdsForFrame(frame, state.forge.impactChambers, state.forge.impactMount)
-        .map((id) => [id, impactTypeCatalog[id]])
+        .map((id) => [id, impactCatalog[id]])
     );
 
-    populateSelect(ui.launchType, launchTypeCatalog);
+    populateSelect(ui.launchType, driveCatalog);
     ui.launchType.value = state.forge.launchType;
     populateSelect(
       ui.midAirType,
-      Object.fromEntries(Object.entries(midAirTypeCatalog).filter(([id]) => id !== "none"))
+      Object.fromEntries(Object.entries(fieldCatalog).filter(([id]) => id !== "none"))
     );
-    ui.midAirType.value = state.forge.midAirAddons[0] || "magnetized";
-    populateSelect(ui.tipType, tipTypeCatalog);
+    ui.midAirType.value = state.forge.midAirAddons[0] || Object.keys(fieldCatalog).find((id) => id !== "none") || "none";
+    populateSelect(ui.tipType, headCatalog);
     ui.tipType.value = state.forge.tipType;
 
     const maxLoaded = effectivePreloadAmmo(frame, state.forge.impactChambers, frame.clipSize);
@@ -2743,7 +3824,7 @@ function syncForgeSelectors() {
       ui.preloadAmmo,
       Object.fromEntries(Array.from({ length: maxLoaded }, (_, index) => {
         const value = `${index + 1}`;
-        return [value, { label: `${value} ${frame.ammoType}` }];
+        return [value, { label: `${value} ${isSpecialGunFrame(frame) ? labels.recipe.toLowerCase() : frame.ammoType}` }];
       }))
     );
     ui.preloadAmmo.value = `${Math.min(state.forge.preloadAmmo, maxLoaded)}`;
@@ -3387,6 +4468,164 @@ function saveSettingsState() {
   } catch (error) {
     // Ignore storage failures; settings can still work for the current session.
   }
+}
+
+function cloneAmmoRecipe(recipe) {
+  if (!recipe || typeof recipe !== "object") {
+    return null;
+  }
+  const cloned = {
+    ...recipe,
+    chamberImpacts: [...(recipe.chamberImpacts || [])],
+    impactTypes: [...(recipe.impactTypes || [])],
+    midAirAddons: [...(recipe.midAirAddons || [])]
+  };
+  cloned.id = cloned.id || makeId("ammo");
+  cloned.signature = cloned.signature || ammoRecipeSignature(cloned);
+  return cloned;
+}
+
+function forgeBlueprintFromWeapon(weapon) {
+  const ammoCaseIds = Array.isArray(weapon?.ammoCaseIds) ? [...weapon.ammoCaseIds] : [];
+  if (!ammoCaseIds.length && Array.isArray(weapon?.ammoCaseRounds)) {
+    weapon.ammoCaseRounds.forEach((recipe) => {
+      const signature = recipe.signature || ammoRecipeSignature(recipe);
+      const existing = state.ammoRack.find((entry) => entry.signature === signature);
+      const rackEntry = existing || {
+        ...cloneAmmoRecipe(recipe),
+        signature
+      };
+      if (!existing) {
+        state.ammoRack.unshift(rackEntry);
+      }
+      ammoCaseIds.push(rackEntry.id);
+    });
+  }
+  const ammoPrototype = weapon?.ammoPrototype || null;
+  const frame = frameCatalog[weapon?.frameId || weapon?.frame] || frameCatalog.saber;
+  return {
+    id: weapon?.id || makeId("weapon"),
+    name: String(weapon?.name || "Ashbite").trim().slice(0, 12) || "Ashbite",
+    family: isRangedWeapon(weapon) ? "ranged" : "melee",
+    kind: frameCatalog[weapon?.frameId]?.kind || weapon?.kind || "medium",
+    frame: weapon?.frameId || weapon?.frame || "saber",
+    material: weapon?.materialId || weapon?.material || "sunsteel",
+    edge: weapon?.edgeId || weapon?.edge || "duelist",
+    impactChambers: weapon?.impactChambers || 1,
+    impactMount: weapon?.impactMount || defaultImpactMountForFrame(frame),
+    impactType: weapon?.impactType || defaultImpactTypeForFrame(frame),
+    chamberImpacts:
+      ammoPrototype?.chamberImpacts ||
+      weapon?.chamberImpacts ||
+      [weapon?.impactType || defaultImpactTypeForFrame(frame)],
+    launchType: weapon?.launchType || defaultLaunchTypeForFrame(frame),
+    midAirType: weapon?.midAirType || "none",
+    midAirAddons: ammoPrototype?.midAirAddons || weapon?.midAirAddons || [],
+    tipType: weapon?.tipType || defaultTipTypeForFrame(frame),
+    preloadAmmo: weapon?.preloadAmmo || weapon?.clipSize || 1,
+    ammoCase: ammoCaseIds,
+    heat: clamp(Number(weapon?.heat ?? weapon?.temper ?? 58), 0, 100),
+    forgeQuality: clamp(Number(weapon?.forgeQuality ?? 0.5), 0.2, 1)
+  };
+}
+
+function hydrateSavedWeapon(savedWeapon) {
+  if (!savedWeapon || typeof savedWeapon !== "object") {
+    return null;
+  }
+  const frameId = savedWeapon.frameId || savedWeapon.frame;
+  const frame = frameCatalog[frameId];
+  if (!frame) {
+    return null;
+  }
+  if (frame.masteryStyle && !masteryWeaponVisible(frame)) {
+    return {
+      ...savedWeapon,
+      frameId,
+      frame: frame.label,
+      classLabel: frame.classLabel,
+      kind: frame.kind,
+      family: frame.family || forgeFamilyForKind(frame.kind),
+      ammoPrototype: cloneAmmoRecipe(savedWeapon.ammoPrototype),
+      ammoCaseRounds: Array.isArray(savedWeapon.ammoCaseRounds) ? savedWeapon.ammoCaseRounds.map(cloneAmmoRecipe).filter(Boolean) : []
+    };
+  }
+  const rebuilt = buildWeaponFromForge(forgeBlueprintFromWeapon(savedWeapon));
+  return {
+    ...rebuilt,
+    id: savedWeapon.id || rebuilt.id,
+    name: String(savedWeapon.name || rebuilt.name).trim().slice(0, 12) || rebuilt.name
+  };
+}
+
+function validateLoadoutSelections() {
+  const validIds = new Set(state.armory.map((weapon) => weapon.id));
+  if (!validIds.has(state.activeWeaponId)) {
+    state.activeWeaponId = state.armory[0]?.id || null;
+  }
+  if (!validIds.has(state.rivalWeaponId) || (state.armory.length > 1 && state.rivalWeaponId === state.activeWeaponId)) {
+    const alternate = state.armory.find((weapon) => weapon.id !== state.activeWeaponId);
+    state.rivalWeaponId = alternate?.id || state.activeWeaponId || null;
+  }
+}
+
+function saveProgressState() {
+  try {
+    window.localStorage.setItem(
+      "stickforge-progress",
+      JSON.stringify({
+        forge: state.forge,
+        ammoRack: state.ammoRack,
+        armory: state.armory,
+        activeWeaponId: state.activeWeaponId,
+        rivalWeaponId: state.rivalWeaponId,
+        stage: state.stage,
+        rivalFriendId: state.social.rivalFriendId,
+        matchMode: ui.matchMode?.value || "solo",
+        roundsToWin: Number(ui.roundsToWin?.value || 2)
+      })
+    );
+  } catch (error) {
+    // Ignore storage failures; the session can still run in memory.
+  }
+}
+
+function loadProgressState(savedProgress) {
+  if (!savedProgress || typeof savedProgress !== "object") {
+    return;
+  }
+  if (savedProgress.forge) {
+    state.forge = normalizeForgeState(savedProgress.forge);
+  }
+  if (Array.isArray(savedProgress.ammoRack)) {
+    state.ammoRack = savedProgress.ammoRack.map(cloneAmmoRecipe).filter(Boolean);
+  }
+  if (Array.isArray(savedProgress.armory)) {
+    state.armory = savedProgress.armory.map(hydrateSavedWeapon).filter(Boolean);
+  }
+  state.activeWeaponId = savedProgress.activeWeaponId || null;
+  state.rivalWeaponId = savedProgress.rivalWeaponId || null;
+  if (savedProgress.stage && stageCatalog[savedProgress.stage.id]) {
+    state.stage = {
+      ...state.stage,
+      id: savedProgress.stage.id,
+      hazard: savedProgress.stage.hazard !== false,
+      pillars: savedProgress.stage.pillars !== false,
+      lights: savedProgress.stage.lights !== false
+    };
+  }
+  if (typeof savedProgress.rivalFriendId === "string" || savedProgress.rivalFriendId === null) {
+    state.social.rivalFriendId = savedProgress.rivalFriendId;
+  }
+  if (["solo", "duel"].includes(savedProgress.matchMode)) {
+    ui.matchMode.value = savedProgress.matchMode;
+  }
+  if (savedProgress.roundsToWin) {
+    ui.roundsToWin.value = `${clamp(Number(savedProgress.roundsToWin), 1, 5)}`;
+    ui.roundsToWinValue.textContent = ui.roundsToWin.value;
+  }
+  state.forge = reconcileAmmoCaseForForge(state.forge);
+  validateLoadoutSelections();
 }
 
 function renderSoundButtons() {
@@ -4899,9 +6138,13 @@ function buildWeaponFromForge(forge) {
     let moveScale = clamp(Number((frame.moveScale + material.moveScale - payloadLoad * 0.04).toFixed(2)), 0.68, 1.16);
     let speed = clamp(Number((frame.speed + material.speed - payloadLoad * 0.02 + forgeDelta * 0.06).toFixed(2)), 0.72, 1.28);
     const ammoLabel = `${preloadAmmo}/${caseCapacity} ${frame.ammoType}`;
+    const ammoLabels = ammoWorkshopLabelsForFrame(frame);
     const chamberSummary =
-      `${dominantRound.impactChambers} impact chamber${dominantRound.impactChambers === 1 ? "" : "s"} in a ` +
-      `${dominantRound.impactMountLabel.toLowerCase()} setup. Bigger rounds shrink the case size but carry more effect space.`;
+      isSpecialGunFrame(frame)
+        ? `${dominantRound.impactChambers} ${ammoLabels.slotUnit.toLowerCase()}${dominantRound.impactChambers === 1 ? "" : "s"} in a ` +
+          `${dominantRound.impactMountLabel.toLowerCase()}. Bigger ${ammoLabels.recipe.toLowerCase()}s shrink the rack size but carry more sigil and ${ammoLabels.midAir.toLowerCase()} space.`
+        : `${dominantRound.impactChambers} impact chamber${dominantRound.impactChambers === 1 ? "" : "s"} in a ` +
+          `${dominantRound.impactMountLabel.toLowerCase()} setup. Bigger rounds shrink the case size but carry more effect space.`;
     const classText =
       frame.kind === "sidearm"
         ? "quick sidearm pressure with fast reloads"
@@ -4921,6 +6164,11 @@ function buildWeaponFromForge(forge) {
     let stormTrail = dominantRound.stormTrail;
     let spiralFlight = dominantRound.spiralCount > 0;
     let projectileGlow = material.color;
+    let bonusShockCount = 0;
+    let bonusPortalCount = 0;
+    let bonusSlowCount = 0;
+    let bonusRuptureCount = 0;
+    let bonusBlockBreak = 0;
 
     switch (safeForge.frame) {
       case "machinepistol":
@@ -4965,10 +6213,63 @@ function buildWeaponFromForge(forge) {
         reloadTime = clamp(reloadTime + 0.08, 0.54, 1.92);
         moveScale = clamp(moveScale - 0.04, 0.68, 1.16);
         break;
+      case "sawedoff":
+        fireModeLabel = "Scatter Blast";
+        burstCount = 6;
+        burstSpread = 0.105;
+        burstDamageScale = 0.26;
+        projectileSpeed = clamp(projectileSpeed - 120, 560, 1320);
+        knockback = clamp(knockback + 0.14, 0.84, 1.9);
+        break;
+      case "battlerifle":
+        fireModeLabel = "2-Round Burst";
+        burstCount = 2;
+        burstSpread = 0.014;
+        burstDamageScale = 0.76;
+        projectileSpeed = clamp(projectileSpeed + 35, 560, 1320);
+        break;
+      case "drumrifle":
+        fireModeLabel = "4-Round Spray";
+        burstCount = 4;
+        burstSpread = 0.022;
+        burstDamageScale = 0.44;
+        reloadTime = clamp(reloadTime + 0.08, 0.54, 1.92);
+        moveScale = clamp(moveScale - 0.02, 0.68, 1.16);
+        break;
       case "warbow":
         fireModeLabel = "Deep Draw";
         extraPierce += 1;
         knockback = clamp(knockback + 0.08, 0.84, 1.9);
+        break;
+      case "stormbow":
+        fireModeLabel = "Storm Volley";
+        burstCount = 3;
+        burstSpread = 0.032;
+        burstDamageScale = 0.48;
+        projectileGlow = "#9ef4ff";
+        stormTrail = true;
+        bonusShockCount += 1;
+        break;
+      case "repeater":
+        fireModeLabel = "Twin Bolt";
+        burstCount = 2;
+        burstSpread = 0.018;
+        burstDamageScale = 0.72;
+        reloadTime = clamp(reloadTime - 0.04, 0.54, 1.92);
+        break;
+      case "harpoon":
+        fireModeLabel = "Harpoon Shot";
+        projectileSpeed = clamp(projectileSpeed - 40, 560, 1320);
+        knockback = clamp(knockback + 0.06, 0.84, 1.9);
+        break;
+      case "ballista":
+        fireModeLabel = "Ballista Bolt";
+        projectileGlow = "#f6edd9";
+        extraPierce += 2;
+        damage = clamp(damage + 2, 11, 48);
+        knockback = clamp(knockback + 0.14, 0.84, 1.9);
+        reloadTime = clamp(reloadTime + 0.1, 0.54, 1.92);
+        moveScale = clamp(moveScale - 0.04, 0.68, 1.16);
         break;
       case "railgun":
         fireModeLabel = "Emitter Rail";
@@ -4982,6 +6283,33 @@ function buildWeaponFromForge(forge) {
         extraPierce += 2;
         projectileGlow = "#d1f7ff";
         projectileSpeed = clamp(projectileSpeed + 40, 560, 1320);
+        break;
+      case "arcrail":
+        fireModeLabel = "Arc Rail";
+        projectileGlow = "#b7f6ff";
+        damage = clamp(damage + 1, 11, 48);
+        bonusShockCount += 1;
+        break;
+      case "prismrail":
+        fireModeLabel = "Prism Rail";
+        burstCount = 2;
+        burstSpread = 0.022;
+        burstDamageScale = 0.68;
+        projectileGlow = "#efc2ff";
+        bonusPortalCount += 1;
+        break;
+      case "breacher":
+        fireModeLabel = "Breach Pop";
+        knockback = clamp(knockback + 0.08, 0.84, 1.9);
+        bonusRuptureCount += 1;
+        bonusBlockBreak += 4;
+        break;
+      case "thumper":
+        fireModeLabel = "Thump Shell";
+        knockback = clamp(knockback + 0.12, 0.84, 1.9);
+        explosiveBoost += 0.08;
+        bonusSlowCount += 1;
+        bonusBlockBreak += 2;
         break;
       default:
         break;
@@ -5015,7 +6343,7 @@ function buildWeaponFromForge(forge) {
       family: "ranged",
       materialId: safeForge.material,
       material: material.label,
-      edgeId: dominantRound.impactTypes[0] || "standard",
+      edgeId: dominantRound.impactTypes[0] || defaultImpactTypeForFrame(frame),
       edge: `${dominantRound.impactLabel} Round`,
       usesStyle: false,
       heat,
@@ -5036,7 +6364,7 @@ function buildWeaponFromForge(forge) {
       edgeSummary: chamberSummary,
       heatSummary,
       forgeSummary,
-      styleText: `${frame.classLabel} ranged build | ${fireModeLabel} | ${dominantRound.impactLabel} | ${dominantRound.tipLabel} tip`,
+      styleText: `${frame.classLabel} ranged build | ${fireModeLabel} | ${dominantRound.impactLabel} | ${dominantRound.tipLabel} ${ammoLabels.headWord}`,
       abilitySummary,
       specialType: frame.special?.type || "ranged-shot",
       fireModeLabel,
@@ -5050,7 +6378,7 @@ function buildWeaponFromForge(forge) {
       impactMount: dominantRound.impactMount,
       impactMountLabel: dominantRound.impactMountLabel,
       chamberImpacts: [...dominantRound.chamberImpacts],
-      impactType: dominantRound.impactTypes[0] || "standard",
+      impactType: dominantRound.impactTypes[0] || defaultImpactTypeForFrame(frame),
       impactTypes: [...dominantRound.impactTypes],
       impactLabel: dominantRound.impactLabel,
       launchType: dominantRound.launchType,
@@ -5068,7 +6396,7 @@ function buildWeaponFromForge(forge) {
       ammoCaseRounds,
       ammoCaseIds: [...safeForge.ammoCase],
       ammoCaseSummary: ammoCaseSummary || dominantRound.name,
-      blockBreak: dominantRound.blockBreakBonus,
+      blockBreak: dominantRound.blockBreakBonus + bonusBlockBreak,
       projectilePierce: extraPierce,
       delayedImpact: dominantRound.delayedImpact,
       homingStrength: dominantRound.homingStrength,
@@ -5081,17 +6409,19 @@ function buildWeaponFromForge(forge) {
       spiralCount: dominantRound.spiralCount,
       scatterImpact,
       pullImpact,
-      explosiveBoost: dominantRound.explosiveBoost,
-      shockCount: dominantRound.shockCount,
+      explosiveBoost,
+      shockCount: dominantRound.shockCount + bonusShockCount,
       poisonCount: dominantRound.poisonCount,
-      portalCount: dominantRound.portalCount,
+      portalCount: dominantRound.portalCount + bonusPortalCount,
+      slowCount: (dominantRound.slowCount || 0) + bonusSlowCount,
+      ruptureCount: (dominantRound.ruptureCount || 0) + bonusRuptureCount,
       burstCount,
       burstSpread,
       burstDamageScale,
       projectileGlow,
       lore:
-        `${frame.label} built from ${material.label.toLowerCase()} with ${dominantRound.impactLabel.toLowerCase()} ammo, ` +
-        `${dominantRound.launchLabel.toLowerCase()}, ${dominantRound.midAirLabel.toLowerCase()} flight, and a ${dominantRound.tipLabel.toLowerCase()} tip. ` +
+        `${frame.label} built from ${material.label.toLowerCase()} with ${dominantRound.impactLabel.toLowerCase()} ${isSpecialGunFrame(frame) ? "sigils" : "ammo"}, ` +
+        `${dominantRound.launchLabel.toLowerCase()}, ${dominantRound.midAirLabel.toLowerCase()} ${isSpecialGunFrame(frame) ? ammoLabels.midAir.toLowerCase() : "flight"}, and a ${dominantRound.tipLabel.toLowerCase()} ${isSpecialGunFrame(frame) ? ammoLabels.headWord : "tip"}. ` +
         `${frame.special?.summary || ""} ${chamberSummary} Case order: ${ammoCaseSummary || dominantRound.name}. ${forgeSummary}`.trim()
     };
   }
@@ -5227,15 +6557,20 @@ function createRandomEnemyWeapon() {
   const frame = frameCatalog[frameId];
   const randomChambers = randomRange(1, (frame?.chamberMax || 1) + 0.9);
   const impactChambers = clamp(Math.floor(randomChambers), 1, Math.max(1, frame?.chamberMax || 1));
-  const impactMount = compatibleImpactMount(frame, randomChoice(Object.keys(impactMountCatalog)));
+  const mountCatalog = impactMountCatalogForFrame(frame);
+  const impactCatalog = impactTypeCatalogForFrame(frame);
+  const driveCatalog = launchCatalogForFrame(frame);
+  const fieldCatalog = midAirCatalogForFrame(frame);
+  const headCatalog = tipCatalogForFrame(frame);
+  const impactMount = compatibleImpactMount(frame, randomChoice(Object.keys(mountCatalog)));
   const chamberImpacts = Array.from({ length: impactChambers }, () =>
-    compatibleImpactType(frame, impactChambers, impactMount, randomChoice(Object.keys(impactTypeCatalog)))
+    compatibleImpactType(frame, impactChambers, impactMount, randomChoice(Object.keys(impactCatalog)))
   );
-  const impactType = chamberImpacts[0] || "standard";
+  const impactType = chamberImpacts[0] || defaultImpactTypeForFrame(frame);
   const midAirAddons = isRangedWeapon(frame)
     ? Array.from(
         { length: Math.floor(randomRange(0, frame.kind === "heavy" ? 2.8 : 2.2)) },
-        () => randomChoice(Object.keys(midAirTypeCatalog).filter((id) => id !== "none"))
+        () => randomChoice(Object.keys(fieldCatalog).filter((id) => id !== "none"))
       )
     : [];
   const forge = {
@@ -5250,10 +6585,10 @@ function createRandomEnemyWeapon() {
     impactMount,
     impactType,
     chamberImpacts,
-    launchType: randomChoice(Object.keys(launchTypeCatalog)),
+    launchType: randomChoice(Object.keys(driveCatalog)),
     midAirType: midAirAddons[0] || "none",
     midAirAddons,
-    tipType: randomChoice(Object.keys(tipTypeCatalog)),
+    tipType: randomChoice(Object.keys(headCatalog)),
     preloadAmmo: effectivePreloadAmmo(frame, impactChambers, Math.ceil((frame?.clipSize || 1) * randomRange(0.5, 1))),
     heat: Math.round(randomRange(20, 92)),
     forgeQuality: randomRange(0.42, 0.92)
@@ -5283,6 +6618,7 @@ function saveCurrentAmmoRecipe() {
   if (!isRangedWeapon(frame)) {
     return;
   }
+  const labels = ammoWorkshopLabelsForFrame(frame);
   const recipe = currentAmmoRecipe();
   const existingIndex = state.ammoRack.findIndex((entry) => entry.signature === recipe.signature);
   if (existingIndex >= 0) {
@@ -5292,7 +6628,7 @@ function saveCurrentAmmoRecipe() {
     state.ammoRack.unshift(recipe);
   }
   renderForge();
-  setMatchSummary(`${recipe.name} crafted and stored in the ammo rack.`);
+  setMatchSummary(`${recipe.name} crafted and stored in the ${isSpecialGunFrame(frame) ? `${labels.familyTag.toLowerCase()} rack` : "ammo rack"}.`);
 }
 
 function addCurrentAmmoToCase() {
@@ -5300,6 +6636,7 @@ function addCurrentAmmoToCase() {
   if (!isRangedWeapon(frame)) {
     return;
   }
+  const labels = ammoWorkshopLabelsForFrame(frame);
   const recipe = currentAmmoRecipe();
   let rackEntry = state.ammoRack.find((entry) => entry.signature === recipe.signature);
   if (!rackEntry) {
@@ -5318,17 +6655,19 @@ function addCurrentAmmoToCase() {
   });
   state.forge = reconcileAmmoCaseForForge(state.forge);
   renderForge();
-  setMatchSummary(`${rackEntry.name} loaded into slot ${state.forge.ammoCase.length}.`);
+  setMatchSummary(`${rackEntry.name} loaded into ${labels.recipe.toLowerCase()} slot ${state.forge.ammoCase.length}.`);
 }
 
 function clearAmmoCase() {
+  const frame = frameCatalog[state.forge.frame] || frameCatalog.longbow;
+  const labels = ammoWorkshopLabelsForFrame(frame);
   state.forge = normalizeForgeState({
     ...state.forge,
     ammoCase: []
   });
   state.forge = reconcileAmmoCaseForForge(state.forge);
   renderForge();
-  setMatchSummary("Ammo case cleared.");
+  setMatchSummary(`${isSpecialGunFrame(frame) ? `${labels.recipe} rack` : "Ammo case"} cleared.`);
 }
 
 function renderImpactChamberList(frame) {
@@ -5336,6 +6675,8 @@ function renderImpactChamberList(frame) {
     return;
   }
   ui.impactChamberList.innerHTML = "";
+  const impactCatalog = impactTypeCatalogForFrame(frame);
+  const labels = ammoWorkshopLabelsForFrame(frame);
   const validImpacts = validImpactIdsForFrame(frame, state.forge.impactChambers, state.forge.impactMount);
   state.forge.chamberImpacts.forEach((impactId, index) => {
     const row = document.createElement("div");
@@ -5343,17 +6684,19 @@ function renderImpactChamberList(frame) {
 
     const header = document.createElement("header");
     const title = document.createElement("strong");
-    title.textContent = `Chamber ${index + 1}`;
+    title.textContent = `${labels.slotUnit || "Chamber"} ${index + 1}`;
     const tag = document.createElement("span");
     tag.className = "pill";
-    tag.textContent = index === 0 ? "Front" : index === state.forge.chamberImpacts.length - 1 ? "Rear" : "Core";
+    tag.textContent = isSpecialGunFrame(frame)
+      ? specialAmmoSlotTag(frame, index, state.forge.chamberImpacts.length)
+      : index === 0 ? "Front" : index === state.forge.chamberImpacts.length - 1 ? "Rear" : "Core";
     header.append(title, tag);
 
     const select = document.createElement("select");
     validImpacts.forEach((validId) => {
       const option = document.createElement("option");
       option.value = validId;
-      option.textContent = impactTypeCatalog[validId].label;
+      option.textContent = impactCatalog[validId].label;
       if (validId === impactId) {
         option.selected = true;
       }
@@ -5372,7 +6715,7 @@ function renderImpactChamberList(frame) {
     });
 
     const copy = document.createElement("p");
-    copy.textContent = impactTypeCatalog[impactId]?.summary || "";
+    copy.textContent = impactCatalog[impactId]?.summary || "";
     row.append(header, select, copy);
     ui.impactChamberList.append(row);
   });
@@ -5383,10 +6726,16 @@ function renderMidAirAddonList() {
     return;
   }
   ui.midAirAddonList.innerHTML = "";
+  const frame = frameCatalog[state.forge.frame] || frameCatalog.longbow;
+  const labels = ammoWorkshopLabelsForFrame(frame);
+  const fieldCatalog = midAirCatalogForFrame(frame);
+  const emptyLabel = isSpecialGunFrame(frame)
+    ? `${labels.noMidAirLabel} loaded. Stack as many ${labels.midAir.toLowerCase()} layers as you want to make the ${labels.recipe.toLowerCase()} steer, split, ghost, or chase harder.`
+    : "No mid-air add-ons loaded. Add as many as you want to stack flight behavior.";
   if (!state.forge.midAirAddons.length) {
     const empty = document.createElement("p");
     empty.className = "arena-hint";
-    empty.textContent = "No mid-air add-ons loaded. Add as many as you want to stack flight behavior.";
+    empty.textContent = emptyLabel;
     ui.midAirAddonList.append(empty);
     return;
   }
@@ -5395,8 +6744,8 @@ function renderMidAirAddonList() {
     item.className = "token-item";
     const copy = document.createElement("div");
     copy.innerHTML = `
-      <strong>${midAirTypeCatalog[addonId]?.label || addonId}</strong>
-      <p>${midAirTypeCatalog[addonId]?.summary || ""}</p>
+      <strong>${fieldCatalog[addonId]?.label || addonId}</strong>
+      <p>${fieldCatalog[addonId]?.summary || ""}</p>
     `;
     const button = document.createElement("button");
     button.className = "ghost-button";
@@ -5423,6 +6772,7 @@ function renderAmmoPreview(weapon) {
   }
   const recipe = weapon?.ammoPrototype || currentAmmoRecipe();
   const frame = frameCatalog[state.forge.frame] || frameCatalog.longbow;
+  const specialGun = isSpecialGunFrame(frame);
   const ctx = ui.ammoPreview.getContext("2d");
   ctx.clearRect(0, 0, ui.ammoPreview.width, ui.ammoPreview.height);
 
@@ -5435,7 +6785,161 @@ function renderAmmoPreview(weapon) {
   ctx.fillStyle = "rgba(255,255,255,0.04)";
   ctx.fillRect(0, 0, ui.ammoPreview.width, ui.ammoPreview.height);
 
-  if (frame.ammoType === "bolt") {
+  if (specialGun) {
+    const mount = recipe.impactMount || defaultImpactMountForFrame(frame);
+    const headId = recipe.tipType || defaultTipTypeForFrame(frame);
+    const driveGlow =
+      recipe.launchType === "mist"
+        ? "rgba(196,234,255,0.42)"
+        : recipe.launchType === "coil" || recipe.launchType === "surge"
+          ? "rgba(151,244,255,0.4)"
+          : recipe.launchType === "winch"
+            ? "rgba(255,198,135,0.36)"
+            : "rgba(255,255,255,0.18)";
+    const fieldColorForAddon = (addonId) => {
+      const palette = {
+        fletch: "#f2ddad",
+        seeker: "#8eeaff",
+        "phase-trim": "#d2bbff",
+        arcwake: "#9bf4ff",
+        afterimage: "#ffd2ff",
+        glide: "#dce8ff",
+        splitter: "#ffd7a6",
+        echo: "#ffffff"
+      };
+      return palette[addonId] || "#b6fff3";
+    };
+
+    ctx.fillStyle = driveGlow;
+    ctx.beginPath();
+    ctx.arc(left - 10, bodyY, 28, 0, Math.PI * 2);
+    ctx.fill();
+
+    if (frame.ammoType === "bolt") {
+      ctx.strokeStyle = "#f0d8a8";
+      ctx.lineWidth = 7;
+      ctx.beginPath();
+      ctx.moveTo(left - 4, bodyY);
+      ctx.lineTo(left + bodyWidth + 18, bodyY);
+      ctx.stroke();
+      ["#8de6db", "#f0d48b", "#97a7ff"].forEach((color, index) => {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(left - 16, bodyY);
+        ctx.lineTo(left - 36, bodyY - 12 + index * 12);
+        ctx.lineTo(left - 10, bodyY - 4 + index * 4);
+        ctx.closePath();
+        ctx.fill();
+      });
+    } else {
+      ctx.strokeStyle = "#cff4ff";
+      ctx.lineWidth = 8;
+      ctx.beginPath();
+      ctx.moveTo(left - 6, bodyY);
+      ctx.lineTo(left + bodyWidth + 14, bodyY);
+      ctx.stroke();
+      ctx.strokeStyle = "rgba(214,249,255,0.45)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(left - 6, bodyY - 10);
+      ctx.lineTo(left + bodyWidth + 14, bodyY - 10);
+      ctx.moveTo(left - 6, bodyY + 10);
+      ctx.lineTo(left + bodyWidth + 14, bodyY + 10);
+      ctx.stroke();
+    }
+
+    recipe.chamberImpacts.forEach((impactId, index) => {
+      const slotLeft = left + index * chamberWidth + chamberWidth * 0.12;
+      const slotWidth = chamberWidth * 0.76;
+      const slotHeight = frame.ammoType === "rail" ? 24 : 18;
+      ctx.fillStyle = impactAccentColor(impactId);
+      ctx.beginPath();
+      if (mount === "halo") {
+        ctx.ellipse(slotLeft + slotWidth * 0.5, bodyY, slotWidth * 0.48, slotHeight * 0.74, 0, 0, Math.PI * 2);
+      } else if (mount === "lattice") {
+        ctx.moveTo(slotLeft + slotWidth * 0.5, bodyY - slotHeight * 0.7);
+        ctx.lineTo(slotLeft + slotWidth, bodyY);
+        ctx.lineTo(slotLeft + slotWidth * 0.5, bodyY + slotHeight * 0.7);
+        ctx.lineTo(slotLeft, bodyY);
+        ctx.closePath();
+      } else {
+        ctx.roundRect(slotLeft, bodyY - slotHeight * 0.5, slotWidth, slotHeight, 7);
+      }
+      ctx.fill();
+      ctx.strokeStyle = "rgba(16,18,26,0.4)";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    });
+
+    ctx.strokeStyle = mount === "halo" ? "rgba(233,208,255,0.65)" : mount === "lattice" ? "rgba(255,214,164,0.72)" : "rgba(233,244,255,0.65)";
+    ctx.lineWidth = 2;
+    if (mount === "halo") {
+      ctx.beginPath();
+      ctx.ellipse(left + bodyWidth * 0.5, bodyY, bodyWidth * 0.54, bodyHeight * 1.3, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    } else if (mount === "lattice") {
+      ctx.beginPath();
+      ctx.moveTo(left + 12, bodyY - bodyHeight * 1.1);
+      ctx.lineTo(left + bodyWidth - 8, bodyY + bodyHeight * 1.1);
+      ctx.moveTo(left + 12, bodyY + bodyHeight * 1.1);
+      ctx.lineTo(left + bodyWidth - 8, bodyY - bodyHeight * 1.1);
+      ctx.stroke();
+    } else {
+      ctx.beginPath();
+      ctx.moveTo(left, bodyY);
+      ctx.lineTo(left + bodyWidth, bodyY);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = "#f5f8ff";
+    ctx.beginPath();
+    if (["needle", "injector"].includes(headId)) {
+      ctx.moveTo(left + bodyWidth + 20, bodyY);
+      ctx.lineTo(left + bodyWidth, bodyY - 6);
+      ctx.lineTo(left + bodyWidth - 2, bodyY + 6);
+      ctx.closePath();
+    } else if (headId === "anchor") {
+      ctx.moveTo(left + bodyWidth + 12, bodyY - 12);
+      ctx.lineTo(left + bodyWidth + 22, bodyY);
+      ctx.lineTo(left + bodyWidth + 12, bodyY + 12);
+      ctx.lineTo(left + bodyWidth - 3, bodyY + 6);
+      ctx.lineTo(left + bodyWidth + 2, bodyY);
+      ctx.lineTo(left + bodyWidth - 3, bodyY - 6);
+      ctx.closePath();
+    } else if (headId === "prism") {
+      ctx.moveTo(left + bodyWidth + 18, bodyY);
+      ctx.lineTo(left + bodyWidth + 4, bodyY - 12);
+      ctx.lineTo(left + bodyWidth - 4, bodyY);
+      ctx.lineTo(left + bodyWidth + 4, bodyY + 12);
+      ctx.closePath();
+    } else if (headId === "crescent") {
+      ctx.moveTo(left + bodyWidth + 20, bodyY);
+      ctx.quadraticCurveTo(left + bodyWidth + 2, bodyY - 16, left + bodyWidth - 4, bodyY - 2);
+      ctx.quadraticCurveTo(left + bodyWidth + 4, bodyY + 2, left + bodyWidth + 20, bodyY);
+    } else {
+      ctx.moveTo(left + bodyWidth + 22, bodyY);
+      ctx.lineTo(left + bodyWidth, bodyY - 12);
+      ctx.lineTo(left + bodyWidth - 2, bodyY);
+      ctx.lineTo(left + bodyWidth, bodyY + 12);
+      ctx.closePath();
+    }
+    ctx.fill();
+
+    ctx.globalAlpha = 0.44;
+    recipe.midAirAddons.forEach((addonId, index) => {
+      const x = left + 22 + (index % 6) * 34;
+      const y = bodyY + 34 + Math.floor(index / 6) * 18;
+      ctx.fillStyle = fieldColorForAddon(addonId);
+      ctx.beginPath();
+      ctx.moveTo(x, y - 7);
+      ctx.lineTo(x + 7, y);
+      ctx.lineTo(x, y + 7);
+      ctx.lineTo(x - 7, y);
+      ctx.closePath();
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  } else if (frame.ammoType === "bolt") {
     ctx.fillStyle = "#f0d8a8";
     ctx.fillRect(left, bodyY - 4, bodyWidth + 28, 8);
     ctx.fillStyle = recipe.tipType === "spiked" ? impactAccentColor(recipe.chamberImpacts[0]) : "#f3f6fb";
@@ -5465,6 +6969,22 @@ function renderAmmoPreview(weapon) {
     ctx.beginPath();
     if (recipe.tipType === "blunt") {
       ctx.roundRect(left + bodyWidth, bodyY - bodyHeight * 0.5, 20, bodyHeight, 6);
+    } else if (recipe.tipType === "forked") {
+      ctx.moveTo(left + bodyWidth + 18, bodyY);
+      ctx.lineTo(left + bodyWidth + 2, bodyY - bodyHeight * 0.5);
+      ctx.lineTo(left + bodyWidth - 4, bodyY - 4);
+      ctx.lineTo(left + bodyWidth + 6, bodyY);
+      ctx.lineTo(left + bodyWidth - 4, bodyY + 4);
+      ctx.lineTo(left + bodyWidth + 2, bodyY + bodyHeight * 0.5);
+      ctx.closePath();
+    } else if (recipe.tipType === "serrated") {
+      ctx.moveTo(left + bodyWidth + 18, bodyY);
+      ctx.lineTo(left + bodyWidth + 4, bodyY - bodyHeight * 0.5);
+      ctx.lineTo(left + bodyWidth + 1, bodyY - 4);
+      ctx.lineTo(left + bodyWidth - 4, bodyY);
+      ctx.lineTo(left + bodyWidth + 1, bodyY + 4);
+      ctx.lineTo(left + bodyWidth + 4, bodyY + bodyHeight * 0.5);
+      ctx.closePath();
     } else {
       ctx.moveTo(left + bodyWidth + 22, bodyY);
       ctx.lineTo(left + bodyWidth, bodyY - bodyHeight * 0.52);
@@ -5497,18 +7017,36 @@ function renderAmmoPreview(weapon) {
 
   ctx.globalAlpha = 0.34;
   recipe.midAirAddons.forEach((addonId, index) => {
-    ctx.fillStyle = addonId === "magnetized" ? "#9fe8ff" : addonId === "redirect" ? "#ffffff" : addonId === "spiral" ? "#f0d48b" : "#9ef58c";
+    ctx.fillStyle =
+      addonId === "magnetized"
+        ? "#9fe8ff"
+        : addonId === "redirect"
+          ? "#ffffff"
+          : addonId === "spiral"
+            ? "#f0d48b"
+            : addonId === "tracer"
+              ? "#ffbf7d"
+              : "#9ef58c";
     ctx.beginPath();
     ctx.arc(left + 36 + (index % 6) * 34, bodyY + 36 + Math.floor(index / 6) * 18, 7, 0, Math.PI * 2);
     ctx.fill();
   });
   ctx.globalAlpha = 1;
 
-  const launchGlow = recipe.launchType === "blizzard" ? "rgba(202,236,255,0.4)" : recipe.launchType === "ember" ? "rgba(255,183,106,0.4)" : recipe.launchType === "storm" ? "rgba(200,232,255,0.4)" : "rgba(255,255,255,0.16)";
-  ctx.fillStyle = launchGlow;
-  ctx.beginPath();
-  ctx.arc(left - 18, bodyY, 24, 0, Math.PI * 2);
-  ctx.fill();
+  if (!specialGun) {
+    const launchGlow =
+      recipe.launchType === "blizzard"
+        ? "rgba(202,236,255,0.4)"
+        : recipe.launchType === "ember"
+          ? "rgba(255,183,106,0.4)"
+          : recipe.launchType === "storm" || recipe.launchType === "quake"
+            ? "rgba(200,232,255,0.4)"
+            : "rgba(255,255,255,0.16)";
+    ctx.fillStyle = launchGlow;
+    ctx.beginPath();
+    ctx.arc(left - 18, bodyY, 24, 0, Math.PI * 2);
+    ctx.fill();
+  }
 
   ctx.fillStyle = "rgba(255,255,255,0.78)";
   ctx.font = "600 12px 'Trebuchet MS', sans-serif";
@@ -5522,10 +7060,13 @@ function renderAmmoRack() {
   }
   ui.ammoRack.innerHTML = "";
   const frame = frameCatalog[state.forge.frame] || frameCatalog.longbow;
+  const labels = ammoWorkshopLabelsForFrame(frame);
   if (!state.ammoRack.length) {
     const empty = document.createElement("p");
     empty.className = "arena-hint";
-    empty.textContent = "No crafted rounds yet. Build one from the chamber editor and press Craft Ammo.";
+    empty.textContent = isSpecialGunFrame(frame)
+      ? `No crafted ${labels.recipe.toLowerCase()}s yet. Build one from the ${labels.familyTag.toLowerCase()} and press Craft Ammo.`
+      : "No crafted rounds yet. Build one from the chamber editor and press Craft Ammo.";
     ui.ammoRack.append(empty);
     return;
   }
@@ -5553,12 +7094,13 @@ function renderAmmoRack() {
     loadButton.textContent = "Load";
     loadButton.disabled = !compatible;
     loadButton.addEventListener("click", () => {
+      const frame = frameCatalog[state.forge.frame] || frameCatalog.longbow;
       state.forge = normalizeForgeState({
         ...state.forge,
         impactChambers: recipe.impactChambers,
         impactMount: recipe.impactMount,
         chamberImpacts: [...recipe.chamberImpacts],
-        impactType: recipe.impactTypes[0] || "standard",
+        impactType: recipe.impactTypes[0] || defaultImpactTypeForFrame(frame),
         launchType: recipe.launchType,
         midAirAddons: [...recipe.midAirAddons],
         midAirType: recipe.midAirAddons[0] || "none",
@@ -5567,7 +7109,7 @@ function renderAmmoRack() {
       state.forge = reconcileAmmoCaseForForge(state.forge);
       resetForgeMinigame(state.forge.frame, false);
       renderForge();
-      setMatchSummary(`${recipe.name} loaded back into the ammo workshop.`);
+      setMatchSummary(`${recipe.name} loaded back into the ${labels.familyTag.toLowerCase()}.`);
     });
 
     const caseButton = document.createElement("button");
@@ -5588,7 +7130,7 @@ function renderAmmoRack() {
       });
       state.forge = reconcileAmmoCaseForForge(state.forge);
       renderForge();
-      setMatchSummary(`${recipe.name} added to the ammo case.`);
+      setMatchSummary(`${recipe.name} added to the ${isSpecialGunFrame(frame) ? "rack order" : "ammo case"}.`);
     });
 
     actions.append(loadButton, caseButton);
@@ -5603,13 +7145,16 @@ function renderAmmoCase(weapon) {
   }
   ui.ammoCaseList.innerHTML = "";
   const frame = frameCatalog[state.forge.frame] || frameCatalog.longbow;
+  const labels = ammoWorkshopLabelsForFrame(frame);
   const rounds = (state.forge.ammoCase || [])
     .map((id) => state.ammoRack.find((recipe) => recipe.id === id))
     .filter((recipe) => ammoRecipeCompatibleWithFrame(recipe, frame));
   if (!rounds.length) {
     const empty = document.createElement("p");
     empty.className = "arena-hint";
-    empty.textContent = "The case is empty. Crafted rounds added here define the exact firing order.";
+    empty.textContent = isSpecialGunFrame(frame)
+      ? `The rack is empty. Crafted ${labels.recipe.toLowerCase()}s added here define the exact firing order.`
+      : "The case is empty. Crafted rounds added here define the exact firing order.";
     ui.ammoCaseList.append(empty);
     return;
   }
@@ -5676,6 +7221,7 @@ function renderAmmoWorkshop(weapon) {
   if (!isRangedWeapon(frame)) {
     return;
   }
+  const labels = ammoWorkshopLabelsForFrame(frame);
   const recipe = weapon?.ammoPrototype || currentAmmoRecipe();
   const rackRounds = (state.forge.ammoCase || [])
     .map((id) => state.ammoRack.find((entry) => entry.id === id))
@@ -5683,11 +7229,16 @@ function renderAmmoWorkshop(weapon) {
   const caseCapacity = ammoCaseCapacityForFrame(frame, rackRounds.length ? rackRounds : [recipe], state.forge.preloadAmmo || frame.clipSize);
   const loadedRounds = rackRounds.slice(0, caseCapacity);
 
-  ui.ammoWorkshopFamily.textContent =
-    frame.ammoType === "rail" ? "Rail Work" : frame.ammoType === "bolt" ? "Bolt Work" : "Bullet Work";
+  ui.ammoWorkshopFamily.textContent = labels.familyTag;
   ui.ammoWorkshopNote.textContent =
-    `Craft ${frame.ammoType}s separately, then load them into the case in order. ` +
-    `${frame.label} can hold up to ${caseCapacity} round${caseCapacity === 1 ? "" : "s"} with this payload size.`;
+    `${labels.note} ${frame.label} can hold up to ${caseCapacity} ${labels.recipe.toLowerCase()}${caseCapacity === 1 ? "" : "s"} with this build size.`;
+  ui.impactChambersLabel.querySelector("span").textContent = labels.chambers;
+  ui.impactMountLabel.querySelector("span").textContent = labels.mount;
+  ui.impactTypeLabel.querySelector("span").textContent = labels.impacts;
+  ui.launchTypeLabel.querySelector("span").textContent = labels.launch;
+  ui.midAirTypeLabel.querySelector("span").textContent = labels.midAir;
+  ui.tipTypeLabel.querySelector("span").textContent = labels.tip;
+  ui.preloadAmmoLabel.querySelector("span").textContent = labels.preload;
   ui.preloadAmmo.value = `${Math.min(Number(state.forge.preloadAmmo || 1), caseCapacity)}`;
 
   renderImpactChamberList(frame);
@@ -5699,7 +7250,7 @@ function renderAmmoWorkshop(weapon) {
   ui.ammoSummary.innerHTML = `
     <div class="ammo-summary-grid">
       <div class="ammo-summary-chip">
-        <span>Recipe</span>
+        <span>${labels.recipe}</span>
         <strong>${recipe.name}</strong>
       </div>
       <div class="ammo-summary-chip">
@@ -5707,11 +7258,11 @@ function renderAmmoWorkshop(weapon) {
         <strong>${loadedRounds.length}/${caseCapacity}</strong>
       </div>
       <div class="ammo-summary-chip">
-        <span>Impacts</span>
+        <span>${labels.impactsChip}</span>
         <strong>${recipe.impactLabel}</strong>
       </div>
       <div class="ammo-summary-chip">
-        <span>Mid Air</span>
+        <span>${labels.midAirChip}</span>
         <strong>${recipe.midAirAddons.length || 0} add-on${recipe.midAirAddons.length === 1 ? "" : "s"}</strong>
       </div>
     </div>
@@ -5816,6 +7367,28 @@ function weaponPreviewMarkup(weapon) {
     headMarkup = `
       <path d="M ${shaft - 4} ${36 - bladeSize * 0.58} Q ${shaft + bladeSize * 0.84} ${36 - bladeSize * 0.46} ${shaft + bladeSize * 0.48} 36 Q ${shaft + bladeSize * 0.74} ${36 + bladeSize * 0.28} ${shaft - 2} ${36 + bladeSize * 0.14} Z" fill="${color}" />
     `;
+  } else if (weapon.frameId === "stormbow") {
+    headMarkup = `
+      <path d="M ${shaft - 8} ${36 - 20} Q ${shaft - 26} 36 ${shaft - 8} ${36 + 20}" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round" />
+      <path d="M ${shaft + 8} ${36 - 20} Q ${shaft + 26} 36 ${shaft + 8} ${36 + 20}" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round" />
+      <line x1="${shaft - 8}" y1="${36 - 20}" x2="${shaft + 8}" y2="${36 + 20}" stroke="#f3ead8" stroke-width="2" />
+      <line x1="${shaft - 8}" y1="${36 + 20}" x2="${shaft + 8}" y2="${36 - 20}" stroke="#f3ead8" stroke-width="2" />
+      <rect x="${shaft + 8}" y="34" width="${Math.max(24, bladeSize * 1.1)}" height="4" rx="2" fill="${color}" />
+    `;
+  } else if (weapon.frameId === "ballista") {
+    headMarkup = `
+      <rect x="${shaft - 12}" y="26" width="${Math.max(48, bladeSize * 1.8)}" height="20" rx="8" fill="${color}" />
+      <path d="M ${shaft - 8} 20 L ${shaft + 18} 36 L ${shaft - 8} 52" fill="none" stroke="#f3ead8" stroke-width="4" stroke-linecap="round" />
+      <rect x="${shaft + bladeSize * 1.2}" y="34" width="${Math.max(18, bladeSize * 0.7)}" height="4" rx="2" fill="#f3ead8" />
+      <rect x="${shaft + bladeSize * 1.7}" y="32" width="${Math.max(16, bladeSize * 0.6)}" height="8" rx="4" fill="${color}" />
+    `;
+  } else if (weapon.frameId === "prismrail") {
+    headMarkup = `
+      <rect x="${shaft - 10}" y="26" width="${Math.max(46, bladeSize * 1.7)}" height="20" rx="8" fill="${color}" />
+      <rect x="${shaft + bladeSize * 1.1}" y="24" width="${Math.max(20, bladeSize * 0.8)}" height="4" rx="2" fill="#d9fbff" />
+      <rect x="${shaft + bladeSize * 1.1}" y="44" width="${Math.max(20, bladeSize * 0.8)}" height="4" rx="2" fill="#d9fbff" />
+      <circle cx="${shaft + bladeSize * 1.88}" cy="36" r="5" fill="#efc2ff" />
+    `;
   } else if (isRangedWeapon(weapon)) {
     headMarkup = `
       <rect x="${shaft - 18}" y="28" width="${Math.max(32, bladeSize * 1.3)}" height="16" rx="6" fill="${handle}" />
@@ -5844,6 +7417,11 @@ function weaponPreviewMarkup(weapon) {
 
 function renderForgeDetails(weapon) {
   if (isRangedWeapon(weapon)) {
+    const frame = frameCatalog[weapon.frameId] || frameCatalog.longbow;
+    const labels = ammoWorkshopLabelsForFrame(frame);
+    const impactCatalog = impactTypeCatalogForFrame(frame);
+    const launchSet = launchCatalogForFrame(frame);
+    const tipSet = tipCatalogForFrame(frame);
     ui.forgeDetails.innerHTML = `
       <article class="forge-detail-card">
         <span>Weapon Type</span>
@@ -5856,29 +7434,29 @@ function renderForgeDetails(weapon) {
         <p>${weapon.abilitySummary}</p>
       </article>
       <article class="forge-detail-card">
-        <span>Impact Chamber</span>
+        <span>${labels.detailMount}</span>
         <strong>${weapon.impactChambers} | ${weapon.impactMountLabel}</strong>
         <p>${weapon.edgeSummary}</p>
       </article>
       <article class="forge-detail-card">
-        <span>Chamber Stack</span>
-        <strong>${weapon.chamberImpacts.map((impactId, index) => `C${index + 1}:${impactTypeCatalog[impactId]?.label || impactId}`).join(" | ")}</strong>
-        <p>Each chamber can carry its own impact. Mixed rounds fire exactly in the order shown in the ammo workshop.</p>
+        <span>${labels.detailStack}</span>
+        <strong>${weapon.chamberImpacts.map((impactId, index) => `${isSpecialGunFrame(frame) ? labels.slotUnit.charAt(0).toUpperCase() : "C"}${index + 1}:${impactCatalog[impactId]?.label || impactId}`).join(" | ")}</strong>
+        <p>${isSpecialGunFrame(frame) ? `Each ${labels.slotUnit.toLowerCase()} can carry its own sigil or payload. Mixed ${labels.recipe.toLowerCase()}s fire exactly in the order shown in the ammo workshop.` : "Each chamber can carry its own impact. Mixed rounds fire exactly in the order shown in the ammo workshop."}</p>
       </article>
       <article class="forge-detail-card">
-        <span>Launch</span>
+        <span>${labels.detailLaunch}</span>
         <strong>${weapon.launchLabel}</strong>
-        <p>${launchTypeCatalog[weapon.launchType]?.summary || ""}</p>
+        <p>${launchSet[weapon.launchType]?.summary || ""}</p>
       </article>
       <article class="forge-detail-card">
-        <span>Mid Flight Stack</span>
+        <span>${labels.detailMidAir}</span>
         <strong>${weapon.midAirLabel}</strong>
-        <p>Mid-air add-ons stack without a set limit. Each extra module can make the round track, redirect, stabilize, or weave harder.</p>
+        <p>${isSpecialGunFrame(frame) ? `${labels.midAir} stack without a set limit. Each extra layer can bend, ghost, split, redirect, glide, or chase harder depending on the rig.` : "Mid-air add-ons stack without a set limit. Each extra module can make the round track, redirect, stabilize, or weave harder."}</p>
       </article>
       <article class="forge-detail-card">
-        <span>Tip</span>
+        <span>${labels.detailTip}</span>
         <strong>${weapon.tipLabel}</strong>
-        <p>${tipTypeCatalog[weapon.tipType]?.summary || ""}</p>
+        <p>${tipSet[weapon.tipType]?.summary || ""}</p>
       </article>
       <article class="forge-detail-card">
         <span>Ammo Case</span>
@@ -6121,9 +7699,9 @@ function renderForgePreview(weapon) {
           ? 116
           : weapon.kind === "heavy"
             ? 134
-            : weapon.frameId === "longbow"
+            : ["longbow", "stormbow"].includes(weapon.frameId)
               ? 110
-              : weapon.frameId === "crossbow"
+              : ["crossbow", "ballista"].includes(weapon.frameId)
                 ? 118
                 : 128;
     const barrelLength = weapon.kind === "heavy" ? 64 : weapon.kind === "sidearm" ? 34 : 48;
@@ -6145,7 +7723,7 @@ function renderForgePreview(weapon) {
 
     previewCtx.fillStyle = weapon.color;
     previewCtx.beginPath();
-    if (weapon.frameId === "longbow") {
+    if (["longbow", "stormbow"].includes(weapon.frameId)) {
       previewCtx.moveTo(10, -34);
       previewCtx.quadraticCurveTo(-18, 0, 10, 34);
       previewCtx.lineTo(18, 26);
@@ -6164,9 +7742,18 @@ function renderForgePreview(weapon) {
       previewCtx.moveTo(18, 0);
       previewCtx.lineTo(106, 0);
       previewCtx.stroke();
-    } else if (weapon.frameId === "crossbow") {
+      if (weapon.frameId === "stormbow") {
+        previewCtx.strokeStyle = "#d5f7ff";
+        previewCtx.lineWidth = 3;
+        previewCtx.beginPath();
+        previewCtx.moveTo(20, -22);
+        previewCtx.lineTo(40, 0);
+        previewCtx.lineTo(20, 22);
+        previewCtx.stroke();
+      }
+    } else if (["crossbow", "ballista"].includes(weapon.frameId)) {
       previewCtx.beginPath();
-      previewCtx.roundRect(10, -8, 86, 16, 8);
+      previewCtx.roundRect(10, -8, weapon.frameId === "ballista" ? 98 : 86, 16, 8);
       previewCtx.fill();
       previewCtx.beginPath();
       previewCtx.moveTo(12, -28);
@@ -6187,7 +7774,7 @@ function renderForgePreview(weapon) {
       previewCtx.lineWidth = 7;
       previewCtx.beginPath();
       previewCtx.moveTo(42, 0);
-      previewCtx.lineTo(124, 0);
+      previewCtx.lineTo(weapon.frameId === "ballista" ? 132 : 124, 0);
       previewCtx.stroke();
     } else {
       previewCtx.beginPath();
@@ -6208,11 +7795,17 @@ function renderForgePreview(weapon) {
       previewCtx.beginPath();
       previewCtx.roundRect(bodyLength - 4, -5, barrelLength, 10, 5);
       previewCtx.fill();
-      if (weapon.frameId === "railgun") {
+      if (["railgun", "arcrail", "coillance", "prismrail"].includes(weapon.frameId)) {
         previewCtx.fillStyle = "#d7f7ff";
         previewCtx.beginPath();
         previewCtx.roundRect(bodyLength - 2, -3, barrelLength + 10, 6, 3);
         previewCtx.fill();
+        if (weapon.frameId === "prismrail") {
+          previewCtx.fillStyle = "#efc2ff";
+          previewCtx.beginPath();
+          previewCtx.arc(bodyLength + barrelLength + 8, 0, 6, 0, Math.PI * 2);
+          previewCtx.fill();
+        }
       }
     }
 
@@ -6258,12 +7851,28 @@ function renderForgePreview(weapon) {
     previewCtx.lineTo(shaft + bladeSize, -10);
     previewCtx.lineTo(shaft + bladeSize * 0.62, 0);
     previewCtx.lineTo(shaft + bladeSize, 10);
+  } else if (weapon.frameId === "halberd") {
+    previewCtx.moveTo(shaft - 2, -bladeSize * 0.52);
+    previewCtx.lineTo(shaft + bladeSize * 0.56, -bladeSize * 0.18);
+    previewCtx.lineTo(shaft + bladeSize * 0.22, 0);
+    previewCtx.lineTo(shaft + bladeSize * 0.56, bladeSize * 0.18);
+    previewCtx.lineTo(shaft - 2, bladeSize * 0.52);
+    previewCtx.lineTo(shaft + bladeSize * 0.34, 0);
+    previewCtx.lineTo(shaft + bladeSize * 0.92, -bladeSize * 0.08);
+    previewCtx.lineTo(shaft + bladeSize * 0.98, 0);
+    previewCtx.lineTo(shaft + bladeSize * 0.92, bladeSize * 0.08);
   } else if (weapon.frameId === "executioner") {
     previewCtx.moveTo(shaft - 4, -bladeSize * 0.72);
     previewCtx.lineTo(shaft + bladeSize * 0.84, -bladeSize * 0.18);
     previewCtx.lineTo(shaft + bladeSize * 0.92, 0);
     previewCtx.lineTo(shaft + bladeSize * 0.84, bladeSize * 0.18);
     previewCtx.lineTo(shaft - 4, bladeSize * 0.72);
+  } else if (weapon.frameId === "nodachi") {
+    previewCtx.moveTo(shaft - 6, -bladeSize * 0.14);
+    previewCtx.lineTo(shaft + bladeSize * 0.92, -bladeSize * 0.12);
+    previewCtx.lineTo(shaft + bladeSize, 0);
+    previewCtx.lineTo(shaft + bladeSize * 0.92, bladeSize * 0.12);
+    previewCtx.lineTo(shaft - 6, bladeSize * 0.14);
   } else if (weapon.frameId === "karambit") {
     previewCtx.moveTo(shaft - 8, -bladeSize * 0.26);
     previewCtx.quadraticCurveTo(shaft + bladeSize * 0.54, -bladeSize * 0.36, shaft + bladeSize * 0.24, 0);
@@ -6272,6 +7881,16 @@ function renderForgePreview(weapon) {
     previewCtx.moveTo(shaft - 8, -bladeSize * 0.18);
     previewCtx.lineTo(shaft + bladeSize * 0.52, 0);
     previewCtx.lineTo(shaft - 8, bladeSize * 0.18);
+  } else if (weapon.frameId === "claws") {
+    previewCtx.moveTo(shaft - 10, -bladeSize * 0.28);
+    previewCtx.lineTo(shaft + bladeSize * 0.18, -bladeSize * 0.42);
+    previewCtx.lineTo(shaft + bladeSize * 0.1, -bladeSize * 0.12);
+    previewCtx.lineTo(shaft + bladeSize * 0.34, -bladeSize * 0.06);
+    previewCtx.lineTo(shaft + bladeSize * 0.28, 0);
+    previewCtx.lineTo(shaft + bladeSize * 0.34, bladeSize * 0.06);
+    previewCtx.lineTo(shaft + bladeSize * 0.1, bladeSize * 0.12);
+    previewCtx.lineTo(shaft + bladeSize * 0.18, bladeSize * 0.42);
+    previewCtx.lineTo(shaft - 10, bladeSize * 0.28);
   } else if (weapon.frameId === "capesh") {
     previewCtx.moveTo(shaft - 4, -bladeSize * 0.44);
     previewCtx.quadraticCurveTo(shaft + bladeSize * 0.72, 0, shaft - 4, bladeSize * 0.44);
@@ -6282,6 +7901,13 @@ function renderForgePreview(weapon) {
     previewCtx.lineTo(shaft + bladeSize * 0.92, 0);
     previewCtx.lineTo(shaft + bladeSize * 0.84, bladeSize * 0.08);
     previewCtx.lineTo(shaft - 2, bladeSize * 0.16);
+  } else if (weapon.frameId === "twinblade") {
+    previewCtx.moveTo(shaft - 8, -bladeSize * 0.34);
+    previewCtx.lineTo(shaft + bladeSize * 0.58, -bladeSize * 0.1);
+    previewCtx.lineTo(shaft + bladeSize * 0.8, 0);
+    previewCtx.lineTo(shaft + bladeSize * 0.58, bladeSize * 0.1);
+    previewCtx.lineTo(shaft - 8, bladeSize * 0.34);
+    previewCtx.lineTo(shaft + bladeSize * 0.18, 0);
   } else if (weapon.frameId === "brass") {
     previewCtx.roundRect(shaft - 10, -bladeSize * 0.32, bladeSize * 0.92, bladeSize * 0.64, 8);
   } else if (weapon.frameId === "thundermaul") {
@@ -6290,6 +7916,10 @@ function renderForgePreview(weapon) {
     previewCtx.moveTo(shaft - 4, -bladeSize * 0.56);
     previewCtx.quadraticCurveTo(shaft + bladeSize * 0.84, -bladeSize * 0.42, shaft + bladeSize * 0.46, 0);
     previewCtx.quadraticCurveTo(shaft + bladeSize * 0.68, bladeSize * 0.24, shaft - 3, bladeSize * 0.14);
+  } else if (weapon.frameId === "bostaff") {
+    previewCtx.roundRect(shaft - 8, -bladeSize * 0.08, bladeSize * 1.06, bladeSize * 0.16, 8);
+  } else if (weapon.frameId === "morningstar") {
+    previewCtx.arc(shaft + bladeSize * 0.28, 0, bladeSize * 0.36, 0, Math.PI * 2);
   } else {
     previewCtx.moveTo(shaft, -bladeSize * 0.48);
     previewCtx.lineTo(shaft + bladeSize * 0.82, 0);
@@ -6489,6 +8119,7 @@ function renderForge() {
     renderAmmoWorkshop(weapon);
   }
   renderMenuSummary();
+  saveProgressState();
 }
 
 function weaponById(id) {
@@ -6540,46 +8171,14 @@ function saveCurrentWeapon({ equip = true } = {}) {
   if (equip || !state.activeWeaponId) {
     state.activeWeaponId = blueprint.id;
   }
+  validateLoadoutSelections();
 
   renderArmory();
   updateHudLabels();
 }
 
 function loadWeaponIntoForge(weapon) {
-  const ammoCaseIds = Array.isArray(weapon.ammoCaseIds) ? [...weapon.ammoCaseIds] : [];
-  if (!ammoCaseIds.length && Array.isArray(weapon.ammoCaseRounds)) {
-    weapon.ammoCaseRounds.forEach((recipe) => {
-      const signature = recipe.signature || ammoRecipeSignature(recipe);
-      const existing = state.ammoRack.find((entry) => entry.signature === signature);
-      const rackEntry = existing || { ...recipe, signature, chamberImpacts: [...recipe.chamberImpacts], impactTypes: [...recipe.impactTypes], midAirAddons: [...recipe.midAirAddons] };
-      if (!existing) {
-        state.ammoRack.unshift(rackEntry);
-      }
-      ammoCaseIds.push(rackEntry.id);
-    });
-  }
-  const ammoPrototype = weapon.ammoPrototype || null;
-  state.forge = {
-    id: weapon.id,
-    name: weapon.name,
-    family: isRangedWeapon(weapon) ? "ranged" : "melee",
-    kind: frameCatalog[weapon.frameId]?.kind || weapon.kind || "medium",
-    frame: weapon.frameId,
-    material: weapon.materialId,
-    edge: weapon.edgeId,
-    impactChambers: weapon.impactChambers || 1,
-    impactMount: weapon.impactMount || "core",
-    impactType: weapon.impactType || "standard",
-    chamberImpacts: ammoPrototype?.chamberImpacts || weapon.chamberImpacts || [weapon.impactType || "standard"],
-    launchType: weapon.launchType || "standard",
-    midAirType: weapon.midAirType || "none",
-    midAirAddons: ammoPrototype?.midAirAddons || weapon.midAirAddons || [],
-    tipType: weapon.tipType || "sharp",
-    preloadAmmo: weapon.preloadAmmo || weapon.clipSize || 1,
-    ammoCase: ammoCaseIds,
-    heat: clamp(Number(weapon.heat ?? weapon.temper ?? 58), 0, 100),
-    forgeQuality: clamp(Number(weapon.forgeQuality ?? 0.5), 0.2, 1)
-  };
+  state.forge = forgeBlueprintFromWeapon(weapon);
   state.forge = reconcileAmmoCaseForForge(state.forge);
 
   syncForgeSelectors();
@@ -6589,12 +8188,7 @@ function loadWeaponIntoForge(weapon) {
 
 function deleteWeapon(id) {
   state.armory = state.armory.filter((weapon) => weapon.id !== id);
-  if (state.activeWeaponId === id) {
-    state.activeWeaponId = state.armory[0]?.id || null;
-  }
-  if (state.rivalWeaponId === id) {
-    state.rivalWeaponId = state.armory.find((weapon) => weapon.id !== state.activeWeaponId)?.id || state.armory[0]?.id || null;
-  }
+  validateLoadoutSelections();
   renderArmory();
   updateHudLabels();
 }
@@ -6607,6 +8201,7 @@ function renderArmory() {
     emptyState.className = "arena-hint";
     emptyState.textContent = "No saved weapons yet. Forge one and save it.";
     ui.armoryList.append(emptyState);
+    saveProgressState();
     return;
   }
 
@@ -6724,6 +8319,7 @@ function renderArmory() {
     card.append(note);
     ui.armoryList.append(card);
   });
+  saveProgressState();
 }
 
 function renderStageSummary() {
@@ -6779,6 +8375,7 @@ function renderStageSummary() {
       <small>${presetConfig.tagline}</small>
     `;
   });
+  saveProgressState();
 }
 
 function fighterProfileForWeapon(weapon) {
@@ -6805,19 +8402,31 @@ function fighterProfileForWeapon(weapon) {
   const shortClass = weapon.kind === "short";
   const mediumClass = weapon.kind === "medium";
   const specialClass = weapon.kind === "special";
-  let slideHits = shortClass ? 1 : mediumClass ? 1 : 0;
+  let slideHits = shortClass ? 1 : mediumClass ? 1 : specialClass ? 1 : 0;
   if (weapon.specialType === "double-spin-dash") {
     slideHits = 2;
   } else if (weapon.specialType === "triple-rush") {
     slideHits = 3;
+  } else if (weapon.specialType === "tonfa-rush" || weapon.specialType === "storm-rush" || weapon.specialType === "veil-rush" || weapon.specialType === "twin-dash") {
+    slideHits = 2;
+  } else if (weapon.specialType === "rake-frenzy") {
+    slideHits = 4;
   } else if (weapon.specialType === "reaper-hook" || weapon.specialType === "axe-throw") {
     slideHits = 1;
   }
   const slideDamageScale =
     weapon.specialType === "cross-cut"
       ? 0.78
+      : weapon.specialType === "guard-rip"
+        ? 0.8
       : weapon.specialType === "axe-throw"
         ? 0.74
+      : weapon.specialType === "twin-dash"
+        ? 0.64
+      : weapon.specialType === "rake-frenzy"
+        ? 0.44
+      : weapon.specialType === "vault-smash"
+        ? 0.72
       : weapon.specialType === "dash-spin"
         ? 0.68
         : mediumClass
@@ -7128,11 +8737,13 @@ function weaponPoseForFighter(fighter) {
         ? 58
         : fighter.weapon.kind === "heavy"
           ? 72
-          : fighter.weapon.frameId === "longbow"
-            ? 62
-            : fighter.weapon.frameId === "crossbow"
-              ? 58
-              : 66
+          : fighter.weapon.frameId === "ballista"
+            ? 72
+            : fighter.weapon.frameId === "longbow" || fighter.weapon.frameId === "stormbow"
+              ? 62
+              : fighter.weapon.frameId === "crossbow"
+                ? 58
+                : 66
     : fighter.profile.reach * 0.78;
   let baseX = fighter.x + shoulderX;
   let baseY = fighter.y + shoulderY;
@@ -7305,13 +8916,23 @@ function performLunge(fighter, match) {
 
   fighter.blocking = false;
   fighter.crouching = false;
-  const mediumStyleBoost =
+  const dashDurationBoost =
     fighter.weapon.specialType === "feint-thrust"
       ? 0.03
       : fighter.weapon.specialType === "crescent-sweep" || fighter.weapon.specialType === "dash-spin"
         ? 0.02
+        : fighter.weapon.specialType === "tonfa-rush" || fighter.weapon.specialType === "storm-rush"
+          ? 0.04
+          : fighter.weapon.specialType === "veil-rush"
+            ? 0.06
+        : fighter.weapon.specialType === "twin-dash"
+          ? 0.04
+          : fighter.weapon.specialType === "rake-frenzy"
+            ? 0.05
+            : fighter.weapon.specialType === "vault-smash"
+              ? 0.03
         : 0;
-  fighter.slideTimer = fighter.weapon.kind === "short" ? 0.28 : fighter.weapon.kind === "medium" ? 0.22 + mediumStyleBoost : 0.2;
+  fighter.slideTimer = fighter.weapon.kind === "short" ? 0.28 + dashDurationBoost : fighter.weapon.kind === "medium" ? 0.22 + dashDurationBoost : 0.2 + dashDurationBoost;
   fighter.slideCooldown = 0.96;
   fighter.slideDir = fighter.facing;
   fighter.dashSpeed = fighter.weapon.kind === "long" ? 400 : fighter.weapon.kind === "short" ? 470 : 450;
@@ -7320,11 +8941,33 @@ function performLunge(fighter, match) {
   const slideSpeedBonus =
     fighter.weapon.specialType === "cross-cut"
       ? 24
+      : fighter.weapon.specialType === "guard-rip"
+        ? 18
+      : fighter.weapon.specialType === "tonfa-rush"
+        ? 24
+      : fighter.weapon.specialType === "storm-rush"
+        ? 34
+      : fighter.weapon.specialType === "veil-rush"
+        ? 36
       : fighter.weapon.specialType === "triple-rush"
         ? 30
+        : fighter.weapon.specialType === "twin-dash"
+          ? 22
+          : fighter.weapon.specialType === "rake-frenzy"
+            ? 34
+            : fighter.weapon.specialType === "vault-smash"
+              ? 20
         : fighter.weapon.specialType === "feint-thrust"
           ? 18
           : 0;
+  if (fighter.weapon.specialType === "veil-rush") {
+    fighter.invulnerable = Math.max(fighter.invulnerable || 0, 0.14);
+  }
+  if (fighter.weapon.specialType === "storm-rush") {
+    fighter.slideCooldown = 0.84;
+  } else if (fighter.weapon.specialType === "tonfa-rush") {
+    fighter.slideCooldown = 0.88;
+  }
   fighter.dashSpeed += slideSpeedBonus + (fighter.styleBonuses?.styleId === "tempest" && fighter.styleBonuses.abilityAgility ? 32 : 0);
   fighter.vx = fighter.facing * fighter.dashSpeed;
   addSpark(match, fighter.x, fighter.y - 10, fighter.weapon.color, 10);
@@ -7480,6 +9123,8 @@ function spawnProjectile(attacker, opponent, match, options = {}) {
     shockCount: ammoRound?.shockCount ?? attacker.weapon.shockCount ?? 0,
     poisonCount: ammoRound?.poisonCount ?? attacker.weapon.poisonCount ?? 0,
     portalCount: ammoRound?.portalCount ?? attacker.weapon.portalCount ?? 0,
+    slowCount: ammoRound?.slowCount ?? attacker.weapon.slowCount ?? 0,
+    ruptureCount: ammoRound?.ruptureCount ?? attacker.weapon.ruptureCount ?? 0,
     glow: attacker.weapon.projectileGlow || impactAccentColor(ammoRound?.impactTypes?.[0] || attacker.weapon.impactType) || attacker.weapon.color,
     waveSeed: Math.random() * Math.PI * 2,
     trailTimer: 0
@@ -7591,6 +9236,7 @@ function resolveProjectileHit(projectile, attacker, defender, match) {
   damage += projectileImpactCount(projectile, "shock") * 2;
   damage += projectileImpactCount(projectile, "poison");
   damage += projectileImpactCount(projectile, "imploder");
+  damage += projectile.ruptureCount || 0;
 
   defender.health = clamp(defender.health - damage, 0, defender.maxHealth);
   defender.hitstun = Math.max(defender.hitstun, 0.12 + damage * 0.004);
@@ -7606,16 +9252,56 @@ function resolveProjectileHit(projectile, attacker, defender, match) {
     applyStun(defender, 0.18 + projectile.impactChambers * 0.02 + projectileImpactCount(projectile, "shock") * 0.03 + (projectile.stormTrail ? 0.04 : 0));
     attackerStats.stuns += 1;
   }
+  if (attacker.weapon.specialType === "arc-rail") {
+    applyStun(defender, 0.16 + projectile.impactChambers * 0.02);
+    defender.vx += Math.sign(projectile.vx || attacker.facing) * 42;
+    attackerStats.stuns += 1;
+  }
   if (projectile.poisonCount || projectileHasImpact(projectile, "poison")) {
     defender.poisonTimer = Math.max(defender.poisonTimer, 2.8 + projectile.impactChambers * 0.4 + projectileImpactCount(projectile, "poison") * 0.5);
     defender.poisonTickTimer = Math.min(defender.poisonTickTimer || 0.45, 0.45);
   }
-  if (projectile.tipType === "spiked") {
+  if (projectile.slowCount || projectileHasImpact(projectile, "frost") || projectileHasImpact(projectile, "shiver") || projectile.blizzardTrail) {
+    defender.slowTimer = Math.max(
+      defender.slowTimer,
+      0.2 + projectile.impactChambers * 0.03 + (projectile.slowCount || 0) * 0.05 + (projectile.blizzardTrail ? 0.04 : 0)
+    );
+  }
+  if (attacker.weapon.specialType === "harpoon-shot") {
+    const pullDir = Math.sign(projectile.vx || attacker.facing) || attacker.facing;
+    defender.vx = -pullDir * (150 + projectile.impactChambers * 18);
+    defender.x = clamp(defender.x - pullDir * (26 + projectile.impactChambers * 10), stageBounds(match.stage).left, stageBounds(match.stage).right);
+    defender.hitstun = Math.max(defender.hitstun, 0.2);
+  }
+  if (attacker.weapon.specialType === "phase-rail") {
+    const shiftDir = Math.sign(projectile.vx || attacker.facing) || attacker.facing;
+    defender.x = clamp(defender.x + shiftDir * (26 + projectile.impactChambers * 8), stageBounds(match.stage).left, stageBounds(match.stage).right);
+    defender.hitstun = Math.max(defender.hitstun, 0.18);
+  }
+  if (attacker.weapon.specialType === "quake-shell") {
+    defender.slowTimer = Math.max(defender.slowTimer, 0.24 + projectile.impactChambers * 0.03);
+    defender.vx += Math.sign(projectile.vx || attacker.facing) * 28;
+  }
+  if (attacker.weapon.specialType === "stormbow-shot") {
+    applyStun(defender, 0.12 + projectile.impactChambers * 0.02);
+  }
+  if (projectile.delayedImpact || projectile.ruptureCount > 0) {
+    const delayedScale =
+      projectile.tipType === "spiked"
+        ? 0.26
+        : projectile.tipType === "barbed"
+          ? 0.22
+          : 0.18;
     defender.stuckPayloads.push({
-      timer: 0.24,
-      damage: clamp(Math.round(projectile.damage * 0.26), 3, 9),
+      timer:
+        projectile.tipType === "spiked"
+          ? 0.24
+          : projectile.tipType === "barbed"
+            ? 0.2
+            : 0.18,
+      damage: clamp(Math.round(projectile.damage * delayedScale + (projectile.ruptureCount || 0)), 3, 10),
       color: projectile.color,
-      knockback: 28 + projectile.impactChambers * 10
+      knockback: 28 + projectile.impactChambers * 10 + (projectile.ruptureCount || 0) * 8
     });
   }
 
@@ -7749,6 +9435,30 @@ function shotPatternForWeapon(weapon) {
       blockScale: 0.9
     }));
   }
+  if (weapon.frameId === "sawedoff") {
+    return [-2.5, -1.5, -0.5, 0.5, 1.5, 2.5].map((index) => ({
+      angleOffset: index * spread,
+      damageScale: weapon.burstDamageScale || 0.26,
+      speedScale: 0.88 + Math.abs(index) * 0.03,
+      blockScale: 0.82
+    }));
+  }
+  if (weapon.frameId === "stormbow") {
+    return [-1, 0, 1].map((index) => ({
+      angleOffset: index * spread,
+      damageScale: weapon.burstDamageScale || 0.48,
+      speedScale: index === 0 ? 1 : 0.94,
+      blockScale: 0.96
+    }));
+  }
+  if (weapon.frameId === "prismrail") {
+    return [-0.5, 0.5].map((index) => ({
+      angleOffset: index * spread,
+      damageScale: weapon.burstDamageScale || 0.68,
+      speedScale: 1.04,
+      blockScale: 1
+    }));
+  }
   return Array.from({ length: count }, (_, index) => ({
     angleOffset: (index - (count - 1) / 2) * spread,
     damageScale: weapon.burstDamageScale || 1,
@@ -7797,11 +9507,13 @@ function startAttack(fighter, opponent = null, match = state.match) {
         {
           frame: fighter.weapon.frameId,
           impactChambers: fighter.weapon.impactChambers || 1,
-          impactMount: fighter.weapon.impactMount || "core",
-          chamberImpacts: fighter.weapon.chamberImpacts || [fighter.weapon.impactType || "standard"],
-          launchType: fighter.weapon.launchType || "standard",
+          impactMount: fighter.weapon.impactMount || defaultImpactMountForFrame(frameCatalog[fighter.weapon.frameId] || frameCatalog.longbow),
+          chamberImpacts:
+            fighter.weapon.chamberImpacts ||
+            [fighter.weapon.impactType || defaultImpactTypeForFrame(frameCatalog[fighter.weapon.frameId] || frameCatalog.longbow)],
+          launchType: fighter.weapon.launchType || defaultLaunchTypeForFrame(frameCatalog[fighter.weapon.frameId] || frameCatalog.longbow),
           midAirAddons: fighter.weapon.midAirAddons || [],
-          tipType: fighter.weapon.tipType || "sharp",
+          tipType: fighter.weapon.tipType || defaultTipTypeForFrame(frameCatalog[fighter.weapon.frameId] || frameCatalog.longbow),
           forgeQuality: fighter.weapon.forgeQuality || 0.5
         },
         frameCatalog[fighter.weapon.frameId] || frameCatalog.longbow
@@ -7924,7 +9636,8 @@ function attemptAttackHit(attacker, defender, match) {
     }
 
     const guardDrainMultiplier =
-      attacker.styleBonuses?.styleId === "bastion" && attacker.styleBonuses.abilityStrength ? 1.24 : 1;
+      (attacker.styleBonuses?.styleId === "bastion" && attacker.styleBonuses.abilityStrength ? 1.24 : 1) *
+      (attacker.weapon.specialType === "guard-rip" ? 1.3 : 1);
     const blockDrainReduction =
       defender.styleBonuses?.styleId === "bastion" && defender.styleBonuses.abilityDefense ? 0.7 : 1;
     defender.stamina = clamp(
@@ -8034,6 +9747,16 @@ function attemptAttackHit(attacker, defender, match) {
     setMatchSummary(`${attacker.name} hooked ${defender.name} back in with ${attacker.weapon.name}.`);
   } else if (attacker.weapon.specialType === "guard-pin") {
     defender.hitstun = Math.max(defender.hitstun, 0.2);
+  } else if (attacker.weapon.specialType === "sky-launch" && onFrontSide(defender, attacker)) {
+    defender.vy = Math.min(defender.vy, -240);
+    defender.hitstun = Math.max(defender.hitstun, 0.24);
+    applyStun(defender, 0.12);
+    attackerStats.stuns += 1;
+  } else if (attacker.weapon.specialType === "vault-smash") {
+    defender.vy = Math.min(defender.vy, -210);
+    defender.hitstun = Math.max(defender.hitstun, 0.22);
+    applyStun(defender, 0.12);
+    attackerStats.stuns += 1;
   } else if (attacker.weapon.specialType === "cleave-wave" || attacker.weapon.specialType === "crush-burst") {
     defender.vx = attacker.facing * attacker.profile.knockback * 1.22;
   }
@@ -8254,11 +9977,22 @@ function attemptSlideSpecialHit(attacker, defender, match) {
     const guardDrainScale =
       attacker.weapon.specialType === "cross-cut"
         ? 0.9
+        : attacker.weapon.specialType === "guard-rip"
+          ? 1
+        : attacker.weapon.specialType === "tonfa-rush" || attacker.weapon.specialType === "fortress-break"
+          ? 0.92
         : 0.7;
     defender.stamina = clamp(defender.stamina - Math.round(attacker.profile.blockDrain * guardDrainScale), 0, defender.maxStamina);
     defender.hitstun = Math.max(defender.hitstun, 0.06);
     defender.vx += attacker.facing * 52;
-    attacker.slideHitCooldown = attacker.weapon.specialType === "triple-rush" ? 0.045 : attacker.weapon.kind === "short" ? 0.08 : 0.12;
+    attacker.slideHitCooldown =
+      attacker.weapon.specialType === "triple-rush" || attacker.weapon.specialType === "rake-frenzy"
+        ? 0.045
+        : attacker.weapon.specialType === "twin-dash"
+          ? 0.06
+          : attacker.weapon.kind === "short"
+            ? 0.08
+            : 0.12;
     attacker.slideHitCount += 1;
     defenderStats.blocks += 1;
     addSpark(match, contactX, contactY, "#ffffff", 8);
@@ -8296,7 +10030,12 @@ function attemptSlideSpecialHit(attacker, defender, match) {
     attacker.profile.slideDamage +
     (attacker.weapon.specialType === "cross-cut" ? 1 : 0);
   const damage = clamp(
-    Math.round(baseDamage * (attacker.weapon.kind === "short" && !onFrontSide(defender, attacker) ? attacker.weapon.backstabBonus : 1)),
+    Math.round(
+      baseDamage *
+      (attacker.weapon.kind === "short" && !onFrontSide(defender, attacker) ? attacker.weapon.backstabBonus : 1) *
+      (attacker.weapon.specialType === "veil-rush" && !onFrontSide(defender, attacker) ? 1.16 : 1) *
+      (attacker.weapon.specialType === "storm-rush" ? 1.08 : 1)
+    ),
     5,
     24
   );
@@ -8310,17 +10049,38 @@ function attemptSlideSpecialHit(attacker, defender, match) {
   defender.attackFlash = 0.16;
   defender.alive = defender.health > 0;
   attacker.slideHitCount += 1;
-  attacker.slideHitCooldown = attacker.weapon.specialType === "triple-rush" ? 0.045 : attacker.weapon.kind === "short" ? 0.07 : 0.18;
+  attacker.slideHitCooldown =
+    attacker.weapon.specialType === "triple-rush" || attacker.weapon.specialType === "rake-frenzy"
+      ? 0.045
+      : attacker.weapon.specialType === "twin-dash"
+        ? 0.06
+        : attacker.weapon.kind === "short"
+          ? 0.07
+          : 0.18;
 
   if (attacker.weapon.kind === "short" || attacker.weapon.frameId === "capesh") {
     applyStun(defender, attacker.weapon.kind === "short" ? 0.08 : 0.12);
     attackerStats.stuns += 1;
+  } else if (attacker.weapon.specialType === "tonfa-rush") {
+    defender.hitstun = Math.max(defender.hitstun, 0.22);
+    defender.stamina = clamp(defender.stamina - 8, 0, defender.maxStamina);
   } else if (attacker.weapon.specialType === "axe-throw") {
     defender.vx = attacker.facing * 186;
     defender.hitstun = Math.max(defender.hitstun, 0.2);
   } else if (attacker.weapon.specialType === "reaper-hook") {
     defender.vx = attacker.facing * -130;
     defender.hitstun = Math.max(defender.hitstun, 0.18);
+  } else if (attacker.weapon.specialType === "vault-smash") {
+    defender.vy = Math.min(defender.vy, -220);
+    defender.hitstun = Math.max(defender.hitstun, 0.22);
+    applyStun(defender, 0.14);
+    attackerStats.stuns += 1;
+  } else if (attacker.weapon.specialType === "fortress-break") {
+    defender.vx = attacker.facing * 210;
+    defender.hitstun = Math.max(defender.hitstun, 0.24);
+    defender.stamina = clamp(defender.stamina - 12, 0, defender.maxStamina);
+    applyStun(defender, 0.12);
+    attackerStats.stuns += 1;
   }
 
   attackerStats.hits += 1;
@@ -8329,11 +10089,33 @@ function attemptSlideSpecialHit(attacker, defender, match) {
   triggerImpact(match, { shake: attacker.weapon.kind === "short" ? 7 : 9, flash: 0.1, hitstop: 0.04 });
   playSoundEffect("hit");
   setMatchSummary(
-    `${attacker.name} landed a ${attacker.weapon.specialType === "axe-throw" ? "throw axe" : attacker.weapon.kind === "short" ? "spin" : "dash"} slash for ${damage}.`
+    `${attacker.name} landed a ${
+      attacker.weapon.specialType === "axe-throw"
+        ? "throw axe"
+        : attacker.weapon.specialType === "vault-smash"
+          ? "vault smash"
+          : attacker.weapon.specialType === "twin-dash"
+            ? "twin dash"
+            : attacker.weapon.specialType === "rake-frenzy"
+              ? "rake rush"
+              : attacker.weapon.kind === "short"
+                ? "spin"
+                : "dash"
+    } slash for ${damage}.`
   );
   pushFightEvent(
     match,
-    attacker.weapon.specialType === "axe-throw" ? "Axe Throw" : attacker.weapon.kind === "short" ? "Spin Slash" : "Dash Slash",
+    attacker.weapon.specialType === "axe-throw"
+      ? "Axe Throw"
+      : attacker.weapon.specialType === "vault-smash"
+        ? "Vault Smash"
+        : attacker.weapon.specialType === "twin-dash"
+          ? "Twin Dash"
+          : attacker.weapon.specialType === "rake-frenzy"
+            ? "Rake Rush"
+            : attacker.weapon.kind === "short"
+              ? "Spin Slash"
+              : "Dash Slash",
     `${attacker.name} cut ${defender.name} for ${damage} with ${attacker.weapon.name}.`,
     "impact"
   );
@@ -9446,8 +11228,15 @@ function drawFighter(fighter) {
       ctx.stroke();
     };
 
-    if (fighter.weapon.frameId === "longbow" || fighter.weapon.frameId === "crossbow") {
-      const bowArm = fighter.weapon.frameId === "crossbow" ? 14 : 20;
+    if (["longbow", "crossbow", "stormbow", "ballista"].includes(fighter.weapon.frameId)) {
+      const bowArm =
+        fighter.weapon.frameId === "crossbow"
+          ? 14
+          : fighter.weapon.frameId === "ballista"
+            ? 16
+            : fighter.weapon.frameId === "stormbow"
+              ? 22
+              : 20;
       strokeSegment(
         weaponRenderBaseX - px * bowArm,
         weaponRenderBaseY - py * bowArm,
@@ -9479,8 +11268,8 @@ function drawFighter(fighter) {
         weaponRenderBaseX + ux * (bodyLength + barrelLength),
         weaponRenderBaseY + uy * (bodyLength + barrelLength),
         5,
-        fighter.weapon.frameId === "railgun" ? 3.8 : 3,
-        fighter.weapon.frameId === "railgun" ? "#d1f7ff" : "#f3ead8"
+        ["railgun", "coillance", "arcrail", "prismrail"].includes(fighter.weapon.frameId) ? 3.8 : 3,
+        ["railgun", "coillance", "arcrail", "prismrail"].includes(fighter.weapon.frameId) ? "#d1f7ff" : "#f3ead8"
       );
       strokeSegment(
         weaponRenderBaseX - px * 2,
@@ -9493,14 +11282,18 @@ function drawFighter(fighter) {
       );
     }
 
-    ctx.fillStyle = fighter.weapon.frameId === "railgun" ? "#d1f7ff" : fighter.weapon.color;
+    ctx.fillStyle = ["railgun", "coillance", "arcrail", "prismrail"].includes(fighter.weapon.frameId) ? "#d1f7ff" : fighter.weapon.color;
     ctx.beginPath();
-    ctx.arc(weaponTipX, weaponTipY, fighter.weapon.frameId === "railgun" ? 4 : 3.4, 0, Math.PI * 2);
+    ctx.arc(weaponTipX, weaponTipY, ["railgun", "coillance", "arcrail", "prismrail"].includes(fighter.weapon.frameId) ? 4 : 3.4, 0, Math.PI * 2);
     ctx.fill();
 
     if (fighter.muzzleFlash > 0) {
       const flashAlpha = fighter.muzzleFlash * 7;
-      ctx.fillStyle = fighter.weapon.frameId === "railgun" || fighter.weapon.frameId === "coillance" ? `rgba(209,247,255,${flashAlpha})` : `rgba(255,219,160,${flashAlpha})`;
+      ctx.fillStyle = ["railgun", "coillance", "arcrail", "prismrail"].includes(fighter.weapon.frameId)
+        ? `rgba(209,247,255,${flashAlpha})`
+        : fighter.weapon.frameId === "stormbow"
+          ? `rgba(158,244,255,${flashAlpha})`
+          : `rgba(255,219,160,${flashAlpha})`;
       ctx.beginPath();
       ctx.moveTo(weaponTipX, weaponTipY);
       ctx.lineTo(weaponTipX + fighter.facing * 12, weaponTipY - 5);
@@ -10003,7 +11796,10 @@ function bindEvents() {
     state.forge = reconcileAmmoCaseForForge(state.forge);
     resetForgeMinigame(state.forge.frame, false);
     renderForge();
-    setMatchSummary(`${midAirTypeCatalog[addonId].label} added to the mid-air stack.`);
+    const frame = frameCatalog[state.forge.frame] || frameCatalog.longbow;
+    const fieldCatalog = midAirCatalogForFrame(frame);
+    const labels = ammoWorkshopLabelsForFrame(frame);
+    setMatchSummary(`${fieldCatalog[addonId].label} added to the ${isSpecialGunFrame(frame) ? labels.detailMidAir.toLowerCase() : "mid-air stack"}.`);
   });
 
   ui.saveAmmo.addEventListener("click", saveCurrentAmmoRecipe);
@@ -10336,6 +12132,14 @@ function init() {
     }
   } catch (error) {
     state.reviews.entries = [];
+  }
+
+  try {
+    const savedProgress = JSON.parse(window.localStorage.getItem("stickforge-progress") || "null");
+    loadProgressState(savedProgress);
+  } catch (error) {
+    state.armory = [];
+    state.ammoRack = [];
   }
 
   seedArmory();
