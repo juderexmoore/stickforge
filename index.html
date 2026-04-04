@@ -551,6 +551,9 @@
             <button class="ghost-button preset-button" data-preset="foundry">Foundry</button>
             <button class="ghost-button preset-button" data-preset="ring">Ring</button>
             <button class="ghost-button preset-button" data-preset="crossfire">Crossfire</button>
+            <button class="ghost-button preset-button" data-preset="stormspire">Stormspire</button>
+            <button class="ghost-button preset-button" data-preset="gravevault">Gravevault</button>
+            <button class="ghost-button preset-button" data-preset="voidhangar">Voidhangar</button>
           </div>
 
           <div class="arena-hint">
@@ -663,22 +666,58 @@
           </div>
 
           <div class="touch-controls" id="touch-controls">
-            <div class="touch-quickbar">
-              <button data-touch-ui="pause" type="button">Pause</button>
-              <button data-touch="reload" type="button">Reload</button>
+            <div class="touch-shoulder-row">
+              <button class="touch-control-button touch-shoulder-button touch-pause-button" data-touch-ui="pause" type="button">
+                <span class="touch-button-code">START</span>
+                <strong class="touch-button-title">Pause</strong>
+              </button>
+              <button class="touch-control-button touch-shoulder-button touch-reload-button" data-touch="reload" type="button">
+                <span class="touch-button-code">R1</span>
+                <strong class="touch-button-title">Reload</strong>
+              </button>
             </div>
-            <div class="touch-control-grid">
-              <div class="touch-pad">
-                <button data-touch="left" type="button">Left</button>
-                <button data-touch="up" type="button">Jump</button>
-                <button data-touch="down" type="button">Down</button>
-                <button data-touch="right" type="button">Right</button>
+            <div class="touch-controller-grid">
+              <div class="touch-cluster touch-dpad-cluster">
+                <span class="touch-cluster-title">D-Pad</span>
+                <div class="touch-dpad">
+                  <button class="touch-control-button touch-dpad-button touch-dpad-up" data-touch="up" type="button">
+                    <span class="touch-button-code">UP</span>
+                    <strong class="touch-button-title">Jump</strong>
+                  </button>
+                  <button class="touch-control-button touch-dpad-button touch-dpad-left" data-touch="left" type="button">
+                    <span class="touch-button-code">LEFT</span>
+                    <strong class="touch-button-title">Left</strong>
+                  </button>
+                  <button class="touch-control-button touch-dpad-button touch-dpad-right" data-touch="right" type="button">
+                    <span class="touch-button-code">RIGHT</span>
+                    <strong class="touch-button-title">Right</strong>
+                  </button>
+                  <button class="touch-control-button touch-dpad-button touch-dpad-down" data-touch="down" type="button">
+                    <span class="touch-button-code">DOWN</span>
+                    <strong class="touch-button-title">Crouch</strong>
+                  </button>
+                </div>
               </div>
-              <div class="touch-actions">
-                <button data-touch="attack" type="button">Strike</button>
-                <button data-touch="block" type="button">Block</button>
-                <button data-touch="dodge" type="button">Backstep</button>
-                <button data-touch="slide" type="button">Dash</button>
+              <div class="touch-cluster touch-face-cluster">
+                <span class="touch-cluster-title">Face Buttons</span>
+                <div class="touch-face-buttons">
+                  <button class="touch-control-button touch-face-button touch-face-y" data-touch="slide" type="button">
+                    <span class="touch-button-code">Y</span>
+                    <strong class="touch-button-title">Dash</strong>
+                  </button>
+                  <button class="touch-control-button touch-face-button touch-face-x" data-touch="block" type="button">
+                    <span class="touch-button-code">X</span>
+                    <strong class="touch-button-title">Block</strong>
+                  </button>
+                  <button class="touch-control-button touch-face-button touch-face-b" data-touch="dodge" type="button">
+                    <span class="touch-button-code">B</span>
+                    <strong class="touch-button-title">Backstep</strong>
+                  </button>
+                  <button class="touch-control-button touch-face-button touch-face-a" data-touch="attack" type="button">
+                    <span class="touch-button-code">A</span>
+                    <strong class="touch-button-title">Strike</strong>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

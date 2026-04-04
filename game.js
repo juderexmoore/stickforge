@@ -363,6 +363,26 @@ const frameCatalog = {
       summary: "Dash chains four quick rake cuts and rewards rear pressure."
     }
   },
+  hookknife: {
+    label: "Hook Knife",
+    classLabel: "Short",
+    kind: "short",
+    summary: "A tight hooked blade meant to snag guard and slip behind the rival. Back hits bite harder, and clean pressure pins blocks in place.",
+    design: "Hooked guard knife",
+    damage: 15,
+    reach: 56,
+    cooldown: 0.38,
+    knockback: 0.82,
+    arc: 1.18,
+    speed: 1.28,
+    moveScale: 1.14,
+    weight: 5,
+    special: {
+      type: "guard-pin",
+      backstabBonus: 1.28,
+      summary: "Pins guard harder, rewards back cuts, and makes close pressure harder to shake."
+    }
+  },
   rapier: {
     label: "Rapier",
     classLabel: "Medium",
@@ -401,6 +421,25 @@ const frameCatalog = {
       summary: "Dash slash covers a wider crescent arc."
     }
   },
+  riftblade: {
+    label: "Rift Blade",
+    classLabel: "Medium",
+    kind: "medium",
+    summary: "A split-edged medium blade that cuts through space in two beats. Dash becomes a twin slash that catches late movement and side slips.",
+    design: "Split-phase saber",
+    damage: 18,
+    reach: 92,
+    cooldown: 0.56,
+    knockback: 1.02,
+    arc: 1.16,
+    speed: 1.1,
+    moveScale: 1.04,
+    weight: 10,
+    special: {
+      type: "twin-dash",
+      summary: "Dash becomes a two-cut pass-through slash that keeps pressure on crossing rivals."
+    }
+  },
   claymore: {
     label: "Claymore",
     classLabel: "Long",
@@ -437,6 +476,26 @@ const frameCatalog = {
     special: {
       type: "crush-burst",
       summary: "Heavy hits crack stamina harder and stun on dead-on contact."
+    }
+  },
+  guillotine: {
+    label: "Guillotine",
+    classLabel: "Long",
+    kind: "long",
+    summary: "A brutal execution pole built for deliberate front-loaded punishes. Clean heavy hits can finish open rivals at 35% or less.",
+    design: "Hooked execution pole",
+    damage: 27,
+    reach: 108,
+    cooldown: 1.02,
+    knockback: 1.5,
+    arc: 1.02,
+    speed: 0.76,
+    moveScale: 0.84,
+    weight: 22,
+    special: {
+      type: "heavy-execute",
+      threshold: 0.35,
+      summary: "Heavy clean front hits execute open rivals at 35% or less."
     }
   },
   brass: {
@@ -572,6 +631,64 @@ const frameCatalog = {
       summary: "Heavy clean hits crack guard harder and leave a longer stagger."
     }
   },
+  stormtalon: {
+    label: "Storm Talons",
+    classLabel: "Special",
+    kind: "special",
+    summary: "Twin storm blades built for relentless tempo. Dash becomes a fast storm rush that chains pressure and keeps the wielder moving.",
+    design: "Twin wind-cut talons",
+    damage: 18,
+    reach: 70,
+    cooldown: 0.4,
+    knockback: 1.02,
+    arc: 1.18,
+    speed: 1.26,
+    moveScale: 1.14,
+    weight: 7,
+    special: {
+      type: "storm-rush",
+      summary: "Dash turns into a fast storm rush with sharper follow-through and better tempo pressure."
+    }
+  },
+  bulwark: {
+    label: "Bulwark Brk",
+    classLabel: "Special",
+    kind: "special",
+    summary: "A shield-maul hybrid built to smash straight through guard. Dash becomes a fortress break that crushes blocks and launches rivals away.",
+    design: "Shielded breaker maul",
+    damage: 24,
+    reach: 82,
+    cooldown: 0.9,
+    knockback: 1.52,
+    arc: 0.96,
+    speed: 0.82,
+    moveScale: 0.9,
+    weight: 20,
+    special: {
+      type: "fortress-break",
+      summary: "Dash becomes a crushing guard-break slam that shoves rivals farther and batters stamina."
+    }
+  },
+  shadefans: {
+    label: "Shade Fans",
+    classLabel: "Special",
+    kind: "special",
+    summary: "Hidden bladed fans meant for vanish pressure. Dash slips through the rival, rear hits bite harder, and the recovery stays slippery.",
+    design: "Hidden crescent fans",
+    damage: 16,
+    reach: 62,
+    cooldown: 0.38,
+    knockback: 0.88,
+    arc: 1.28,
+    speed: 1.28,
+    moveScale: 1.18,
+    weight: 5,
+    special: {
+      type: "veil-rush",
+      backstabBonus: 1.36,
+      summary: "Dash slips cleanly through pressure, and rear hits punish much harder."
+    }
+  },
   revolver: {
     label: "Revolver",
     classLabel: "Sidearm",
@@ -702,6 +819,32 @@ const frameCatalog = {
       summary: "Fires a tight cone of pellets instead of a single bullet."
     }
   },
+  needler: {
+    label: "Needler",
+    classLabel: "Sidearm",
+    kind: "sidearm",
+    family: "ranged",
+    ammoType: "bullet",
+    clipSize: 8,
+    chamberMax: 1,
+    projectileSpeed: 860,
+    reload: 0.88,
+    range: 410,
+    summary: "A darting sidearm that spits quick needle bursts. It loves rupture, frost, and other control-heavy light rounds.",
+    design: "Needle burst pistol",
+    damage: 12,
+    reach: 110,
+    cooldown: 0.18,
+    knockback: 0.74,
+    arc: 0.78,
+    speed: 1.22,
+    moveScale: 1.12,
+    weight: 6,
+    special: {
+      type: "burst-sidearm",
+      summary: "Fires quick needle bursts instead of a single pistol tap."
+    }
+  },
   ak47: {
     label: "AK-47",
     classLabel: "Assault",
@@ -830,6 +973,84 @@ const frameCatalog = {
     special: {
       type: "pierce-rifle",
       summary: "Precise rifle shots punch farther and pierce more cleanly."
+    }
+  },
+  volleyrifle: {
+    label: "Volley Rifle",
+    classLabel: "Assault",
+    kind: "assault",
+    family: "ranged",
+    ammoType: "bullet",
+    clipSize: 14,
+    chamberMax: 2,
+    projectileSpeed: 850,
+    reload: 1.28,
+    range: 495,
+    summary: "A wide-control assault rifle that fires disciplined five-round sprays and thrives on concussion or rupture ammo.",
+    design: "Long gas-piston rifle",
+    damage: 14,
+    reach: 126,
+    cooldown: 0.22,
+    knockback: 0.88,
+    arc: 0.82,
+    speed: 1.08,
+    moveScale: 0.98,
+    weight: 13,
+    special: {
+      type: "spray-rifle",
+      summary: "Fires longer spray strings that flood the lane and keep moving rivals pinned down."
+    }
+  },
+  longshot: {
+    label: "Longshot",
+    classLabel: "Assault",
+    kind: "assault",
+    family: "ranged",
+    ammoType: "bullet",
+    clipSize: 5,
+    chamberMax: 2,
+    projectileSpeed: 980,
+    reload: 1.24,
+    range: 590,
+    summary: "A rangy precision rifle tuned for slow punishing shots, deep pierce work, and hard long-lane confirms.",
+    design: "Long-barrel precision rifle",
+    damage: 22,
+    reach: 150,
+    cooldown: 0.44,
+    knockback: 1.06,
+    arc: 0.74,
+    speed: 0.98,
+    moveScale: 0.92,
+    weight: 15,
+    special: {
+      type: "scope-shot",
+      summary: "Heavy long-lane shots fly fast, hit hard, and keep stronger pierce pressure."
+    }
+  },
+  linebreaker: {
+    label: "Linebreaker",
+    classLabel: "Assault",
+    kind: "assault",
+    family: "ranged",
+    ammoType: "bullet",
+    clipSize: 8,
+    chamberMax: 2,
+    projectileSpeed: 920,
+    reload: 1.22,
+    range: 545,
+    summary: "A hard-duty lane rifle built to crack straight through cover, guard, and stacked targets with mean precision rounds.",
+    design: "Reinforced battle rifle",
+    damage: 20,
+    reach: 144,
+    cooldown: 0.36,
+    knockback: 1.02,
+    arc: 0.76,
+    speed: 1,
+    moveScale: 0.96,
+    weight: 14,
+    special: {
+      type: "pierce-rifle",
+      summary: "Precision line shots pierce deeper and hammer blocks harder down the lane."
     }
   },
   sniper: {
@@ -988,6 +1209,32 @@ const frameCatalog = {
       summary: "Heavy slug hits shove harder and leave extra slow pressure."
     }
   },
+  crusher: {
+    label: "Crusher",
+    classLabel: "Heavy",
+    kind: "heavy",
+    family: "ranged",
+    ammoType: "bullet",
+    clipSize: 3,
+    chamberMax: 3,
+    projectileSpeed: 700,
+    reload: 1.58,
+    range: 470,
+    summary: "A siege breaker that fires compact ruin slugs. It is slow and heavy, but every clean hit caves in space and posture.",
+    design: "Ruin-bore cannon",
+    damage: 27,
+    reach: 142,
+    cooldown: 0.6,
+    knockback: 1.4,
+    arc: 0.8,
+    speed: 0.88,
+    moveScale: 0.8,
+    weight: 24,
+    special: {
+      type: "quake-shell",
+      summary: "Heavy ruin slugs shove harder, slow harder, and batter blocks on contact."
+    }
+  },
   longbow: {
     label: "Longbow",
     classLabel: "Special Gun",
@@ -1090,6 +1337,84 @@ const frameCatalog = {
     special: {
       type: "stormbow-shot",
       summary: "Fires a short storm volley and adds extra charged pressure."
+    }
+  },
+  emberbow: {
+    label: "Ember Bow",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "bolt",
+    clipSize: 1,
+    chamberMax: 3,
+    projectileSpeed: 790,
+    reload: 0.82,
+    range: 550,
+    summary: "A furnace bow that throws hotter, meaner shots. It leans into flare, bloom, and harsh close confirms.",
+    design: "Furnace recurve bow",
+    damage: 21,
+    reach: 146,
+    cooldown: 0.46,
+    knockback: 1.08,
+    arc: 0.88,
+    speed: 1,
+    moveScale: 0.98,
+    weight: 9,
+    special: {
+      type: "bolt-shot",
+      summary: "Fires a single heated bolt with brighter trail pressure and stronger burst potential."
+    }
+  },
+  moonbow: {
+    label: "Moon Bow",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "bolt",
+    clipSize: 2,
+    chamberMax: 3,
+    projectileSpeed: 830,
+    reload: 0.88,
+    range: 560,
+    summary: "A phase-cut hunting bow that sends paired crescent bolts and leans into bloom, phase, and shiver builds.",
+    design: "Phase crescent bow",
+    damage: 19,
+    reach: 144,
+    cooldown: 0.4,
+    knockback: 1,
+    arc: 0.88,
+    speed: 1.04,
+    moveScale: 1.02,
+    weight: 8,
+    special: {
+      type: "bolt-burst",
+      summary: "Releases paired crescent bolts that cover a broader lane than a normal bow shot."
+    }
+  },
+  boltcaster: {
+    label: "Boltcaster",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "bolt",
+    clipSize: 3,
+    chamberMax: 2,
+    projectileSpeed: 840,
+    reload: 0.94,
+    range: 520,
+    summary: "A three-rack crossbow rig built for repeated bolt pressure. It cycles harder than a repeater and loves loaded control shots.",
+    design: "Three-rack siege crossbow",
+    damage: 18,
+    reach: 132,
+    cooldown: 0.36,
+    knockback: 1,
+    arc: 0.82,
+    speed: 1.02,
+    moveScale: 0.96,
+    weight: 11,
+    special: {
+      type: "bolt-burst",
+      summary: "Fires chained bolt bursts with steadier rack pressure than a standard crossbow."
     }
   },
   repeater: {
@@ -1248,6 +1573,32 @@ const frameCatalog = {
       summary: "Rail hits carry extra shock and stun even before custom emitter tuning."
     }
   },
+  ionrail: {
+    label: "Ion Rail",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "rail",
+    clipSize: 4,
+    chamberMax: 3,
+    projectileSpeed: 1040,
+    reload: 1.28,
+    range: 610,
+    summary: "A fast ion rail built to overwhelm with chained charge lines and brutal stun pressure.",
+    design: "Ion fork rail",
+    damage: 21,
+    reach: 148,
+    cooldown: 0.36,
+    knockback: 1.02,
+    arc: 0.7,
+    speed: 1.08,
+    moveScale: 0.94,
+    weight: 15,
+    special: {
+      type: "arc-rail",
+      summary: "Overloads the lane with faster charged lines and even more shock pressure."
+    }
+  },
   prismrail: {
     label: "Prism Rail",
     classLabel: "Special Gun",
@@ -1272,6 +1623,32 @@ const frameCatalog = {
     special: {
       type: "phase-rail",
       summary: "Fires split phase rails and adds extra portal-shift pressure."
+    }
+  },
+  ghostrail: {
+    label: "Ghost Rail",
+    classLabel: "Special Gun",
+    kind: "gun-special",
+    family: "ranged",
+    ammoType: "rail",
+    clipSize: 3,
+    chamberMax: 3,
+    projectileSpeed: 1000,
+    reload: 1.3,
+    range: 610,
+    summary: "A ghost-cut phase projector that bends rails through the lane and loves portal, revenant, and redirect work.",
+    design: "Ghost-phase rail",
+    damage: 22,
+    reach: 150,
+    cooldown: 0.44,
+    knockback: 1.04,
+    arc: 0.7,
+    speed: 1,
+    moveScale: 0.92,
+    weight: 16,
+    special: {
+      type: "phase-rail",
+      summary: "Phase rails shift rivals harder and ride warped lane control more aggressively."
     }
   },
   "tempest-edge": {
@@ -1563,6 +1940,20 @@ const impactTypeCatalog = {
     minChambers: 2,
     allowedMounts: ["ring", "core"],
     ammoFamilies: ["bullet", "bolt"]
+  },
+  concussion: {
+    label: "Concussion",
+    summary: "Rattles the rival on impact, adding extra stun and a harsher launch without needing a full explosive shell.",
+    minChambers: 2,
+    allowedMounts: ["core", "ring"],
+    ammoFamilies: ["bullet", "bolt"]
+  },
+  anchor: {
+    label: "Anchor",
+    summary: "Hooks into the target, drags them off line, and leaves the hit slowed for uglier follow-up pressure.",
+    minChambers: 2,
+    allowedMounts: ["ring", "split"],
+    ammoFamilies: ["bullet", "bolt"]
   }
 };
 
@@ -1667,6 +2058,20 @@ const specialPayloadTypeCatalog = {
     minChambers: 2,
     allowedMounts: ["spine", "halo"],
     ammoFamilies: ["bolt", "rail"]
+  },
+  snare: {
+    label: "Snare Rune",
+    summary: "Wraps the shot in tethered chill, making it tug, slow, and cling longer after a clean hit.",
+    minChambers: 2,
+    allowedMounts: ["halo", "lattice"],
+    ammoFamilies: ["bolt", "rail"]
+  },
+  flare: {
+    label: "Flare Rune",
+    summary: "Builds a bright volatile burst that heats the shot line, adds splash pressure, and leaves a hotter trail in the air.",
+    minChambers: 2,
+    allowedMounts: ["spine", "halo"],
+    ammoFamilies: ["bolt", "rail"]
   }
 };
 
@@ -1707,6 +2112,9 @@ const specialAmmoRigCatalog = {
     shotWord: "arrow",
     headWord: "arrowhead",
     noMidAirLabel: "No Flight Bindings",
+    descriptor: "Bow ammo is light, clean, and flight-focused. It rewards draw tuning, glide, and line control more than raw shove.",
+    capacityScale: 0.55,
+    previewMode: "bow",
     labels: {
       familyTag: "Bow Workshop",
       note:
@@ -1733,7 +2141,7 @@ const specialAmmoRigCatalog = {
       halo: { label: "Feather Halo", summary: "A wrapped feather ring for phase and shiver bow work." },
       lattice: { label: "Split Nock", summary: "A split bow nock for bloom and burst arrow builds." }
     }),
-    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "burst", "phase", "arc", "bloom", "shiver"]),
+    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "burst", "phase", "arc", "bloom", "shiver", "snare", "flare"]),
     launchCatalog: pickCatalogEntries(specialDriveTypeCatalog, ["draw", "snap", "mist"], {
       draw: { label: "Balanced Draw" },
       snap: { label: "Snap Draw" },
@@ -1753,6 +2161,9 @@ const specialAmmoRigCatalog = {
     shotWord: "bolt",
     headWord: "bolt head",
     noMidAirLabel: "No Flight Rails",
+    descriptor: "Crossbow ammo is denser and more mechanical. It trades some elegance for heavier latch force, guard strain, and direct punch.",
+    capacityScale: 1,
+    previewMode: "crossbow",
     labels: {
       familyTag: "Crossbow Workshop",
       note:
@@ -1779,7 +2190,7 @@ const specialAmmoRigCatalog = {
       halo: { label: "Wheel Cage", summary: "A wheel cage that stabilizes loaded payloads before release." },
       lattice: { label: "Repeater Rail", summary: "A split repeater rail used for burst and fracture bolt work." }
     }),
-    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "tether", "burst", "venom", "fracture", "shiver"]),
+    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "tether", "burst", "venom", "fracture", "shiver", "snare", "flare"]),
     launchCatalog: pickCatalogEntries(specialDriveTypeCatalog, ["draw", "snap", "winch"], {
       draw: { label: "Latch Draw" },
       snap: { label: "Quick Latch" },
@@ -1799,6 +2210,9 @@ const specialAmmoRigCatalog = {
     shotWord: "harpoon",
     headWord: "barb head",
     noMidAirLabel: "No Line Mods",
+    descriptor: "Harpoon ammo is tether-heavy. It loads slower, carries less per rack, and leans into pull, stick, and brutal reel pressure.",
+    capacityScale: 1.55,
+    previewMode: "harpoon",
     labels: {
       familyTag: "Harpoon Rig",
       note:
@@ -1825,7 +2239,7 @@ const specialAmmoRigCatalog = {
       halo: { label: "Anchor Cage", summary: "A round cage that keeps venom and chill loads from shaking loose." },
       lattice: { label: "Reel Brace", summary: "A reel brace built for fracture and mixed pull payloads." }
     }),
-    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "tether", "venom", "fracture", "shiver"]),
+    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "tether", "venom", "fracture", "shiver", "snare"]),
     launchCatalog: pickCatalogEntries(specialDriveTypeCatalog, ["winch", "snap", "mist"], {
       winch: { label: "Tether Winch" },
       snap: { label: "Reel Snap" },
@@ -1845,6 +2259,9 @@ const specialAmmoRigCatalog = {
     shotWord: "rail",
     headWord: "rail tip",
     noMidAirLabel: "No Field Coils",
+    descriptor: "Rail ammo is emitter-driven. It favors charge speed, shock pressure, and fast line control over hook and bloom tricks.",
+    capacityScale: 1.1,
+    previewMode: "rail",
     labels: {
       familyTag: "Rail Foundry",
       note:
@@ -1871,7 +2288,7 @@ const specialAmmoRigCatalog = {
       halo: { label: "Emitter Halo", summary: "A halo cage for arc, revenant, and cold rail work." },
       lattice: { label: "Coil Lattice", summary: "A coil lattice that splits unstable phase and fracture rails." }
     }),
-    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "phase", "venom", "arc", "fracture", "revenant", "shiver"]),
+    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "phase", "venom", "arc", "fracture", "revenant", "shiver", "snare", "flare"]),
     launchCatalog: pickCatalogEntries(specialDriveTypeCatalog, ["coil", "mist", "surge"]),
     fieldCatalog: pickCatalogEntries(specialFieldTypeCatalog, ["none", "seeker", "phase-trim", "arcwake", "echo"]),
     headCatalog: pickCatalogEntries(specialHeadTypeCatalog, ["needle", "crescent", "injector", "broadhead"]),
@@ -1887,6 +2304,9 @@ const specialAmmoRigCatalog = {
     shotWord: "phase rail",
     headWord: "prism head",
     noMidAirLabel: "No Veil Mods",
+    descriptor: "Prism ammo is unstable phase work. It bends, splits, redirects, and tears space harder than a normal rail, but it is harder to rack in bulk.",
+    capacityScale: 1.7,
+    previewMode: "prism",
     labels: {
       familyTag: "Prism Foundry",
       note:
@@ -1913,7 +2333,7 @@ const specialAmmoRigCatalog = {
       halo: { label: "Prism Halo", summary: "A halo cage that bends phase rails into portal and revenant lines." },
       lattice: { label: "Phase Lattice", summary: "A prism lattice used for split phase sigils and twin rail cuts." }
     }),
-    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "phase", "arc", "revenant", "bloom", "shiver"]),
+    impactCatalog: pickCatalogEntries(specialPayloadTypeCatalog, ["focus", "phase", "arc", "revenant", "bloom", "shiver", "snare", "flare"]),
     launchCatalog: pickCatalogEntries(specialDriveTypeCatalog, ["coil", "mist", "surge"], {
       coil: { label: "Facet Charge" },
       mist: { label: "Veil Charge" },
@@ -2077,6 +2497,45 @@ const stageCatalog = {
     accent: "#ffd37d",
     crowd: "#ffc16b",
     hazard: "#ff8f5c"
+  },
+  stormspire: {
+    label: "Stormspire",
+    tagline: "Sky bridge under live charge",
+    specialty: "Lightning reads and hard contrast",
+    description: "A high storm bridge lined with coil pylons, rain sheets, and a live charge vent running through the center lane.",
+    skyTop: "#17304b",
+    skyBottom: "#050912",
+    floor: "#253349",
+    floorEdge: "#8edbff",
+    accent: "#82d7ff",
+    crowd: "#d7f3ff",
+    hazard: "#73c9ff"
+  },
+  gravevault: {
+    label: "Gravevault",
+    tagline: "Cold stone with sealed fire",
+    specialty: "Mist pressure and eerie reads",
+    description: "An under-crypt dueling floor ringed by chains, green braziers, and old sealed vault arches.",
+    skyTop: "#1a171e",
+    skyBottom: "#07070a",
+    floor: "#342e36",
+    floorEdge: "#9ec7a2",
+    accent: "#90ffbe",
+    crowd: "#d8ffe4",
+    hazard: "#6effa0"
+  },
+  voidhangar: {
+    label: "Voidhangar",
+    tagline: "Silent dock over black space",
+    specialty: "Low-light pressure and drift",
+    description: "A dead orbital dock with hanging chains, cold windows, and a split void seam tearing through the center deck.",
+    skyTop: "#101423",
+    skyBottom: "#020306",
+    floor: "#2f3747",
+    floorEdge: "#b39cff",
+    accent: "#a48dff",
+    crowd: "#d8d0ff",
+    hazard: "#8b6bff"
   }
 };
 
@@ -2527,13 +2986,13 @@ function specialAmmoRigForFrame(frame) {
   if (["longbow", "warbow", "stormbow"].includes(frameId)) {
     return "bow-rig";
   }
-  if (["crossbow", "repeater", "ballista"].includes(frameId)) {
+  if (["crossbow", "repeater", "ballista", "boltcaster"].includes(frameId)) {
     return "crossbow-rig";
   }
   if (frameId === "harpoon") {
     return "harpoon-rig";
   }
-  if (frameId === "prismrail") {
+  if (["prismrail", "ghostrail"].includes(frameId)) {
     return "prism-rig";
   }
   if (["railgun", "coillance", "arcrail"].includes(frameId)) {
@@ -2613,7 +3072,9 @@ function ammoWorkshopLabelsForFrame(frame) {
         slotTags: rig.slotTags,
         shotWord: rig.shotWord,
         headWord: rig.headWord,
-        noMidAirLabel: rig.noMidAirLabel
+        noMidAirLabel: rig.noMidAirLabel,
+        descriptor: rig.descriptor,
+        previewMode: rig.previewMode
       };
     }
   }
@@ -2639,7 +3100,9 @@ function ammoWorkshopLabelsForFrame(frame) {
     slotUnit: "Chamber",
     shotWord: frame?.ammoType === "rail" ? "rail" : frame?.ammoType === "bolt" ? "bolt" : "round",
     headWord: "tip",
-    noMidAirLabel: "No Add-Ons"
+    noMidAirLabel: "No Add-Ons",
+    descriptor: "Standard ammo uses shared chamber tech and straightforward shot tuning.",
+    previewMode: frame?.ammoType || "bullet"
   };
 }
 
@@ -2725,6 +3188,7 @@ function ammoCaseCapacityForFrame(frame, recipes, requestedAmmo) {
 function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || frameCatalog.longbow) {
   const normalized = normalizeForgeState(forge);
   const labels = ammoWorkshopLabelsForFrame(frame);
+  const rigId = specialAmmoRigForFrame(frame);
   const chambers = clamp(Number(normalized.impactChambers || 1), 1, Math.max(1, frame.chamberMax || 1));
   const mount = compatibleImpactMount(frame, normalized.impactMount);
   const chamberImpacts = normalizeChamberImpacts(frame, chambers, mount, normalized.chamberImpacts || normalized.impactType);
@@ -2776,6 +3240,8 @@ function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || f
     const revenantCount = countMatches(chamberImpacts, "revenant");
     const bloomCount = countMatches(chamberImpacts, "bloom");
     const shiverCount = countMatches(chamberImpacts, "shiver");
+    const snareCount = countMatches(chamberImpacts, "snare");
+    const flareCount = countMatches(chamberImpacts, "flare");
     const fletchCount = countMatches(midAirAddons, "fletch");
     const seekerCount = countMatches(midAirAddons, "seeker");
     const phaseTrimCount = countMatches(midAirAddons, "phase-trim");
@@ -2794,6 +3260,8 @@ function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || f
       fractureCount * 2 +
       phaseCount +
       shiverCount +
+      snareCount +
+      flareCount +
       revenantCount +
       (launch.damage || 0) +
       (tip.damage || 0);
@@ -2812,6 +3280,8 @@ function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || f
       fractureCount * 0.1 +
       bloomCount * 0.05 +
       shiverCount * 0.04 +
+      snareCount * 0.05 +
+      flareCount * 0.03 +
       (launch.knockback || 0) +
       (tip.knockback || 0);
     recipe.blockBreakBonus =
@@ -2819,27 +3289,81 @@ function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || f
       fractureCount * 4 +
       tetherCount * 2 +
       bloomCount * 2 +
+      snareCount * 2 +
+      flareCount +
       burstCount * 2 +
       focusCount;
     recipe.projectilePierceBonus =
       (tip.pierce || 0) +
       focusCount +
       (tipType === "needle" ? 1 : 0);
-    recipe.delayedImpact = Boolean(tipType === "barbed" || burstCount || tip.delayedImpact);
+    recipe.delayedImpact = Boolean(tipType === "barbed" || burstCount || snareCount > 0 || tip.delayedImpact);
     recipe.homingStrength = seekerCount * 0.7 + revenantCount * 0.45 + echoCount * 0.2;
     recipe.redirectCharges = phaseTrimCount + revenantCount + echoCount;
     recipe.blizzardTrail = Boolean(launch.blizzardTrail || shiverCount > 0);
-    recipe.emberTrail = false;
+    recipe.emberTrail = flareCount > 0;
     recipe.stormTrail = Boolean(launch.stormTrail || arcwakeCount > 0 || (arcCount > 0 && frame.ammoType === "rail"));
     recipe.spiralCount = afterimageCount + Math.max(0, revenantCount - 1);
     recipe.scatterImpact = burstCount > 0 || bloomCount > 0 || splitterCount > 0;
-    recipe.pullImpact = tetherCount > 0 || tipType === "anchor";
-    recipe.explosiveBoost = burstCount * 0.07 + bloomCount * 0.09 + splitterCount * 0.05;
+    recipe.pullImpact = tetherCount > 0 || snareCount > 0 || tipType === "anchor";
+    recipe.explosiveBoost = burstCount * 0.07 + bloomCount * 0.09 + splitterCount * 0.05 + flareCount * 0.08;
     recipe.shockCount = arcCount + arcwakeCount + (tipType === "injector" ? 1 : 0);
     recipe.poisonCount = venomCount + (tipType === "injector" ? 1 : 0);
     recipe.portalCount = phaseCount + revenantCount + (tip.portal || 0);
-    recipe.slowCount = shiverCount;
-    recipe.ruptureCount = tipType === "barbed" ? 1 : 0;
+    recipe.slowCount = shiverCount + snareCount;
+    recipe.ruptureCount = (tipType === "barbed" ? 1 : 0) + Math.max(0, snareCount - 1);
+    switch (rigId) {
+      case "bow-rig":
+        recipe.damageBonus += focusCount + Math.max(0, bloomCount - 1);
+        recipe.speedBonus += 36 + fletchCount * 26 + glideCount * 18;
+        recipe.knockbackBonus = Math.max(0.04, recipe.knockbackBonus - 0.08);
+        recipe.projectilePierceBonus += tipType === "broadhead" ? 1 : 0;
+        recipe.blockBreakBonus = Math.max(0, recipe.blockBreakBonus - 2);
+        recipe.homingStrength += seekerCount * 0.12;
+        recipe.rigSummary = "Bow rig: lighter arrows fly cleaner, keep speed better, and reward draw plus flight tuning over raw shove.";
+        break;
+      case "crossbow-rig":
+        recipe.damageBonus += 2 + tetherCount + fractureCount;
+        recipe.speedBonus -= 18;
+        recipe.knockbackBonus += 0.08 + fractureCount * 0.04;
+        recipe.blockBreakBonus += 4 + fractureCount * 2;
+        recipe.projectilePierceBonus += tipType === "anchor" ? 1 : 0;
+        recipe.delayedImpact = Boolean(recipe.delayedImpact || tipType === "anchor");
+        recipe.rigSummary = "Crossbow rig: heavier bolts hit harder, bite deeper into guard, and reward latch force over finesse.";
+        break;
+      case "harpoon-rig":
+        recipe.damageBonus += tetherCount + fractureCount + 1;
+        recipe.speedBonus -= 46;
+        recipe.knockbackBonus += 0.14 + tetherCount * 0.06;
+        recipe.blockBreakBonus += 6;
+        recipe.pullImpact = true;
+        recipe.delayedImpact = true;
+        recipe.homingStrength += 0.18 + seekerCount * 0.1;
+        recipe.rigSummary = "Harpoon rig: brutal tether shots trade speed for drag force, stuck-barb pressure, and harder reel control.";
+        break;
+      case "rail-rig":
+        recipe.damageBonus += arcCount + revenantCount + 1;
+        recipe.speedBonus += 52 + arcwakeCount * 20;
+        recipe.knockbackBonus = Math.max(0.03, recipe.knockbackBonus - 0.03);
+        recipe.projectilePierceBonus += 1;
+        recipe.shockCount += 1;
+        recipe.redirectCharges += phaseTrimCount;
+        recipe.rigSummary = "Rail rig: emitter rails fire faster, hold straighter lines, and push charge pressure harder than hook or bloom work.";
+        break;
+      case "prism-rig":
+        recipe.damageBonus += phaseCount + revenantCount + 1;
+        recipe.speedBonus += 26;
+        recipe.portalCount += 1;
+        recipe.redirectCharges += 1 + phaseTrimCount;
+        recipe.scatterImpact = true;
+        recipe.homingStrength += 0.34;
+        recipe.explosiveBoost += 0.04;
+        recipe.rigSummary = "Prism rig: unstable facets split, redirect, and warp the lane harder than a standard rail ever could.";
+        break;
+      default:
+        recipe.rigSummary = labels.descriptor;
+        break;
+    }
   } else {
     const magnetCount = countMatches(midAirAddons, "magnetized");
     const redirectCount = countMatches(midAirAddons, "redirect");
@@ -2855,6 +3379,8 @@ function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || f
     const portalCount = countMatches(chamberImpacts, "portal");
     const ruptureCount = countMatches(chamberImpacts, "rupture");
     const frostCount = countMatches(chamberImpacts, "frost");
+    const concussionCount = countMatches(chamberImpacts, "concussion");
+    const anchorCount = countMatches(chamberImpacts, "anchor");
     const standardCount = countMatches(chamberImpacts, "standard");
     recipe.damageBonus =
       chambers * 2 +
@@ -2866,6 +3392,8 @@ function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || f
       scatterCount +
       ruptureCount +
       frostCount +
+      concussionCount +
+      anchorCount +
       (launch.damage || 0) +
       (tip.damage || 0);
     recipe.speedBonus =
@@ -2882,6 +3410,8 @@ function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || f
       imploderCount * 0.04 +
       ruptureCount * 0.05 +
       frostCount * 0.03 +
+      concussionCount * 0.09 +
+      anchorCount * 0.04 +
       (launch.knockback || 0) +
       (tip.knockback || 0);
     recipe.blockBreakBonus =
@@ -2890,12 +3420,14 @@ function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || f
       explosiveCount * 2 +
       shrapnelCount * 2 +
       ruptureCount * 4 +
+      concussionCount * 2 +
+      anchorCount * 2 +
       standardCount;
     recipe.projectilePierceBonus =
       (tipType === "sharp" ? 1 : 0) +
       (tipType === "drill" ? 2 : 0) +
       (tipType === "forked" ? 1 : 0);
-    recipe.delayedImpact = Boolean(tipType === "spiked" || tip.delayedImpact || ruptureCount > 0);
+    recipe.delayedImpact = Boolean(tipType === "spiked" || tip.delayedImpact || ruptureCount > 0 || anchorCount > 0);
     recipe.homingStrength = magnetCount * 0.5;
     recipe.redirectCharges = redirectCount;
     recipe.blizzardTrail = Boolean(launchType === "blizzard" || frostCount > 0);
@@ -2903,15 +3435,16 @@ function buildAmmoRecipeFromForge(forge, frame = frameCatalog[forge?.frame] || f
     recipe.stormTrail = Boolean(launchType === "storm" || launch.stormTrail);
     recipe.spiralCount = spiralCount;
     recipe.scatterImpact = scatterCount > 0;
-    recipe.pullImpact = imploderCount > 0;
+    recipe.pullImpact = imploderCount > 0 || anchorCount > 0;
     recipe.explosiveBoost = explosiveCount * 0.12;
-    recipe.shockCount = shockCount;
+    recipe.shockCount = shockCount + concussionCount;
     recipe.poisonCount = poisonCount;
     recipe.portalCount = portalCount;
-    recipe.slowCount = frostCount;
+    recipe.slowCount = frostCount + anchorCount;
     recipe.ruptureCount = ruptureCount + (tipType === "serrated" ? 1 : 0);
+    recipe.rigSummary = labels.descriptor;
   }
-  recipe.summary = `${summaryBits.join(" | ")}.`;
+  recipe.summary = `${summaryBits.join(" | ")}. ${recipe.rigSummary}`;
   recipe.signature = ammoRecipeSignature(recipe);
   return recipe;
 }
@@ -2960,6 +3493,8 @@ function impactAccentColor(impactId) {
     poison: "#9ef58c",
     rupture: "#ff9275",
     frost: "#b8ecff",
+    concussion: "#d3f1ff",
+    anchor: "#a9dbff",
     focus: "#f4f0e8",
     tether: "#8ce0ff",
     burst: "#ffd59a",
@@ -2969,7 +3504,9 @@ function impactAccentColor(impactId) {
     fracture: "#ffc27a",
     revenant: "#e6b7ff",
     bloom: "#ffd7b2",
-    shiver: "#d0f2ff"
+    shiver: "#d0f2ff",
+    snare: "#b6fff1",
+    flare: "#ffbb84"
   };
   return palette[impactId] || "#f1e7d6";
 }
@@ -3083,7 +3620,11 @@ function compatibleImpactType(frame, chambers, mount, requestedImpact = defaultI
 
 function effectivePreloadAmmo(frame, chambers, requestedAmmo) {
   const clipSize = Math.max(1, Number(frame?.clipSize || 1));
-  const penalty = Math.max(0, chambers - 1) * (frame?.kind === "heavy" ? 1 : frame?.kind === "sidearm" ? 2 : 1);
+  const basePenalty = Math.max(0, chambers - 1);
+  const specialRigScale = isSpecialGunFrame(frame) ? specialAmmoRigConfig(frame)?.capacityScale || 1 : 1;
+  const penalty = isSpecialGunFrame(frame)
+    ? Math.max(0, Math.ceil(basePenalty * specialRigScale))
+    : basePenalty * (frame?.kind === "heavy" ? 1 : frame?.kind === "sidearm" ? 2 : 1);
   const maxLoaded = Math.max(1, clipSize - penalty);
   return clamp(Number(requestedAmmo || maxLoaded), 1, maxLoaded);
 }
@@ -3842,6 +4383,18 @@ function setStatus(text) {
   ui.hudResult.textContent = text;
 }
 
+function setTouchButtonTitle(button, title) {
+  if (!button) {
+    return;
+  }
+  const titleNode = button.querySelector(".touch-button-title");
+  if (titleNode) {
+    titleNode.textContent = title;
+  } else {
+    button.textContent = title;
+  }
+}
+
 function inputModeLabel(mode = preferredInputMode()) {
   if (mode === "mobile") {
     return "Mobile";
@@ -3869,12 +4422,12 @@ function preferredInputMode() {
 function controlHintsForMode(mode = preferredInputMode()) {
   if (mode === "mobile") {
     return {
-      move: "Tap Left or Right on the fight screen.",
-      air: "Tap Jump to hop, or hold Down to crouch.",
-      attack: "Tap Strike once.",
-      block: "Tap Block as a strike lands to parry, or hold it to block.",
-      mobility: "Tap Backstep or Dash once.",
-      hit: "Walk close, then tap Strike so the practice bot gets hit."
+      move: "Use the left D-pad on the fight screen to move left or right.",
+      air: "Tap D-pad Up to jump, or hold D-pad Down to crouch.",
+      attack: "Tap the A button once.",
+      block: "Tap the X button as a strike lands to parry, or hold it to block.",
+      mobility: "Tap B for Backstep or Y for Dash once.",
+      hit: "Walk close, then tap A so the practice bot gets hit."
     };
   }
 
@@ -3923,17 +4476,17 @@ function renderControlGuide() {
     cards = [
       {
         kicker: "Selected Device",
-        title: "Mobile Fight Deck",
+        title: "Mobile Controller Deck",
         body: ranged
-          ? "Use the on-screen buttons under the arena. Left and Right move, Jump hops, Down crouches, Fire shoots, Block guards or parries on timing, Backstep and Dash are your quick moves, Reload tops off the weapon, and Pause opens the menu."
-          : "Use the on-screen buttons under the arena. Left and Right move, Jump hops, Down crouches, Strike attacks, Block defends or parries if timed right, Backstep or Dash are your quick moves, and Pause opens the menu."
+          ? "Use the left D-pad cluster to move, jump, and crouch. Use the right face buttons like a controller: A fires, X blocks or parries on timing, B backsteps, Y dashes, R1 reloads, and Start pauses."
+          : "Use the left D-pad cluster to move, jump, and crouch. Use the right face buttons like a controller: A attacks, X blocks or parries on timing, B backsteps, Y dashes, and Start pauses."
       },
       {
         kicker: "Arena Tip",
-        title: ranged ? "Touch fire is assisted" : "Touch play is aim-assisted",
+        title: ranged ? "Touch fire is controller-like" : "Touch play is controller-like",
         body: ranged
-          ? `Mobile ranged aim leans toward ${rivalName}. Hold Fire to keep shooting and use Reload whenever the weapon runs dry.`
-          : `Mobile aim leans toward ${rivalName}, so focus on spacing and timing instead of dragging the weapon by hand.`
+          ? `Mobile ranged aim still leans toward ${rivalName}, so focus on spacing while the A button keeps pressure on. Use R1 whenever the magazine runs dry.`
+          : `Mobile aim still leans toward ${rivalName}, so focus on spacing, guarding, and timing instead of dragging the weapon by hand.`
       }
     ];
   } else if (mode === "controller") {
@@ -6161,6 +6714,7 @@ function buildWeaponFromForge(forge) {
     let explosiveBoost = 0;
     let scatterImpact = dominantRound.scatterImpact;
     let pullImpact = dominantRound.pullImpact;
+    let emberTrail = dominantRound.emberTrail;
     let stormTrail = dominantRound.stormTrail;
     let spiralFlight = dominantRound.spiralCount > 0;
     let projectileGlow = material.color;
@@ -6188,6 +6742,35 @@ function buildWeaponFromForge(forge) {
         fireModeLabel = "Pierce Line";
         extraPierce += 1;
         projectileSpeed = clamp(projectileSpeed + 40, 560, 1320);
+        break;
+      case "needler":
+        fireModeLabel = "3-Needle Burst";
+        burstCount = 3;
+        burstSpread = 0.02;
+        burstDamageScale = 0.46;
+        projectileSpeed = clamp(projectileSpeed + 20, 560, 1320);
+        bonusRuptureCount += 1;
+        break;
+      case "volleyrifle":
+        fireModeLabel = "5-Round Sweep";
+        burstCount = 5;
+        burstSpread = 0.022;
+        burstDamageScale = 0.38;
+        reloadTime = clamp(reloadTime + 0.06, 0.54, 1.92);
+        bonusBlockBreak += 2;
+        break;
+      case "longshot":
+        fireModeLabel = "Long Scope";
+        extraPierce += 1;
+        projectileSpeed = clamp(projectileSpeed + 60, 560, 1320);
+        damage = clamp(damage + 2, 11, 48);
+        moveScale = clamp(moveScale - 0.03, 0.68, 1.16);
+        break;
+      case "linebreaker":
+        fireModeLabel = "Breaker Line";
+        extraPierce += 1;
+        projectileSpeed = clamp(projectileSpeed + 20, 560, 1320);
+        bonusBlockBreak += 3;
         break;
       case "sniper":
         fireModeLabel = "Scope Shot";
@@ -6250,6 +6833,29 @@ function buildWeaponFromForge(forge) {
         stormTrail = true;
         bonusShockCount += 1;
         break;
+      case "emberbow":
+        fireModeLabel = "Ember Draw";
+        projectileGlow = "#ffb77e";
+        emberTrail = true;
+        explosiveBoost += 0.06;
+        damage = clamp(damage + 1, 11, 48);
+        break;
+      case "moonbow":
+        fireModeLabel = "Twin Crescent";
+        burstCount = 2;
+        burstSpread = 0.026;
+        burstDamageScale = 0.7;
+        projectileGlow = "#dccaff";
+        bonusPortalCount += 1;
+        bonusSlowCount += 1;
+        break;
+      case "boltcaster":
+        fireModeLabel = "3-Bolt Rack";
+        burstCount = 3;
+        burstSpread = 0.024;
+        burstDamageScale = 0.58;
+        reloadTime = clamp(reloadTime + 0.04, 0.54, 1.92);
+        break;
       case "repeater":
         fireModeLabel = "Twin Bolt";
         burstCount = 2;
@@ -6290,12 +6896,24 @@ function buildWeaponFromForge(forge) {
         damage = clamp(damage + 1, 11, 48);
         bonusShockCount += 1;
         break;
+      case "ionrail":
+        fireModeLabel = "Ion Rail";
+        projectileGlow = "#9ef4ff";
+        projectileSpeed = clamp(projectileSpeed + 30, 560, 1320);
+        bonusShockCount += 2;
+        break;
       case "prismrail":
         fireModeLabel = "Prism Rail";
         burstCount = 2;
         burstSpread = 0.022;
         burstDamageScale = 0.68;
         projectileGlow = "#efc2ff";
+        bonusPortalCount += 1;
+        break;
+      case "ghostrail":
+        fireModeLabel = "Ghost Rail";
+        projectileGlow = "#d9cbff";
+        projectileSpeed = clamp(projectileSpeed + 24, 560, 1320);
         bonusPortalCount += 1;
         break;
       case "breacher":
@@ -6311,11 +6929,18 @@ function buildWeaponFromForge(forge) {
         bonusSlowCount += 1;
         bonusBlockBreak += 2;
         break;
+      case "crusher":
+        fireModeLabel = "Crusher Slug";
+        knockback = clamp(knockback + 0.14, 0.84, 1.9);
+        explosiveBoost += 0.1;
+        bonusSlowCount += 1;
+        bonusBlockBreak += 3;
+        break;
       default:
         break;
     }
 
-    const abilitySummary = `${frame.special?.summary || ""} ${dominantRound.summary} Load order: ${ammoCaseSummary || dominantRound.name}.`.trim();
+    const abilitySummary = `${frame.special?.summary || ""} ${dominantRound.rigSummary || ""} ${dominantRound.summary} Load order: ${ammoCaseSummary || dominantRound.name}.`.trim();
     const heatSummary =
       heat >= 70
         ? "High forge heat hardens the barrel and round body, raising shot damage but making the build heavier."
@@ -6403,7 +7028,7 @@ function buildWeaponFromForge(forge) {
       redirectShot: dominantRound.redirectCharges > 0,
       redirectCharges: dominantRound.redirectCharges,
       blizzardTrail: dominantRound.blizzardTrail,
-      emberTrail: dominantRound.emberTrail,
+      emberTrail,
       stormTrail,
       spiralFlight: dominantRound.spiralCount > 0,
       spiralCount: dominantRound.spiralCount,
@@ -6422,7 +7047,7 @@ function buildWeaponFromForge(forge) {
       lore:
         `${frame.label} built from ${material.label.toLowerCase()} with ${dominantRound.impactLabel.toLowerCase()} ${isSpecialGunFrame(frame) ? "sigils" : "ammo"}, ` +
         `${dominantRound.launchLabel.toLowerCase()}, ${dominantRound.midAirLabel.toLowerCase()} ${isSpecialGunFrame(frame) ? ammoLabels.midAir.toLowerCase() : "flight"}, and a ${dominantRound.tipLabel.toLowerCase()} ${isSpecialGunFrame(frame) ? ammoLabels.headWord : "tip"}. ` +
-        `${frame.special?.summary || ""} ${chamberSummary} Case order: ${ammoCaseSummary || dominantRound.name}. ${forgeSummary}`.trim()
+        `${dominantRound.rigSummary || ""} ${frame.special?.summary || ""} ${chamberSummary} Case order: ${ammoCaseSummary || dominantRound.name}. ${forgeSummary}`.trim()
     };
   }
 
@@ -6786,6 +7411,7 @@ function renderAmmoPreview(weapon) {
   ctx.fillRect(0, 0, ui.ammoPreview.width, ui.ammoPreview.height);
 
   if (specialGun) {
+    const previewMode = specialAmmoRigConfig(frame)?.previewMode || (frame.ammoType === "rail" ? "rail" : "bow");
     const mount = recipe.impactMount || defaultImpactMountForFrame(frame);
     const headId = recipe.tipType || defaultTipTypeForFrame(frame);
     const driveGlow =
@@ -6815,22 +7441,77 @@ function renderAmmoPreview(weapon) {
     ctx.arc(left - 10, bodyY, 28, 0, Math.PI * 2);
     ctx.fill();
 
-    if (frame.ammoType === "bolt") {
-      ctx.strokeStyle = "#f0d8a8";
-      ctx.lineWidth = 7;
+    if (previewMode === "bow") {
+      ctx.strokeStyle = "#efd9ab";
+      ctx.lineWidth = 6;
       ctx.beginPath();
-      ctx.moveTo(left - 4, bodyY);
-      ctx.lineTo(left + bodyWidth + 18, bodyY);
+      ctx.moveTo(left - 6, bodyY);
+      ctx.lineTo(left + bodyWidth + 10, bodyY);
       ctx.stroke();
       ["#8de6db", "#f0d48b", "#97a7ff"].forEach((color, index) => {
         ctx.fillStyle = color;
         ctx.beginPath();
-        ctx.moveTo(left - 16, bodyY);
-        ctx.lineTo(left - 36, bodyY - 12 + index * 12);
-        ctx.lineTo(left - 10, bodyY - 4 + index * 4);
+        ctx.moveTo(left - 18, bodyY);
+        ctx.lineTo(left - 38, bodyY - 13 + index * 13);
+        ctx.lineTo(left - 8, bodyY - 5 + index * 5);
         ctx.closePath();
         ctx.fill();
       });
+    } else if (previewMode === "crossbow") {
+      ctx.fillStyle = "#f0ddba";
+      ctx.fillRect(left - 8, bodyY - 5, bodyWidth + 18, 10);
+      ctx.fillStyle = "rgba(240, 221, 186, 0.75)";
+      ctx.fillRect(left + 30, bodyY - 11, bodyWidth * 0.22, 22);
+      ctx.fillRect(left + bodyWidth * 0.58, bodyY - 11, bodyWidth * 0.16, 22);
+      ctx.strokeStyle = "#d7f4ff";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(left - 14, bodyY - 18);
+      ctx.lineTo(left + 8, bodyY);
+      ctx.lineTo(left - 14, bodyY + 18);
+      ctx.moveTo(left + bodyWidth * 0.24, bodyY - 14);
+      ctx.lineTo(left + bodyWidth * 0.24, bodyY + 14);
+      ctx.stroke();
+    } else if (previewMode === "harpoon") {
+      ctx.strokeStyle = "#efddb7";
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(left + 6, bodyY);
+      ctx.lineTo(left + bodyWidth + 10, bodyY);
+      ctx.stroke();
+      ctx.strokeStyle = "rgba(255,255,255,0.24)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(left - 22, bodyY);
+      ctx.quadraticCurveTo(left - 6, bodyY - 16, left + 12, bodyY);
+      ctx.stroke();
+      ctx.fillStyle = "rgba(255,204,150,0.3)";
+      ctx.beginPath();
+      ctx.arc(left - 24, bodyY, 10, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (previewMode === "prism") {
+      ctx.strokeStyle = "#d9f8ff";
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(left - 2, bodyY);
+      ctx.lineTo(left + bodyWidth + 14, bodyY);
+      ctx.stroke();
+      ctx.strokeStyle = "rgba(239,194,255,0.55)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(left + 10, bodyY - 12);
+      ctx.lineTo(left + bodyWidth + 2, bodyY - 12);
+      ctx.moveTo(left + 10, bodyY + 12);
+      ctx.lineTo(left + bodyWidth + 2, bodyY + 12);
+      ctx.stroke();
+      ctx.fillStyle = "rgba(239,194,255,0.35)";
+      ctx.beginPath();
+      ctx.moveTo(left + bodyWidth * 0.38, bodyY - 16);
+      ctx.lineTo(left + bodyWidth * 0.58, bodyY);
+      ctx.lineTo(left + bodyWidth * 0.38, bodyY + 16);
+      ctx.lineTo(left + bodyWidth * 0.24, bodyY);
+      ctx.closePath();
+      ctx.fill();
     } else {
       ctx.strokeStyle = "#cff4ff";
       ctx.lineWidth = 8;
@@ -6846,6 +7527,15 @@ function renderAmmoPreview(weapon) {
       ctx.moveTo(left - 6, bodyY + 10);
       ctx.lineTo(left + bodyWidth + 14, bodyY + 10);
       ctx.stroke();
+      if (previewMode === "rail") {
+        ctx.strokeStyle = "rgba(151,244,255,0.32)";
+        ctx.lineWidth = 1.5;
+        [0.22, 0.46, 0.7].forEach((offset) => {
+          ctx.beginPath();
+          ctx.arc(left + bodyWidth * offset, bodyY, 13, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+      }
     }
 
     recipe.chamberImpacts.forEach((impactId, index) => {
@@ -6893,24 +7583,24 @@ function renderAmmoPreview(weapon) {
 
     ctx.fillStyle = "#f5f8ff";
     ctx.beginPath();
-    if (["needle", "injector"].includes(headId)) {
-      ctx.moveTo(left + bodyWidth + 20, bodyY);
-      ctx.lineTo(left + bodyWidth, bodyY - 6);
+    if (previewMode === "harpoon" || headId === "anchor") {
+      ctx.moveTo(left + bodyWidth + 16, bodyY - 14);
+      ctx.lineTo(left + bodyWidth + 26, bodyY);
+      ctx.lineTo(left + bodyWidth + 16, bodyY + 14);
       ctx.lineTo(left + bodyWidth - 2, bodyY + 6);
+      ctx.lineTo(left + bodyWidth + 6, bodyY);
+      ctx.lineTo(left + bodyWidth - 2, bodyY - 6);
       ctx.closePath();
-    } else if (headId === "anchor") {
-      ctx.moveTo(left + bodyWidth + 12, bodyY - 12);
-      ctx.lineTo(left + bodyWidth + 22, bodyY);
-      ctx.lineTo(left + bodyWidth + 12, bodyY + 12);
-      ctx.lineTo(left + bodyWidth - 3, bodyY + 6);
-      ctx.lineTo(left + bodyWidth + 2, bodyY);
-      ctx.lineTo(left + bodyWidth - 3, bodyY - 6);
-      ctx.closePath();
-    } else if (headId === "prism") {
+    } else if (previewMode === "prism" || headId === "prism") {
       ctx.moveTo(left + bodyWidth + 18, bodyY);
       ctx.lineTo(left + bodyWidth + 4, bodyY - 12);
       ctx.lineTo(left + bodyWidth - 4, bodyY);
       ctx.lineTo(left + bodyWidth + 4, bodyY + 12);
+      ctx.closePath();
+    } else if (["needle", "injector"].includes(headId)) {
+      ctx.moveTo(left + bodyWidth + 20, bodyY);
+      ctx.lineTo(left + bodyWidth, bodyY - 6);
+      ctx.lineTo(left + bodyWidth - 2, bodyY + 6);
       ctx.closePath();
     } else if (headId === "crescent") {
       ctx.moveTo(left + bodyWidth + 20, bodyY);
@@ -7231,7 +7921,7 @@ function renderAmmoWorkshop(weapon) {
 
   ui.ammoWorkshopFamily.textContent = labels.familyTag;
   ui.ammoWorkshopNote.textContent =
-    `${labels.note} ${frame.label} can hold up to ${caseCapacity} ${labels.recipe.toLowerCase()}${caseCapacity === 1 ? "" : "s"} with this build size.`;
+    `${labels.note} ${labels.descriptor} ${frame.label} can hold up to ${caseCapacity} ${labels.recipe.toLowerCase()}${caseCapacity === 1 ? "" : "s"} with this build size.`;
   ui.impactChambersLabel.querySelector("span").textContent = labels.chambers;
   ui.impactMountLabel.querySelector("span").textContent = labels.mount;
   ui.impactTypeLabel.querySelector("span").textContent = labels.impacts;
@@ -7433,6 +8123,13 @@ function renderForgeDetails(weapon) {
         <strong>${weapon.fireModeLabel || "Single Shot"}</strong>
         <p>${weapon.abilitySummary}</p>
       </article>
+      ${isSpecialGunFrame(frame) ? `
+      <article class="forge-detail-card">
+        <span>Rig Identity</span>
+        <strong>${labels.familyTag}</strong>
+        <p>${labels.descriptor}</p>
+      </article>
+      ` : ""}
       <article class="forge-detail-card">
         <span>${labels.detailMount}</span>
         <strong>${weapon.impactChambers} | ${weapon.impactMountLabel}</strong>
@@ -8130,6 +8827,7 @@ function updateHudLabels() {
   const activeWeapon = state.match?.playerWeapon || weaponById(state.activeWeaponId) || currentBlueprint();
   const rivalWeapon = state.match?.rivalWeapon || weaponById(state.rivalWeaponId);
   const stageState = activeStageState();
+  const ranged = isRangedWeapon(activeWeapon);
 
   ui.hudPlayerWeapon.textContent = activeWeapon?.name || "Unarmed";
   ui.hudRivalWeapon.textContent = rivalWeapon?.name || "Auto Forge";
@@ -8140,13 +8838,16 @@ function updateHudLabels() {
   ui.battlefieldStyle.textContent = activeWeapon?.styleText || "Balanced duel control";
   ui.battlefieldStage.textContent = currentStageConfig(stageState.id).label;
   ui.battlefieldLoadout.textContent = activeWeapon?.name || "Unarmed";
+  if (ui.touchControls) {
+    ui.touchControls.classList.toggle("ranged-mode", ranged);
+  }
   if (ui.touchAttack) {
-    ui.touchAttack.textContent = isRangedWeapon(activeWeapon) ? "Fire" : "Strike";
+    setTouchButtonTitle(ui.touchAttack, ranged ? "Fire" : "Strike");
   }
   if (ui.touchReload) {
-    const showReload = isRangedWeapon(activeWeapon);
+    const showReload = ranged;
     ui.touchReload.hidden = !showReload;
-    ui.touchReload.textContent = "Reload";
+    setTouchButtonTitle(ui.touchReload, "Reload");
   }
   renderSetRecap();
   renderBroadcastPanels();
@@ -9266,6 +9967,12 @@ function resolveProjectileHit(projectile, attacker, defender, match) {
       defender.slowTimer,
       0.2 + projectile.impactChambers * 0.03 + (projectile.slowCount || 0) * 0.05 + (projectile.blizzardTrail ? 0.04 : 0)
     );
+  }
+  if (projectileHasImpact(projectile, "concussion")) {
+    defender.vx += Math.sign(projectile.vx || attacker.facing) * (28 + projectileImpactCount(projectile, "concussion") * 14);
+    defender.hitstun = Math.max(defender.hitstun, 0.18);
+    applyStun(defender, 0.08 + projectileImpactCount(projectile, "concussion") * 0.03);
+    attackerStats.stuns += 1;
   }
   if (attacker.weapon.specialType === "harpoon-shot") {
     const pullDir = Math.sign(projectile.vx || attacker.facing) || attacker.facing;
@@ -10842,6 +11549,56 @@ function drawStage(sceneStage) {
     ctx.fill();
   });
 
+  if (stageState.id === "stormspire") {
+    [offsetX + 88, offsetX + STAGE_WIDTH - 120].forEach((x) => {
+      ctx.fillStyle = "rgba(255,255,255,0.06)";
+      ctx.fillRect(x, STAGE_TOP + 96, 26, 214);
+      ctx.fillStyle = `${config.accent}88`;
+      ctx.fillRect(x - 8, STAGE_TOP + 118, 42, 10);
+      ctx.fillRect(x - 6, STAGE_TOP + 254, 38, 8);
+      ctx.strokeStyle = `${config.crowd}44`;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x + 12, STAGE_TOP + 110);
+      ctx.lineTo(x + 84, STAGE_TOP + 86);
+      ctx.lineTo(x + 156, STAGE_TOP + 106);
+      ctx.stroke();
+    });
+  } else if (stageState.id === "gravevault") {
+    for (let i = 0; i < 3; i += 1) {
+      const archX = offsetX + 136 + i * 210;
+      ctx.strokeStyle = "rgba(210,255,224,0.08)";
+      ctx.lineWidth = 8;
+      ctx.beginPath();
+      ctx.moveTo(archX, STAGE_TOP + 216);
+      ctx.quadraticCurveTo(archX + 28, STAGE_TOP + 132, archX + 72, STAGE_TOP + 132);
+      ctx.quadraticCurveTo(archX + 116, STAGE_TOP + 132, archX + 144, STAGE_TOP + 216);
+      ctx.stroke();
+      ctx.fillStyle = `${config.accent}22`;
+      ctx.beginPath();
+      ctx.arc(archX + 72, STAGE_TOP + 170, 20, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  } else if (stageState.id === "voidhangar") {
+    [offsetX + 120, offsetX + STAGE_WIDTH - 150].forEach((x) => {
+      ctx.strokeStyle = "rgba(216,208,255,0.12)";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(x, STAGE_TOP + 46);
+      ctx.lineTo(x, STAGE_TOP + 132);
+      ctx.stroke();
+      ctx.fillStyle = `${config.accent}2a`;
+      ctx.fillRect(x - 24, STAGE_TOP + 132, 48, 74);
+      ctx.strokeStyle = `${config.crowd}30`;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x - 18, STAGE_TOP + 206);
+      ctx.lineTo(x, STAGE_TOP + 232);
+      ctx.lineTo(x + 18, STAGE_TOP + 206);
+      ctx.stroke();
+    });
+  }
+
   ctx.fillStyle = config.floor;
   ctx.fillRect(offsetX, floorTop, STAGE_WIDTH, FLOOR_THICKNESS);
   ctx.fillStyle = config.floorEdge;
@@ -10885,36 +11642,92 @@ function drawStage(sceneStage) {
 
   if (stageState.hazard) {
     const centerX = offsetX + STAGE_WIDTH / 2;
-    ctx.fillStyle = "rgba(0,0,0,0.34)";
-    ctx.fillRect(centerX - 20, floorTop - 8, 40, 18);
-    ctx.fillStyle = `${config.hazard}bb`;
-    ctx.beginPath();
-    ctx.moveTo(centerX - 18, floorTop);
-    ctx.lineTo(centerX - 4, floorTop - 38);
-    ctx.lineTo(centerX + 8, floorTop - 18);
-    ctx.lineTo(centerX + 18, floorTop - 42);
-    ctx.lineTo(centerX + 24, floorTop);
-    ctx.closePath();
-    ctx.fill();
-
-    const flare = ctx.createRadialGradient(centerX, floorTop - 18, 10, centerX, floorTop - 18, 50);
-    flare.addColorStop(0, `${config.hazard}aa`);
-    flare.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = flare;
-    ctx.beginPath();
-    ctx.arc(centerX, floorTop - 18, 50, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = `${config.hazard}${pulse > 0.5 ? "88" : "66"}`;
-    for (let i = 0; i < 4; i += 1) {
-      const sparkX = centerX - 12 + i * 8;
-      const sparkHeight = 10 + pulse * 18 + (i % 2) * 6;
+    if (stageState.id === "stormspire") {
+      ctx.fillStyle = "rgba(0,0,0,0.34)";
+      ctx.fillRect(centerX - 24, floorTop - 8, 48, 18);
+      ctx.strokeStyle = `${config.hazard}cc`;
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.moveTo(sparkX, floorTop - 4);
-      ctx.lineTo(sparkX + 4, floorTop - sparkHeight);
-      ctx.lineTo(sparkX + 8, floorTop - 6);
+      ctx.moveTo(centerX - 16, floorTop - 2);
+      ctx.lineTo(centerX - 8, floorTop - 26 - pulse * 10);
+      ctx.lineTo(centerX + 2, floorTop - 12);
+      ctx.lineTo(centerX + 10, floorTop - 36 - pulse * 8);
+      ctx.lineTo(centerX + 18, floorTop - 8);
+      ctx.stroke();
+
+      const flare = ctx.createRadialGradient(centerX, floorTop - 18, 10, centerX, floorTop - 18, 56);
+      flare.addColorStop(0, `${config.hazard}aa`);
+      flare.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = flare;
+      ctx.beginPath();
+      ctx.arc(centerX, floorTop - 18, 56, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (stageState.id === "gravevault") {
+      ctx.fillStyle = "rgba(0,0,0,0.4)";
+      ctx.fillRect(centerX - 26, floorTop - 8, 52, 18);
+      ctx.fillStyle = `${config.hazard}bb`;
+      ctx.beginPath();
+      ctx.arc(centerX, floorTop - 6, 24, Math.PI, Math.PI * 2);
+      ctx.fill();
+      for (let i = 0; i < 4; i += 1) {
+        const mistX = centerX - 14 + i * 10;
+        const mistHeight = 16 + pulse * 20 + i * 3;
+        ctx.beginPath();
+        ctx.moveTo(mistX, floorTop - 6);
+        ctx.quadraticCurveTo(mistX + 4, floorTop - mistHeight, mistX + 10, floorTop - 10);
+        ctx.quadraticCurveTo(mistX + 6, floorTop - mistHeight * 0.7, mistX + 2, floorTop - 4);
+        ctx.fill();
+      }
+    } else if (stageState.id === "voidhangar") {
+      ctx.fillStyle = "rgba(0,0,0,0.42)";
+      ctx.fillRect(centerX - 30, floorTop - 8, 60, 18);
+      const voidFlare = ctx.createRadialGradient(centerX, floorTop - 8, 6, centerX, floorTop - 8, 60);
+      voidFlare.addColorStop(0, `${config.hazard}bb`);
+      voidFlare.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = voidFlare;
+      ctx.beginPath();
+      ctx.arc(centerX, floorTop - 8, 60, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = `${config.hazard}${pulse > 0.5 ? "aa" : "7a"}`;
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.moveTo(centerX - 18, floorTop - 2);
+      ctx.lineTo(centerX - 6, floorTop - 22 - pulse * 8);
+      ctx.lineTo(centerX + 4, floorTop - 10);
+      ctx.lineTo(centerX + 16, floorTop - 28 - pulse * 10);
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = "rgba(0,0,0,0.34)";
+      ctx.fillRect(centerX - 20, floorTop - 8, 40, 18);
+      ctx.fillStyle = `${config.hazard}bb`;
+      ctx.beginPath();
+      ctx.moveTo(centerX - 18, floorTop);
+      ctx.lineTo(centerX - 4, floorTop - 38);
+      ctx.lineTo(centerX + 8, floorTop - 18);
+      ctx.lineTo(centerX + 18, floorTop - 42);
+      ctx.lineTo(centerX + 24, floorTop);
       ctx.closePath();
       ctx.fill();
+
+      const flare = ctx.createRadialGradient(centerX, floorTop - 18, 10, centerX, floorTop - 18, 50);
+      flare.addColorStop(0, `${config.hazard}aa`);
+      flare.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = flare;
+      ctx.beginPath();
+      ctx.arc(centerX, floorTop - 18, 50, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = `${config.hazard}${pulse > 0.5 ? "88" : "66"}`;
+      for (let i = 0; i < 4; i += 1) {
+        const sparkX = centerX - 12 + i * 8;
+        const sparkHeight = 10 + pulse * 18 + (i % 2) * 6;
+        ctx.beginPath();
+        ctx.moveTo(sparkX, floorTop - 4);
+        ctx.lineTo(sparkX + 4, floorTop - sparkHeight);
+        ctx.lineTo(sparkX + 8, floorTop - 6);
+        ctx.closePath();
+        ctx.fill();
+      }
     }
   }
 }
@@ -10983,6 +11796,48 @@ function drawArenaOverlay(stageId) {
       ctx.fillStyle = "rgba(207,216,255,0.08)";
       ctx.beginPath();
       ctx.arc(shimmerX, shimmerY, 2 + (i % 2), 0, Math.PI * 2);
+      ctx.fill();
+    }
+  } else if (stageId === "stormspire") {
+    ctx.strokeStyle = "rgba(150,228,255,0.12)";
+    ctx.lineWidth = 1.4;
+    for (let i = 0; i < 28; i += 1) {
+      const rainX = ((time * 220 + i * 52) % (canvas.width + 120)) - 60;
+      const rainY = (i * 18 + time * 46) % canvas.height;
+      ctx.beginPath();
+      ctx.moveTo(rainX, rainY);
+      ctx.lineTo(rainX - 12, rainY + 28);
+      ctx.stroke();
+    }
+    if (Math.sin(time * 1.7) > 0.84) {
+      ctx.strokeStyle = "rgba(198,244,255,0.24)";
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.moveTo(canvas.width * 0.5, 62);
+      ctx.lineTo(canvas.width * 0.47, 112);
+      ctx.lineTo(canvas.width * 0.54, 148);
+      ctx.lineTo(canvas.width * 0.49, 194);
+      ctx.stroke();
+    }
+  } else if (stageId === "gravevault") {
+    for (let i = 0; i < 18; i += 1) {
+      const moteX = 90 + ((i * 81 + time * 18) % (canvas.width - 180));
+      const moteY = 150 + Math.sin(time * 0.9 + i * 0.7) * 34 + i * 6;
+      ctx.fillStyle = "rgba(144,255,190,0.1)";
+      ctx.beginPath();
+      ctx.arc(moteX, moteY, 2 + (i % 3), 0, Math.PI * 2);
+      ctx.fill();
+    }
+  } else if (stageId === "voidhangar") {
+    for (let i = 0; i < 16; i += 1) {
+      const shardX = 120 + ((i * 64 + time * 22) % (canvas.width - 240));
+      const shardY = 92 + (i * 21 + Math.sin(time + i) * 14);
+      ctx.fillStyle = "rgba(180,158,255,0.12)";
+      ctx.beginPath();
+      ctx.moveTo(shardX, shardY);
+      ctx.lineTo(shardX + 7, shardY + 14);
+      ctx.lineTo(shardX - 5, shardY + 18);
+      ctx.closePath();
       ctx.fill();
     }
   }
@@ -11674,6 +12529,7 @@ function bindTouchControls() {
       event.preventDefault();
       clearReleaseTimer();
       state.touchState[action] = value;
+      button.classList.toggle("pressed", value);
       if (value) {
         state.inputProfile.lastSource = "touch";
         primeAudio();
@@ -11695,9 +12551,11 @@ function bindTouchControls() {
       if (tapFriendly.has(action)) {
         releaseTimer = window.setTimeout(() => {
           state.touchState[action] = false;
+          button.classList.remove("pressed");
         }, 90);
       } else {
         state.touchState[action] = false;
+        button.classList.remove("pressed");
       }
     });
     button.addEventListener("pointerleave", (event) => setPressed(false, event));
@@ -11710,6 +12568,12 @@ function bindTouchControls() {
       event.preventDefault();
       state.inputProfile.lastSource = "touch";
       primeAudio();
+      button.classList.add("pressed");
+    });
+    ["pointerup", "pointerleave", "pointercancel"].forEach((eventName) => {
+      button.addEventListener(eventName, () => {
+        button.classList.remove("pressed");
+      });
     });
 
     button.addEventListener("click", (event) => {

@@ -1447,7 +1447,8 @@ button:active {
   padding: 14px;
   border-radius: 28px;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 32%),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 30%),
+    radial-gradient(circle at 50% 140%, rgba(111, 210, 198, 0.08), transparent 36%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.18)),
     rgba(0, 0, 0, 0.22);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1466,9 +1467,58 @@ button:active {
   pointer-events: none;
 }
 
+.battlefield-shell::after {
+  content: "";
+  position: absolute;
+  inset: 26px 34px auto;
+  height: 120px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(232, 107, 58, 0.12), transparent 68%);
+  filter: blur(22px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 .arena-screen {
+  position: relative;
   display: grid;
   gap: 12px;
+  padding: 10px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.18)),
+    rgba(6, 7, 10, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 36px rgba(0, 0, 0, 0.22);
+}
+
+.arena-screen::before,
+.arena-screen::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  pointer-events: none;
+}
+
+.arena-screen::before {
+  left: 22px;
+  right: 22px;
+  top: 14px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+}
+
+.arena-screen::after {
+  left: 30px;
+  right: 30px;
+  bottom: 10px;
+  height: 40px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(111, 210, 198, 0.08), transparent 72%);
+  filter: blur(20px);
 }
 
 .battlefield-marquee,
@@ -1489,6 +1539,7 @@ button:active {
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.06);
   background:
+    radial-gradient(circle at left, rgba(111, 210, 198, 0.08), transparent 28%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.14)),
     rgba(255, 255, 255, 0.03);
   color: var(--muted);
@@ -2054,7 +2105,7 @@ button:active {
 
 .touch-controls {
   display: none;
-  gap: 16px;
+  gap: 14px;
 }
 
 #battlefield,
@@ -2065,71 +2116,198 @@ button:active {
   user-select: none;
 }
 
-.touch-quickbar,
-.touch-control-grid,
-.touch-pad,
-.touch-actions {
+.touch-shoulder-row,
+.touch-controller-grid {
   display: grid;
-  gap: 10px;
+  gap: 14px;
 }
 
-.touch-quickbar {
+.touch-shoulder-row {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.touch-control-grid {
+.touch-controller-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.touch-pad {
-  grid-template-columns: repeat(2, minmax(72px, 1fr));
-}
-
-.touch-actions {
-  grid-template-columns: repeat(2, minmax(72px, 1fr));
-}
-
-.touch-quickbar button,
-.touch-actions button,
-.touch-pad button {
-  min-height: 64px;
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.07);
-  color: var(--text);
+.touch-cluster {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.touch-pad,
-.touch-actions {
-  padding: 12px;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.14)),
-    rgba(255, 255, 255, 0.03);
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.07), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.18)),
+    rgba(9, 10, 15, 0.78);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 12px 24px rgba(0, 0, 0, 0.14);
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 16px 28px rgba(0, 0, 0, 0.2);
 }
 
-.touch-pad button[data-touch="up"],
-.touch-actions button[data-touch="attack"] {
+.touch-cluster-title {
+  color: var(--gold);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.touch-control-button {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 4px;
+  min-height: 74px;
+  padding: 10px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  border-radius: 22px;
   background:
-    radial-gradient(circle at top, rgba(232, 107, 58, 0.22), transparent 58%),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 50%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(10, 10, 15, 0.24)),
+    rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 20px rgba(0, 0, 0, 0.18);
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.touch-control-button:disabled {
+  opacity: 0.42;
+  filter: saturate(0.6);
+}
+
+.touch-control-button.pressed {
+  transform: translateY(2px) scale(0.98);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.05),
+    0 6px 14px rgba(0, 0, 0, 0.18);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.touch-button-code {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.touch-button-title {
+  margin: 0;
+  font-size: 0.94rem;
+}
+
+.touch-shoulder-button {
+  min-height: 64px;
+  justify-items: start;
+  padding-inline: 14px;
+}
+
+.touch-pause-button {
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(10, 10, 15, 0.22)),
     rgba(255, 255, 255, 0.08);
 }
 
-.touch-quickbar button[data-touch="reload"] {
+.touch-reload-button {
   background:
-    radial-gradient(circle at top, rgba(242, 220, 170, 0.22), transparent 58%),
+    radial-gradient(circle at top right, rgba(242, 220, 170, 0.22), transparent 56%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(10, 10, 15, 0.22)),
     rgba(255, 255, 255, 0.08);
 }
 
-.touch-actions button[data-touch="block"] {
+.touch-dpad,
+.touch-face-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(64px, 1fr));
+  gap: 10px;
+  min-height: 238px;
+}
+
+.touch-dpad::before,
+.touch-face-buttons::before {
+  content: "";
+  grid-column: 2;
+  grid-row: 2;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.touch-dpad-button {
+  border-radius: 24px;
+}
+
+.touch-dpad-up {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.touch-dpad-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.touch-dpad-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.touch-dpad-down {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.touch-face-button {
+  aspect-ratio: 1;
+  min-height: 68px;
+  border-radius: 999px;
+}
+
+.touch-face-y {
+  grid-column: 2;
+  grid-row: 1;
   background:
-    radial-gradient(circle at top, rgba(111, 210, 198, 0.2), transparent 58%),
+    radial-gradient(circle at top, rgba(242, 220, 170, 0.26), transparent 54%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(10, 10, 15, 0.24)),
+    rgba(255, 255, 255, 0.08);
+}
+
+.touch-face-x {
+  grid-column: 1;
+  grid-row: 2;
+  background:
+    radial-gradient(circle at top, rgba(111, 210, 198, 0.24), transparent 54%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(10, 10, 15, 0.24)),
+    rgba(255, 255, 255, 0.08);
+}
+
+.touch-face-b {
+  grid-column: 3;
+  grid-row: 2;
+  background:
+    radial-gradient(circle at top, rgba(232, 107, 58, 0.24), transparent 54%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(10, 10, 15, 0.24)),
+    rgba(255, 255, 255, 0.08);
+}
+
+.touch-face-a {
+  grid-column: 2;
+  grid-row: 3;
+  background:
+    radial-gradient(circle at top, rgba(121, 228, 118, 0.24), transparent 54%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(10, 10, 15, 0.24)),
+    rgba(255, 255, 255, 0.08);
+}
+
+.touch-controls.ranged-mode .touch-face-a {
+  background:
+    radial-gradient(circle at top, rgba(151, 244, 255, 0.26), transparent 54%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(10, 10, 15, 0.24)),
     rgba(255, 255, 255, 0.08);
 }
 
@@ -2163,7 +2341,7 @@ body.touch-device .touch-controls {
   width: 100%;
   margin-top: 10px;
   padding: 12px 0 0;
-  background: linear-gradient(180deg, rgba(10, 10, 15, 0), rgba(10, 10, 15, 0.86) 32%);
+  background: linear-gradient(180deg, rgba(10, 10, 15, 0), rgba(10, 10, 15, 0.9) 24%);
 }
 
 body.touch-device .stage-topbar .mode-row label,
@@ -2223,35 +2401,20 @@ body.arena-fullscreen #battlefield {
   max-width: none;
 }
 
-body.touch-device .touch-quickbar,
-body.touch-device .touch-control-grid {
+body.touch-device .touch-shoulder-row,
+body.touch-device .touch-controller-grid {
   width: 100%;
 }
 
-body.touch-device .touch-control-grid {
-  grid-template-columns: 1fr;
-}
-
-body.touch-device .touch-pad,
-body.touch-device .touch-actions {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-body.touch-device .touch-quickbar {
-  grid-template-columns: 1fr;
-}
-
-body.touch-device .touch-quickbar button,
-body.touch-device .touch-pad button,
-body.touch-device .touch-actions button {
-  min-height: 72px;
+body.touch-device .touch-control-button {
+  min-height: 76px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 48%),
-    rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.14);
+}
+
+body.touch-device .touch-dpad,
+body.touch-device .touch-face-buttons {
+  min-height: 252px;
 }
 
 .footer-row {
@@ -2364,17 +2527,20 @@ body.touch-device .touch-actions button {
   }
 
   .device-choice-row,
-  .touch-control-grid {
-    grid-template-columns: 1fr;
+  .touch-controller-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .touch-quickbar {
-    grid-template-columns: 1fr;
+  .touch-shoulder-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  body.touch-device .touch-quickbar button,
-  body.touch-device .touch-pad button,
-  body.touch-device .touch-actions button {
+  body.touch-device .touch-control-button {
     min-height: 68px;
+  }
+
+  body.touch-device .touch-dpad,
+  body.touch-device .touch-face-buttons {
+    min-height: 220px;
   }
 }
