@@ -616,6 +616,32 @@ body.arena-focus .stage-panel {
   margin-inline: auto;
 }
 
+body.arena-focus .hud-strip,
+body.arena-focus .battlefield-marquee,
+body.arena-focus .battlefield-phase,
+body.arena-focus .broadcast-deck,
+body.arena-focus .battlefield-footer,
+body.arena-focus .broadcast-grid,
+body.arena-focus .tutorial-panel,
+body.arena-focus .set-recap,
+body.arena-focus .feedback-panel {
+  display: none !important;
+}
+
+body.arena-focus .stage-panel {
+  display: grid;
+  gap: 14px;
+}
+
+body.arena-focus .battlefield-shell {
+  padding: 10px;
+  gap: 10px;
+}
+
+body.arena-focus .arena-screen {
+  padding: 8px;
+}
+
 body.forge-focus .app-shell {
   grid-template-columns: minmax(0, 1fr);
   width: min(1180px, 100%);
@@ -2694,8 +2720,26 @@ body.arena-fullscreen .stage-panel {
   padding: 18px;
 }
 
+body.arena-fullscreen .hud-strip,
+body.arena-fullscreen .battlefield-marquee,
+body.arena-fullscreen .battlefield-phase,
+body.arena-fullscreen .broadcast-deck,
+body.arena-fullscreen .battlefield-footer,
+body.arena-fullscreen .broadcast-grid,
+body.arena-fullscreen .tutorial-panel,
+body.arena-fullscreen .set-recap,
+body.arena-fullscreen .feedback-panel {
+  display: none !important;
+}
+
 body.arena-fullscreen .battlefield-shell {
   min-height: calc(100vh - 36px);
+  padding: 10px;
+  gap: 10px;
+}
+
+body.arena-fullscreen .arena-screen {
+  padding: 8px;
 }
 
 body.arena-fullscreen #battlefield {
