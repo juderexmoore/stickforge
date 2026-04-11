@@ -229,6 +229,79 @@ body::before {
   gap: 10px;
 }
 
+.dev-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(8, 7, 11, 0.82);
+  backdrop-filter: blur(18px);
+}
+
+.dev-panel.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.dev-shell {
+  width: min(820px, 100%);
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+}
+
+.dev-gate,
+.dev-tools {
+  display: grid;
+  gap: 14px;
+}
+
+.dev-tools.hidden {
+  display: none;
+}
+
+.dev-readout {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dev-card {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dev-card span {
+  color: var(--muted);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.dev-card strong {
+  font-size: 1rem;
+}
+
+.dev-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.4;
+  font-size: 0.88rem;
+}
+
+.dev-action-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
 .menu-banner,
 .forge-badges {
   display: flex;
@@ -525,9 +598,16 @@ body::before {
 
 body.arena-focus .app-shell {
   grid-template-columns: minmax(0, 1fr);
+  width: min(1240px, 100%);
+  margin-inline: auto;
 }
 
 body.arena-focus .sidebar-stack {
+  display: none;
+}
+
+body.arena-focus .masthead,
+body.arena-focus .footer-row {
   display: none;
 }
 
@@ -536,8 +616,23 @@ body.arena-focus .stage-panel {
   margin-inline: auto;
 }
 
+body.forge-focus .app-shell {
+  grid-template-columns: minmax(0, 1fr);
+  width: min(1180px, 100%);
+  margin-inline: auto;
+}
+
 body.forge-focus .sidebar-stack {
   display: grid;
+  width: min(1180px, 100%);
+  margin-inline: auto;
+}
+
+body.forge-focus .arena-panel,
+body.forge-focus .stage-panel,
+body.forge-focus .masthead,
+body.forge-focus .footer-row {
+  display: none;
 }
 
 .panel {
@@ -563,6 +658,18 @@ body.forge-focus .sidebar-stack {
     radial-gradient(circle at top left, rgba(232, 107, 58, 0.14), transparent 34%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(0, 0, 0, 0.15)),
     var(--panel);
+}
+
+.forge-view-head {
+  align-items: center;
+}
+
+.forge-view-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
 }
 
 .stage-panel {
@@ -611,8 +718,16 @@ body.forge-focus .sidebar-stack {
   margin-top: 18px;
 }
 
+.forge-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+
 .forge-upgrade-card,
-.forge-room-card {
+.forge-room-card,
+.forge-dashboard-card {
   display: grid;
   gap: 12px;
   padding: 16px;
@@ -697,6 +812,77 @@ body.forge-focus .sidebar-stack {
 
 .forge-room-actions {
   margin-top: 0;
+}
+
+.forge-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.forge-overview-card,
+.forge-check-item {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.forge-overview-card span,
+.forge-check-item span {
+  color: var(--muted);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.forge-overview-card strong,
+.forge-check-item strong {
+  font-size: 1rem;
+}
+
+.forge-overview-card p,
+.forge-check-item p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+  font-size: 0.88rem;
+}
+
+.forge-checklist {
+  display: grid;
+  gap: 10px;
+}
+
+.forge-check-item {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  column-gap: 12px;
+}
+
+.forge-check-item::before {
+  content: " ";
+  width: 12px;
+  height: 12px;
+  margin-top: 4px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+}
+
+.forge-check-item.done {
+  border-color: rgba(111, 210, 198, 0.28);
+  background:
+    linear-gradient(180deg, rgba(111, 210, 198, 0.08), rgba(255, 255, 255, 0.03)),
+    rgba(255, 255, 255, 0.02);
+}
+
+.forge-check-item.done::before {
+  border-color: rgba(111, 210, 198, 0.74);
+  background: rgba(111, 210, 198, 0.74);
+  box-shadow: 0 0 14px rgba(111, 210, 198, 0.24);
 }
 
 .forge-note {
@@ -2559,8 +2745,12 @@ body.touch-device .touch-face-buttons {
   .main-menu-grid,
   .menu-summary,
   .menu-feature-grid,
+  .dev-readout,
+  .dev-action-grid,
   .style-path-grid,
   .style-unlock-grid,
+  .forge-dashboard-grid,
+  .forge-overview-grid,
   .style-lab-points,
   .preset-row,
   .stage-highlight-grid,
@@ -2657,5 +2847,72 @@ body.touch-device .touch-face-buttons {
   body.touch-device .touch-dpad,
   body.touch-device .touch-face-buttons {
     min-height: 220px;
+  }
+}
+
+@media (max-width: 900px) and (orientation: portrait) {
+  body.touch-device .stage-panel {
+    padding: 12px;
+  }
+
+  body.touch-device .battlefield-shell {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  body.touch-device .arena-screen {
+    padding: 8px;
+    border-radius: 22px;
+  }
+
+  body.touch-device .touch-controls {
+    justify-items: center;
+    gap: 10px;
+    padding-top: 8px;
+    background: none;
+  }
+
+  body.touch-device .touch-shoulder-row,
+  body.touch-device .touch-controller-grid {
+    width: min(100%, 420px);
+  }
+
+  body.touch-device .touch-controller-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px;
+  }
+
+  body.touch-device .touch-cluster {
+    width: min(100%, 340px);
+    padding: 12px;
+    justify-self: center;
+  }
+
+  body.touch-device .touch-dpad,
+  body.touch-device .touch-face-buttons {
+    width: min(100%, 292px);
+    min-height: 0;
+    aspect-ratio: 1;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    justify-self: center;
+  }
+
+  body.touch-device .touch-control-button,
+  body.touch-device .touch-dpad-button,
+  body.touch-device .touch-face-button {
+    min-height: 0;
+  }
+
+  body.touch-device .touch-dpad-button {
+    aspect-ratio: 1;
+  }
+
+  body.touch-device .touch-button-title {
+    font-size: 0.86rem;
+  }
+
+  body.touch-device .touch-button-code {
+    font-size: 0.62rem;
   }
 }
